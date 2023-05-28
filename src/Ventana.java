@@ -293,6 +293,16 @@ public class Ventana extends JFrame{
 		JButton btnCrearGrup = new JButton("Crear");
 		btnCrearGrup.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCrearGrup.setBackground(new Color(121, 255, 145));
+		btnCrearGrup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "crearGrupo";
+				add(crearGrupo());
+				repaint();
+				revalidate();
+			}
+		});
 		btnCrearGrup.setBounds(308, 285, 90, 40);
 		fondo.add(btnCrearGrup);
 		
@@ -317,6 +327,16 @@ public class Ventana extends JFrame{
 		JButton btnCrearAsig = new JButton("Crear");
 		btnCrearAsig.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCrearAsig.setBackground(new Color(121, 255, 145));
+		btnCrearAsig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "crearAsignatura";
+				add(crearAsignatura());
+				repaint();
+				revalidate();
+			}
+		});
 		btnCrearAsig.setBounds(445, 205, 90, 40);
 		fondo.add(btnCrearAsig);
 		
@@ -726,6 +746,376 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 	
+	public JPanel crearGrupo() {
+		anterior = actual;
+		actual = "crearGrupo";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Grupo - Crear");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 11, 421, 40);
+		fondo.add(Titulo);
+		
+		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
+		Titulo2.setForeground(new Color(255, 0, 0));
+		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setBounds(79, 50, 421, 25);
+		fondo.add(Titulo2);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Nombre del Grupo:");
+		tag1.setBounds(25, 11, 169, 25);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel tag2 = new JLabel("Carrera:");
+		tag2.setBounds(25, 62, 90, 25);
+		fondo2.add(tag2);
+		tag2.setHorizontalAlignment(SwingConstants.LEFT);
+		tag2.setForeground(new Color(255, 255, 255));
+		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setBackground(Color.WHITE);
+		
+		JLabel tag3 = new JLabel("Turno:");
+		tag3.setBounds(25, 112, 169, 25);
+		fondo2.add(tag3);
+		tag3.setHorizontalAlignment(SwingConstants.LEFT);
+		tag3.setForeground(new Color(255, 255, 255));
+		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setBackground(Color.WHITE);
+		
+		JLabel tag4 = new JLabel("Docente a cargo:");
+		tag4.setBounds(25, 170, 169, 25);
+		fondo2.add(tag4);
+		tag4.setHorizontalAlignment(SwingConstants.LEFT);
+		tag4.setForeground(new Color(255, 255, 255));
+		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setBackground(Color.WHITE);
+		
+		JLabel tag7 = new JLabel("Numero de alumnos:");
+		tag7.setBounds(25, 333, 169, 25);
+		fondo2.add(tag7);
+		tag7.setHorizontalAlignment(SwingConstants.LEFT);
+		tag7.setForeground(new Color(255, 255, 255));
+		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag7.setBackground(Color.WHITE);
+		
+		JLabel tag5 = new JLabel("Semestre:\r\n");
+		tag5.setBounds(25, 221, 90, 25);
+		fondo2.add(tag5);
+		tag5.setHorizontalAlignment(SwingConstants.LEFT);
+		tag5.setForeground(new Color(255, 255, 255));
+		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setBackground(Color.WHITE);
+		
+		JLabel tag6 = new JLabel("Foto:");
+		tag6.setBounds(25, 277, 90, 25);
+		fondo2.add(tag6);
+		tag6.setHorizontalAlignment(SwingConstants.LEFT);
+		tag6.setForeground(new Color(255, 255, 255));
+		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setBackground(Color.WHITE);
+		
+		JTextField nombres = new JTextField();
+		nombres.setBackground(new Color(0, 128, 192));
+		nombres.setBounds(25, 36, 420, 25);
+		fondo2.add(nombres);
+		nombres.setColumns(10);
+		
+		JTextField carrera = new JTextField();
+		carrera.setColumns(10);
+		carrera.setBackground(new Color(0, 128, 192));
+		carrera.setBounds(25, 86, 420, 25);
+		fondo2.add(carrera);
+		
+		JTextField turno = new JTextField();
+		turno.setColumns(10);
+		turno.setBackground(new Color(0, 128, 192));
+		turno.setBounds(25, 140, 420, 25);
+		fondo2.add(turno);
+		
+		JTextField docente_a_cargo = new JTextField();
+		docente_a_cargo.setColumns(10);
+		docente_a_cargo.setBackground(new Color(0, 128, 192));
+		docente_a_cargo.setBounds(25, 195, 420, 25);
+		fondo2.add(docente_a_cargo);
+		
+		JTextField semestre = new JTextField();
+		semestre.setColumns(10);
+		semestre.setBackground(new Color(0, 128, 192));
+		semestre.setBounds(25, 246, 420, 25);
+		fondo2.add(semestre);
+		
+		JTextField num_alu = new JTextField();
+		num_alu.setColumns(10);
+		num_alu.setBackground(new Color(0, 128, 192));
+		num_alu.setBounds(25, 356, 420, 25);
+		fondo2.add(num_alu);
+		
+		JButton archivo = new JButton("Subir archivo");
+		archivo.setBackground(new Color(192, 192, 192));
+		archivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Ruta = "";
+		        JFileChooser jFileChooser = new JFileChooser();
+		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
+		        jFileChooser.setFileFilter(filtrado);
+		        
+		        int respuesta = jFileChooser.showOpenDialog(fondo);
+		        
+		        if (respuesta == JFileChooser.APPROVE_OPTION) {
+		            Ruta = jFileChooser.getSelectedFile().getPath();
+		            
+		            JLabel lblImagen = new JLabel("");
+		            Image mImagen = new ImageIcon(Ruta).getImage();
+		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		            lblImagen.setIcon(mIcono);
+		            lblImagen.setBounds(200, 200, 200, 200);
+		    		fondo2.add(lblImagen);
+		            
+		        }
+			}
+		});
+		archivo.setBounds(26, 303, 116, 23);
+		fondo2.add(archivo);
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(173, 514, 89, 23);
+		fondo.add(Volver);
+		
+		JButton Crear = new JButton("Crear");
+		Crear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Crear.setForeground(new Color(255, 255, 255));
+		Crear.setBackground(new Color(0, 128, 255));
+		Crear.setBounds(342, 514, 89, 23);
+		fondo.add(Crear);
+		
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
+	public JPanel crearAsignatura() {
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Asignatura - Crear");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 11, 421, 40);
+		fondo.add(Titulo);
+		
+		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
+		Titulo2.setForeground(new Color(255, 0, 0));
+		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setBounds(79, 50, 421, 25);
+		fondo.add(Titulo2);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Nombre de la Asignatura:");
+		tag1.setBounds(25, 11, 211, 25);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JLabel tag2 = new JLabel("Créditos:");
+		tag2.setBounds(25, 62, 90, 25);
+		fondo2.add(tag2);
+		tag2.setHorizontalAlignment(SwingConstants.LEFT);
+		tag2.setForeground(new Color(255, 255, 255));
+		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setBackground(Color.WHITE);
+		
+		JLabel tag3 = new JLabel("Turnos:");
+		tag3.setBounds(25, 112, 169, 25);
+		fondo2.add(tag3);
+		tag3.setHorizontalAlignment(SwingConstants.LEFT);
+		tag3.setForeground(new Color(255, 255, 255));
+		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setBackground(Color.WHITE);
+		
+		JLabel tag4 = new JLabel("Docente a cargo:");
+		tag4.setBounds(25, 170, 169, 25);
+		fondo2.add(tag4);
+		tag4.setHorizontalAlignment(SwingConstants.LEFT);
+		tag4.setForeground(new Color(255, 255, 255));
+		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setBackground(Color.WHITE);
+		
+		JLabel tag7 = new JLabel("Grupos que llevan esta asignatura:");
+		tag7.setBounds(25, 333, 263, 25);
+		fondo2.add(tag7);
+		tag7.setHorizontalAlignment(SwingConstants.LEFT);
+		tag7.setForeground(new Color(255, 255, 255));
+		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag7.setBackground(Color.WHITE);
+		
+		JLabel tag5 = new JLabel("Semestres:\r\n");
+		tag5.setBounds(25, 221, 90, 25);
+		fondo2.add(tag5);
+		tag5.setHorizontalAlignment(SwingConstants.LEFT);
+		tag5.setForeground(new Color(255, 255, 255));
+		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setBackground(Color.WHITE);
+		
+		JLabel tag6 = new JLabel("Foto:");
+		tag6.setBounds(25, 277, 90, 25);
+		fondo2.add(tag6);
+		tag6.setHorizontalAlignment(SwingConstants.LEFT);
+		tag6.setForeground(new Color(255, 255, 255));
+		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setBackground(Color.WHITE);
+		
+		JTextField nombre_asig = new JTextField();
+		nombre_asig.setBackground(new Color(0, 128, 192));
+		nombre_asig.setBounds(25, 36, 420, 25);
+		fondo2.add(nombre_asig);
+		nombre_asig.setColumns(10);
+		
+		JTextField creditos = new JTextField();
+		creditos.setColumns(10);
+		creditos.setBackground(new Color(0, 128, 192));
+		creditos.setBounds(25, 86, 420, 25);
+		fondo2.add(creditos);
+		
+		JTextField turnos = new JTextField();
+		turnos.setColumns(10);
+		turnos.setBackground(new Color(0, 128, 192));
+		turnos.setBounds(25, 140, 420, 25);
+		fondo2.add(turnos);
+		
+		JTextField docente_a_cargo = new JTextField();
+		docente_a_cargo.setColumns(10);
+		docente_a_cargo.setBackground(new Color(0, 128, 192));
+		docente_a_cargo.setBounds(25, 195, 420, 25);
+		fondo2.add(docente_a_cargo);
+		
+		JTextField semestres = new JTextField();
+		semestres.setColumns(10);
+		semestres.setBackground(new Color(0, 128, 192));
+		semestres.setBounds(25, 246, 420, 25);
+		fondo2.add(semestres);
+		
+		JTextField grupos = new JTextField();
+		grupos.setColumns(10);
+		grupos.setBackground(new Color(0, 128, 192));
+		grupos.setBounds(25, 356, 420, 25);
+		fondo2.add(grupos);
+		
+		JButton archivo = new JButton("Subir archivo");
+		archivo.setBackground(new Color(192, 192, 192));
+		archivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Ruta = "";
+		        JFileChooser jFileChooser = new JFileChooser();
+		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
+		        jFileChooser.setFileFilter(filtrado);
+		        
+		        int respuesta = jFileChooser.showOpenDialog(fondo);
+		        
+		        if (respuesta == JFileChooser.APPROVE_OPTION) {
+		            Ruta = jFileChooser.getSelectedFile().getPath();
+		            
+		            JLabel lblImagen = new JLabel("");
+		            Image mImagen = new ImageIcon(Ruta).getImage();
+		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		            lblImagen.setIcon(mIcono);
+		            lblImagen.setBounds(200, 200, 200, 200);
+		    		fondo2.add(lblImagen);
+		            
+		        }
+			}
+		});
+		archivo.setBounds(26, 303, 116, 23);
+		fondo2.add(archivo);
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setBounds(173, 514, 89, 23);
+		fondo.add(Volver);
+		
+		JButton Crear = new JButton("Crear");
+		Crear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Crear.setForeground(new Color(255, 255, 255));
+		Crear.setBackground(new Color(0, 128, 255));
+		Crear.setBounds(342, 514, 89, 23);
+		fondo.add(Crear);
+		
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
 	public void limpiarVentana() {
 		
 		if(panel!= null) {
@@ -758,6 +1148,22 @@ public class Ventana extends JFrame{
 		}
 		if(actual.equals("crearDocente")){
 			panel = crearDocente(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("crearGrupo")){
+			panel = crearGrupo(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("crearAsignatura")){
+			panel = crearAsignatura(); 
 			
 			this.add(panel);
 			
