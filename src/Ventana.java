@@ -178,44 +178,28 @@ public class Ventana extends JFrame{
 		tag4.setBounds(445, 108, 90, 25);
 		fondo.add(tag4);
 		
-		JButton btnDescargarAlu = new JButton("<html>Descargar información<html>");
-		btnDescargarAlu.setBackground(new Color(121, 255, 145));
-		btnDescargarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDescargarAlu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDescargarAlu.setBounds(51, 144, 90, 59);
-		fondo.add(btnDescargarAlu);
-		
-		JButton btnDescargarDoce = new JButton("<html>Descargar información<html>");
-		btnDescargarDoce.setBackground(new Color(121, 255, 145));
-		btnDescargarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDescargarDoce.setBounds(176, 144, 90, 59);
-		fondo.add(btnDescargarDoce);
-		
 		JButton btnCredAlu = new JButton("<html>Generar Credencial<html>");
 		btnCredAlu.setBackground(new Color(121, 255, 145));
 		btnCredAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCredAlu.setBounds(51, 224, 90, 59);
+		btnCredAlu.setBounds(51, 144, 90, 59);
 		fondo.add(btnCredAlu);
 		
 		JButton btnCredDoce = new JButton("<html>Generar Credencial<html>");
 		btnCredDoce.setBackground(new Color(121, 255, 145));
 		btnCredDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCredDoce.setBounds(176, 224, 90, 59);
+		btnCredDoce.setBounds(176, 144, 90, 59);
 		fondo.add(btnCredDoce);
 		
 		JButton btnConsultarAlu = new JButton("Consultar");
 		btnConsultarAlu.setBackground(new Color(121, 255, 145));
 		btnConsultarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnConsultarAlu.setBounds(51, 305, 90, 40);
+		btnConsultarAlu.setBounds(51, 225, 90, 40);
 		fondo.add(btnConsultarAlu);
 		
 		JButton btnConsultarDoce = new JButton("Consultar");
 		btnConsultarDoce.setBackground(new Color(121, 255, 145));
 		btnConsultarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnConsultarDoce.setBounds(176, 305, 90, 40);
+		btnConsultarDoce.setBounds(176, 225, 90, 40);
 		fondo.add(btnConsultarDoce);
 		
 		JButton btnCrearAlu = new JButton("Crear");
@@ -231,7 +215,7 @@ public class Ventana extends JFrame{
 			}
 		});
 		btnCrearAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCrearAlu.setBounds(51, 366, 90, 40);
+		btnCrearAlu.setBounds(51, 285, 90, 40);
 		fondo.add(btnCrearAlu);
 		
 		JButton btnCrearDoce = new JButton("Crear");
@@ -247,7 +231,7 @@ public class Ventana extends JFrame{
 			}
 		});
 		btnCrearDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCrearDoce.setBounds(176, 366, 90, 40);
+		btnCrearDoce.setBounds(176, 285, 90, 40);
 		fondo.add(btnCrearDoce);
 		
 		JButton btnEditarAlu = new JButton("Editar");
@@ -263,7 +247,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEditarAlu.setBounds(51, 427, 90, 40);
+		btnEditarAlu.setBounds(51, 345, 90, 40);
 		fondo.add(btnEditarAlu);
 		
 		JButton btnEditarDoce = new JButton("Editar");
@@ -279,31 +263,25 @@ public class Ventana extends JFrame{
 			}
 		});
 		btnEditarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditarDoce.setBounds(176, 427, 90, 40);
+		btnEditarDoce.setBounds(176, 345, 90, 40);
 		fondo.add(btnEditarDoce);
 		
 		JButton btnEliminarAlu = new JButton("Eliminar");
 		btnEliminarAlu.setBackground(new Color(121, 255, 145));
 		btnEliminarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEliminarAlu.setBounds(51, 496, 90, 40);
+		btnEliminarAlu.setBounds(51, 405, 90, 40);
 		fondo.add(btnEliminarAlu);
 		
 		JButton btnEliminarDoce = new JButton("Eliminar");
 		btnEliminarDoce.setBackground(new Color(121, 255, 145));
 		btnEliminarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEliminarDoce.setBounds(176, 496, 90, 40);
+		btnEliminarDoce.setBounds(176, 405, 90, 40);
 		fondo.add(btnEliminarDoce);
-		
-		JButton btnDescargarGrup = new JButton("<html>Descargar información<html>");
-		btnDescargarGrup.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDescargarGrup.setBackground(new Color(121, 255, 145));
-		btnDescargarGrup.setBounds(308, 144, 90, 59);
-		fondo.add(btnDescargarGrup);
 		
 		JButton btnConsultarGrup = new JButton("Consultar");
 		btnConsultarGrup.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnConsultarGrup.setBackground(new Color(121, 255, 145));
-		btnConsultarGrup.setBounds(308, 224, 90, 40);
+		btnConsultarGrup.setBounds(308, 144, 90, 40);
 		fondo.add(btnConsultarGrup);
 		
 		JButton btnCrearGrup = new JButton("Crear");
@@ -319,7 +297,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnCrearGrup.setBounds(308, 285, 90, 40);
+		btnCrearGrup.setBounds(308, 205, 90, 40);
 		fondo.add(btnCrearGrup);
 		
 		JButton btnEditarGrup = new JButton("Editar");
@@ -335,13 +313,13 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEditarGrup.setBounds(308, 346, 90, 40);
+		btnEditarGrup.setBounds(308, 266, 90, 40);
 		fondo.add(btnEditarGrup);
 		
 		JButton btnEliminarGrup = new JButton("Eliminar");
 		btnEliminarGrup.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminarGrup.setBackground(new Color(121, 255, 145));
-		btnEliminarGrup.setBounds(308, 415, 90, 40);
+		btnEliminarGrup.setBounds(308, 335, 90, 40);
 		fondo.add(btnEliminarGrup);
 		
 		JButton btnConsultarAsig = new JButton("Consultar");
