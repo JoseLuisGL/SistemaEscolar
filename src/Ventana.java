@@ -9,8 +9,12 @@ import java.awt.Image;
 
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -22,6 +26,7 @@ public class Ventana extends JFrame{
 	private JTextField username;
 	private JPasswordField password;
 	public JPanel panel = null;
+	private JTable table;
 	
 	public Ventana() {
 		this.setTitle("Sistema Escolar");
@@ -268,12 +273,32 @@ public class Ventana extends JFrame{
 		
 		JButton btnEliminarAlu = new JButton("Eliminar");
 		btnEliminarAlu.setBackground(new Color(121, 255, 145));
+		btnEliminarAlu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarAlumno";
+				add(eliminarAlumno());
+				repaint();
+				revalidate();
+			}
+		});
 		btnEliminarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminarAlu.setBounds(51, 405, 90, 40);
 		fondo.add(btnEliminarAlu);
 		
 		JButton btnEliminarDoce = new JButton("Eliminar");
 		btnEliminarDoce.setBackground(new Color(121, 255, 145));
+		btnEliminarDoce.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarDocente";
+				add(eliminarDocente());
+				repaint();
+				revalidate();
+			}
+		});
 		btnEliminarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminarDoce.setBounds(176, 405, 90, 40);
 		fondo.add(btnEliminarDoce);
@@ -319,6 +344,16 @@ public class Ventana extends JFrame{
 		JButton btnEliminarGrup = new JButton("Eliminar");
 		btnEliminarGrup.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminarGrup.setBackground(new Color(121, 255, 145));
+		btnEliminarGrup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarGrupo";
+				add(eliminarGrupo());
+				repaint();
+				revalidate();
+			}
+		});
 		btnEliminarGrup.setBounds(308, 335, 90, 40);
 		fondo.add(btnEliminarGrup);
 		
@@ -363,6 +398,16 @@ public class Ventana extends JFrame{
 		JButton btnEliminarAsig = new JButton("Eliminar");
 		btnEliminarAsig.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminarAsig.setBackground(new Color(121, 255, 145));
+		btnEliminarAsig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarAsignatura";
+				add(eliminarAsignatura());
+				repaint();
+				revalidate();
+			}
+		});
 		btnEliminarAsig.setBounds(445, 335, 90, 40);
 		fondo.add(btnEliminarAsig);
 		
@@ -1876,6 +1921,390 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 	
+	public JPanel eliminarAlumno() {
+		anterior = actual;
+		actual = "eliminarAlumno";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Alumno - Eliminar");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 24, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Lista de Alumnos:");
+		tag1.setBounds(10, 11, 211, 20);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 30, 460, 364);
+		fondo2.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Nombre del Alumno", "Apellidos", "Correo", "Eliminar"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(105);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.getColumnModel().getColumn(2).setPreferredWidth(105);
+		table.getColumnModel().getColumn(3).setPreferredWidth(105);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(270, 515, 89, 23);
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		fondo.add(Volver);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
+	public JPanel eliminarDocente() {
+		anterior = actual;
+		actual = "eliminarDocente";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Docente - Eliminar");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 24, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Lista de Docentes:");
+		tag1.setBounds(10, 11, 211, 20);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 30, 460, 364);
+		fondo2.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Nombre del Docente", "Apellidos", "Correo", "Eliminar"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(105);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.getColumnModel().getColumn(2).setPreferredWidth(105);
+		table.getColumnModel().getColumn(3).setPreferredWidth(105);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(270, 515, 89, 23);
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		fondo.add(Volver);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
+	public JPanel eliminarGrupo() {
+		anterior = actual;
+		actual = "eliminarGrupo";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Grupo - Eliminar");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 24, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Lista de Grupos:");
+		tag1.setBounds(10, 11, 211, 20);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 30, 460, 364);
+		fondo2.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Nombre del Grupo", "Carrera", "Semestre", "Eliminar"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(105);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.getColumnModel().getColumn(2).setPreferredWidth(105);
+		table.getColumnModel().getColumn(3).setPreferredWidth(105);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(270, 515, 89, 23);
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		fondo.add(Volver);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
+	public JPanel eliminarAsignatura() {
+		anterior = actual;
+		actual = "eliminarAsignatura";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Asignatura - Eliminar");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setBounds(79, 24, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 86, 480, 405);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		JLabel tag1 = new JLabel("Lista de Asignaturas:");
+		tag1.setBounds(10, 11, 211, 20);
+		fondo2.add(tag1);
+		tag1.setBackground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setHorizontalAlignment(SwingConstants.LEFT);
+		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 30, 460, 364);
+		fondo2.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Nombre de la Asignatura", "Créditos", "Semestres", "Eliminar"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(105);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.getColumnModel().getColumn(2).setPreferredWidth(105);
+		table.getColumnModel().getColumn(3).setPreferredWidth(105);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(270, 515, 89, 23);
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 5, 80, 80);
+		fondo.add(imagen);
+		fondo.add(Volver);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
 	public void limpiarVentana() {
 		
 		if(panel!= null) {
@@ -1956,6 +2385,38 @@ public class Ventana extends JFrame{
 		}
 		if(actual.equals("editarAlumno")){
 			panel = editarAlumno(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("eliminarAlumno")){
+			panel = eliminarAlumno(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("eliminarDocente")){
+			panel = eliminarDocente(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("eliminarGrupo")){
+			panel = eliminarGrupo(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("eliminarAsignatura")){
+			panel = eliminarAsignatura(); 
 			
 			this.add(panel);
 			
