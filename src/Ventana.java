@@ -94,6 +94,8 @@ public class Ventana extends JFrame{
 		Cancelar.setForeground(new Color(255, 255, 255));
 		Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				username.setText("");
+				password.setText("");
 			}
 		});
 		Cancelar.setBounds(260, 364, 120, 33);
@@ -186,12 +188,32 @@ public class Ventana extends JFrame{
 		JButton btnCredAlu = new JButton("<html>Generar Credencial<html>");
 		btnCredAlu.setBackground(new Color(121, 255, 145));
 		btnCredAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCredAlu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "credencialAlumno";
+				add(credencialAlumno());
+				repaint();
+				revalidate();
+			}
+		});
 		btnCredAlu.setBounds(51, 144, 90, 59);
 		fondo.add(btnCredAlu);
 		
 		JButton btnCredDoce = new JButton("<html>Generar Credencial<html>");
 		btnCredDoce.setBackground(new Color(121, 255, 145));
 		btnCredDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCredDoce.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "credencialDocente";
+				add(credencialDocente());
+				repaint();
+				revalidate();
+			}
+		});
 		btnCredDoce.setBounds(176, 144, 90, 59);
 		fondo.add(btnCredDoce);
 		
@@ -2893,6 +2915,136 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 	
+	public JPanel credencialAlumno() {
+		anterior = actual;
+		actual = "credencialAlumno";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Alumno - Generar Credencial");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		Titulo.setBounds(79, 11, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 55, 480, 449);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(173, 514, 89, 36);
+		fondo.add(Volver);
+		
+		JButton Descargar = new JButton("Descargar");
+		Descargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Descargar.setForeground(new Color(255, 255, 255));
+		Descargar.setBackground(new Color(0, 128, 255));
+		Descargar.setBounds(342, 514, 95, 36);
+		fondo.add(Descargar);
+		
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(40, 10, 400, 200);
+		fondo2.add(imagen);
+		
+		JLabel imagen2 = new JLabel("");
+		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/credencialT.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
+		imagen2.setIcon(imageIcon2);
+		imagen2.setBounds(40, 230, 400, 200);
+		fondo2.add(imagen2);
+		
+		this.add(fondo);
+		return fondo;
+	}
+
+	public JPanel credencialDocente() {
+		anterior = actual;
+		actual = "credencialDocente";
+		JPanel fondo = new JPanel();
+		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBounds(0, 0, 584, 561);
+		getContentPane().add(fondo);
+		fondo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Docente - Generar Credencial");
+		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		Titulo.setBounds(79, 11, 421, 40);
+		fondo.add(Titulo);
+		
+		JPanel fondo2 = new JPanel();
+		fondo2.setBackground(new Color(0, 128, 64));
+		fondo2.setBounds(60, 55, 480, 449);
+		fondo.add(fondo2);
+		fondo2.setLayout(null);
+		
+		
+		JButton Volver = new JButton("Volver");
+		Volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remove(fondo);
+				anterior = actual;
+				actual = "menu";
+				add(menu());
+				repaint();
+				revalidate();
+			}
+		});
+		Volver.setForeground(new Color(255, 255, 255));
+		Volver.setBackground(new Color(255, 0, 0));
+		Volver.setBounds(173, 514, 89, 36);
+		fondo.add(Volver);
+		
+		JButton Descargar = new JButton("Descargar");
+		Descargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Descargar.setForeground(new Color(255, 255, 255));
+		Descargar.setBackground(new Color(0, 128, 255));
+		Descargar.setBounds(342, 514, 95, 36);
+		fondo.add(Descargar);
+		
+		JLabel imagen = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialDF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(40, 10, 400, 200);
+		fondo2.add(imagen);
+		
+		JLabel imagen2 = new JLabel("");
+		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/credencialDT.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
+		imagen2.setIcon(imageIcon2);
+		imagen2.setBounds(40, 230, 400, 200);
+		fondo2.add(imagen2);
+		
+		this.add(fondo);
+		return fondo;
+	}
+	
 	public void limpiarVentana() {
 		
 		if(panel!= null) {
@@ -3037,6 +3189,22 @@ public class Ventana extends JFrame{
 		}
 		if(actual.equals("consultarAsignatura")){
 			panel = consultarAsignatura(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("credencialAlumno")){
+			panel = credencialAlumno(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("credencialDocente")){
+			panel = credencialDocente(); 
 			
 			this.add(panel);
 			
