@@ -1,4 +1,5 @@
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -679,6 +680,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -863,6 +869,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -1046,6 +1057,11 @@ public class Ventana extends JFrame{
 		imagen.setIcon(imageIcon);
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
@@ -1235,6 +1251,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -1422,6 +1443,11 @@ public class Ventana extends JFrame{
 		imagen.setIcon(imageIcon);
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
@@ -1611,6 +1637,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -1794,6 +1825,11 @@ public class Ventana extends JFrame{
 		imagen.setIcon(imageIcon);
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
@@ -1979,6 +2015,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2074,6 +2115,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		fondo.add(Volver);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 13);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
@@ -2171,6 +2217,11 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		fondo.add(Volver);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 13);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2266,6 +2317,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(450, 5, 80, 80);
 		fondo.add(imagen);
 		fondo.add(Volver);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 13);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
@@ -2363,6 +2419,11 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		fondo.add(Volver);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 13);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2389,7 +2450,7 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Nombres del Alumno");
+		JLabel tag1 = new JLabel("Seleccione un Alumno");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
@@ -2425,11 +2486,9 @@ public class Ventana extends JFrame{
 		tag6.setBounds(10, 239, 210, 14);
 		fondo2.add(tag6);
 		
-		JTextField datos_nom = new JTextField();
-		datos_nom.setEditable(false);
-		datos_nom.setBounds(10, 45, 273, 20);
-		fondo2.add(datos_nom);
-		datos_nom.setColumns(10);
+		JComboBox seleccionAlumno = new JComboBox();
+		seleccionAlumno.setBounds(10, 45, 273, 22);
+		fondo2.add(seleccionAlumno);
 		
 		JTextField datos_ape = new JTextField();
 		datos_ape.setEditable(false);
@@ -2500,6 +2559,11 @@ public class Ventana extends JFrame{
 		imagen2.setBounds(40, 300, 400, 100);
 		fondo2.add(imagen2);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2526,7 +2590,7 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Nombres del Docente");
+		JLabel tag1 = new JLabel("Seleccione un Docente");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
@@ -2562,11 +2626,9 @@ public class Ventana extends JFrame{
 		tag6.setBounds(10, 239, 210, 14);
 		fondo2.add(tag6);
 		
-		JTextField datos_nom = new JTextField();
-		datos_nom.setEditable(false);
-		datos_nom.setBounds(10, 45, 273, 20);
-		fondo2.add(datos_nom);
-		datos_nom.setColumns(10);
+		JComboBox seleccionDocente = new JComboBox();
+		seleccionDocente.setBounds(10, 45, 273, 22);
+		fondo2.add(seleccionDocente);
 		
 		JTextField datos_ape = new JTextField();
 		datos_ape.setEditable(false);
@@ -2637,6 +2699,11 @@ public class Ventana extends JFrame{
 		imagen2.setBounds(40, 300, 400, 100);
 		fondo2.add(imagen2);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2663,7 +2730,7 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Nombre del Grupo:");
+		JLabel tag1 = new JLabel("Seleccione un Grupo:");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
@@ -2699,11 +2766,9 @@ public class Ventana extends JFrame{
 		tag6.setBounds(10, 239, 210, 14);
 		fondo2.add(tag6);
 		
-		JTextField datos_nom = new JTextField();
-		datos_nom.setEditable(false);
-		datos_nom.setBounds(10, 45, 273, 20);
-		fondo2.add(datos_nom);
-		datos_nom.setColumns(10);
+		JComboBox seleccionGrupo = new JComboBox();
+		seleccionGrupo.setBounds(10, 45, 273, 22);
+		fondo2.add(seleccionGrupo);
 		
 		JTextField datos_carrera = new JTextField();
 		datos_carrera.setEditable(false);
@@ -2800,7 +2865,7 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Nombre de la Asignatura:");
+		JLabel tag1 = new JLabel("Seleccione una Asignatura:");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
@@ -2836,11 +2901,9 @@ public class Ventana extends JFrame{
 		tag6.setBounds(10, 239, 250, 14);
 		fondo2.add(tag6);
 		
-		JTextField datos_nom = new JTextField();
-		datos_nom.setEditable(false);
-		datos_nom.setBounds(10, 45, 273, 20);
-		fondo2.add(datos_nom);
-		datos_nom.setColumns(10);
+		JComboBox seleccionAsignatura = new JComboBox();
+		seleccionAsignatura.setBounds(10, 45, 273, 22);
+		fondo2.add(seleccionAsignatura);
 		
 		JTextField datos_creditos = new JTextField();
 		datos_creditos.setEditable(false);
@@ -2911,6 +2974,11 @@ public class Ventana extends JFrame{
 		imagen2.setBounds(40, 300, 400, 100);
 		fondo2.add(imagen2);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -2976,6 +3044,11 @@ public class Ventana extends JFrame{
 		imagen2.setBounds(40, 230, 400, 200);
 		fondo2.add(imagen2);
 		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
+		
 		this.add(fondo);
 		return fondo;
 	}
@@ -3040,6 +3113,11 @@ public class Ventana extends JFrame{
 		imagen2.setIcon(imageIcon2);
 		imagen2.setBounds(40, 230, 400, 200);
 		fondo2.add(imagen2);
+		
+		JPanel panelSuperior = new JPanel();
+		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBounds(0, 0, 600, 15);
+		fondo.add(panelSuperior);
 		
 		this.add(fondo);
 		return fondo;
