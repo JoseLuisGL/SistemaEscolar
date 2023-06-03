@@ -1,3 +1,4 @@
+package Vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -11,6 +12,9 @@ import java.awt.Image;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+
+import Controlador.ControlVistaBD;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -28,8 +32,15 @@ public class Ventana extends JFrame{
 	private JPasswordField password;
 	public JPanel panel = null;
 	private JTable table;
+	private JTextField txtNombre;
+	private JTextField txtDireccion;
+	private JTextField txtRut;
+	private JButton btnGuardar;
+	private ControlVistaBD cvbd;
 	
+
 	public Ventana() {
+		cvbd = new ControlVistaBD(this);
 		this.setTitle("Sistema Escolar");
 		this.setSize(600,600);
 		getContentPane().setLayout(null);
@@ -501,6 +512,7 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel crearAlumno() {
+		cvbd = new ControlVistaBD(this);
 		anterior = actual;
 		actual = "crearAlumno";
 		JPanel fondo = new JPanel();
@@ -585,17 +597,17 @@ public class Ventana extends JFrame{
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
-		JTextField nombres = new JTextField();
-		nombres.setBackground(new Color(0, 128, 192));
-		nombres.setBounds(25, 36, 420, 25);
-		fondo2.add(nombres);
-		nombres.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBackground(new Color(0, 128, 192));
+		txtNombre.setBounds(25, 36, 420, 25);
+		fondo2.add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		JTextField apellidos = new JTextField();
-		apellidos.setColumns(10);
-		apellidos.setBackground(new Color(0, 128, 192));
-		apellidos.setBounds(25, 86, 420, 25);
-		fondo2.add(apellidos);
+		txtDireccion = new JTextField();
+		txtDireccion.setColumns(10);
+		txtDireccion.setBackground(new Color(0, 128, 192));
+		txtDireccion.setBounds(25, 86, 420, 25);
+		fondo2.add(txtDireccion);
 		
 		JTextField fechaNacimiento = new JTextField();
 		fechaNacimiento.setColumns(10);
@@ -609,11 +621,11 @@ public class Ventana extends JFrame{
 		correo.setBounds(25, 195, 420, 25);
 		fondo2.add(correo);
 		
-		JTextField telefono = new JTextField();
-		telefono.setColumns(10);
-		telefono.setBackground(new Color(0, 128, 192));
-		telefono.setBounds(25, 246, 420, 25);
-		fondo2.add(telefono);
+		txtRut = new JTextField();
+		txtRut.setColumns(10);
+		txtRut.setBackground(new Color(0, 128, 192));
+		txtRut.setBounds(25, 246, 420, 25);
+		fondo2.add(txtRut);
 		
 		JTextField grado = new JTextField();
 		grado.setColumns(10);
@@ -664,15 +676,11 @@ public class Ventana extends JFrame{
 		Volver.setBounds(173, 514, 89, 23);
 		fondo.add(Volver);
 		
-		JButton Crear = new JButton("Crear");
-		Crear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		Crear.setForeground(new Color(255, 255, 255));
-		Crear.setBackground(new Color(0, 128, 255));
-		Crear.setBounds(342, 514, 89, 23);
-		fondo.add(Crear);
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(169, 195, 89, 23);
+		btnGuardar.addActionListener(cvbd);
+		fondo.getRootPane().add(btnGuardar);
+		fondo.add(btnGuardar);
 
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
@@ -3124,6 +3132,7 @@ public class Ventana extends JFrame{
 	}
 	
 	public void limpiarVentana() {
+
 		
 		if(panel!= null) {
 			this.remove(panel);
@@ -3289,5 +3298,37 @@ public class Ventana extends JFrame{
 			this.repaint();
 			this.revalidate();
 		}
+	}
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+	public JTextField getTxtDireccion() {
+		return txtDireccion;
+	}
+
+	public void setTxtDireccion(JTextField txtDireccion) {
+		this.txtDireccion = txtDireccion;
+	}
+
+	public JTextField getTxtRut() {
+		return txtRut;
+	}
+
+	public void setTxtRut(JTextField txtRut) {
+		this.txtRut = txtRut;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
 	}
 }
