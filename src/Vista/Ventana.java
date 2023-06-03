@@ -677,7 +677,9 @@ public class Ventana extends JFrame{
 		fondo.add(Volver);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(169, 195, 89, 23);
+		btnGuardar.setForeground(new Color(255, 255, 255));
+        btnGuardar.setBackground(new Color(0, 128, 255));
+        btnGuardar.setBounds(342, 514, 89, 23);
 		btnGuardar.addActionListener(cvbd);
 		fondo.getRootPane().add(btnGuardar);
 		fondo.add(btnGuardar);
