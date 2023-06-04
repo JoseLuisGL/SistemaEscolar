@@ -2588,7 +2588,7 @@ public class Ventana extends JFrame{
 		JButton Consultar = new JButton("Consultar");
 		Consultar.setForeground(new Color(255, 255, 255));
 		Consultar.setBackground(new Color(255, 0, 0));
-		Consultar.setBounds(300, 514, 89, 36);
+		Consultar.setBounds(250, 514, 89, 36);
 		fondo.add(Consultar);
 		Consultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2649,23 +2649,26 @@ public class Ventana extends JFrame{
 		});
 		Volver.setForeground(new Color(255, 255, 255));
 		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 36);
+		Volver.setBounds(120, 514, 89, 36);
 		fondo.add(Volver);
 		
 		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
 		Descargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				repaint();
+				revalidate();
 			}
 		});
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(342, 514, 89, 36);
+		Descargar.setBounds(380, 514, 89, 36);
 		fondo.add(Descargar);
 		
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
 		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 80, 160, 160);
+		imagen.setBounds(300, 50, 160, 160);
 		fondo2.add(imagen);
 		
 		JLabel imagen2 = new JLabel("");
@@ -2678,6 +2681,44 @@ public class Ventana extends JFrame{
 		panelSuperior.setBackground(new Color(101, 103, 3));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
+		
+		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
+		GuardarCambios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				repaint();
+				revalidate();
+			}
+		});
+		GuardarCambios.setForeground(new Color(255, 255, 255));
+		GuardarCambios.setBackground(new Color(0, 128, 255));
+		GuardarCambios.setBounds(380, 250, 70, 30);
+		GuardarCambios.setEnabled(false);
+		fondo2.add(GuardarCambios);
+		
+		JButton Editar = new JButton("<html>Editar<html>");
+		Editar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idText = idAlumno.getText();
+				if(idText.matches(".*\\d.*")) {
+					datos_ape.setEditable(true);
+					datos_correo.setEditable(true);
+					datos_fecha.setEditable(true);
+					datos_tel.setEditable(true);
+					datos_grado.setEditable(true);
+					GuardarCambios.setEnabled(true);
+					
+					repaint();
+					revalidate();
+				}else {
+					JOptionPane.showMessageDialog(null, "Ingresa el id del alumno");
+				}
+			}
+		});
+		Editar.setForeground(new Color(255, 255, 255));
+		Editar.setBackground(new Color(0, 128, 255));
+		Editar.setBounds(290, 250, 70, 30);
+		fondo2.add(Editar);
 		
 		this.add(fondo);
 		return fondo;
