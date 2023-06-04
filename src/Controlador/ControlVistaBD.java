@@ -14,6 +14,7 @@ public class ControlVistaBD implements ActionListener {
 	private Registro r = new Registro();
 	
 	
+	
 	public ControlVistaBD (Ventana vpbd) {
 		this.vpbd = vpbd;
 	}

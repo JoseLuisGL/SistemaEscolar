@@ -38,6 +38,7 @@ public class Ventana extends JFrame{
 	private JButton btnGuardar;
 	private ControlVistaBD cvbd;
 	
+	
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -627,11 +628,21 @@ public class Ventana extends JFrame{
 		txtRut.setBounds(25, 246, 420, 25);
 		fondo2.add(txtRut);
 		
-		JTextField grado = new JTextField();
-		grado.setColumns(10);
-		grado.setBackground(new Color(0, 128, 192));
-		grado.setBounds(25, 356, 420, 25);
-		fondo2.add(grado);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(85, 450, 90, 25);
+		fondo2.getRootPane().add(comboBox);
+		add(comboBox);
+		
+		comboBox.addItem("1ro");
+		comboBox.addItem("2do");
+		comboBox.addItem("3ero");
+		comboBox.addItem("4to");
+		comboBox.addItem("5to");
+		comboBox.addItem("6to");
+		comboBox.addItem("7to");
+		comboBox.addItem("8vo");
+		comboBox.addItem("9no");
+		
 		
 		JButton archivo = new JButton("Subir archivo");
 		archivo.setBackground(new Color(192, 192, 192));
