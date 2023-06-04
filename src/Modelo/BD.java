@@ -15,10 +15,10 @@ public class BD {
 	private ResultSet rs = null;
 	
 	
-	public void Conectar () {
+	public Connection Conectar () {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd-ejemplo","root","proyectofinal123");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd-ejemplo?useSSL=false","root","proyectofinal123");
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error al cargar la base de datos");
@@ -27,6 +27,7 @@ public class BD {
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error al cargar driver");
 		}
+		return conexion;
 	}
 	
 	public int setInformacion (String instruccion) {
@@ -47,16 +48,9 @@ public class BD {
 			e.printStackTrace();
 			
 			return validar;
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 	}
+	
+	
+	
 }

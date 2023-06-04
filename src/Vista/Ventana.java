@@ -1,28 +1,31 @@
 package Vista;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControlVistaBD;
-
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
+import Modelo.BD;
 
 
 public class Ventana extends JFrame{
@@ -675,6 +678,7 @@ public class Ventana extends JFrame{
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
+				remove(comboBox);
 				anterior = actual;
 				actual = "menu";
 				add(menu());
@@ -2115,6 +2119,34 @@ public class Ventana extends JFrame{
 		table.getColumnModel().getColumn(2).setPreferredWidth(105);
 		table.getColumnModel().getColumn(3).setPreferredWidth(105);
 		
+		
+		 BD bd = new BD();
+		    try {
+		        Connection cn = bd.Conectar();
+		        Statement stm = cn.createStatement();
+		        ResultSet rs = stm.executeQuery("SELECT * FROM alumnos");
+
+		        // Crear el modelo de tabla con los nombres de columna
+		        DefaultTableModel model = new DefaultTableModel(new String[]{"Nombre del Alumno", "Apellidos", "Correo", "Eliminar"}, 0);
+
+		        // Rellenar el modelo de tabla con los datos de la base de datos
+		        while (rs.next()) {
+		            String nombre = rs.getString("nombre");
+		            String direccion = rs.getString("direccion");
+		            String rut = rs.getString("rut");
+		            Object[] row = {nombre, direccion, rut, false}; // Puedes cambiar el último valor a true si quieres que la fila esté marcada para eliminar
+		            model.addRow(row);
+		        }
+
+		        // Asignar el modelo de tabla a la tabla existente
+		        table.setModel(model);
+
+		        rs.close();
+		        stm.close();
+		        cn.close();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
