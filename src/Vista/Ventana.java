@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -40,6 +41,8 @@ public class Ventana extends JFrame{
 	private JTextField txtRut;
 	private JButton btnGuardar;
 	private ControlVistaBD cvbd;
+	private int idConsultar;
+	private int cambio=0;
 	
 	
 
@@ -2111,13 +2114,14 @@ public class Ventana extends JFrame{
 				{null, null, null, null},
 			},
 			new String[] {
-				"Nombre del Alumno", "Apellidos", "Correo", "Eliminar"
+				"Id","Nombre del Alumno", "Apellidos", "Correo", "Eliminar"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(105);
 		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 		table.getColumnModel().getColumn(2).setPreferredWidth(105);
 		table.getColumnModel().getColumn(3).setPreferredWidth(105);
+		table.getColumnModel().getColumn(4).setPreferredWidth(105);
 		
 		
 		 BD bd = new BD();
@@ -2127,15 +2131,17 @@ public class Ventana extends JFrame{
 		        ResultSet rs = stm.executeQuery("SELECT * FROM alumnos");
 
 		        // Crear el modelo de tabla con los nombres de columna
-		        DefaultTableModel model = new DefaultTableModel(new String[]{"Nombre del Alumno", "Apellidos", "Correo", "Eliminar"}, 0);
+		        DefaultTableModel model = new DefaultTableModel(new String[]{"Id","Nombre del Alumno", "Apellidos", "Correo", "Eliminar"}, 0);
 
 		        // Rellenar el modelo de tabla con los datos de la base de datos
 		        while (rs.next()) {
+		        	int id = rs.getInt("idAlumnos");
 		            String nombre = rs.getString("nombre");
 		            String direccion = rs.getString("direccion");
 		            String rut = rs.getString("rut");
-		            Object[] row = {nombre, direccion, rut, false}; // Puedes cambiar el último valor a true si quieres que la fila esté marcada para eliminar
+		            Object[] row = {id,nombre, direccion, rut, false}; // Puedes cambiar el último valor a true si quieres que la fila esté marcada para eliminar
 		            model.addRow(row);
+		            
 		        }
 
 		        // Asignar el modelo de tabla a la tabla existente
@@ -2503,7 +2509,7 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Seleccione un Alumno");
+		JLabel tag1 = new JLabel("Ingrese el ID del alumno");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
@@ -2539,9 +2545,14 @@ public class Ventana extends JFrame{
 		tag6.setBounds(10, 239, 210, 14);
 		fondo2.add(tag6);
 		
-		JComboBox seleccionAlumno = new JComboBox();
-		seleccionAlumno.setBounds(10, 45, 273, 22);
-		fondo2.add(seleccionAlumno);
+		JTextField idAlumno = new JTextField();
+		idAlumno.setEditable(true);
+		idAlumno.setColumns(10);
+		idAlumno.setBounds(10, 45, 273, 22);
+		fondo2.add(idAlumno);
+		
+		
+		System.out.println();
 		
 		JTextField datos_ape = new JTextField();
 		datos_ape.setEditable(false);
@@ -2572,6 +2583,57 @@ public class Ventana extends JFrame{
 		datos_grado.setColumns(10);
 		datos_grado.setBounds(10, 257, 273, 20);
 		fondo2.add(datos_grado);
+		
+		
+		JButton Consultar = new JButton("Consultar");
+		Consultar.setForeground(new Color(255, 255, 255));
+		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBounds(300, 514, 89, 36);
+		fondo.add(Consultar);
+		Consultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idConsultar = Integer.parseInt(idAlumno.getText());
+				BD bd = new BD();
+			    try {
+			        Connection cn = bd.Conectar();
+			        Statement stm = cn.createStatement();
+			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnos");
+
+			        
+			        
+			        while (rs.next()) {
+			        	
+			        	int id = rs.getInt("idAlumnos");
+			           
+			        	if(idConsultar == id) {
+			        		String nombre = rs.getString("nombre");
+				            String direccion = rs.getString("direccion");
+				            String rut = rs.getString("rut");
+				            
+				            datos_ape.setText(nombre);
+				            datos_correo.setText(direccion);
+				            datos_tel.setText(rut);
+				            cambio++;
+			        	}
+			        }
+
+			        rs.close();
+			        stm.close();
+			        cn.close();
+			    } catch (SQLException e1) {
+			        e1.printStackTrace();
+			    }
+			    
+			    if(cambio==0) {
+			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
+			    }
+			    cambio=0;
+				
+			
+				repaint();
+				revalidate();
+			}
+		});
 		
 		
 		JButton Volver = new JButton("Volver");
@@ -3377,3 +3439,4 @@ public class Ventana extends JFrame{
 		this.btnGuardar = btnGuardar;
 	}
 }
+
