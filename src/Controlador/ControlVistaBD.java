@@ -22,7 +22,7 @@ public class ControlVistaBD implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		if(ev.getSource().equals(vpbd.getBtnGuardar())) {
+		/*if(ev.getSource().equals(vpbd.getBtnGuardar())) {
 			int a = r.guardarAlumno(vpbd.getTxtNombre().getText(), vpbd.getTxtApellidoPaterno().getText(), vpbd.getTxtApellidoMaterno().getText(),
 					vpbd.getTxtCorreo().getText, vpbd.getTxtDireccion().getText, a, vpbd.getTxtApellidoMaterno().getText, 
 					a, null);
@@ -31,6 +31,6 @@ public class ControlVistaBD implements ActionListener {
 				JOptionPane.showMessageDialog(null, "¡Registro de alumno terminado!");
 			}
 			
-		}
+		}*/
 	}
 }

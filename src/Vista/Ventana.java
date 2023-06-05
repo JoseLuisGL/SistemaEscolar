@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +29,15 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+
+import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.VerticalAlignment;
 
 import Controlador.ControlVistaBD;
 import Modelo.BD;
@@ -2719,11 +2730,90 @@ public class Ventana extends JFrame{
 		
 		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
 		Descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				repaint();
-				revalidate();
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Crear el archivo PDF
+		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivo.pdf"));
+		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+		            // Agregar las imágenes al documento
+		            /*com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialF.png"));
+		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialT.png"));
+		            document.add(imagen1);
+		            document.add(imagen2);*/
+
+		            //Crear txt
+		            float col = 280f;
+		            float anchoColumna[] = {col,col};
+		            Table table = new Table(anchoColumna);
+		            
+		            
+		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
+		            	.setFontColor(new DeviceRgb(255, 255, 255));
+		            Cell cell = new Cell();
+		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
+		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
+		            		.setMarginTop(30f)
+		            		.setMarginBottom(30f)
+		            		.setFontSize(24f)
+		            		.setFontColor(new DeviceRgb(0, 0, 0))
+		            		.setBorder(Border.NO_BORDER)
+		            		;
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            cell = new Cell();
+		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
+		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
+		                .setMarginTop(50f)
+		                .setMarginBottom(30f)
+		                .setFontSize(12f)
+		                .setBorder(Border.NO_BORDER)
+		                .setMarginRight(10f);
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            float columnaAncho[] = {80,300,100,80};
+		            Table tablaInformacion = new Table(columnaAncho);
+		            
+		            tablaInformacion.addCell(new Cell(0, 8)
+		                    .add(new Paragraph("Informacion del alumno:")
+		                    .setBold()));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido paterno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido materno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Fecha de nacimiento")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_ape.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("2")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("3")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("4")));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Teléfono")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Dirección")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("ID del Alumno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_correo.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("7")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(idAlumno.getText())));
+		            
+		            // Cerrar el documento
+		            document.add(table);
+		            document.add(tablaInformacion);
+		            document.close();
+		            
+		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (FileNotFoundException ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+		        } /*catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}*/
+		    }
 		});
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
@@ -3245,8 +3335,9 @@ public class Ventana extends JFrame{
 		
 		JButton Descargar = new JButton("Descargar");
 		Descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+	
+		    }
 		});
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
