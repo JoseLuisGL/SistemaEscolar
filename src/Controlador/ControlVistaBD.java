@@ -12,6 +12,7 @@ public class ControlVistaBD implements ActionListener {
 	
 	private Ventana vpbd;
 	private Registro r = new Registro();
+	private int telefono;
 	
 	
 	
@@ -22,15 +23,16 @@ public class ControlVistaBD implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		/*if(ev.getSource().equals(vpbd.getBtnGuardar())) {
-			int a = r.guardarAlumno(vpbd.getTxtNombre().getText(), vpbd.getTxtApellidoPaterno().getText(), vpbd.getTxtApellidoMaterno().getText(),
-					vpbd.getTxtCorreo().getText, vpbd.getTxtDireccion().getText, a, vpbd.getTxtApellidoMaterno().getText, 
-					a, null);
+		if(ev.getSource().equals(vpbd.getBtnGuardar())) {
+			
+			
+			int a = r.guardarAlumno(vpbd.txtNombre.getText(), vpbd.txtApellidoPaterno.getText(), vpbd.txtApellidoMaterno.getText(),
+					vpbd.fecha, vpbd.txtCorreo.getText(), vpbd.txtTelefono.getText(), vpbd.txtDireccion.getText(), vpbd.grado,vpbd.imagenBytes);
 			
 			if(a>0) {
 				JOptionPane.showMessageDialog(null, "¡Registro de alumno terminado!");
 			}
 			
-		}*/
+		}
 	}
 }

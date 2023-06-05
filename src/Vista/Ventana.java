@@ -5,12 +5,16 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -31,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.geom.Path;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -50,14 +55,19 @@ public class Ventana extends JFrame{
 	private JPasswordField password;
 	public JPanel panel = null;
 	private JTable table;
-	private JTextField txtNombre;
-	private JTextField txtApellidoPaterno,txtApellidoMaterno,txtCorreo,txtDireccion,txtTelefono;
+	public JTextField txtNombre;
+	public JTextField txtApellidoPaterno,txtApellidoMaterno;
+	public JTextField txtCorreo;
+	public JTextField txtDireccion;
+	public JTextField txtTelefono;
+	public int grado;
 	private JButton btnGuardar;
 	private ControlVistaBD cvbd;
 	private int idConsultar;
 	private int cambio=0;
-	
-	
+	public LocalDate fecha;
+	public byte[] imagenBytes;
+	public int numeroTelefono;
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -675,7 +685,14 @@ public class Ventana extends JFrame{
         	ano_nacimiento.addItem(i);
         	ano_nacimiento.addItemListener(null);
         }
-		
+        
+        int dia = (int) dia_nacimiento.getSelectedItem();
+        int mes = (int) mes_nacimiento.getSelectedItem();
+        int ano = (int) ano_nacimiento.getSelectedItem();
+        
+      
+        fecha = LocalDate.of(ano, mes, dia);
+	
 		txtCorreo = new JTextField();
 		txtCorreo.setColumns(10);
 		txtCorreo.setBackground(new Color(0, 128, 192));
@@ -688,6 +705,7 @@ public class Ventana extends JFrame{
 		txtTelefono.setBounds(25, 246, 420, 25);
 		fondo2.add(txtTelefono);
 		
+		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
 		txtDireccion.setBackground(new Color(0, 128, 192));
@@ -699,39 +717,37 @@ public class Ventana extends JFrame{
 		fondo2.getRootPane().add(comboBox);
 		add(comboBox);
 		
-		comboBox.addItem("1ro");
-		comboBox.addItem("2do");
-		comboBox.addItem("3ero");
-		comboBox.addItem("4to");
-		comboBox.addItem("5to");
-		comboBox.addItem("6to");
-		comboBox.addItem("7to");
-		comboBox.addItem("8vo");
-		comboBox.addItem("9no");
+		
+		for(int i=1;i<14;i++) {
+        	comboBox.addItem(i);
+        	comboBox.addItemListener(null);
+        }
+		
+		grado = (int) comboBox.getSelectedItem();
 		
 		
 		JButton archivo = new JButton("Subir archivo");
 		archivo.setBackground(new Color(192, 192, 192));
 		archivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Ruta = "";
-		        JFileChooser jFileChooser = new JFileChooser();
-		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
-		        jFileChooser.setFileFilter(filtrado);
-		        
-		        int respuesta = jFileChooser.showOpenDialog(fondo);
-		        
-		        if (respuesta == JFileChooser.APPROVE_OPTION) {
-		            Ruta = jFileChooser.getSelectedFile().getPath();
+				 JFileChooser fileChooser = new JFileChooser();
+			        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
+			        fileChooser.setFileFilter(filter);
+
+			        int resultado = fileChooser.showOpenDialog(null);
+			        if (resultado == JFileChooser.APPROVE_OPTION) {
+			            File archivoImagen = fileChooser.getSelectedFile();
+			            try {
+			               imagenBytes = Files.readAllBytes(archivoImagen.toPath());
+			                
+			                System.out.println("La imagen se ha guardado en MySQL correctamente.");
+			            } catch (IOException e1) {
+			                e1.printStackTrace();
+			            }
+			        }
+			    
 		            
-		            JLabel lblImagen = new JLabel("");
-		            Image mImagen = new ImageIcon(Ruta).getImage();
-		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		            lblImagen.setIcon(mIcono);
-		            lblImagen.setBounds(200, 200, 200, 200);
-		    		fondo2.add(lblImagen);
-		            
-		        }
+		        
 			}
 		});
 		archivo.setBounds(26, 303, 116, 23);
@@ -2147,35 +2163,32 @@ public class Ventana extends JFrame{
         scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
                 new Object[][]{
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
                 },
                 new String[]{
-                        "Id", "Nombre del Alumno", "Apellidos", "Correo", "Eliminar"
+                        "Id", "Nombre del Alumno", "A. Paterno", "A. Materno", "Fecha Nacimiento","Correo","Telefono","Direccion","Grado",
+                        "Eliminar"
                 }
         ) {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public Class<?> getColumnClass(int columnIndex) {
                 if (columnIndex == 4) {
                     return JButton.class;
@@ -2189,22 +2202,33 @@ public class Ventana extends JFrame{
         table.getColumnModel().getColumn(2).setPreferredWidth(105);
         table.getColumnModel().getColumn(3).setPreferredWidth(105);
         table.getColumnModel().getColumn(4).setPreferredWidth(105);
+        table.getColumnModel().getColumn(5).setPreferredWidth(105);
+        table.getColumnModel().getColumn(6).setPreferredWidth(105);
+        table.getColumnModel().getColumn(7).setPreferredWidth(105);
+        table.getColumnModel().getColumn(8).setPreferredWidth(105);
+        table.getColumnModel().getColumn(9).setPreferredWidth(105);
 
         BD bd = new BD();
         try {
             Connection cn = bd.Conectar();
             Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM alumnos");
+            ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre del Alumno", "Apellidos", "Correo", "Eliminar"}, 0);
-
+            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "A. Paterno", "A. Materno", "Fecha Nacimiento",
+            		"Correo","Telefono","Direccion","Grado", "Eliminar"}, 0);
+            
             while (rs.next()) {
                 int id = rs.getInt("idAlumnos");
-                String nombre = rs.getString("nombre");
-                String direccion = rs.getString("direccion");
-                String rut = rs.getString("rut");
-
+                String nombre = rs.getString("Nombre");
+                String aPaterno = rs.getString("Apellido Paterno");
+                String aMaterno = rs.getString("Apellido Materno");
+                String fNacimiento = rs.getString("Fecha Nacimiento");
+                String correo = rs.getString("Correo");
+                String telefono = rs.getString("Telefono");
+                String direccion = rs.getString("Direccion");
+                int grado = rs.getInt("Grado");
                 JButton eliminarBoton = new JButton("Eliminar");
+               
                 eliminarBoton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -2215,7 +2239,7 @@ public class Ventana extends JFrame{
                     }
                 });
 
-                Object[] row = {id, nombre, direccion, rut, eliminarBoton};
+                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, eliminarBoton};
                 model.addRow(row);
             }
             
@@ -2230,8 +2254,8 @@ public class Ventana extends JFrame{
         }
     
        
-        table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor());
+        table.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor());
         
         JButton Volver = new JButton("Volver");
         Volver.addActionListener(new ActionListener() {
