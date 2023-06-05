@@ -75,6 +75,10 @@ public class Ventana extends JFrame{
 	public LocalDate fecha;
 	public byte[] imagenBytes;
 	public int numeroTelefono;
+	public JComboBox dia_nacimiento;
+	public JComboBox mes_nacimiento;
+	public JComboBox ano_nacimiento;
+	public int ano,mes,dia;
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -669,7 +673,7 @@ public class Ventana extends JFrame{
 		fondo2.add(txtApellidoMaterno);
 		
 		
-		JComboBox dia_nacimiento =new JComboBox<String>();
+		dia_nacimiento =new JComboBox<String>();
 		dia_nacimiento.setBounds(25,140,80,20);
         fondo2.add(dia_nacimiento);
         for(int i=1;i<32;i++) {
@@ -677,7 +681,7 @@ public class Ventana extends JFrame{
         	dia_nacimiento.addItemListener(null);
         }
         
-        JComboBox mes_nacimiento =new JComboBox<String>();
+        mes_nacimiento =new JComboBox<String>();
         mes_nacimiento.setBounds(125,140,80,20);
         fondo2.add(mes_nacimiento);
         for(int i=1;i<13;i++) {
@@ -685,7 +689,7 @@ public class Ventana extends JFrame{
         	mes_nacimiento.addItemListener(null);
         }
         
-        JComboBox ano_nacimiento =new JComboBox<String>();
+        ano_nacimiento =new JComboBox<String>();
         ano_nacimiento.setBounds(225,140,80,20);
         fondo2.add(ano_nacimiento);
         for(int i=2005;i>1899;i--) {
@@ -693,9 +697,9 @@ public class Ventana extends JFrame{
         	ano_nacimiento.addItemListener(null);
         }
         
-        int dia = (int) dia_nacimiento.getSelectedItem();
-        int mes = (int) mes_nacimiento.getSelectedItem();
-        int ano = (int) ano_nacimiento.getSelectedItem();
+        dia = (int) dia_nacimiento.getSelectedItem();
+        mes = (int) mes_nacimiento.getSelectedItem();
+        ano = (int) ano_nacimiento.getSelectedItem();
         
       
         fecha = LocalDate.of(ano, mes, dia);
@@ -2914,10 +2918,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String idText = idAlumno.getText();
 				if(idText.matches(".*\\d.*")) {
-					datos_nombre.setEditable(true);
-					datos_apePaterno.setEditable(true);
 					datos_correo.setEditable(true);
-					datos_fecha.setEditable(true);
 					datos_tel.setEditable(true);
 					datos_direccion.setEditable(true);
 					GuardarCambios.setEnabled(true);
