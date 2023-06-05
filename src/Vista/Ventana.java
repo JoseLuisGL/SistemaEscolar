@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -34,9 +35,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.Path;
+import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.kernel.pdf.layer.PdfLayer;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
@@ -2791,13 +2798,7 @@ public class Ventana extends JFrame{
 		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivo.pdf"));
 		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
 		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
-
-		            // Agregar las imágenes al documento
-		            /*com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialF.png"));
-		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialT.png"));
-		            document.add(imagen1);
-		            document.add(imagen2);*/
-
+		            
 		            //Crear txt
 		            float col = 280f;
 		            float anchoColumna[] = {col,col};
@@ -3372,6 +3373,18 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
+		JTextField txtID = new JTextField("Ingresa el ID de un Alumno");
+		txtID.setBackground(new Color(0, 128, 192));
+		txtID.setBounds(40, 5, 200, 20);
+		fondo2.add(txtID);
+		txtID.setColumns(10);
+		
+		JTextField datos_nombre = new JTextField();
+        JTextField datos_apePaterno = new JTextField();			
+        JTextField datos_apeMaterno = new JTextField();
+        JTextField datos_correo = new JTextField();
+        JTextField datos_direccion = new JTextField();
+		
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
@@ -3392,9 +3405,101 @@ public class Ventana extends JFrame{
 		JButton Descargar = new JButton("Descargar");
 		Descargar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-	
+		    	idConsultar = Integer.parseInt(txtID.getText());
+				BD bd = new BD();
+			    try {
+			        Connection cn = bd.Conectar();
+			        Statement stm = cn.createStatement();
+			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+
+			        
+			        
+			        while (rs.next()) {
+			        	
+			        	int id = rs.getInt("idAlumnos");
+			           
+			        	if(idConsultar == id) {
+			        		String nombre = rs.getString("Nombre");
+			        		String correo = rs.getString("Correo");
+				            String apellidoP = rs.getString("Apellido Paterno");
+				            String apellidoM = rs.getString("Apellido Materno");
+				            String direccion = rs.getString("Direccion");
+				            
+				           
+				            datos_nombre.setText(nombre);
+				            datos_apePaterno.setText(apellidoP);
+				            datos_apeMaterno.setText(apellidoM);
+				            datos_correo.setText(correo);
+				            datos_direccion.setText(direccion);		  
+				            cambio++;
+			        	}
+			        }
+
+			        rs.close();
+			        stm.close();
+			        cn.close();
+			    } catch (SQLException e1) {
+			        e1.printStackTrace();
+			    }
+			    
+			    if(cambio==0) {
+			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
+			    }
+			    cambio=0;
+				
+		        try {
+		            // Crear el archivo PDF
+		            PdfWriter writer = new PdfWriter(new FileOutputStream("credencialAlumno.pdf"));
+		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+		            
+		            // Agregar las imágenes al documento
+		            com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialF.png"));
+		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialT.png"));
+		            document.add(imagen1);
+		            document.add(imagen2);
+		            
+		            // Crear una capa para el texto
+		            PdfPage page = pdfDoc.addNewPage();
+		            com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);	  
+		            PdfCanvas canvas = new PdfCanvas(page);
+		            canvas.beginLayer(textLayer);
+		            canvas.endLayer();
+
+		            
+		            // Agregar el texto a la capa de texto
+		            PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
+		            PdfFont defaultFont = PdfFontFactory.createFont();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
+		            textLayer.setOn(true);
+
+		          
+
+		            // Cerrar el documento
+		            document.close();
+
+		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (FileNotFoundException ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+		        } catch (MalformedURLException e1) {
+		            e1.printStackTrace();
+		        } catch (IOException e1) {
+		            e1.printStackTrace();
+		        }
 		    }
 		});
+
+
+
+
+
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
 		Descargar.setBounds(342, 514, 95, 36);
@@ -3403,7 +3508,7 @@ public class Ventana extends JFrame{
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
 		imagen.setIcon(imageIcon);
-		imagen.setBounds(40, 10, 400, 200);
+		imagen.setBounds(40, 30, 400, 200);
 		fondo2.add(imagen);
 		
 		JLabel imagen2 = new JLabel("");
