@@ -39,7 +39,6 @@ import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.Path;
 import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
@@ -50,6 +49,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
+import com.mysql.jdbc.PreparedStatement;
 
 import Controlador.ControlVistaBD;
 import Modelo.BD;
@@ -2901,11 +2901,42 @@ public class Ventana extends JFrame{
 		
 		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
 		GuardarCambios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				repaint();
-				revalidate();
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String nombre = datos_nombre.getText();
+		        String apellidoPaterno = datos_apePaterno.getText();
+		        String correo = datos_correo.getText();
+		        String fechaNacimiento = datos_fecha.getText();
+		        String telefono = datos_tel.getText();
+		        String direccion = datos_direccion.getText();
+		        int id = Integer.parseInt(idAlumno.getText());
+
+		        BD bd = new BD();
+		        try {
+		            Connection cn = bd.Conectar();
+		            Statement stm = cn.createStatement();
+		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE alumnosbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idAlumnos = ?");
+		           
+		            pstmt.setString(1, correo);		            
+		            pstmt.setString(2, telefono);
+		            pstmt.setString(3, direccion);
+		            pstmt.setInt(4, id);
+
+		            int rowsAffected = pstmt.executeUpdate();
+		            if (rowsAffected > 0) {
+		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
+		            }
+
+		            pstmt.close();
+		            cn.close();
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
+
+		        repaint();
+		        revalidate();
+		    }
 		});
 		GuardarCambios.setForeground(new Color(255, 255, 255));
 		GuardarCambios.setBackground(new Color(0, 128, 255));
