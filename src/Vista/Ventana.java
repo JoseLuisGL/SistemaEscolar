@@ -2750,6 +2750,7 @@ public class Ventana extends JFrame{
 				            datos_apeMaterno.setText(apellidoM);
 				            datos_correo.setText(correo);
 				            datos_tel.setText(telefono);
+				            datos_fecha.setText(fecha);
 				            datos_direccion.setText(direccion);			  
 				            cambio++;
 			        	}
