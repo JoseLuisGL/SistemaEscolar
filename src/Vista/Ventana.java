@@ -2742,7 +2742,8 @@ public class Ventana extends JFrame{
 				            String apellidoP = rs.getString("Apellido Paterno");
 				            String apellidoM = rs.getString("Apellido Materno");
 				            String telefono = rs.getString("Telefono");
-				            String fecha = rs.getString("Fecha Nacimiento");
+				            LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
+				            String fecha = fechaNacimiento.toString();
 				            String direccion = rs.getString("Direccion");
 				            
 				            datos_nombre.setText(nombre);
@@ -2846,7 +2847,7 @@ public class Ventana extends JFrame{
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_nombre.getText())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apePaterno.getText())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apeMaterno.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("4")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_fecha.getText())));
 		            
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Teléfono")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
