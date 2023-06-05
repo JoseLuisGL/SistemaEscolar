@@ -2615,34 +2615,46 @@ public class Ventana extends JFrame{
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
-		JLabel tag2 = new JLabel("Apellidos");
+		JLabel tagnombre = new JLabel("Nombre");
+		tagnombre.setForeground(new Color(0, 0, 0));
+		tagnombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagnombre.setBounds(10, 70, 210, 20);
+		fondo2.add(tagnombre);
+		
+		JLabel tag2 = new JLabel("Apellido Paterno");
 		tag2.setForeground(new Color(0, 0, 0));
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag2.setBounds(10, 70, 210, 20);
+		tag2.setBounds(10, 114, 210, 20);
 		fondo2.add(tag2);
+		
+		JLabel tag2_1 = new JLabel("Apellido Materno");
+		tag2_1.setForeground(new Color(0, 0, 0));
+		tag2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2_1.setBounds(160, 114, 210, 20);
+		fondo2.add(tag2_1);
 		
 		JLabel tag3 = new JLabel("Correo electrónico");
 		tag3.setForeground(new Color(0, 0, 0));
 		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag3.setBounds(10, 114, 210, 14);
+		tag3.setBounds(10, 158, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Fecha de nacimiento");
 		tag4.setForeground(new Color(0, 0, 0));
 		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag4.setBounds(10, 157, 210, 14);
+		tag4.setBounds(10, 201, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Teléfono");
 		tag5.setForeground(new Color(0, 0, 0));
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag5.setBounds(10, 198, 210, 14);
+		tag5.setBounds(10, 242, 210, 14);
 		fondo2.add(tag5);
 		
-		JLabel tag6 = new JLabel("Grado");
+		JLabel tag6 = new JLabel("Direccion");
 		tag6.setForeground(new Color(0, 0, 0));
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag6.setBounds(10, 239, 210, 14);
+		tag6.setBounds(10, 283, 210, 14);
 		fondo2.add(tag6);
 		
 		JTextField idAlumno = new JTextField();
@@ -2654,35 +2666,47 @@ public class Ventana extends JFrame{
 		
 		System.out.println();
 		
-		JTextField datos_ape = new JTextField();
-		datos_ape.setEditable(false);
-		datos_ape.setColumns(10);
-		datos_ape.setBounds(10, 90, 273, 20);
-		fondo2.add(datos_ape);
+		JTextField datos_nombre = new JTextField();
+		datos_nombre.setEditable(false);
+		datos_nombre.setColumns(10);
+		datos_nombre.setBounds(10, 90, 273, 20);
+		fondo2.add(datos_nombre);
+		
+		JTextField datos_apePaterno = new JTextField();
+		datos_apePaterno.setEditable(false);
+		datos_apePaterno.setColumns(10);
+		datos_apePaterno.setBounds(10, 132, 120, 20);
+		fondo2.add(datos_apePaterno);
+		
+		JTextField datos_apeMaterno = new JTextField();
+		datos_apeMaterno.setEditable(false);
+		datos_apeMaterno.setColumns(10);
+		datos_apeMaterno.setBounds(160, 132, 120, 20);
+		fondo2.add(datos_apeMaterno);
 		
 		JTextField datos_correo = new JTextField();
 		datos_correo.setEditable(false);
 		datos_correo.setColumns(10);
-		datos_correo.setBounds(10, 132, 273, 20);
+		datos_correo.setBounds(10, 174, 273, 20);
 		fondo2.add(datos_correo);
 		
 		JTextField datos_fecha = new JTextField();
 		datos_fecha.setEditable(false);
 		datos_fecha.setColumns(10);
-		datos_fecha.setBounds(10, 174, 273, 20);
+		datos_fecha.setBounds(10, 216, 273, 20);
 		fondo2.add(datos_fecha);
 		
 		JTextField datos_tel = new JTextField();
 		datos_tel.setEditable(false);
 		datos_tel.setColumns(10);
-		datos_tel.setBounds(10, 215, 273, 20);
+		datos_tel.setBounds(10, 260, 273, 20);
 		fondo2.add(datos_tel);
 		
-		JTextField datos_grado = new JTextField();
-		datos_grado.setEditable(false);
-		datos_grado.setColumns(10);
-		datos_grado.setBounds(10, 257, 273, 20);
-		fondo2.add(datos_grado);
+		JTextField datos_direccion = new JTextField();
+		datos_direccion.setEditable(false);
+		datos_direccion.setColumns(10);
+		datos_direccion.setBounds(10, 299, 273, 20);
+		fondo2.add(datos_direccion);
 		
 		
 		JButton Consultar = new JButton("Consultar");
@@ -2697,7 +2721,7 @@ public class Ventana extends JFrame{
 			    try {
 			        Connection cn = bd.Conectar();
 			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnos");
+			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
 
 			        
 			        
@@ -2706,13 +2730,20 @@ public class Ventana extends JFrame{
 			        	int id = rs.getInt("idAlumnos");
 			           
 			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("nombre");
-				            String direccion = rs.getString("direccion");
-				            String rut = rs.getString("rut");
+			        		String nombre = rs.getString("Nombre");
+			        		String correo = rs.getString("Correo");
+				            String apellidoP = rs.getString("Apellido Paterno");
+				            String apellidoM = rs.getString("Apellido Materno");
+				            String telefono = rs.getString("Telefono");
+				            String fecha = rs.getString("Fecha Nacimiento");
+				            String direccion = rs.getString("Direccion");
 				            
-				            datos_ape.setText(nombre);
-				            datos_correo.setText(direccion);
-				            datos_tel.setText(rut);
+				            datos_nombre.setText(nombre);
+				            datos_apePaterno.setText(apellidoP);
+				            datos_apeMaterno.setText(apellidoM);
+				            datos_correo.setText(correo);
+				            datos_tel.setText(telefono);
+				            datos_direccion.setText(direccion);			  
 				            cambio++;
 			        	}
 			        }
@@ -2810,9 +2841,9 @@ public class Ventana extends JFrame{
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido materno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Fecha de nacimiento")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
 		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_ape.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("2")));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("3")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_nombre.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apePaterno.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apeMaterno.getText())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("4")));
 		            
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
@@ -2822,7 +2853,7 @@ public class Ventana extends JFrame{
 		            
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_correo.getText())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("7")));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(idAlumno.getText())));
 		            
 		            // Cerrar el documento
@@ -2853,7 +2884,7 @@ public class Ventana extends JFrame{
 		JLabel imagen2 = new JLabel("");
 		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
 		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 300, 400, 100);
+		imagen2.setBounds(40, 320, 400, 100);
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
@@ -2880,11 +2911,12 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String idText = idAlumno.getText();
 				if(idText.matches(".*\\d.*")) {
-					datos_ape.setEditable(true);
+					datos_nombre.setEditable(true);
+					datos_apePaterno.setEditable(true);
 					datos_correo.setEditable(true);
 					datos_fecha.setEditable(true);
 					datos_tel.setEditable(true);
-					datos_grado.setEditable(true);
+					datos_direccion.setEditable(true);
 					GuardarCambios.setEnabled(true);
 					
 					repaint();
