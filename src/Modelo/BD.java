@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -51,6 +53,28 @@ public class BD {
 		}	
 	}
 	
+	public List<Integer> obtenerIDsAlumnos() {
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            Connection cn = Conectar();
+            java.sql.Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT idAlumnos FROM alumnosbd");
+
+            while (rs.next()) {
+                int id = rs.getInt("idAlumnos");
+                ids.add(id);
+            }
+
+            rs.close();
+            stm.close();
+            cn.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return ids;
+    }
 	
 	
 }

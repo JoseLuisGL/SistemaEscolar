@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -2579,12 +2580,15 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JTextField txtID = new JTextField("Ingresa el ID de un Alumno");
-		txtID.setBackground(new Color(0, 128, 192));
-		txtID.setBounds(40, 5, 200, 20);
-		fondo2.add(txtID);
-		txtID.setColumns(10);
+		BD bd = new BD();
+		JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAlumnos().toArray(new Integer[0])));
+	    comboBoxID.setBounds(40, 5, 200, 20);
+	    fondo2.add(comboBoxID);
 		
+		
+
+
 		JTextField datos_nombre = new JTextField();
         JTextField datos_apePaterno = new JTextField();			
         JTextField datos_apeMaterno = new JTextField();
@@ -2611,7 +2615,7 @@ public class Ventana extends JFrame{
 		JButton Descargar = new JButton("Descargar");
 		Descargar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	idConsultar = Integer.parseInt(txtID.getText());
+		    	int idConsultar = (int) comboBoxID.getSelectedItem();
 				BD bd = new BD();
 			    try {
 			        Connection cn = bd.Conectar();
@@ -2732,6 +2736,7 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 
+	
 	public JPanel credencialDocente() {
 		anterior = actual;
 		actual = "credencialDocente";
@@ -2801,6 +2806,7 @@ public class Ventana extends JFrame{
 		this.add(fondo);
 		return fondo;
 	}
+	
 	
 	public void limpiarVentana() {
 
@@ -2939,6 +2945,7 @@ public class Ventana extends JFrame{
 		}
 	}
 
+	
 	///////////////////CLASES PARA EL BOTON EN TABLA////////////////////////////
 	class ButtonRenderer extends JButton implements TableCellRenderer {
 	    public ButtonRenderer() {
