@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Date;
 
 import Controlador.ControlVistaBD;
 import Modelo.BD;
@@ -37,8 +38,7 @@ public class Ventana extends JFrame{
 	public JPanel panel = null;
 	private JTable table;
 	private JTextField txtNombre;
-	private JTextField txtDireccion;
-	private JTextField txtRut;
+	private JTextField txtApellidoPaterno,txtApellidoMaterno,txtCorreo,txtDireccion,txtTelefono;
 	private JButton btnGuardar;
 	private ControlVistaBD cvbd;
 	private int idConsultar;
@@ -556,13 +556,21 @@ public class Ventana extends JFrame{
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel tag2 = new JLabel("Apellidos:");
-		tag2.setBounds(25, 62, 90, 25);
+		JLabel tag2 = new JLabel("Apellido Paterno:");
+		tag2.setBounds(25, 62, 150, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
 		tag2.setForeground(new Color(255, 255, 255));
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
+		
+		JLabel tagam = new JLabel("Apellido Materno:");
+		tagam.setBounds(250, 62, 150, 25);
+		fondo2.add(tagam);
+		tagam.setHorizontalAlignment(SwingConstants.LEFT);
+		tagam.setForeground(new Color(255, 255, 255));
+		tagam.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagam.setBackground(Color.WHITE);
 		
 		JLabel tag3 = new JLabel("Fecha de nacimiento:");
 		tag3.setBounds(25, 112, 169, 25);
@@ -604,35 +612,74 @@ public class Ventana extends JFrame{
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
+		JLabel direccion = new JLabel("Direccion:");
+		direccion.setBounds(250, 277, 90, 25);
+		fondo2.add(direccion);
+		direccion.setHorizontalAlignment(SwingConstants.LEFT);
+		direccion.setForeground(new Color(255, 255, 255));
+		direccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		direccion.setBackground(Color.WHITE);
+		
 		txtNombre = new JTextField();
 		txtNombre.setBackground(new Color(0, 128, 192));
 		txtNombre.setBounds(25, 36, 420, 25);
 		fondo2.add(txtNombre);
 		txtNombre.setColumns(10);
 		
+		txtApellidoPaterno = new JTextField();
+		txtApellidoPaterno.setColumns(10);
+		txtApellidoPaterno.setBackground(new Color(0, 128, 192));
+		txtApellidoPaterno.setBounds(25, 86, 150, 25);
+		fondo2.add(txtApellidoPaterno);
+		
+		txtApellidoMaterno = new JTextField();
+		txtApellidoMaterno.setColumns(10);
+		txtApellidoMaterno.setBackground(new Color(0, 128, 192));
+		txtApellidoMaterno.setBounds(250, 86, 150, 25);
+		fondo2.add(txtApellidoMaterno);
+		
+		
+		JComboBox dia_nacimiento =new JComboBox<String>();
+		dia_nacimiento.setBounds(25,140,80,20);
+        fondo2.add(dia_nacimiento);
+        for(int i=1;i<32;i++) {
+        	dia_nacimiento.addItem(i);
+        	dia_nacimiento.addItemListener(null);
+        }
+        
+        JComboBox mes_nacimiento =new JComboBox<String>();
+        mes_nacimiento.setBounds(125,140,80,20);
+        fondo2.add(mes_nacimiento);
+        for(int i=1;i<13;i++) {
+        	mes_nacimiento.addItem(i);
+        	mes_nacimiento.addItemListener(null);
+        }
+        
+        JComboBox ano_nacimiento =new JComboBox<String>();
+        ano_nacimiento.setBounds(225,140,80,20);
+        fondo2.add(ano_nacimiento);
+        for(int i=2005;i>1899;i--) {
+        	ano_nacimiento.addItem(i);
+        	ano_nacimiento.addItemListener(null);
+        }
+		
+		txtCorreo = new JTextField();
+		txtCorreo.setColumns(10);
+		txtCorreo.setBackground(new Color(0, 128, 192));
+		txtCorreo.setBounds(25, 195, 420, 25);
+		fondo2.add(txtCorreo);
+		
+		txtTelefono = new JTextField();
+		txtTelefono.setColumns(10);
+		txtTelefono.setBackground(new Color(0, 128, 192));
+		txtTelefono.setBounds(25, 246, 420, 25);
+		fondo2.add(txtTelefono);
+		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
 		txtDireccion.setBackground(new Color(0, 128, 192));
-		txtDireccion.setBounds(25, 86, 420, 25);
+		txtDireccion.setBounds(250, 303, 116, 23);
 		fondo2.add(txtDireccion);
-		
-		JTextField fechaNacimiento = new JTextField();
-		fechaNacimiento.setColumns(10);
-		fechaNacimiento.setBackground(new Color(0, 128, 192));
-		fechaNacimiento.setBounds(25, 140, 420, 25);
-		fondo2.add(fechaNacimiento);
-		
-		JTextField correo = new JTextField();
-		correo.setColumns(10);
-		correo.setBackground(new Color(0, 128, 192));
-		correo.setBounds(25, 195, 420, 25);
-		fondo2.add(correo);
-		
-		txtRut = new JTextField();
-		txtRut.setColumns(10);
-		txtRut.setBackground(new Color(0, 128, 192));
-		txtRut.setBounds(25, 246, 420, 25);
-		fondo2.add(txtRut);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(85, 450, 90, 25);
@@ -717,6 +764,38 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 	
+	public JTextField getTxtApellidoPaterno() {
+		return txtApellidoPaterno;
+	}
+
+	public void setTxtApellidoPaterno(JTextField txtApellidoPaterno) {
+		this.txtApellidoPaterno = txtApellidoPaterno;
+	}
+
+	public JTextField getTxtApellidoMaterno() {
+		return txtApellidoMaterno;
+	}
+
+	public void setTxtApellidoMaterno(JTextField txtApellidoMaterno) {
+		this.txtApellidoMaterno = txtApellidoMaterno;
+	}
+
+	public JTextField getTxtCorreo() {
+		return txtCorreo;
+	}
+
+	public void setTxtCorreo(JTextField txtCorreo) {
+		this.txtCorreo = txtCorreo;
+	}
+
+	public JTextField getTxtTelefono() {
+		return txtTelefono;
+	}
+
+	public void setTxtTelefono(JTextField txtTelefono) {
+		this.txtTelefono = txtTelefono;
+	}
+
 	public JPanel crearDocente() {
 		anterior = actual;
 		actual = "crearAlumno";
