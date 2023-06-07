@@ -80,6 +80,8 @@ public class Ventana extends JFrame{
 	public JComboBox mes_nacimiento;
 	public JComboBox ano_nacimiento;
 	public int ano,mes,dia;
+	public JLabel imagen;
+	public JButton button;
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -1339,7 +1341,7 @@ public class Ventana extends JFrame{
         tag1.setHorizontalAlignment(SwingConstants.LEFT);
         tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-        JScrollPane scrollPane = new JScrollPane();
+        JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(10, 30, 460, 364);
         fondo2.add(scrollPane);
 
@@ -1374,23 +1376,14 @@ public class Ventana extends JFrame{
 
 			@Override
             public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 4) {
+                if (columnIndex == 9) {
                     return JButton.class;
                 }
                 return super.getColumnClass(columnIndex);
             }
         });
 
-        table.getColumnModel().getColumn(0).setPreferredWidth(105);
-        table.getColumnModel().getColumn(1).setPreferredWidth(105);
-        table.getColumnModel().getColumn(2).setPreferredWidth(105);
-        table.getColumnModel().getColumn(3).setPreferredWidth(105);
-        table.getColumnModel().getColumn(4).setPreferredWidth(105);
-        table.getColumnModel().getColumn(5).setPreferredWidth(105);
-        table.getColumnModel().getColumn(6).setPreferredWidth(105);
-        table.getColumnModel().getColumn(7).setPreferredWidth(105);
-        table.getColumnModel().getColumn(8).setPreferredWidth(105);
-        table.getColumnModel().getColumn(9).setPreferredWidth(105);
+      
 
         BD bd = new BD();
         try {
@@ -1400,7 +1393,7 @@ public class Ventana extends JFrame{
 
             DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "A. Paterno", "A. Materno", "Fecha Nacimiento",
             		"Correo","Telefono","Direccion","Grado", "Eliminar"}, 0);
-            
+         
             while (rs.next()) {
                 int id = rs.getInt("idAlumnos");
                 String nombre = rs.getString("Nombre");
@@ -1411,24 +1404,38 @@ public class Ventana extends JFrame{
                 String telefono = rs.getString("Telefono");
                 String direccion = rs.getString("Direccion");
                 int grado = rs.getInt("Grado");
-                JButton eliminarBoton = new JButton("Eliminar");
+                button = new JButton("Eliminar");
                
-                eliminarBoton.addActionListener(new ActionListener() {
+                button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        // Perform your action for deleting the row here
-                        int filaEliminada = table.getSelectedRow();
+                        //System.out.println("hola");
+                        /*int filaEliminada = table.getSelectedRow();
                         DefaultTableModel model = (DefaultTableModel) table.getModel();
-                        model.removeRow(filaEliminada);
+                        model.removeRow(filaEliminada);*/
                     }
                 });
 
-                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, eliminarBoton};
+                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, button};
                 model.addRow(row);
             }
             
 
             table.setModel(model);
+            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+            
+            table.getColumnModel().getColumn(0).setPreferredWidth(130);
+            table.getColumnModel().getColumn(1).setPreferredWidth(130);
+            table.getColumnModel().getColumn(2).setPreferredWidth(130);
+            table.getColumnModel().getColumn(3).setPreferredWidth(130);
+            table.getColumnModel().getColumn(4).setPreferredWidth(130);
+            table.getColumnModel().getColumn(5).setPreferredWidth(130);
+            table.getColumnModel().getColumn(6).setPreferredWidth(130);
+            table.getColumnModel().getColumn(7).setPreferredWidth(130);
+            table.getColumnModel().getColumn(8).setPreferredWidth(130);
+            table.getColumnModel().getColumn(9).setPreferredWidth(130);
+            table.revalidate();
+            table.repaint();
 
             rs.close();
             stm.close();
@@ -1922,6 +1929,18 @@ public class Ventana extends JFrame{
 				            LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
 				            String fecha = fechaNacimiento.toString();
 				            String direccion = rs.getString("Direccion");
+				            byte[] imagenBytes = rs.getBytes("Foto");
+				            System.out.println("Longitud de imagenBytes: " + imagenBytes.length);
+				            
+				            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
+				            
+				            JLabel nuevaimagen = new JLabel();
+				            nuevaimagen.setIcon(imageIcon);
+				    		nuevaimagen.setBounds(300, 50, 160, 160);
+				    		fondo2.remove(imagen);
+				    		fondo2.add(nuevaimagen);
+				            
+				            
 				            
 				            datos_nombre.setText(nombre);
 				            datos_apePaterno.setText(apellidoP);
@@ -1931,6 +1950,8 @@ public class Ventana extends JFrame{
 				            datos_fecha.setText(fecha);
 				            datos_direccion.setText(direccion);			  
 				            cambio++;
+				            fondo2.repaint();
+				            fondo2.revalidate();
 			        	}
 			        }
 
@@ -2055,7 +2076,7 @@ public class Ventana extends JFrame{
 		Descargar.setBounds(380, 514, 89, 36);
 		fondo.add(Descargar);
 		
-		JLabel imagen = new JLabel("");
+		imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
 		imagen.setIcon(imageIcon);
 		imagen.setBounds(300, 50, 160, 160);
@@ -2094,8 +2115,8 @@ public class Ventana extends JFrame{
 		            pstmt.setString(3, direccion);
 		            pstmt.setInt(4, id);
 
-		            int rowsAffected = pstmt.executeUpdate();
-		            if (rowsAffected > 0) {
+		            int columnasAfectadas = pstmt.executeUpdate();
+		            if (columnasAfectadas > 0) {
 		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
 		            } else {
 		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
@@ -2968,7 +2989,6 @@ public class Ventana extends JFrame{
 	}
 
     private class ButtonEditor extends DefaultCellEditor {
-        private JButton button;
 
         public ButtonEditor() {
             super(new JTextField());
@@ -2979,7 +2999,24 @@ public class Ventana extends JFrame{
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
+                    int filaEliminada = table.getSelectedRow();
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    int idAlumno = (int) model.getValueAt(filaEliminada, 0); // Suponiendo que el ID del alumno está en la columna 0
+                    model.removeRow(filaEliminada);
+                    table.setModel(model);
+
+                    // Eliminar los datos en la base de datos
+                    BD bd = new BD();
+                    try {
+                        Connection cn = bd.Conectar();
+                        Statement stm = cn.createStatement();
+                        String sql = "DELETE FROM alumnosbd WHERE idAlumnos = " + idAlumno;
+                        stm.executeUpdate(sql);
+                        stm.close();
+                        cn.close();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             });
         }
