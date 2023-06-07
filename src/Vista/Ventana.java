@@ -1937,7 +1937,7 @@ public class Ventana extends JFrame{
 				            JLabel nuevaimagen = new JLabel();
 				            nuevaimagen.setIcon(imageIcon);
 				    		nuevaimagen.setBounds(300, 50, 160, 160);
-				    		fondo2.remove(imagen);
+				    		//fondo2.remove(imagen);
 				    		fondo2.add(nuevaimagen);
 				            
 				            
@@ -3001,11 +3001,10 @@ public class Ventana extends JFrame{
                 public void actionPerformed(ActionEvent e) {
                     int filaEliminada = table.getSelectedRow();
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    int idAlumno = (int) model.getValueAt(filaEliminada, 0); // Suponiendo que el ID del alumno está en la columna 0
+                    int idAlumno = (int) model.getValueAt(filaEliminada, 0);
                     model.removeRow(filaEliminada);
                     table.setModel(model);
 
-                    // Eliminar los datos en la base de datos
                     BD bd = new BD();
                     try {
                         Connection cn = bd.Conectar();
