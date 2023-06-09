@@ -1,7 +1,9 @@
 package Vista;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -35,6 +40,9 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
@@ -51,9 +59,12 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 import com.mysql.jdbc.PreparedStatement;
+import javax.swing.text.AbstractDocument;
+import java.util.regex.Matcher;
 
 import Controlador.ControlVistaBD;
 import Modelo.BD;
+
 
 
 public class Ventana extends JFrame{
@@ -68,13 +79,14 @@ public class Ventana extends JFrame{
 	public JTextField txtCorreo;
 	public JTextField txtDireccion;
 	public JTextField txtTelefono;
+	public JTextField txtNombreD,txtApellidoPaternoD,txtApellidoMaternoD,txtCorreoD,txtDireccionD,txtTelefonoD;
 	public int grado;
 	private JButton btnGuardar;
 	private ControlVistaBD cvbd;
 	private int idConsultar;
 	private int cambio=0;
 	public LocalDate fecha;
-	public byte[] imagenBytes;
+	public byte[] imagenBytes,imagenBytesD;
 	public int numeroTelefono;
 	public JComboBox dia_nacimiento;
 	public JComboBox mes_nacimiento;
@@ -82,6 +94,10 @@ public class Ventana extends JFrame{
 	public int ano,mes,dia;
 	public JLabel imagen;
 	public JButton button;
+	public JComboBox comboBox;
+	public JButton btnGuardarDocente;
+	public JComboBox comboBoxD;
+	public JComboBox ano_nacimientoD,mes_nacimientoD,dia_nacimientoD;
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -162,14 +178,50 @@ public class Ventana extends JFrame{
 		btnAccess.setBackground(new Color(0, 255, 64));
 		btnAccess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menu";
-				add(menu());
-				repaint();
-				revalidate();
+				String usuario = username.getText();
+				
+				char[] passwordChars = password.getPassword();
+				String password = new String(passwordChars);
+				System.out.println(password);
+
+			
+				Arrays.fill(passwordChars, ' ');
+				
+				  BD bd = new BD();
+			        try {
+			            Connection cn = bd.Conectar();
+			            Statement stm = cn.createStatement();
+			            ResultSet rs = stm.executeQuery("SELECT * FROM admin");
+            
+			            while (rs.next()) {		            
+			                String nombre = rs.getString("Nombre");
+			                String pass = rs.getString("Contrasena");
+			                
+			                if(usuario.equals(nombre) && pass.equals(pass)) {
+			                	JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienveneido "+nombre+"!");
+			                	remove(fondo);
+			    				anterior = actual;
+			    				actual = "menu";
+			    				add(menu());
+			    				repaint();
+
+			            
+			                }else {
+			                	JOptionPane.showMessageDialog(null, "Datos Erroneos. Intentar denuevo.");
+			                }			     			                
+			            }
+			            
+			            rs.close();
+			            stm.close();
+			            cn.close();
+			        } catch (SQLException e1) {
+			            e1.printStackTrace();
+			        }	
 			}
+			
 		});
+			
+		
 		btnAccess.setBounds(407, 364, 120, 33);
 		fondo.add(btnAccess);
 		
@@ -577,16 +629,16 @@ public class Ventana extends JFrame{
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
-		JLabel tag6 = new JLabel("Foto:");
-		tag6.setBounds(25, 277, 90, 25);
+		JLabel tag6 = new JLabel("Foto (Opcional):");
+		tag6.setBounds(25, 277, 130, 25);
 		fondo2.add(tag6);
 		tag6.setHorizontalAlignment(SwingConstants.LEFT);
 		tag6.setForeground(new Color(255, 255, 255));
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
-		JLabel direccion = new JLabel("Direccion:");
-		direccion.setBounds(250, 277, 90, 25);
+		JLabel direccion = new JLabel("Direccion (Opcional):");
+		direccion.setBounds(250, 277, 160, 25);
 		fondo2.add(direccion);
 		direccion.setHorizontalAlignment(SwingConstants.LEFT);
 		direccion.setForeground(new Color(255, 255, 255));
@@ -649,20 +701,37 @@ public class Ventana extends JFrame{
 		txtCorreo.setBounds(25, 195, 420, 25);
 		fondo2.add(txtCorreo);
 		
-		txtTelefono = new JTextField();
+		txtTelefono = new JTextField(10);
 		txtTelefono.setColumns(10);
 		txtTelefono.setBackground(new Color(0, 128, 192));
 		txtTelefono.setBounds(25, 246, 420, 25);
+		
+		
+		AbstractDocument doc = (AbstractDocument) txtTelefono.getDocument();
+		doc.setDocumentFilter(new DocumentFilter() {
+		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
+
+		    @Override
+		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+		        Matcher matcher = pattern.matcher(newText);
+		        if (matcher.matches()) {
+		            super.replace(fb, offset, length, text, attrs);
+		        }
+		    }
+		});
 		fondo2.add(txtTelefono);
+   
 		
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
 		txtDireccion.setBackground(new Color(0, 128, 192));
-		txtDireccion.setBounds(250, 303, 116, 23);
+		txtDireccion.setBounds(250, 303, 160, 23);
 		fondo2.add(txtDireccion);
 		
-		JComboBox comboBox = new JComboBox();
+		
+		comboBox = new JComboBox();
 		comboBox.setBounds(85, 450, 90, 25);
 		fondo2.getRootPane().add(comboBox);
 		add(comboBox);
@@ -672,8 +741,6 @@ public class Ventana extends JFrame{
         	comboBox.addItem(i);
         	comboBox.addItemListener(null);
         }
-		
-		grado = (int) comboBox.getSelectedItem();
 		
 		
 		JButton archivo = new JButton("Subir archivo");
@@ -742,10 +809,12 @@ public class Ventana extends JFrame{
 		this.add(fondo);
 		return fondo;
 	}
-
+	
 	public JPanel crearDocente() {
+		cvbd = new ControlVistaBD(this);
 		anterior = actual;
-		actual = "crearAlumno";
+		actual = "crearDocente";
+		
 		JPanel fondo = new JPanel();
 		fondo.setBackground(new Color(49, 64, 81));
 		fondo.setBounds(0, 0, 584, 561);
@@ -780,13 +849,21 @@ public class Ventana extends JFrame{
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel tag2 = new JLabel("Apellidos:");
-		tag2.setBounds(25, 62, 90, 25);
+		JLabel tag2 = new JLabel("Apellido Paterno:");
+		tag2.setBounds(25, 62, 150, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
 		tag2.setForeground(new Color(255, 255, 255));
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
+		
+		JLabel tagam = new JLabel("Apellido Materno:");
+		tagam.setBounds(250, 62, 150, 25);
+		fondo2.add(tagam);
+		tagam.setHorizontalAlignment(SwingConstants.LEFT);
+		tagam.setForeground(new Color(255, 255, 255));
+		tagam.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagam.setBackground(Color.WHITE);
 		
 		JLabel tag3 = new JLabel("Fecha de nacimiento:");
 		tag3.setBounds(25, 112, 169, 25);
@@ -804,8 +881,8 @@ public class Ventana extends JFrame{
 		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
-		JLabel tag7 = new JLabel("Grado de estudios:");
-		tag7.setBounds(25, 333, 150, 25);
+		JLabel tag7 = new JLabel("Grado Academico:");
+		tag7.setBounds(25, 333, 90, 25);
 		fondo2.add(tag7);
 		tag7.setHorizontalAlignment(SwingConstants.LEFT);
 		tag7.setForeground(new Color(255, 255, 255));
@@ -820,72 +897,136 @@ public class Ventana extends JFrame{
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
-		JLabel tag6 = new JLabel("Foto:");
-		tag6.setBounds(25, 277, 90, 25);
+		JLabel tag6 = new JLabel("Foto (Opcional):");
+		tag6.setBounds(25, 277, 130, 25);
 		fondo2.add(tag6);
 		tag6.setHorizontalAlignment(SwingConstants.LEFT);
 		tag6.setForeground(new Color(255, 255, 255));
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
-		JTextField nombres = new JTextField();
-		nombres.setBackground(new Color(0, 128, 192));
-		nombres.setBounds(25, 36, 420, 25);
-		fondo2.add(nombres);
-		nombres.setColumns(10);
+		JLabel direccion = new JLabel("Direccion (Opcional):");
+		direccion.setBounds(250, 277, 160, 25);
+		fondo2.add(direccion);
+		direccion.setHorizontalAlignment(SwingConstants.LEFT);
+		direccion.setForeground(new Color(255, 255, 255));
+		direccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		direccion.setBackground(Color.WHITE);
 		
-		JTextField apellidos = new JTextField();
-		apellidos.setColumns(10);
-		apellidos.setBackground(new Color(0, 128, 192));
-		apellidos.setBounds(25, 86, 420, 25);
-		fondo2.add(apellidos);
+		txtNombreD = new JTextField();
+		txtNombreD.setBackground(new Color(0, 128, 192));
+		txtNombreD.setBounds(25, 36, 420, 25);
+		fondo2.add(txtNombreD);
+		txtNombreD.setColumns(10);
 		
-		JTextField fechaNacimiento = new JTextField();
-		fechaNacimiento.setColumns(10);
-		fechaNacimiento.setBackground(new Color(0, 128, 192));
-		fechaNacimiento.setBounds(25, 140, 420, 25);
-		fondo2.add(fechaNacimiento);
+		txtApellidoPaternoD = new JTextField();
+		txtApellidoPaternoD.setColumns(10);
+		txtApellidoPaternoD.setBackground(new Color(0, 128, 192));
+		txtApellidoPaternoD.setBounds(25, 86, 150, 25);
+		fondo2.add(txtApellidoPaternoD);
 		
-		JTextField correo = new JTextField();
-		correo.setColumns(10);
-		correo.setBackground(new Color(0, 128, 192));
-		correo.setBounds(25, 195, 420, 25);
-		fondo2.add(correo);
+		txtApellidoMaternoD = new JTextField();
+		txtApellidoMaternoD.setColumns(10);
+		txtApellidoMaternoD.setBackground(new Color(0, 128, 192));
+		txtApellidoMaternoD.setBounds(250, 86, 150, 25);
+		fondo2.add(txtApellidoMaternoD);
 		
-		JTextField telefono = new JTextField();
-		telefono.setColumns(10);
-		telefono.setBackground(new Color(0, 128, 192));
-		telefono.setBounds(25, 246, 420, 25);
-		fondo2.add(telefono);
 		
-		JTextField grado = new JTextField();
-		grado.setColumns(10);
-		grado.setBackground(new Color(0, 128, 192));
-		grado.setBounds(25, 356, 420, 25);
-		fondo2.add(grado);
+		dia_nacimientoD =new JComboBox<String>();
+		dia_nacimientoD.setBounds(25,140,80,20);
+        fondo2.add(dia_nacimientoD);
+        for(int i=1;i<32;i++) {
+        	dia_nacimientoD.addItem(i);
+        	dia_nacimientoD.addItemListener(null);
+        }
+        
+        mes_nacimientoD =new JComboBox<String>();
+        mes_nacimientoD.setBounds(125,140,80,20);
+        fondo2.add(mes_nacimientoD);
+        for(int i=1;i<13;i++) {
+        	mes_nacimientoD.addItem(i);
+        	mes_nacimientoD.addItemListener(null);
+        }
+        
+        ano_nacimientoD =new JComboBox<String>();
+        ano_nacimientoD.setBounds(225,140,80,20);
+        fondo2.add(ano_nacimientoD);
+        for(int i=2005;i>1899;i--) {
+        	ano_nacimientoD.addItem(i);
+        	ano_nacimientoD.addItemListener(null);
+        }
+          
+	
+		txtCorreoD = new JTextField();
+		txtCorreoD.setColumns(10);
+		txtCorreoD.setBackground(new Color(0, 128, 192));
+		txtCorreoD.setBounds(25, 195, 420, 25);
+		fondo2.add(txtCorreoD);
 		
+		txtTelefonoD = new JTextField(10);
+		txtTelefonoD.setColumns(10);
+		txtTelefonoD.setBackground(new Color(0, 128, 192));
+		txtTelefonoD.setBounds(25, 246, 420, 25);
+		
+		
+		AbstractDocument doc = (AbstractDocument) txtTelefonoD.getDocument();
+		doc.setDocumentFilter(new DocumentFilter() {
+		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
+
+		    @Override
+		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+		        Matcher matcher = pattern.matcher(newText);
+		        if (matcher.matches()) {
+		            super.replace(fb, offset, length, text, attrs);
+		        }
+		    }
+		});
+		fondo2.add(txtTelefonoD);
+   
+		
+		
+		txtDireccionD = new JTextField();
+		txtDireccionD.setColumns(10);
+		txtDireccionD.setBackground(new Color(0, 128, 192));
+		txtDireccionD.setBounds(250, 303, 160, 23);
+		fondo2.add(txtDireccionD);
+		
+		
+		comboBoxD = new JComboBox();
+		comboBoxD.setBounds(85, 450, 90, 25);
+		fondo2.getRootPane().add(comboBoxD);
+		add(comboBoxD);
+
+        	comboBoxD.addItem("Bachiller");
+        	comboBoxD.addItem("Licenciado");
+        	comboBoxD.addItem("Magíster ");
+        	comboBoxD.addItem("Doctorado ");
+        	
+        	comboBoxD.addItemListener(null);
+	
 		JButton archivo = new JButton("Subir archivo");
 		archivo.setBackground(new Color(192, 192, 192));
 		archivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Ruta = "";
-		        JFileChooser jFileChooser = new JFileChooser();
-		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
-		        jFileChooser.setFileFilter(filtrado);
-		        
-		        int respuesta = jFileChooser.showOpenDialog(fondo);
-		        
-		        if (respuesta == JFileChooser.APPROVE_OPTION) {
-		            Ruta = jFileChooser.getSelectedFile().getPath();
+				 JFileChooser fileChooser = new JFileChooser();
+			        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
+			        fileChooser.setFileFilter(filter);
+
+			        int resultado = fileChooser.showOpenDialog(null);
+			        if (resultado == JFileChooser.APPROVE_OPTION) {
+			            File archivoImagen = fileChooser.getSelectedFile();
+			            try {
+			               imagenBytesD = Files.readAllBytes(archivoImagen.toPath());
+			                
+			                System.out.println("La imagen se ha guardado en MySQL correctamente.");
+			            } catch (IOException e1) {
+			                e1.printStackTrace();
+			            }
+			        }
+			    
 		            
-		            JLabel lblImagen = new JLabel("");
-		            Image mImagen = new ImageIcon(Ruta).getImage();
-		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		            lblImagen.setIcon(mIcono);
-		            lblImagen.setBounds(200, 200, 200, 200);
-		    		fondo2.add(lblImagen);
-		            
-		        }
+		        
 			}
 		});
 		archivo.setBounds(26, 303, 116, 23);
@@ -895,6 +1036,7 @@ public class Ventana extends JFrame{
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
+				remove(comboBoxD);
 				anterior = actual;
 				actual = "menu";
 				add(menu());
@@ -907,15 +1049,13 @@ public class Ventana extends JFrame{
 		Volver.setBounds(173, 514, 89, 23);
 		fondo.add(Volver);
 		
-		JButton Crear = new JButton("Crear");
-		Crear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		Crear.setForeground(new Color(255, 255, 255));
-		Crear.setBackground(new Color(0, 128, 255));
-		Crear.setBounds(342, 514, 89, 23);
-		fondo.add(Crear);
+		btnGuardarDocente = new JButton("Guardar");
+		btnGuardarDocente.setForeground(new Color(255, 255, 255));
+		btnGuardarDocente.setBackground(new Color(0, 128, 255));
+		btnGuardarDocente.setBounds(342, 514, 89, 23);
+		btnGuardarDocente.addActionListener(cvbd);
+		fondo.getRootPane().add(btnGuardarDocente);
+		fondo.add(btnGuardarDocente);
 
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
@@ -931,6 +1071,8 @@ public class Ventana extends JFrame{
 		this.add(fondo);
 		return fondo;
 	}
+
+	
 	
 	public JPanel crearGrupo() {
 		anterior = actual;
@@ -3092,6 +3234,15 @@ public class Ventana extends JFrame{
 
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
+	}
+	
+	public JButton getBtnGuardarDocente() {
+		return btnGuardarDocente;
+	}
+
+	public void setBtnGuardarDocente(JButton btnGuardarDocente) {
+		
+		this.btnGuardarDocente = btnGuardarDocente;
 	}
 }
 

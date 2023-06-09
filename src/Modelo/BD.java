@@ -76,5 +76,28 @@ public class BD {
         return ids;
     }
 	
+	public List<Integer> obtenerIDsDocente() {
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            Connection cn = Conectar();
+            java.sql.Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT idDocentes FROM docentesbd");
+
+            while (rs.next()) {
+                int id = rs.getInt("idDocentes");
+                ids.add(id);
+            }
+
+            rs.close();
+            stm.close();
+            cn.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return ids;
+    }
+	
 	
 }
