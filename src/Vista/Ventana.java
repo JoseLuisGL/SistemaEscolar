@@ -1072,8 +1072,6 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 
-	
-	
 	public JPanel crearGrupo() {
 		anterior = actual;
 		actual = "crearGrupo";
@@ -2899,7 +2897,6 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 
-	
 	public JPanel credencialDocente() {
 		anterior = actual;
 		actual = "credencialDocente";
@@ -2922,6 +2919,21 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
+		BD bd = new BD();
+		JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsDocente().toArray(new Integer[0])));
+	    comboBoxID.setBounds(40, 5, 200, 20);
+	    fondo2.add(comboBoxID);
+		
+		
+
+
+		JTextField datos_nombre = new JTextField();
+        JTextField datos_apePaterno = new JTextField();			
+        JTextField datos_apeMaterno = new JTextField();
+        JTextField datos_correo = new JTextField();
+        JTextField datos_direccion = new JTextField();
+		
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
@@ -2941,9 +2953,102 @@ public class Ventana extends JFrame{
 		
 		JButton Descargar = new JButton("Descargar");
 		Descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    	int idConsultar = (int) comboBoxID.getSelectedItem();
+				BD bd = new BD();
+			    try {
+			        Connection cn = bd.Conectar();
+			        Statement stm = cn.createStatement();
+			        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+
+			        
+			        
+			        while (rs.next()) {
+			        	
+			        	int id = rs.getInt("idDocente");
+			           
+			        	if(idConsultar == id) {
+			        		String nombre = rs.getString("Nombre");
+			        		String correo = rs.getString("Correo");
+				            String apellidoP = rs.getString("Apellido Paterno");
+				            String apellidoM = rs.getString("Apellido Materno");
+				            String direccion = rs.getString("Direccion");
+				            
+				           
+				            datos_nombre.setText(nombre);
+				            datos_apePaterno.setText(apellidoP);
+				            datos_apeMaterno.setText(apellidoM);
+				            datos_correo.setText(correo);
+				            datos_direccion.setText(direccion);		  
+				            cambio++;
+			        	}
+			        }
+
+			        rs.close();
+			        stm.close();
+			        cn.close();
+			    } catch (SQLException e1) {
+			        e1.printStackTrace();
+			    }
+			    
+			    if(cambio==0) {
+			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
+			    }
+			    cambio=0;
+				
+		        try {
+		            // Crear el archivo PDF
+		            PdfWriter writer = new PdfWriter(new FileOutputStream("credencialDocente.pdf"));
+		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+		            
+		            // Agregar las imágenes al documento
+		            com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDF.png"));
+		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDT.png"));
+		            document.add(imagen1);
+		            document.add(imagen2);
+		            
+		            // Crear una capa para el texto
+		            PdfPage page = pdfDoc.addNewPage();
+		            com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);	  
+		            PdfCanvas canvas = new PdfCanvas(page);
+		            canvas.beginLayer(textLayer);
+		            canvas.endLayer();
+
+		            
+		            // Agregar el texto a la capa de texto
+		            PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
+		            PdfFont defaultFont = PdfFontFactory.createFont();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
+		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
+		            textLayer.setOn(true);
+
+		          
+
+		            // Cerrar el documento
+		            document.close();
+
+		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (FileNotFoundException ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+		        } catch (MalformedURLException e1) {
+		            e1.printStackTrace();
+		        } catch (IOException e1) {
+		            e1.printStackTrace();
+		        }
+		    }
 		});
+
+
+
+
+
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
 		Descargar.setBounds(342, 514, 95, 36);
@@ -2952,7 +3057,7 @@ public class Ventana extends JFrame{
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialDF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
 		imagen.setIcon(imageIcon);
-		imagen.setBounds(40, 10, 400, 200);
+		imagen.setBounds(40, 30, 400, 200);
 		fondo2.add(imagen);
 		
 		JLabel imagen2 = new JLabel("");
@@ -2969,7 +3074,7 @@ public class Ventana extends JFrame{
 		this.add(fondo);
 		return fondo;
 	}
-	
+
 	
 	public void limpiarVentana() {
 

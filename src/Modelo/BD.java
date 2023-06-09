@@ -82,10 +82,10 @@ public class BD {
         try {
             Connection cn = Conectar();
             java.sql.Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT idDocentes FROM docentesbd");
+            ResultSet rs = stm.executeQuery("SELECT idDocente FROM docentesbd");
 
             while (rs.next()) {
-                int id = rs.getInt("idDocentes");
+                int id = rs.getInt("idDocente");
                 ids.add(id);
             }
 
