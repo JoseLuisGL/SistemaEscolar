@@ -73,7 +73,7 @@ public class Ventana extends JFrame{
 	private JTextField username;
 	private JPasswordField password;
 	public JPanel panel = null;
-	private JTable table;
+	private JTable table, table2;
 	public JTextField txtNombre;
 	public JTextField txtApellidoPaterno,txtApellidoMaterno;
 	public JTextField txtCorreo;
@@ -93,7 +93,7 @@ public class Ventana extends JFrame{
 	public JComboBox ano_nacimiento;
 	public int ano,mes,dia;
 	public JLabel imagen;
-	public JButton button;
+	public JButton button, button2;
 	public JComboBox comboBox;
 	public JButton btnGuardarDocente;
 	public JComboBox comboBoxD;
@@ -1616,105 +1616,165 @@ public class Ventana extends JFrame{
     }
 	
 	public JPanel eliminarDocente() {
-		anterior = actual;
-		actual = "eliminarDocente";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Docente - Eliminar");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Lista de Docentes:");
-		tag1.setBounds(10, 11, 211, 20);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 30, 460, 364);
-		fondo2.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Nombre del Docente", "Apellidos", "Correo", "Eliminar"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(105);
-		table.getColumnModel().getColumn(1).setPreferredWidth(105);
-		table.getColumnModel().getColumn(2).setPreferredWidth(105);
-		table.getColumnModel().getColumn(3).setPreferredWidth(105);
-		
-		
-		JButton Volver = new JButton("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menu";
-				add(menu());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(270, 515, 89, 23);
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		fondo.add(Volver);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
-		panelSuperior.setBounds(0, 0, 600, 13);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
-	}
+        JPanel fondo = new JPanel();
+        fondo.setBackground(new Color(49, 64, 81));
+        fondo.setBounds(0, 0, 584, 561);
+        fondo.setLayout(null);
+
+        JLabel Titulo = new JLabel("Docente - Eliminar");
+        Titulo.setForeground(new Color(0, 0, 0));
+        Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        Titulo.setBounds(79, 24, 421, 40);
+        fondo.add(Titulo);
+
+        JPanel fondo2 = new JPanel();
+        fondo2.setBackground(new Color(0, 128, 64));
+        fondo2.setBounds(60, 86, 480, 405);
+        fondo.add(fondo2);
+        fondo2.setLayout(null);
+
+        JLabel tag1 = new JLabel("Lista de Alumnos:");
+        tag1.setBounds(10, 11, 211, 20);
+        fondo2.add(tag1);
+        tag1.setBackground(new Color(255, 255, 255));
+        tag1.setForeground(new Color(255, 255, 255));
+        tag1.setHorizontalAlignment(SwingConstants.LEFT);
+        tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
+        JScrollPane scrollPane = new JScrollPane(table2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(10, 30, 460, 364);
+        fondo2.add(scrollPane);
+
+        table2 = new JTable();
+        scrollPane.setViewportView(table2);
+        table2.setModel(new DefaultTableModel(
+                new Object[][]{
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                	{null, null, null, null, null, null, null, null, null, null},  
+                },
+                new String[]{
+                        "Id", "Nombre del Docente", "A. Paterno", "A. Materno", "Fecha Nacimiento","Correo","Telefono","Direccion","Grado de estudios",
+                        "Eliminar"
+                }
+        ) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 9) {
+                    return JButton.class;
+                }
+                return super.getColumnClass(columnIndex);
+            }
+        });
+
+      
+
+        BD bd = new BD();
+        try {
+            Connection cn = bd.Conectar();
+            Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+
+            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "A. Paterno", "A. Materno", "Fecha Nacimiento",
+            		"Correo","Telefono","Direccion","Grado", "Eliminar"}, 0);
+         
+            while (rs.next()) {
+                int id = rs.getInt("idDocente");
+                String nombre = rs.getString("Nombre");
+                String aPaterno = rs.getString("Apellido Paterno");
+                String aMaterno = rs.getString("Apellido Materno");
+                String fNacimiento = rs.getString("Fecha Nacimiento");
+                String correo = rs.getString("Correo");
+                String telefono = rs.getString("Telefono");
+                String direccion = rs.getString("Direccion");
+                String grado = rs.getString("Grado");
+                button2 = new JButton("Eliminar");
+               
+                button2.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //System.out.println("hola");
+                        /*int filaEliminada = table.getSelectedRow();
+                        DefaultTableModel model = (DefaultTableModel) table.getModel();
+                        model.removeRow(filaEliminada);*/
+                    }
+                });
+
+                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, button2};
+                model.addRow(row);
+            }
+            
+
+            table2.setModel(model);
+            table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+            
+            table2.getColumnModel().getColumn(0).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(1).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(2).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(3).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(4).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(5).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(6).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(7).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(8).setPreferredWidth(130);
+            table2.getColumnModel().getColumn(9).setPreferredWidth(130);
+            table2.revalidate();
+            table2.repaint();
+
+            rs.close();
+            stm.close();
+            cn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+       
+        table2.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer2());
+        table2.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor2());
+        
+        JButton Volver = new JButton("Volver");
+        Volver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                remove(fondo);
+                add(menu());
+                repaint();
+                revalidate();
+            }
+        });
+        Volver.setForeground(new Color(255, 255, 255));
+        Volver.setBackground(new Color(255, 0, 0));
+        Volver.setBounds(270, 515, 89, 23);
+        JLabel imagen = new JLabel("");
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        imagen.setIcon(imageIcon);
+        imagen.setBounds(450, 5, 80, 80);
+        fondo.add(imagen);
+        fondo.add(Volver);
+
+        JPanel panelSuperior = new JPanel();
+        panelSuperior.setBackground(new Color(101, 103, 3));
+        panelSuperior.setBounds(0, 0, 600, 13);
+        fondo.add(panelSuperior);
+        
+        return fondo;
+    }
 	
 	public JPanel eliminarGrupo() {
 		anterior = actual;
@@ -3234,6 +3294,25 @@ public class Ventana extends JFrame{
 	        return this;
 	    }
 	}
+	class ButtonRenderer2 extends JButton implements TableCellRenderer {
+	    public ButtonRenderer2() {
+	        setOpaque(true);
+	        setBorderPainted(false);
+	    }
+
+	    @Override
+	    public Component getTableCellRendererComponent(JTable table2, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	        if (isSelected) {
+	            setBackground(table2.getSelectionBackground());
+	        } else {
+	            setBackground(table2.getBackground());
+	        }
+	        setText("Eliminar");
+	        setForeground(new Color(255, 255, 255));
+	        setBackground(new Color(255, 0, 0));
+	        return this;
+	    }
+	}
 
     private class ButtonEditor extends DefaultCellEditor {
 
@@ -3283,7 +3362,55 @@ public class Ventana extends JFrame{
             super.fireEditingStopped();
         }
     }
-	
+
+    private class ButtonEditor2 extends DefaultCellEditor {
+
+        public ButtonEditor2() {
+            super(new JTextField());
+            setClickCountToStart(1);
+
+            button2 = new JButton();
+            button2.setOpaque(true);
+            button2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int filaEliminada = table2.getSelectedRow();
+                    DefaultTableModel model = (DefaultTableModel) table2.getModel();
+                    int idDocente = (int) model.getValueAt(filaEliminada, 0);
+                    model.removeRow(filaEliminada);
+                    table2.setModel(model);
+
+                    BD bd = new BD();
+                    try {
+                        Connection cn = bd.Conectar();
+                        Statement stm = cn.createStatement();
+                        String sql = "DELETE FROM docentesbd WHERE idDocente = " + idDocente;
+                        stm.executeUpdate(sql);
+                        stm.close();
+                        cn.close();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            return button2;
+        }
+
+        public Object getCellEditorValue() {
+            return "";
+        }
+
+        public boolean stopCellEditing() {
+            return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
 	//////////////////////////GETTERS Y SETTERS//////////////////////////////////
 	public JTextField getTxtApellidoPaterno() {
 		return txtApellidoPaterno;
