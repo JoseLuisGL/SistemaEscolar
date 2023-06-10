@@ -955,6 +955,8 @@ public class Ventana extends JFrame{
         	ano_nacimientoD.addItem(i);
         	ano_nacimientoD.addItemListener(null);
         }
+        
+   
           
 	
 		txtCorreoD = new JTextField();
@@ -2386,75 +2388,176 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Seleccione un Docente");
+		JLabel tag1 = new JLabel("Ingrese el ID del alumno");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
-		JLabel tag2 = new JLabel("Apellidos");
+		JLabel tagnombre = new JLabel("Nombre");
+		tagnombre.setForeground(new Color(0, 0, 0));
+		tagnombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagnombre.setBounds(10, 70, 210, 20);
+		fondo2.add(tagnombre);
+		
+		JLabel tag2 = new JLabel("Apellido Paterno");
 		tag2.setForeground(new Color(0, 0, 0));
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag2.setBounds(10, 70, 210, 20);
+		tag2.setBounds(10, 114, 210, 20);
 		fondo2.add(tag2);
+		
+		JLabel tag2_1 = new JLabel("Apellido Materno");
+		tag2_1.setForeground(new Color(0, 0, 0));
+		tag2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2_1.setBounds(160, 114, 210, 20);
+		fondo2.add(tag2_1);
 		
 		JLabel tag3 = new JLabel("Correo electrónico");
 		tag3.setForeground(new Color(0, 0, 0));
 		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag3.setBounds(10, 114, 210, 14);
+		tag3.setBounds(10, 158, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Fecha de nacimiento");
 		tag4.setForeground(new Color(0, 0, 0));
 		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag4.setBounds(10, 157, 210, 14);
+		tag4.setBounds(10, 201, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Teléfono");
 		tag5.setForeground(new Color(0, 0, 0));
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag5.setBounds(10, 198, 210, 14);
+		tag5.setBounds(10, 242, 210, 14);
 		fondo2.add(tag5);
 		
-		JLabel tag6 = new JLabel("Grado de estudios:");
+		JLabel tag6 = new JLabel("Direccion");
 		tag6.setForeground(new Color(0, 0, 0));
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag6.setBounds(10, 239, 210, 14);
+		tag6.setBounds(10, 283, 210, 14);
 		fondo2.add(tag6);
 		
-		JComboBox seleccionDocente = new JComboBox();
-		seleccionDocente.setBounds(10, 45, 273, 22);
-		fondo2.add(seleccionDocente);
+		JTextField idDocente = new JTextField();
+		idDocente.setEditable(true);
+		idDocente.setColumns(10);
+		idDocente.setBounds(10, 45, 273, 22);
+		fondo2.add(idDocente);
 		
-		JTextField datos_ape = new JTextField();
-		datos_ape.setEditable(false);
-		datos_ape.setColumns(10);
-		datos_ape.setBounds(10, 90, 273, 20);
-		fondo2.add(datos_ape);
+		
+		JTextField datos_nombre = new JTextField();
+		datos_nombre.setEditable(false);
+		datos_nombre.setColumns(10);
+		datos_nombre.setBounds(10, 90, 273, 20);
+		fondo2.add(datos_nombre);
+		
+		JTextField datos_apePaterno = new JTextField();
+		datos_apePaterno.setEditable(false);
+		datos_apePaterno.setColumns(10);
+		datos_apePaterno.setBounds(10, 132, 120, 20);
+		fondo2.add(datos_apePaterno);
+		
+		JTextField datos_apeMaterno = new JTextField();
+		datos_apeMaterno.setEditable(false);
+		datos_apeMaterno.setColumns(10);
+		datos_apeMaterno.setBounds(160, 132, 120, 20);
+		fondo2.add(datos_apeMaterno);
 		
 		JTextField datos_correo = new JTextField();
 		datos_correo.setEditable(false);
 		datos_correo.setColumns(10);
-		datos_correo.setBounds(10, 132, 273, 20);
+		datos_correo.setBounds(10, 174, 273, 20);
 		fondo2.add(datos_correo);
 		
 		JTextField datos_fecha = new JTextField();
 		datos_fecha.setEditable(false);
 		datos_fecha.setColumns(10);
-		datos_fecha.setBounds(10, 174, 273, 20);
+		datos_fecha.setBounds(10, 216, 273, 20);
 		fondo2.add(datos_fecha);
 		
 		JTextField datos_tel = new JTextField();
 		datos_tel.setEditable(false);
 		datos_tel.setColumns(10);
-		datos_tel.setBounds(10, 215, 273, 20);
+		datos_tel.setBounds(10, 260, 273, 20);
 		fondo2.add(datos_tel);
 		
-		JTextField datos_grado = new JTextField();
-		datos_grado.setEditable(false);
-		datos_grado.setColumns(10);
-		datos_grado.setBounds(10, 257, 273, 20);
-		fondo2.add(datos_grado);
+		JTextField datos_direccion = new JTextField();
+		datos_direccion.setEditable(false);
+		datos_direccion.setColumns(10);
+		datos_direccion.setBounds(10, 299, 273, 20);
+		fondo2.add(datos_direccion);
+		
+		
+		JButton Consultar = new JButton("Consultar");
+		Consultar.setForeground(new Color(255, 255, 255));
+		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBounds(250, 514, 89, 36);
+		fondo.add(Consultar);
+		Consultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idConsultar = Integer.parseInt(idDocente.getText());
+				BD bd = new BD();
+			    try {
+			        Connection cn = bd.Conectar();
+			        Statement stm = cn.createStatement();
+			        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+
+			        
+			        
+			        while (rs.next()) {
+			        	
+			        	int id = rs.getInt("idDocente");
+			           
+			        	if(idConsultar == id) {
+			        		String nombre = rs.getString("Nombre");
+			        		String correo = rs.getString("Correo");
+				            String apellidoP = rs.getString("Apellido Paterno");
+				            String apellidoM = rs.getString("Apellido Materno");
+				            String telefono = rs.getString("Telefono");
+				            LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
+				            String fecha = fechaNacimiento.toString();
+				            String direccion = rs.getString("Direccion");
+				            byte[] imagenBytes = rs.getBytes("Foto");
+				            
+				            
+				            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
+				            
+				            JLabel nuevaimagen = new JLabel();
+				            nuevaimagen.setIcon(imageIcon);
+				    		nuevaimagen.setBounds(300, 50, 160, 160);
+				    		//fondo2.remove(imagen);
+				    		fondo2.add(nuevaimagen);
+				            
+				            
+				            
+				            datos_nombre.setText(nombre);
+				            datos_apePaterno.setText(apellidoP);
+				            datos_apeMaterno.setText(apellidoM);
+				            datos_correo.setText(correo);
+				            datos_tel.setText(telefono);
+				            datos_fecha.setText(fecha);
+				            datos_direccion.setText(direccion);			  
+				            cambio++;
+				            fondo2.repaint();
+				            fondo2.revalidate();
+			        	}
+			        }
+
+			        rs.close();
+			        stm.close();
+			        cn.close();
+			    } catch (SQLException e1) {
+			        e1.printStackTrace();
+			    }
+			    
+			    if(cambio==0) {
+			    	JOptionPane.showMessageDialog(null, "ID de docente invalido. Favor de intentar denuevo");
+			    }
+			    cambio=0;
+				
+			
+				repaint();
+				revalidate();
+			}
+		});
 		
 		
 		JButton Volver = new JButton("Volver");
@@ -2470,35 +2573,178 @@ public class Ventana extends JFrame{
 		});
 		Volver.setForeground(new Color(255, 255, 255));
 		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 36);
+		Volver.setBounds(120, 514, 89, 36);
 		fondo.add(Volver);
 		
 		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
 		Descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Crear el archivo PDF
+		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivoDocente.pdf"));
+		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+		            
+		            //Crear txt
+		            float col = 280f;
+		            float anchoColumna[] = {col,col};
+		            Table table = new Table(anchoColumna);
+		            
+		            
+		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
+		            	.setFontColor(new DeviceRgb(255, 255, 255));
+		            Cell cell = new Cell();
+		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
+		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
+		            		.setMarginTop(30f)
+		            		.setMarginBottom(30f)
+		            		.setFontSize(24f)
+		            		.setFontColor(new DeviceRgb(0, 0, 0))
+		            		.setBorder(Border.NO_BORDER)
+		            		;
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            cell = new Cell();
+		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
+		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
+		                .setMarginTop(50f)
+		                .setMarginBottom(30f)
+		                .setFontSize(12f)
+		                .setBorder(Border.NO_BORDER)
+		                .setMarginRight(10f);
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            float columnaAncho[] = {80,300,100,80};
+		            Table tablaInformacion = new Table(columnaAncho);
+		            
+		            tablaInformacion.addCell(new Cell(0, 8)
+		                    .add(new Paragraph("Informacion del Docente:")
+		                    .setBold()));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido paterno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido materno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Fecha de nacimiento")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_nombre.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apePaterno.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apeMaterno.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_fecha.getText())));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Teléfono")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Dirección")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("ID del Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_correo.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(idDocente.getText())));
+		            
+		            // Cerrar el documento
+		            document.add(table);
+		            document.add(tablaInformacion);
+		            document.close();
+		            
+		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (FileNotFoundException ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+		        } /*catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}*/
+		    }
 		});
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(342, 514, 89, 36);
+		Descargar.setBounds(380, 514, 89, 36);
 		fondo.add(Descargar);
 		
-		JLabel imagen = new JLabel("");
+		imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
 		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 80, 160, 160);
+		imagen.setBounds(300, 50, 160, 160);
 		fondo2.add(imagen);
 		
 		JLabel imagen2 = new JLabel("");
 		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
 		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 300, 400, 100);
+		imagen2.setBounds(40, 320, 400, 100);
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setBackground(new Color(101, 103, 3));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
+		
+		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
+		GuardarCambios.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String nombre = datos_nombre.getText();
+		        String apellidoPaterno = datos_apePaterno.getText();
+		        String correo = datos_correo.getText();
+		        String fechaNacimiento = datos_fecha.getText();
+		        String telefono = datos_tel.getText();
+		        String direccion = datos_direccion.getText();
+		        int id = Integer.parseInt(idDocente.getText());
+
+		        BD bd = new BD();
+		        try {
+		            Connection cn = bd.Conectar();
+		            Statement stm = cn.createStatement();
+		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE docentesbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idDocente = ?");
+		           
+		            pstmt.setString(1, correo);		            
+		            pstmt.setString(2, telefono);
+		            pstmt.setString(3, direccion);
+		            pstmt.setInt(4, id);
+
+		            int columnasAfectadas = pstmt.executeUpdate();
+		            if (columnasAfectadas > 0) {
+		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
+		            }
+
+		            pstmt.close();
+		            cn.close();
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
+
+		        repaint();
+		        revalidate();
+		    }
+		});
+		GuardarCambios.setForeground(new Color(255, 255, 255));
+		GuardarCambios.setBackground(new Color(0, 128, 255));
+		GuardarCambios.setBounds(380, 250, 70, 30);
+		GuardarCambios.setEnabled(false);
+		fondo2.add(GuardarCambios);
+		
+		JButton Editar = new JButton("<html>Editar<html>");
+		Editar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idText = idDocente.getText();
+				if(idText.matches(".*\\d.*")) {
+					datos_correo.setEditable(true);
+					datos_tel.setEditable(true);
+					datos_direccion.setEditable(true);
+					GuardarCambios.setEnabled(true);
+					
+					repaint();
+					revalidate();
+				}else {
+					JOptionPane.showMessageDialog(null, "Ingresa el id del Docente");
+				}
+			}
+		});
+		Editar.setForeground(new Color(255, 255, 255));
+		Editar.setBackground(new Color(0, 128, 255));
+		Editar.setBounds(290, 250, 70, 30);
+		fondo2.add(Editar);
 		
 		this.add(fondo);
 		return fondo;
@@ -3294,6 +3540,7 @@ public class Ventana extends JFrame{
 	        return this;
 	    }
 	}
+	
 	class ButtonRenderer2 extends JButton implements TableCellRenderer {
 	    public ButtonRenderer2() {
 	        setOpaque(true);
