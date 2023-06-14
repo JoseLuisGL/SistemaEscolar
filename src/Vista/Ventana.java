@@ -70,6 +70,10 @@ import Modelo.BD;
 
 
 
+
+
+
+
 public class Ventana extends JFrame{
 	private String anterior = "login";
 	private String actual = "login";
@@ -396,7 +400,29 @@ public class Ventana extends JFrame{
 		Titulo2.setBounds(79, 62, 421, 25);
 		fondo.add(Titulo2);
 		
-		JButton btnConsultarGrupo = new JButton("Consultar");
+		JLabel lblConsultar = new JLabel("Consultar");
+		lblConsultar.setForeground(new Color(121, 255, 145));
+		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setBounds(237, 86, 112, 25);
+		fondo.add(lblConsultar);
+		
+		JLabel lblCrear = new JLabel("Crear");
+		lblCrear.setForeground(new Color(121, 255, 145));
+		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setBounds(142, 281, 71, 25);
+		fondo.add(lblCrear);
+		
+		JLabel lblEliminar = new JLabel("Eliminar");
+		lblEliminar.setForeground(new Color(121, 255, 145));
+		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setBounds(365, 281, 89, 25);
+		fondo.add(lblEliminar);
+		
+		RoundButton btnConsultarGrupo = new RoundButton("");
+		ImageIcon icono = new ImageIcon("img/consulta.png");
+		Image imagen = icono.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnConsultarGrupo.setIcon(new ImageIcon(imagenRedimensionada));
 		btnConsultarGrupo.setBackground(new Color(121, 255, 145));
 		btnConsultarGrupo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -412,7 +438,11 @@ public class Ventana extends JFrame{
 		btnConsultarGrupo.setBounds(212, 115, 150, 150);
 		fondo.add(btnConsultarGrupo);
 		
-		JButton btnCrearGrupo = new JButton("Crear");
+		RoundButton btnCrearGrupo = new RoundButton("");
+		ImageIcon icono2 = new ImageIcon("img\\crearicono.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenRedimensionada2 = imagen2.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnCrearGrupo.setIcon(new ImageIcon(imagenRedimensionada2));
 		btnCrearGrupo.setBackground(new Color(121, 255, 145));
 		btnCrearGrupo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -428,7 +458,11 @@ public class Ventana extends JFrame{
 		btnCrearGrupo.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearGrupo);
 		
-		JButton btnEliminarGrupo = new JButton("Eliminar");
+		RoundButton  btnEliminarGrupo = new RoundButton ("");
+		ImageIcon icono3 = new ImageIcon("img\\eliminaricono.png");
+		Image imagen3 = icono3.getImage();
+		Image imagenRedimensionada3 = imagen3.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnEliminarGrupo.setIcon(new ImageIcon(imagenRedimensionada3));
 		btnEliminarGrupo.setBackground(new Color(121, 255, 145));
 		btnEliminarGrupo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -492,8 +526,36 @@ public class Ventana extends JFrame{
 		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 62, 421, 25);
 		fondo.add(Titulo2);
+		
+		JLabel lblCredencial = new JLabel("Credencial");
+		lblCredencial.setForeground(new Color(121, 255, 145));
+		lblCredencial.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCredencial.setBounds(120, 86, 112, 25);
+		fondo.add(lblCredencial);
+		
+		JLabel lblConsultar = new JLabel("Consultar");
+		lblConsultar.setForeground(new Color(121, 255, 145));
+		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setBounds(353, 86, 105, 25);
+		fondo.add(lblConsultar);
+		
+		JLabel lblCrear = new JLabel("Crear");
+		lblCrear.setForeground(new Color(121, 255, 145));
+		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setBounds(142, 281, 71, 25);
+		fondo.add(lblCrear);
+		
+		JLabel lblEliminar = new JLabel("Eliminar");
+		lblEliminar.setForeground(new Color(121, 255, 145));
+		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setBounds(365, 281, 89, 25);
+		fondo.add(lblEliminar);
 
-		JButton btnCredAlu = new JButton("<html>Generar Credencial<html>");
+		RoundButton btnCredAlu = new RoundButton("");
+		ImageIcon icono = new ImageIcon("img/credencial.png");
+		Image imagen = icono.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnCredAlu.setIcon(new ImageIcon(imagenRedimensionada));
 		btnCredAlu.setBackground(new Color(121, 255, 145));
 		btnCredAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCredAlu.addActionListener(new ActionListener() {
@@ -509,7 +571,11 @@ public class Ventana extends JFrame{
 		btnCredAlu.setBounds(100, 115, 150, 150);
 		fondo.add(btnCredAlu);
 		
-		JButton btnConsultarAlu = new JButton("Consultar");
+		RoundButton btnConsultarAlu = new RoundButton("");
+		ImageIcon icono2 = new ImageIcon("img/consulta.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenRedimensionada2 = imagen2.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnConsultarAlu.setIcon(new ImageIcon(imagenRedimensionada2));
 		btnConsultarAlu.setBackground(new Color(121, 255, 145));
 		btnConsultarAlu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -525,7 +591,11 @@ public class Ventana extends JFrame{
 		btnConsultarAlu.setBounds(330, 115, 150, 150);
 		fondo.add(btnConsultarAlu);
 		
-		JButton btnCrearAlu = new JButton("Crear");
+		RoundButton btnCrearAlu = new RoundButton("");
+		ImageIcon icono3 = new ImageIcon("img/crearicono.png");
+		Image imagen3 = icono3.getImage();
+		Image imagenRedimensionada3 = imagen3.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnCrearAlu.setIcon(new ImageIcon(imagenRedimensionada3));
 		btnCrearAlu.setBackground(new Color(121, 255, 145));
 		btnCrearAlu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -541,7 +611,11 @@ public class Ventana extends JFrame{
 		btnCrearAlu.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearAlu);
 		
-		JButton btnEliminarAlu = new JButton("Eliminar");
+		RoundButton btnEliminarAlu = new RoundButton("");
+		ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
+		Image imagen4 = icono4.getImage();
+		Image imagenRedimensionada4 = imagen4.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnEliminarAlu.setIcon(new ImageIcon(imagenRedimensionada4));
 		btnEliminarAlu.setBackground(new Color(121, 255, 145));
 		btnEliminarAlu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -605,8 +679,36 @@ public class Ventana extends JFrame{
 		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 62, 421, 25);
 		fondo.add(Titulo2);
+		
+		JLabel lblCredencial = new JLabel("Credencial");
+		lblCredencial.setForeground(new Color(121, 255, 145));
+		lblCredencial.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCredencial.setBounds(120, 86, 112, 25);
+		fondo.add(lblCredencial);
+		
+		JLabel lblConsultar = new JLabel("Consultar");
+		lblConsultar.setForeground(new Color(121, 255, 145));
+		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setBounds(353, 86, 105, 25);
+		fondo.add(lblConsultar);
+		
+		JLabel lblCrear = new JLabel("Crear");
+		lblCrear.setForeground(new Color(121, 255, 145));
+		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setBounds(142, 281, 71, 25);
+		fondo.add(lblCrear);
+		
+		JLabel lblEliminar = new JLabel("Eliminar");
+		lblEliminar.setForeground(new Color(121, 255, 145));
+		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setBounds(365, 281, 89, 25);
+		fondo.add(lblEliminar);
 
-		JButton btnCredDoce = new JButton("<html>Generar Credencial<html>");
+		RoundButton btnCredDoce = new RoundButton("");
+		ImageIcon icono = new ImageIcon("img/credencial.png");
+		Image imagen = icono.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnCredDoce.setIcon(new ImageIcon(imagenRedimensionada));
 		btnCredDoce.setBackground(new Color(121, 255, 145));
 		btnCredDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCredDoce.addActionListener(new ActionListener() {
@@ -622,7 +724,11 @@ public class Ventana extends JFrame{
 		btnCredDoce.setBounds(100, 115, 150, 150);
 		fondo.add(btnCredDoce);
 		
-		JButton btnConsultarDoce = new JButton("Consultar");
+		RoundButton btnConsultarDoce = new RoundButton("");
+		ImageIcon icono2 = new ImageIcon("img/consulta.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenRedimensionada2 = imagen2.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnConsultarDoce.setIcon(new ImageIcon(imagenRedimensionada2));
 		btnConsultarDoce.setBackground(new Color(121, 255, 145));
 		btnConsultarDoce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -638,7 +744,11 @@ public class Ventana extends JFrame{
 		btnConsultarDoce.setBounds(330, 115, 150, 150);
 		fondo.add(btnConsultarDoce);
 		
-		JButton btnCrearDoce = new JButton("Crear");
+		RoundButton btnCrearDoce = new RoundButton("");
+		ImageIcon icono3 = new ImageIcon("img/crearicono.png");
+		Image imagen3 = icono3.getImage();
+		Image imagenRedimensionada3 = imagen3.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnCrearDoce.setIcon(new ImageIcon(imagenRedimensionada3));
 		btnCrearDoce.setBackground(new Color(121, 255, 145));
 		btnCrearDoce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -654,7 +764,11 @@ public class Ventana extends JFrame{
 		btnCrearDoce.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearDoce);
 		
-		JButton btnEliminarDoce = new JButton("Eliminar");
+		RoundButton btnEliminarDoce = new RoundButton("");
+		ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
+		Image imagen4 = icono4.getImage();
+		Image imagenRedimensionada4 = imagen4.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
+		btnEliminarDoce.setIcon(new ImageIcon(imagenRedimensionada4));
 		btnEliminarDoce.setBackground(new Color(121, 255, 145));
 		btnEliminarDoce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -719,7 +833,30 @@ public class Ventana extends JFrame{
 		Titulo2.setBounds(79, 62, 421, 25);
 		fondo.add(Titulo2);
 		
-		JButton btnConsultarAsi = new JButton("Consultar");
+		JLabel lblConsultar = new JLabel("Consultar");
+		lblConsultar.setForeground(new Color(121, 255, 145));
+		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setBounds(237, 86, 112, 25);
+		fondo.add(lblConsultar);
+		
+		JLabel lblCrear = new JLabel("Crear");
+		lblCrear.setForeground(new Color(121, 255, 145));
+		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setBounds(142, 281, 71, 25);
+		fondo.add(lblCrear);
+		
+		JLabel lblEliminar = new JLabel("Eliminar");
+		lblEliminar.setForeground(new Color(121, 255, 145));
+		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setBounds(365, 281, 89, 25);
+		fondo.add(lblEliminar);
+		
+		
+		RoundButton btnConsultarAsi = new RoundButton("");
+		ImageIcon icono = new ImageIcon("img/consulta.png");
+		Image imagen = icono.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnConsultarAsi.setIcon(new ImageIcon(imagenRedimensionada));
 		btnConsultarAsi.setBackground(new Color(121, 255, 145));
 		btnConsultarAsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -735,7 +872,11 @@ public class Ventana extends JFrame{
 		btnConsultarAsi.setBounds(212, 115, 150, 150);
 		fondo.add(btnConsultarAsi);
 		
-		JButton btnCrearAsi = new JButton("Crear");
+		RoundButton btnCrearAsi = new RoundButton("");
+		ImageIcon icono2 = new ImageIcon("img\\crearicono.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenRedimensionada2 = imagen2.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnCrearAsi.setIcon(new ImageIcon(imagenRedimensionada2));
 		btnCrearAsi.setBackground(new Color(121, 255, 145));
 		btnCrearAsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -751,7 +892,11 @@ public class Ventana extends JFrame{
 		btnCrearAsi.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearAsi);
 		
-		JButton btnEliminarAsi = new JButton("Eliminar");
+		RoundButton  btnEliminarAsi = new RoundButton ("");
+		ImageIcon icono3 = new ImageIcon("img\\eliminaricono.png");
+		Image imagen3 = icono3.getImage();
+		Image imagenRedimensionada3 = imagen3.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnEliminarAsi.setIcon(new ImageIcon(imagenRedimensionada3));
 		btnEliminarAsi.setBackground(new Color(121, 255, 145));
 		btnEliminarAsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
