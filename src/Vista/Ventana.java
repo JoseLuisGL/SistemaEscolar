@@ -134,14 +134,10 @@ public class Ventana extends JFrame{
 		fondo.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(30, 144, 255));
-		panel_1.setBounds(5, 5, 243, 551);
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 243, 551);
 		fondo.add(panel_1);
 		panel_1.setLayout(null);
-		
-		
-		
-		
 		
 		fondo.setBackground(new Color(255, 255, 255));
 		fondo.setBounds(5, 5, 574, 551);
@@ -191,7 +187,7 @@ public class Ventana extends JFrame{
 		password.setBounds(255, 355, 267, 33);
 		fondo.add(password);
 		
-		JButton Cancelar = new JButton("Cancelar");
+		RoundButtonRojo Cancelar = new RoundButtonRojo("Cancelar");
 		Cancelar.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		Cancelar.setBackground(new Color(255, 0, 0));
 		Cancelar.setForeground(new Color(255, 255, 255));
@@ -204,8 +200,8 @@ public class Ventana extends JFrame{
 		Cancelar.setBounds(260, 415, 120, 33);
 		fondo.add(Cancelar);
 		
-		JButton btnAccess = new JButton("Ingresar");
-		btnAccess.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		RoundButtonVerde btnAccess = new RoundButtonVerde("Ingresar");
+		btnAccess.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		btnAccess.setForeground(new Color(255, 255, 255));
 		btnAccess.setBackground(new Color(0, 255, 64));
 		btnAccess.addActionListener(new ActionListener() {
@@ -302,16 +298,9 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Bienvenido Admin");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("¿Qué acción desea realizar?");
-		Titulo2.setForeground(new Color(0, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 62, 421, 25);
-		fondo.add(Titulo2);
 		
 		RoundButton botonAlumnos = new RoundButton("Alumnos");
 		botonAlumnos.addActionListener(new ActionListener() {
@@ -393,9 +382,9 @@ public class Ventana extends JFrame{
 		tag4.setBounds(35, 429, 107, 78);
 		fondo.add(tag4);
 		
-		JButton btnCerrarSesion = new JButton("Cerrar Sesión");
+		RoundButtonRojo btnCerrarSesion = new RoundButtonRojo("Cerrar Sesión");
 		btnCerrarSesion.setForeground(new Color(255, 255, 255));
-		btnCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCerrarSesion.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCerrarSesion.setBackground(new Color(255, 0, 0));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -431,32 +420,25 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("GRUPOS");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("¿Qué acción desea realizar?");
-		Titulo2.setForeground(new Color(0, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 62, 421, 25);
-		fondo.add(Titulo2);
 		
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblConsultar.setBounds(237, 86, 112, 25);
 		fondo.add(lblConsultar);
 		
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblCrear.setBounds(142, 281, 71, 25);
 		fondo.add(lblCrear);
 		
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblEliminar.setBounds(365, 281, 89, 25);
 		fondo.add(lblEliminar);
 		
@@ -476,7 +458,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnConsultarGrupo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnConsultarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnConsultarGrupo.setBounds(212, 115, 150, 150);
 		fondo.add(btnConsultarGrupo);
 		
@@ -496,7 +478,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnCrearGrupo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCrearGrupo.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearGrupo);
 		
@@ -516,11 +498,11 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEliminarGrupo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEliminarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnEliminarGrupo.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarGrupo);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -558,16 +540,9 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("ALUMNOS");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("¿Qué acción desea realizar?");
-		Titulo2.setForeground(new Color(0, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 62, 421, 25);
-		fondo.add(Titulo2);
 		
 		JLabel lblCredencial = new JLabel("Credencial");
 		lblCredencial.setForeground(new Color(121, 255, 145));
@@ -577,19 +552,19 @@ public class Ventana extends JFrame{
 		
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblConsultar.setBounds(353, 86, 105, 25);
 		fondo.add(lblConsultar);
 		
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblCrear.setBounds(142, 281, 71, 25);
 		fondo.add(lblCrear);
 		
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblEliminar.setBounds(365, 281, 89, 25);
 		fondo.add(lblEliminar);
 
@@ -599,7 +574,7 @@ public class Ventana extends JFrame{
 		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
 		btnCredAlu.setIcon(new ImageIcon(imagenRedimensionada));
 		btnCredAlu.setBackground(new Color(121, 255, 145));
-		btnCredAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCredAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCredAlu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -629,7 +604,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnConsultarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnConsultarAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnConsultarAlu.setBounds(330, 115, 150, 150);
 		fondo.add(btnConsultarAlu);
 		
@@ -649,7 +624,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnCrearAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrearAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCrearAlu.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearAlu);
 		
@@ -669,11 +644,11 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEliminarAlu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEliminarAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnEliminarAlu.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarAlu);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -711,38 +686,31 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("DOCENTES");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("¿Qué acción desea realizar?");
-		Titulo2.setForeground(new Color(0, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 62, 421, 25);
-		fondo.add(Titulo2);
 		
 		JLabel lblCredencial = new JLabel("Credencial");
 		lblCredencial.setForeground(new Color(121, 255, 145));
-		lblCredencial.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCredencial.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblCredencial.setBounds(120, 86, 112, 25);
 		fondo.add(lblCredencial);
 		
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblConsultar.setBounds(353, 86, 105, 25);
 		fondo.add(lblConsultar);
 		
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblCrear.setBounds(142, 281, 71, 25);
 		fondo.add(lblCrear);
 		
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblEliminar.setBounds(365, 281, 89, 25);
 		fondo.add(lblEliminar);
 
@@ -752,7 +720,7 @@ public class Ventana extends JFrame{
 		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
 		btnCredDoce.setIcon(new ImageIcon(imagenRedimensionada));
 		btnCredDoce.setBackground(new Color(121, 255, 145));
-		btnCredDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCredDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCredDoce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -782,7 +750,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnConsultarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnConsultarDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnConsultarDoce.setBounds(330, 115, 150, 150);
 		fondo.add(btnConsultarDoce);
 		
@@ -802,7 +770,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnCrearDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrearDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCrearDoce.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearDoce);
 		
@@ -822,11 +790,11 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEliminarDoce.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEliminarDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnEliminarDoce.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarDoce);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -864,32 +832,25 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("ASIGNATURAS");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("¿Qué acción desea realizar?");
-		Titulo2.setForeground(new Color(0, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 62, 421, 25);
-		fondo.add(Titulo2);
 		
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblConsultar.setBounds(237, 86, 112, 25);
 		fondo.add(lblConsultar);
 		
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblCrear.setBounds(142, 281, 71, 25);
 		fondo.add(lblCrear);
 		
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblEliminar.setBounds(365, 281, 89, 25);
 		fondo.add(lblEliminar);
 		
@@ -910,7 +871,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnConsultarAsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnConsultarAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnConsultarAsi.setBounds(212, 115, 150, 150);
 		fondo.add(btnConsultarAsi);
 		
@@ -930,7 +891,7 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnCrearAsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrearAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCrearAsi.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearAsi);
 		
@@ -950,11 +911,11 @@ public class Ventana extends JFrame{
 				revalidate();
 			}
 		});
-		btnEliminarAsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEliminarAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnEliminarAsi.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarAsi);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -985,7 +946,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "crearAlumno";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -993,14 +954,14 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Alumno - Crear");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
 		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
 		Titulo2.setForeground(new Color(255, 0, 0));
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 50, 421, 25);
 		fondo.add(Titulo2);
 		
@@ -1014,89 +975,89 @@ public class Ventana extends JFrame{
 		tag1.setBounds(25, 11, 90, 25);
 		fondo2.add(tag1);
 		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JLabel tag2 = new JLabel("Apellido Paterno:");
 		tag2.setBounds(25, 62, 150, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(255, 255, 255));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setForeground(new Color(0, 0, 0));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
 		JLabel tagam = new JLabel("Apellido Materno:");
 		tagam.setBounds(250, 62, 150, 25);
 		fondo2.add(tagam);
 		tagam.setHorizontalAlignment(SwingConstants.LEFT);
-		tagam.setForeground(new Color(255, 255, 255));
-		tagam.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagam.setForeground(new Color(0, 0, 0));
+		tagam.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tagam.setBackground(Color.WHITE);
 		
 		JLabel tag3 = new JLabel("Fecha de nacimiento:");
 		tag3.setBounds(25, 112, 169, 25);
 		fondo2.add(tag3);
 		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(255, 255, 255));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setForeground(new Color(0, 0, 0));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBackground(Color.WHITE);
 		
 		JLabel tag4 = new JLabel("Correo electronico:");
 		tag4.setBounds(25, 170, 169, 25);
 		fondo2.add(tag4);
 		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(255, 255, 255));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setForeground(new Color(0, 0, 0));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
 		JLabel tag7 = new JLabel("Grado:");
 		tag7.setBounds(25, 333, 90, 25);
 		fondo2.add(tag7);
 		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(255, 255, 255));
-		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag7.setForeground(new Color(0, 0, 0));
+		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag7.setBackground(Color.WHITE);
 		
 		JLabel tag5 = new JLabel("Teléfono:");
 		tag5.setBounds(25, 221, 90, 25);
 		fondo2.add(tag5);
 		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(255, 255, 255));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setForeground(new Color(0, 0, 0));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
 		JLabel tag6 = new JLabel("Foto (Opcional):");
 		tag6.setBounds(25, 277, 130, 25);
 		fondo2.add(tag6);
 		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(255, 255, 255));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setForeground(new Color(0, 0, 0));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
 		JLabel direccion = new JLabel("Direccion (Opcional):");
 		direccion.setBounds(250, 277, 160, 25);
 		fondo2.add(direccion);
 		direccion.setHorizontalAlignment(SwingConstants.LEFT);
-		direccion.setForeground(new Color(255, 255, 255));
-		direccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		direccion.setForeground(new Color(0, 0, 0));
+		direccion.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		direccion.setBackground(Color.WHITE);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBackground(new Color(0, 128, 192));
+		txtNombre.setBackground(new Color(225,225,225));
 		txtNombre.setBounds(25, 36, 420, 25);
 		fondo2.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtApellidoPaterno = new JTextField();
 		txtApellidoPaterno.setColumns(10);
-		txtApellidoPaterno.setBackground(new Color(0, 128, 192));
+		txtApellidoPaterno.setBackground(new Color(225,225,225));
 		txtApellidoPaterno.setBounds(25, 86, 150, 25);
 		fondo2.add(txtApellidoPaterno);
 		
 		txtApellidoMaterno = new JTextField();
 		txtApellidoMaterno.setColumns(10);
-		txtApellidoMaterno.setBackground(new Color(0, 128, 192));
+		txtApellidoMaterno.setBackground(new Color(225,225,225));
 		txtApellidoMaterno.setBounds(250, 86, 150, 25);
 		fondo2.add(txtApellidoMaterno);
 		
@@ -1134,13 +1095,13 @@ public class Ventana extends JFrame{
 	
 		txtCorreo = new JTextField();
 		txtCorreo.setColumns(10);
-		txtCorreo.setBackground(new Color(0, 128, 192));
+		txtCorreo.setBackground(new Color(225,225,225));
 		txtCorreo.setBounds(25, 195, 420, 25);
 		fondo2.add(txtCorreo);
 		
 		txtTelefono = new JTextField(10);
 		txtTelefono.setColumns(10);
-		txtTelefono.setBackground(new Color(0, 128, 192));
+		txtTelefono.setBackground(new Color(225,225,225));
 		txtTelefono.setBounds(25, 246, 420, 25);
 		
 		
@@ -1163,7 +1124,7 @@ public class Ventana extends JFrame{
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBackground(new Color(0, 128, 192));
+		txtDireccion.setBackground(new Color(225,225,225));
 		txtDireccion.setBounds(250, 303, 160, 23);
 		fondo2.add(txtDireccion);
 		
@@ -1207,7 +1168,7 @@ public class Ventana extends JFrame{
 		archivo.setBounds(26, 303, 116, 23);
 		fondo2.add(archivo);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -1239,7 +1200,7 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -1253,7 +1214,7 @@ public class Ventana extends JFrame{
 		actual = "crearDocente";
 		
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -1261,14 +1222,14 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Docente - Crear");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
 		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
 		Titulo2.setForeground(new Color(255, 0, 0));
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 50, 421, 25);
 		fondo.add(Titulo2);
 		
@@ -1282,89 +1243,89 @@ public class Ventana extends JFrame{
 		tag1.setBounds(25, 11, 90, 25);
 		fondo2.add(tag1);
 		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JLabel tag2 = new JLabel("Apellido Paterno:");
 		tag2.setBounds(25, 62, 150, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(255, 255, 255));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setForeground(new Color(0, 0, 0));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
 		JLabel tagam = new JLabel("Apellido Materno:");
 		tagam.setBounds(250, 62, 150, 25);
 		fondo2.add(tagam);
 		tagam.setHorizontalAlignment(SwingConstants.LEFT);
-		tagam.setForeground(new Color(255, 255, 255));
-		tagam.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagam.setForeground(new Color(0, 0, 0));
+		tagam.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tagam.setBackground(Color.WHITE);
 		
 		JLabel tag3 = new JLabel("Fecha de nacimiento:");
 		tag3.setBounds(25, 112, 169, 25);
 		fondo2.add(tag3);
 		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(255, 255, 255));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setForeground(new Color(0, 0, 0));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBackground(Color.WHITE);
 		
 		JLabel tag4 = new JLabel("Correo electronico:");
 		tag4.setBounds(25, 170, 169, 25);
 		fondo2.add(tag4);
 		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(255, 255, 255));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setForeground(new Color(0, 0, 0));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
 		JLabel tag7 = new JLabel("Grado Academico:");
 		tag7.setBounds(25, 333, 90, 25);
 		fondo2.add(tag7);
 		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(255, 255, 255));
-		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag7.setForeground(new Color(0, 0, 0));
+		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag7.setBackground(Color.WHITE);
 		
 		JLabel tag5 = new JLabel("Teléfono:");
 		tag5.setBounds(25, 221, 90, 25);
 		fondo2.add(tag5);
 		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(255, 255, 255));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setForeground(new Color(0, 0, 0));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
 		JLabel tag6 = new JLabel("Foto (Opcional):");
 		tag6.setBounds(25, 277, 130, 25);
 		fondo2.add(tag6);
 		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(255, 255, 255));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setForeground(new Color(0, 0, 0));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBackground(Color.WHITE);
 		
 		JLabel direccion = new JLabel("Direccion (Opcional):");
 		direccion.setBounds(250, 277, 160, 25);
 		fondo2.add(direccion);
 		direccion.setHorizontalAlignment(SwingConstants.LEFT);
-		direccion.setForeground(new Color(255, 255, 255));
-		direccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		direccion.setForeground(new Color(0, 0, 0));
+		direccion.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		direccion.setBackground(Color.WHITE);
 		
 		txtNombreD = new JTextField();
-		txtNombreD.setBackground(new Color(0, 128, 192));
+		txtNombreD.setBackground(new Color(225,225,225));
 		txtNombreD.setBounds(25, 36, 420, 25);
 		fondo2.add(txtNombreD);
 		txtNombreD.setColumns(10);
 		
 		txtApellidoPaternoD = new JTextField();
 		txtApellidoPaternoD.setColumns(10);
-		txtApellidoPaternoD.setBackground(new Color(0, 128, 192));
+		txtApellidoPaternoD.setBackground(new Color(225,225,225));
 		txtApellidoPaternoD.setBounds(25, 86, 150, 25);
 		fondo2.add(txtApellidoPaternoD);
 		
 		txtApellidoMaternoD = new JTextField();
 		txtApellidoMaternoD.setColumns(10);
-		txtApellidoMaternoD.setBackground(new Color(0, 128, 192));
+		txtApellidoMaternoD.setBackground(new Color(225,225,225));
 		txtApellidoMaternoD.setBounds(250, 86, 150, 25);
 		fondo2.add(txtApellidoMaternoD);
 		
@@ -1398,13 +1359,13 @@ public class Ventana extends JFrame{
 	
 		txtCorreoD = new JTextField();
 		txtCorreoD.setColumns(10);
-		txtCorreoD.setBackground(new Color(0, 128, 192));
+		txtCorreoD.setBackground(new Color(225,225,225));
 		txtCorreoD.setBounds(25, 195, 420, 25);
 		fondo2.add(txtCorreoD);
 		
 		txtTelefonoD = new JTextField(10);
 		txtTelefonoD.setColumns(10);
-		txtTelefonoD.setBackground(new Color(0, 128, 192));
+		txtTelefonoD.setBackground(new Color(225,225,225));
 		txtTelefonoD.setBounds(25, 246, 420, 25);
 		
 		
@@ -1427,7 +1388,7 @@ public class Ventana extends JFrame{
 		
 		txtDireccionD = new JTextField();
 		txtDireccionD.setColumns(10);
-		txtDireccionD.setBackground(new Color(0, 128, 192));
+		txtDireccionD.setBackground(new Color(225,225,225));
 		txtDireccionD.setBounds(250, 303, 160, 23);
 		fondo2.add(txtDireccionD);
 		
@@ -1471,7 +1432,7 @@ public class Ventana extends JFrame{
 		archivo.setBounds(26, 303, 116, 23);
 		fondo2.add(archivo);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -1503,7 +1464,7 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -1516,7 +1477,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "crearGrupo";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -1524,14 +1485,14 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Grupo - Crear");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
 		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
 		Titulo2.setForeground(new Color(255, 0, 0));
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 50, 421, 25);
 		fondo.add(Titulo2);
 		
@@ -1545,32 +1506,32 @@ public class Ventana extends JFrame{
 		tag2.setBounds(25, 62, 90, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(255, 255, 255));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setForeground(new Color(0, 0, 0));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
 		JLabel tag3 = new JLabel("Asignatura:");
 		tag3.setBounds(25, 112, 169, 25);
 		fondo2.add(tag3);
 		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(255, 255, 255));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setForeground(new Color(0, 0, 0));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBackground(Color.WHITE);
 		
 		JLabel tag4 = new JLabel("Docente a cargo:");
 		tag4.setBounds(25, 170, 169, 25);
 		fondo2.add(tag4);
 		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(255, 255, 255));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setForeground(new Color(0, 0, 0));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
 		JLabel tag7 = new JLabel("Numero de alumnos (maximo 40):");
 		tag7.setBounds(25, 333, 270, 25);
 		fondo2.add(tag7);
 		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(255, 255, 255));
-		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag7.setForeground(new Color(0, 0, 0));
+		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag7.setBackground(Color.WHITE);
 		
 		JLabel tag5 = new JLabel("Semestre:\r\n");
@@ -1578,17 +1539,17 @@ public class Ventana extends JFrame{
 		fondo2.add(tag5);
 		tag5.setHorizontalAlignment(SwingConstants.LEFT);
 		tag5.setForeground(new Color(255, 255, 255));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
 		carreraG = new JTextField();
 		carreraG.setColumns(10);
-		carreraG.setBackground(new Color(0, 128, 192));
+		carreraG.setBackground(new Color(225,225,225));
 		carreraG.setBounds(25, 86, 420, 25);
 		fondo2.add(carreraG);
 		
 		asignaturaG = new JComboBox();
-		asignaturaG.setBackground(new Color(0, 128, 192));
+		asignaturaG.setBackground(new Color(225,225,225));
 		asignaturaG.setBounds(25, 140, 420, 25);
 		fondo2.add(asignaturaG);
 	
@@ -1612,7 +1573,7 @@ public class Ventana extends JFrame{
 	        }
 		
 		docente_a_cargoG = new JComboBox();	
-		docente_a_cargoG.setBackground(new Color(0, 128, 192));
+		docente_a_cargoG.setBackground(new Color(225,225,225));
 		docente_a_cargoG.setBounds(25, 195, 420, 25);
 		fondo2.add(docente_a_cargoG);
 		
@@ -1636,7 +1597,7 @@ public class Ventana extends JFrame{
 	        }
 		
 		semestreG = new JComboBox();
-		semestreG.setBackground(new Color(0, 128, 192));
+		semestreG.setBackground(new Color(225,225,225));
 		semestreG.setBounds(25, 246, 420, 25);
 		fondo2.add(semestreG);
 		
@@ -1647,7 +1608,7 @@ public class Ventana extends JFrame{
 		//Cantidad maxima 50
 		num_alu = new JTextField();
 		num_alu.setColumns(10);
-		num_alu.setBackground(new Color(0, 128, 192));
+		num_alu.setBackground(new Color(225,225,225));
 		num_alu.setBounds(25, 356, 420, 25);
 		
 		AbstractDocument doc = (AbstractDocument) num_alu.getDocument();
@@ -1665,7 +1626,7 @@ public class Ventana extends JFrame{
 		});
 		fondo2.add(num_alu);
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -1696,7 +1657,7 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -1709,7 +1670,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "crearAsignatura";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -1717,14 +1678,14 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Asignatura - Crear");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
 		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
 		Titulo2.setForeground(new Color(255, 0, 0));
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		Titulo2.setBounds(79, 50, 421, 25);
 		fondo.add(Titulo2);
 		
@@ -1738,24 +1699,24 @@ public class Ventana extends JFrame{
 		tag1.setBounds(25, 11, 211, 25);
 		fondo2.add(tag1);
 		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
+		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JLabel tag2 = new JLabel("Créditos (al menos un credito y maximo 20):");
 		tag2.setBounds(25, 62, 90, 25);
 		fondo2.add(tag2);
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(255, 255, 255));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setForeground(new Color(0, 0, 0));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
 		JLabel tag4 = new JLabel("Docente a cargo:");
 		tag4.setBounds(25, 170, 169, 25);
 		fondo2.add(tag4);
 		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(255, 255, 255));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setForeground(new Color(0, 0, 0));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
 		
@@ -1763,19 +1724,19 @@ public class Ventana extends JFrame{
 		tag5.setBounds(25, 221, 90, 25);
 		fondo2.add(tag5);
 		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(255, 255, 255));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setForeground(new Color(0, 0, 0));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
 		nombre_asig = new JTextField();
-		nombre_asig.setBackground(new Color(0, 128, 192));
+		nombre_asig.setBackground(new Color(225,225,225));
 		nombre_asig.setBounds(25, 36, 420, 25);
 		fondo2.add(nombre_asig);
 		nombre_asig.setColumns(10);
 		
 		creditos = new JTextField();
 		creditos.setColumns(10);
-		creditos.setBackground(new Color(0, 128, 192));
+		creditos.setBackground(new Color(225,225,225));
 		creditos.setBounds(25, 86, 420, 25);
 		
 		AbstractDocument doc = (AbstractDocument) creditos.getDocument();
@@ -1794,7 +1755,7 @@ public class Ventana extends JFrame{
 		fondo2.add(creditos);
 		
 		docente_a_cargo = new JComboBox();
-		docente_a_cargo.setBackground(new Color(0, 128, 192));
+		docente_a_cargo.setBackground(new Color(225,225,225));
 		docente_a_cargo.setBounds(25, 195, 420, 25);
 		fondo2.add(docente_a_cargo);
 		
@@ -1818,7 +1779,7 @@ public class Ventana extends JFrame{
 	        }
 	        
 		semestres = new JComboBox();
-		semestres.setBackground(new Color(0, 128, 192));
+		semestres.setBackground(new Color(225,225,225));
 		semestres.setBounds(25, 246, 420, 25);
 		fondo2.add(semestres);
 		for(int i=1;i<10;i++) {
@@ -1826,7 +1787,7 @@ public class Ventana extends JFrame{
 		}
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -1861,7 +1822,7 @@ public class Ventana extends JFrame{
 		fondo.add(imagen);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -1872,14 +1833,14 @@ public class Ventana extends JFrame{
 
 	public JPanel eliminarAlumno() {
         JPanel fondo = new JPanel();
-        fondo.setBackground(new Color(49, 64, 81));
+        fondo.setBackground(new Color(225,225,225));
         fondo.setBounds(0, 0, 584, 561);
         fondo.setLayout(null);
 
         JLabel Titulo = new JLabel("Alumno - Eliminar");
         Titulo.setForeground(new Color(0, 0, 0));
         Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
         Titulo.setBounds(79, 24, 421, 40);
         fondo.add(Titulo);
 
@@ -1895,7 +1856,7 @@ public class Ventana extends JFrame{
         tag1.setBackground(new Color(255, 255, 255));
         tag1.setForeground(new Color(255, 255, 255));
         tag1.setHorizontalAlignment(SwingConstants.LEFT);
-        tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
         JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(10, 30, 460, 364);
@@ -2004,7 +1965,7 @@ public class Ventana extends JFrame{
         table.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor());
         
-        JButton Volver = new JButton("Volver");
+        RoundButtonRojo Volver = new RoundButtonRojo("Volver");
         Volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 remove(fondo);
@@ -2026,7 +1987,7 @@ public class Ventana extends JFrame{
         fondo.add(Volver);
 
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setBackground(new Color(101, 103, 3));
+        panelSuperior.setBackground(new Color(225, 225, 225));
         panelSuperior.setBounds(0, 0, 600, 13);
         fondo.add(panelSuperior);
         
@@ -2036,14 +1997,14 @@ public class Ventana extends JFrame{
 	
 	public JPanel eliminarDocente() {
         JPanel fondo = new JPanel();
-        fondo.setBackground(new Color(49, 64, 81));
+        fondo.setBackground(new Color(225,225,225));
         fondo.setBounds(0, 0, 584, 561);
         fondo.setLayout(null);
 
         JLabel Titulo = new JLabel("Docente - Eliminar");
         Titulo.setForeground(new Color(0, 0, 0));
         Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
         Titulo.setBounds(79, 24, 421, 40);
         fondo.add(Titulo);
 
@@ -2059,7 +2020,7 @@ public class Ventana extends JFrame{
         tag1.setBackground(new Color(255, 255, 255));
         tag1.setForeground(new Color(255, 255, 255));
         tag1.setHorizontalAlignment(SwingConstants.LEFT);
-        tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
         JScrollPane scrollPane = new JScrollPane(table2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(10, 30, 460, 364);
@@ -2165,7 +2126,7 @@ public class Ventana extends JFrame{
         table2.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer2());
         table2.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor2());
         
-        JButton Volver = new JButton("Volver");
+        RoundButtonRojo Volver = new RoundButtonRojo("Volver");
         Volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 remove(fondo);
@@ -2187,7 +2148,7 @@ public class Ventana extends JFrame{
         fondo.add(Volver);
 
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setBackground(new Color(101, 103, 3));
+        panelSuperior.setBackground(new Color(225, 225, 225));
         panelSuperior.setBounds(0, 0, 600, 13);
         fondo.add(panelSuperior);
         
@@ -2198,7 +2159,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "eliminarGrupo";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -2206,7 +2167,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Grupo - Eliminar");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -2222,7 +2183,7 @@ public class Ventana extends JFrame{
 		tag1.setBackground(new Color(255, 255, 255));
 		tag1.setForeground(new Color(255, 255, 255));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JScrollPane scrollPane = new JScrollPane(table3, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(10, 30, 460, 364);
@@ -2316,7 +2277,7 @@ public class Ventana extends JFrame{
         table3.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor3());
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -2338,7 +2299,7 @@ public class Ventana extends JFrame{
 		fondo.add(Volver);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 13);
 		fondo.add(panelSuperior);
 		
@@ -2350,7 +2311,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "eliminarAsignatura";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -2358,7 +2319,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Asignatura - Eliminar");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -2374,7 +2335,7 @@ public class Ventana extends JFrame{
 		tag1.setBackground(new Color(255, 255, 255));
 		tag1.setForeground(new Color(255, 255, 255));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JScrollPane scrollPane = new JScrollPane(table4, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(10, 30, 460, 364);
@@ -2468,7 +2429,7 @@ public class Ventana extends JFrame{
         table4.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor4());
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -2490,7 +2451,7 @@ public class Ventana extends JFrame{
 		fondo.add(Volver);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 13);
 		fondo.add(panelSuperior);
 		
@@ -2502,7 +2463,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "consultarAlumno";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -2510,7 +2471,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Mi cuenta - Alumno");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -2522,49 +2483,49 @@ public class Ventana extends JFrame{
 		
 		JLabel tag1 = new JLabel("Ingrese el ID del alumno");
 		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
 		JLabel tagnombre = new JLabel("Nombre");
 		tagnombre.setForeground(new Color(0, 0, 0));
-		tagnombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagnombre.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tagnombre.setBounds(10, 70, 210, 20);
 		fondo2.add(tagnombre);
 		
 		JLabel tag2 = new JLabel("Apellido Paterno");
 		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBounds(10, 114, 210, 20);
 		fondo2.add(tag2);
 		
 		JLabel tag2_1 = new JLabel("Apellido Materno");
 		tag2_1.setForeground(new Color(0, 0, 0));
-		tag2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2_1.setBounds(160, 114, 210, 20);
 		fondo2.add(tag2_1);
 		
 		JLabel tag3 = new JLabel("Correo electrónico");
 		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBounds(10, 158, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Fecha de nacimiento");
 		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBounds(10, 201, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Teléfono");
 		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBounds(10, 242, 210, 14);
 		fondo2.add(tag5);
 		
 		JLabel tag6 = new JLabel("Direccion");
 		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBounds(10, 283, 210, 14);
 		fondo2.add(tag6);
 		
@@ -2622,7 +2583,7 @@ public class Ventana extends JFrame{
 		
 		JButton Consultar = new JButton("Consultar");
 		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBackground(new Color(0, 128, 255));
 		Consultar.setBounds(250, 514, 89, 36);
 		fondo.add(Consultar);
 		Consultar.addActionListener(new ActionListener() {
@@ -2694,7 +2655,7 @@ public class Ventana extends JFrame{
 		});
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -2809,7 +2770,7 @@ public class Ventana extends JFrame{
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -2888,7 +2849,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "consultarDocente";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -2896,7 +2857,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Mi cuenta - Docente");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -2908,49 +2869,49 @@ public class Ventana extends JFrame{
 		
 		JLabel tag1 = new JLabel("Ingrese el ID del docente");
 		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
 		JLabel tagnombre = new JLabel("Nombre");
 		tagnombre.setForeground(new Color(0, 0, 0));
-		tagnombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagnombre.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tagnombre.setBounds(10, 70, 210, 20);
 		fondo2.add(tagnombre);
 		
 		JLabel tag2 = new JLabel("Apellido Paterno");
 		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBounds(10, 114, 210, 20);
 		fondo2.add(tag2);
 		
 		JLabel tag2_1 = new JLabel("Apellido Materno");
 		tag2_1.setForeground(new Color(0, 0, 0));
-		tag2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2_1.setBounds(160, 114, 210, 20);
 		fondo2.add(tag2_1);
 		
 		JLabel tag3 = new JLabel("Correo electrónico");
 		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBounds(10, 158, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Fecha de nacimiento");
 		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBounds(10, 201, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Teléfono");
 		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBounds(10, 242, 210, 14);
 		fondo2.add(tag5);
 		
 		JLabel tag6 = new JLabel("Direccion");
 		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBounds(10, 283, 210, 14);
 		fondo2.add(tag6);
 		
@@ -3006,7 +2967,7 @@ public class Ventana extends JFrame{
 		
 		JButton Consultar = new JButton("Consultar");
 		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBackground(new Color(0, 128, 255));
 		Consultar.setBounds(250, 514, 89, 36);
 		fondo.add(Consultar);
 		Consultar.addActionListener(new ActionListener() {
@@ -3078,7 +3039,7 @@ public class Ventana extends JFrame{
 		});
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -3193,7 +3154,7 @@ public class Ventana extends JFrame{
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -3272,7 +3233,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "consultarGrupo";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -3280,7 +3241,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Grupo - Consultar");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -3292,37 +3253,37 @@ public class Ventana extends JFrame{
 		
 		JLabel tag1 = new JLabel("Seleccione un Grupo:");
 		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
 		JLabel tag2 = new JLabel("Carrera:");
 		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBounds(10, 70, 210, 20);
 		fondo2.add(tag2);
 		
 		JLabel tag3 = new JLabel("Asignatura:");
 		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBounds(10, 114, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Docente a cargo:");
 		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBounds(10, 157, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Semestre:");
 		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBounds(10, 198, 210, 14);
 		fondo2.add(tag5);
 		
 		JLabel tag6 = new JLabel("Numero de alumnos:");
 		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBounds(10, 239, 210, 14);
 		fondo2.add(tag6);
 		
@@ -3404,7 +3365,7 @@ public class Ventana extends JFrame{
 		
 		JButton Consultar = new JButton("Consultar");
 		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBackground(new Color(0, 128, 255));
 		Consultar.setBounds(250, 514, 89, 36); 
 		fondo.add(Consultar);
 		Consultar.addActionListener(new ActionListener() {
@@ -3463,7 +3424,7 @@ public class Ventana extends JFrame{
 			}
 		});
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -3650,7 +3611,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "consultarAsignatura";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -3658,7 +3619,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Asignatura - Consultar");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		Titulo.setBounds(79, 24, 421, 40);
 		fondo.add(Titulo);
 		
@@ -3670,37 +3631,37 @@ public class Ventana extends JFrame{
 		
 		JLabel tag1 = new JLabel("Seleccione una Asignatura:");
 		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
 		JLabel tag2 = new JLabel("Nombre:");
 		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag2.setBounds(10, 70, 210, 20);
 		fondo2.add(tag2);
 		
 		JLabel tag3 = new JLabel("Créditos:");
 		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag3.setBounds(10, 114, 210, 14);
 		fondo2.add(tag3);
 		
 		JLabel tag4 = new JLabel("Docente a cargo:");
 		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag4.setBounds(10, 157, 210, 14);
 		fondo2.add(tag4);
 		
 		JLabel tag5 = new JLabel("Semestres:");
 		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag5.setBounds(10, 198, 210, 14);
 		fondo2.add(tag5);
 		
 		/*JLabel tag6 = new JLabel("Grupos que llevan esta asignatura:");
 		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		tag6.setBounds(10, 239, 250, 14);
 		fondo2.add(tag6);*/
 		
@@ -3780,7 +3741,7 @@ public class Ventana extends JFrame{
 		
 		JButton Consultar = new JButton("Consultar");
 		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBackground(new Color(0, 128, 255));
 		Consultar.setBounds(250, 514, 89, 36); 
 		fondo.add(Consultar);
 		Consultar.addActionListener(new ActionListener() {
@@ -3839,7 +3800,7 @@ public class Ventana extends JFrame{
 			}
 		});
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -4013,7 +3974,7 @@ public class Ventana extends JFrame{
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -4025,7 +3986,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "credencialAlumno";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -4033,7 +3994,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Alumno - Generar Credencial");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
@@ -4059,7 +4020,7 @@ public class Ventana extends JFrame{
         JTextField datos_direccion = new JTextField();
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -4191,7 +4152,7 @@ public class Ventana extends JFrame{
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -4203,7 +4164,7 @@ public class Ventana extends JFrame{
 		anterior = actual;
 		actual = "credencialDocente";
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(49, 64, 81));
+		fondo.setBackground(new Color(225,225,225));
 		fondo.setBounds(0, 0, 584, 561);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
@@ -4211,7 +4172,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Docente - Generar Credencial");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		Titulo.setBounds(79, 11, 421, 40);
 		fondo.add(Titulo);
 		
@@ -4237,7 +4198,7 @@ public class Ventana extends JFrame{
         JTextField datos_direccion = new JTextField();
 		
 		
-		JButton Volver = new JButton("Volver");
+		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fondo);
@@ -4369,7 +4330,7 @@ public class Ventana extends JFrame{
 		fondo2.add(imagen2);
 		
 		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(101, 103, 3));
+		panelSuperior.setBackground(new Color(225, 225, 225));
 		panelSuperior.setBounds(0, 0, 600, 15);
 		fondo.add(panelSuperior);
 		
@@ -4935,6 +4896,229 @@ public class Ventana extends JFrame{
 	        return forma.contains(x, y);
 	    }
 	}
+	
+	public class RoundButtonRojo extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonRojo(String text) {
+	        super(text);
+	        this.colorFondo = new Color(255,0,0);
+	        this.ancho = 30;
+	        this.largo = 30;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
+	public class RoundButtonRojoBorde extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonRojoBorde(String text) {
+	        super(text);
+	        this.colorFondo = new Color(255,0,0);
+	        this.ancho = 30;
+	        this.largo = 30;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+	    
+	    @Override
+	    protected void paintBorder(Graphics g) {
+	        g.setColor(Color.WHITE);
+	        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
+	public class RoundButtonVerde extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonVerde(String text) {
+	        super(text);
+	        this.colorFondo = new Color(0, 255, 64);
+	        this.ancho = 30;
+	        this.largo = 30;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
+	public class RoundButtonVerdeBorde extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonVerdeBorde(String text) {
+	        super(text);
+	        this.colorFondo = new Color(255,0,0);
+	        this.ancho = 30;
+	        this.largo = 30;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+	    
+	    @Override
+	    protected void paintBorder(Graphics g) {
+	        g.setColor(Color.WHITE);
+	        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
+	public class RoundButtonAzul extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonAzul(String text) {
+	        super(text);
+	        this.colorFondo = new Color(0, 128, 255);
+	        this.ancho = 10;
+	        this.largo = 10;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
+	public class RoundButtonAzulBorde extends JButton {
+	    public Color colorFondo;
+	    public int ancho;
+	    public int largo;
+
+	    public RoundButtonAzulBorde(String text) {
+	        super(text);
+	        this.colorFondo = new Color(255,0,0);
+	        this.ancho = 30;
+	        this.largo = 30;
+	        setFont(new Font("SansSerif", Font.PLAIN, 17));
+	        setContentAreaFilled(false);
+	        setFocusPainted(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(colorFondo.darker());
+	        } else {
+	            g.setColor(colorFondo);
+	        }
+
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	        super.paintComponent(g);
+	    }
+	    
+	    @Override
+	    protected void paintBorder(Graphics g) {
+	        g.setColor(Color.WHITE);
+	        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, ancho, largo);
+	    }
+
+	    @Override
+	    public boolean contains(int x, int y) {
+	        Shape forma = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), ancho, largo);
+	        return forma.contains(x, y);
+	    }
+	}
+	
 	public JButton getBtnGuardarAsignatura() {
 		return btnGuardarAsignatura;
 	}
@@ -4950,6 +5134,8 @@ public class Ventana extends JFrame{
 	public void setBtnGuardarGrupo(JButton btnGuardarGrupo) {
 		this.btnGuardarGrupo = btnGuardarGrupo;
 	}
+	
+	
 	
 }
 
