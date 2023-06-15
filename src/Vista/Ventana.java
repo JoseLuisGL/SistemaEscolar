@@ -3640,13 +3640,13 @@ public class Ventana extends JFrame{
 		tag1.setBounds(10, 24, 210, 14);
 		fondo2.add(tag1);
 		
-		JLabel tag2 = new JLabel("Créditos:");
+		JLabel tag2 = new JLabel("Nombre:");
 		tag2.setForeground(new Color(0, 0, 0));
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag2.setBounds(10, 70, 210, 20);
 		fondo2.add(tag2);
 		
-		JLabel tag3 = new JLabel("Turnos:");
+		JLabel tag3 = new JLabel("Créditos:");
 		tag3.setForeground(new Color(0, 0, 0));
 		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag3.setBounds(10, 114, 210, 14);
@@ -3664,11 +3664,11 @@ public class Ventana extends JFrame{
 		tag5.setBounds(10, 198, 210, 14);
 		fondo2.add(tag5);
 		
-		JLabel tag6 = new JLabel("Grupos que llevan esta asignatura:");
+		/*JLabel tag6 = new JLabel("Grupos que llevan esta asignatura:");
 		tag6.setForeground(new Color(0, 0, 0));
 		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag6.setBounds(10, 239, 250, 14);
-		fondo2.add(tag6);
+		fondo2.add(tag6);*/
 		
 		BD bd = new BD();
 		JComboBox<Integer> seleccionAsignatura = new JComboBox<>();
@@ -3676,23 +3676,61 @@ public class Ventana extends JFrame{
 		seleccionAsignatura.setBounds(10, 45, 273, 22);
 	    fondo2.add(seleccionAsignatura);
 		
+		asignaturaG = new JComboBox();
+		asignaturaG.setEnabled(false);
+		asignaturaG.setBackground(new Color(255, 255, 255));
+		asignaturaG.setBounds(10, 90, 273, 20);
+		fondo2.add(asignaturaG);
+	
+		 BD bd1 = new BD();
+	        try {
+	            Connection cn = bd.Conectar();
+	            Statement stm = cn.createStatement();
+	            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+	         
+	            while (rs.next()) {
+	                int id = rs.getInt("idAsignatura");
+	                String nombre = rs.getString("Nombre");
+	                asignaturaG.addItem(nombre);
+	            }
+
+	            rs.close();
+	            stm.close();
+	            cn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+		
 		JTextField datos_creditos = new JTextField();
 		datos_creditos.setEditable(false);
 		datos_creditos.setColumns(10);
-		datos_creditos.setBounds(10, 90, 273, 20);
+		datos_creditos.setBounds(10, 132, 273, 20);
 		fondo2.add(datos_creditos);
 		
-		JTextField datos_turnos = new JTextField();
-		datos_turnos.setEditable(false);
-		datos_turnos.setColumns(10);
-		datos_turnos.setBounds(10, 132, 273, 20);
-		fondo2.add(datos_turnos);
+		docente_a_cargoG = new JComboBox();
+		docente_a_cargoG.setEnabled(false);
+		docente_a_cargoG.setBackground(new Color(255, 255, 255));
+		docente_a_cargoG.setBounds(10, 174, 273, 20);
+		fondo2.add(docente_a_cargoG);
 		
-		JTextField datos_docente_a_cargo = new JTextField();
-		datos_docente_a_cargo.setEditable(false);
-		datos_docente_a_cargo.setColumns(10);
-		datos_docente_a_cargo.setBounds(10, 174, 273, 20);
-		fondo2.add(datos_docente_a_cargo);
+		 BD bd2 = new BD();
+	        try {
+	            Connection cn = bd1.Conectar();
+	            Statement stm = cn.createStatement();
+	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	         
+	            while (rs.next()) {
+	                int id = rs.getInt("idDocente");
+	                String nombre = rs.getString("Nombre");
+	                docente_a_cargoG.addItem(nombre);
+	            }
+
+	            rs.close();
+	            stm.close();
+	            cn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 		
 		JTextField datos_semestres = new JTextField();
 		datos_semestres.setEditable(false);
@@ -3700,12 +3738,72 @@ public class Ventana extends JFrame{
 		datos_semestres.setBounds(10, 215, 273, 20);
 		fondo2.add(datos_semestres);
 		
-		JTextField datos_num_grupos = new JTextField();
+		/*JTextField datos_num_grupos = new JTextField();
 		datos_num_grupos.setEditable(false);
 		datos_num_grupos.setColumns(10);
 		datos_num_grupos.setBounds(10, 257, 273, 20);
-		fondo2.add(datos_num_grupos);
+		fondo2.add(datos_num_grupos);*/
 		
+		JButton Consultar = new JButton("Consultar");
+		Consultar.setForeground(new Color(255, 255, 255));
+		Consultar.setBackground(new Color(255, 0, 0));
+		Consultar.setBounds(250, 514, 89, 36); 
+		fondo.add(Consultar);
+		Consultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idConsultar = (int) seleccionAsignatura.getSelectedItem();
+				BD bd = new BD();
+			    try {
+			        Connection cn = bd.Conectar();
+			        Statement stm = cn.createStatement();
+			        ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+
+			        
+			        
+			        while (rs.next()) {
+			        	
+			        	int id = rs.getInt("idAsignatura");
+			           
+			        	if(idConsultar == id) {
+			        		String nombre = rs.getString("Nombre");
+			        		String creditos = rs.getString("Creditos");
+				            String docente = rs.getString("Docente");
+				            String semestre = rs.getString("Semestre");
+				           
+	
+				            
+				            
+				            asignaturaG.setSelectedItem(nombre);
+				            asignaturaG.setEnabled(true);
+				            datos_creditos.setText(creditos);
+				            docente_a_cargoG.setSelectedItem(docente);
+				            docente_a_cargoG.setEnabled(true);
+				            datos_semestres.setText(semestre);
+				        
+	  
+				            cambio++;
+				            fondo2.repaint();
+				            fondo2.revalidate();
+			        	}
+			        }
+
+			        rs.close();
+			        stm.close();
+			        cn.close();
+			    } catch (SQLException e1) {
+			        e1.printStackTrace();
+			    }
+			    
+			    if(cambio==0) {
+			    	JOptionPane.showMessageDialog(null, "ID de docente invalido. Favor de intentar denuevo");
+			    }
+			    cambio=0;
+				
+			
+				repaint();
+				revalidate();
+			}
+		});
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
@@ -3720,18 +3818,153 @@ public class Ventana extends JFrame{
 		});
 		Volver.setForeground(new Color(255, 255, 255));
 		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 36);
+		Volver.setBounds(120, 514, 89, 36);
 		fondo.add(Volver);
 		
 		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
 		Descargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Crear el archivo PDF
+		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivoAsignatura.pdf"));
+		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+		            
+		            //Crear txt
+		            float col = 280f;
+		            float anchoColumna[] = {col,col};
+		            Table table = new Table(anchoColumna);
+		            
+		            
+		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
+		            	.setFontColor(new DeviceRgb(255, 255, 255));
+		            Cell cell = new Cell();
+		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
+		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
+		            		.setMarginTop(30f)
+		            		.setMarginBottom(30f)
+		            		.setFontSize(24f)
+		            		.setFontColor(new DeviceRgb(0, 0, 0))
+		            		.setBorder(Border.NO_BORDER)
+		            		;
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            cell = new Cell();
+		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
+		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
+		                .setMarginTop(50f)
+		                .setMarginBottom(30f)
+		                .setFontSize(12f)
+		                .setBorder(Border.NO_BORDER)
+		                .setMarginRight(10f);
+		            cell.add(paragraph);
+		            table.addCell(cell);
+
+		            float columnaAncho[] = {80,300,100,80};
+		            Table tablaInformacion = new Table(columnaAncho);
+		            
+		            tablaInformacion.addCell(new Cell(0, 4)
+		                    .add(new Paragraph("Informacion de la Asignatura:")
+		                    .setBold()));
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombre")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Creditos")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph("Semestres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
+		            
+		            
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(asignaturaG.getSelectedItem().toString())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_creditos.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(docente_a_cargoG.getSelectedItem().toString())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_semestres.getText())));
+		            
+		            // Cerrar el documento
+		            document.add(table);
+		            document.add(tablaInformacion);
+		            document.close();
+		            
+		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (FileNotFoundException ex) {
+		            ex.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+		        } /*catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}*/
+		    }
 		});
 		Descargar.setForeground(new Color(255, 255, 255));
 		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(342, 514, 89, 36);
+		Descargar.setBounds(380, 514, 89, 36);
 		fondo.add(Descargar);
+		
+		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
+		GuardarCambios.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String nombre = asignaturaG.getSelectedItem().toString();
+		        String creditos = datos_creditos.getText();
+		        String docente = docente_a_cargoG.getSelectedItem().toString();
+		        String semestres = datos_semestres.getText();
+		   
+		        int id = Integer.parseInt(String.valueOf(seleccionAsignatura.getSelectedItem()));
+
+		        BD bd = new BD();
+		        try {
+		            Connection cn = bd.Conectar();
+		            Statement stm = cn.createStatement();
+		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE asignaturasbd SET Nombre = ?, Creditos = ?, Docente = ?, Semestre = ? WHERE idAsignatura = ?");
+		           
+		            pstmt.setString(1, nombre);		            
+		            pstmt.setString(2, creditos);
+		            pstmt.setString(3, docente);
+		            pstmt.setString(4, semestres);
+		            pstmt.setInt(5, id);
+
+		            int columnasAfectadas = pstmt.executeUpdate();
+		            if (columnasAfectadas > 0) {
+		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
+		            }
+
+		            pstmt.close();
+		            cn.close();
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
+
+		        repaint();
+		        revalidate();
+		    }
+		});
+		GuardarCambios.setForeground(new Color(255, 255, 255));
+		GuardarCambios.setBackground(new Color(0, 128, 255));
+		GuardarCambios.setBounds(380, 250, 70, 30);
+		GuardarCambios.setEnabled(false);
+		fondo2.add(GuardarCambios);
+		
+		JButton Editar = new JButton("<html>Editar<html>");
+		Editar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idText = seleccionAsignatura.getSelectedItem().toString();
+				if(idText.matches(".*\\d.*")) {
+					asignaturaG.setEnabled(true);
+					docente_a_cargoG.setEnabled(true);
+					datos_creditos.setEditable(true);
+					datos_semestres.setEditable(true);
+					GuardarCambios.setEnabled(true);
+					
+					repaint();
+					revalidate();
+				}else {
+					JOptionPane.showMessageDialog(null, "Ingresa el id del Docente");
+				}
+			}
+		});
+		Editar.setForeground(new Color(255, 255, 255));
+		Editar.setBackground(new Color(0, 128, 255));
+		Editar.setBounds(290, 250, 70, 30);
+		fondo2.add(Editar);
 		
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
