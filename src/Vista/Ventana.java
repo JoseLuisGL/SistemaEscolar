@@ -129,54 +129,70 @@ public class Ventana extends JFrame{
 	public JPanel login() {
 		anterior = actual;
 		actual = "login";
+		
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
+		fondo.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(30, 144, 255));
+		panel_1.setBounds(5, 5, 243, 551);
+		fondo.add(panel_1);
+		panel_1.setLayout(null);
+		
+		
+		
+		
+		
+		fondo.setBackground(new Color(255, 255, 255));
+		fondo.setBounds(5, 5, 574, 551);
 		getContentPane().add(fondo);
 		fondo.setLayout(null);
 		
-		JLabel Titulo = new JLabel("Sistema Escolar");
+		JLabel Titulo = new JLabel("");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setBounds(260, 65, 300, 40);
 		fondo.add(Titulo);
 		
 		JLabel Titulo2 = new JLabel("Accede a tu cuenta");
 		Titulo2.setForeground(new Color(0, 0, 0));
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Titulo2.setBounds(79, 62, 421, 25);
+		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		Titulo2.setBounds(270, 180, 267, 25);
 		fondo.add(Titulo2);
 		
-		JLabel tag1 = new JLabel("Nombre:");
+		JLabel tag1 = new JLabel("Usuario:");
 		tag1.setForeground(new Color(0, 0, 0));
 		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag1.setBounds(260, 155, 152, 25);
+		tag1.setFont(new Font("SansSerif", Font.PLAIN, 17));
+		tag1.setBounds(260, 224, 152, 25);
 		fondo.add(tag1);
 		
 		JLabel tag2 = new JLabel("Contraseña:");
 		tag2.setForeground(new Color(0, 0, 0));
 		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag2.setBounds(260, 250, 152, 25);
+		tag2.setFont(new Font("SansSerif", Font.PLAIN, 17));
+		tag2.setBounds(260, 319, 152, 25);
 		fondo.add(tag2);
 		
-		username = new JTextField();
+		JTextField username = new JTextField();
+		username.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		username.setForeground(new Color(0, 0, 0));
 		username.setBackground(new Color(198, 209, 218));
-		username.setBounds(260, 191, 267, 33);
+		username.setBounds(260, 260, 267, 33);
 		fondo.add(username);
 		username.setColumns(10);
 		
-		password = new JPasswordField();
+		JPasswordField password = new JPasswordField();
+		password.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		password.setForeground(new Color(0, 0, 0));
 		password.setBackground(new Color(198, 209, 218));
-		password.setBounds(260, 286, 267, 33);
+		password.setBounds(255, 355, 267, 33);
 		fondo.add(password);
 		
 		JButton Cancelar = new JButton("Cancelar");
+		Cancelar.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		Cancelar.setBackground(new Color(255, 0, 0));
 		Cancelar.setForeground(new Color(255, 255, 255));
 		Cancelar.addActionListener(new ActionListener() {
@@ -185,10 +201,11 @@ public class Ventana extends JFrame{
 				password.setText("");
 			}
 		});
-		Cancelar.setBounds(260, 364, 120, 33);
+		Cancelar.setBounds(260, 415, 120, 33);
 		fondo.add(Cancelar);
 		
-		JButton btnAccess = new JButton("Iniciar Sesión");
+		JButton btnAccess = new JButton("Ingresar");
+		btnAccess.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnAccess.setForeground(new Color(255, 255, 255));
 		btnAccess.setBackground(new Color(0, 255, 64));
 		btnAccess.addActionListener(new ActionListener() {
@@ -237,8 +254,24 @@ public class Ventana extends JFrame{
 		});
 			
 		
-		btnAccess.setBounds(407, 364, 120, 33);
+		btnAccess.setBounds(402, 415, 120, 33);
 		fondo.add(btnAccess);
+		
+		JLabel lblNewLabel = new JLabel("");
+        ImageIcon icono4 = new ImageIcon("img/paneldiseño.png");
+        Image imagen4 = icono4.getImage();
+        Image imagenRedimensionada4 = imagen4.getScaledInstance(250, 561, Image.SCALE_SMOOTH);
+        lblNewLabel.setIcon(new ImageIcon(imagenRedimensionada4));
+        lblNewLabel.setBounds(0, 0, 250, 561);
+        panel_1.add(lblNewLabel);
+        
+        JLabel lblNewLabel2 = new JLabel("");
+        ImageIcon icono5 = new ImageIcon("img/logo.png");
+        Image imagen5 = icono5.getImage();
+        Image imagenRedimensionada5 = imagen5.getScaledInstance(340, 156, Image.SCALE_SMOOTH);
+        lblNewLabel2.setIcon(new ImageIcon(imagenRedimensionada5));
+        lblNewLabel2.setBounds(250, -200, 340, 561);
+        fondo.add(lblNewLabel2);
 		
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
@@ -246,10 +279,11 @@ public class Ventana extends JFrame{
 		imagen.setBounds(50, 155, 161, 174);
 		fondo.add(imagen);
 		
-		JLabel imagenfondo = new JLabel("");
+		JLabel imagenfondo = new JLabel("Favor de ingresar todos los campos.");
+		imagenfondo.setBackground(new Color(255, 0, 0));
 		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/fondo.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
 		imagenfondo.setIcon(imageFondo);
-		imagenfondo.setBounds(0, 0, 600, 600);
+		imagenfondo.setBounds(0, 0, 574, 551);
 		fondo.add(imagenfondo);
 		
 		this.add(fondo);
