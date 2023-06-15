@@ -66,13 +66,7 @@ import javax.swing.text.AbstractDocument;
 import java.util.regex.Matcher;
 
 import Controlador.ControlVistaBD;
-import Modelo.BD;
-
-
-
-
-
-
+import Modelo.BD;	
 
 public class Ventana extends JFrame{
 	private String anterior = "login";
@@ -105,6 +99,12 @@ public class Ventana extends JFrame{
 	public JButton btnGuardarDocente;
 	public JComboBox comboBoxD;
 	public JComboBox ano_nacimientoD,mes_nacimientoD,dia_nacimientoD;
+	public JTextField nombre_asig;
+	public JTextField creditos;
+	public JComboBox docente_a_cargo;
+	public JComboBox semestres;
+	private JButton btnGuardarAsignatura,btnGuardarGrupo;
+	private JComboBox asignaturaG;
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -1470,6 +1470,7 @@ public class Ventana extends JFrame{
 	}
 
 	public JPanel crearGrupo() {
+		cvbd = new ControlVistaBD(this);
 		anterior = actual;
 		actual = "crearGrupo";
 		JPanel fondo = new JPanel();
@@ -1498,14 +1499,6 @@ public class Ventana extends JFrame{
 		fondo.add(fondo2);
 		fondo2.setLayout(null);
 		
-		JLabel tag1 = new JLabel("Nombre del Grupo:");
-		tag1.setBounds(25, 11, 169, 25);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
 		JLabel tag2 = new JLabel("Carrera:");
 		tag2.setBounds(25, 62, 90, 25);
 		fondo2.add(tag2);
@@ -1514,7 +1507,7 @@ public class Ventana extends JFrame{
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
-		JLabel tag3 = new JLabel("Turno:");
+		JLabel tag3 = new JLabel("Asignatura:");
 		tag3.setBounds(25, 112, 169, 25);
 		fondo2.add(tag3);
 		tag3.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1546,31 +1539,16 @@ public class Ventana extends JFrame{
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
-		JLabel tag6 = new JLabel("Foto:");
-		tag6.setBounds(25, 277, 90, 25);
-		fondo2.add(tag6);
-		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(255, 255, 255));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag6.setBackground(Color.WHITE);
-		
-		JTextField nombres = new JTextField();
-		nombres.setBackground(new Color(0, 128, 192));
-		nombres.setBounds(25, 36, 420, 25);
-		fondo2.add(nombres);
-		nombres.setColumns(10);
-		
 		JTextField carrera = new JTextField();
 		carrera.setColumns(10);
 		carrera.setBackground(new Color(0, 128, 192));
 		carrera.setBounds(25, 86, 420, 25);
 		fondo2.add(carrera);
 		
-		JTextField turno = new JTextField();
-		turno.setColumns(10);
-		turno.setBackground(new Color(0, 128, 192));
-		turno.setBounds(25, 140, 420, 25);
-		fondo2.add(turno);
+		asignaturaG = new JComboBox();
+		asignaturaG.setBackground(new Color(0, 128, 192));
+		asignaturaG.setBounds(25, 140, 420, 25);
+		fondo2.add(asignaturaG);
 		
 		JTextField docente_a_cargo = new JTextField();
 		docente_a_cargo.setColumns(10);
@@ -1584,38 +1562,12 @@ public class Ventana extends JFrame{
 		semestre.setBounds(25, 246, 420, 25);
 		fondo2.add(semestre);
 		
+		//Cantidad maxima 50
 		JTextField num_alu = new JTextField();
 		num_alu.setColumns(10);
 		num_alu.setBackground(new Color(0, 128, 192));
 		num_alu.setBounds(25, 356, 420, 25);
 		fondo2.add(num_alu);
-		
-		JButton archivo = new JButton("Subir archivo");
-		archivo.setBackground(new Color(192, 192, 192));
-		archivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String Ruta = "";
-		        JFileChooser jFileChooser = new JFileChooser();
-		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
-		        jFileChooser.setFileFilter(filtrado);
-		        
-		        int respuesta = jFileChooser.showOpenDialog(fondo);
-		        
-		        if (respuesta == JFileChooser.APPROVE_OPTION) {
-		            Ruta = jFileChooser.getSelectedFile().getPath();
-		            
-		            JLabel lblImagen = new JLabel("");
-		            Image mImagen = new ImageIcon(Ruta).getImage();
-		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		            lblImagen.setIcon(mIcono);
-		            lblImagen.setBounds(200, 200, 200, 200);
-		    		fondo2.add(lblImagen);
-		            
-		        }
-			}
-		});
-		archivo.setBounds(26, 303, 116, 23);
-		fondo2.add(archivo);
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
@@ -1633,15 +1585,13 @@ public class Ventana extends JFrame{
 		Volver.setBounds(173, 514, 89, 23);
 		fondo.add(Volver);
 		
-		JButton Crear = new JButton("Crear");
-		Crear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		Crear.setForeground(new Color(255, 255, 255));
-		Crear.setBackground(new Color(0, 128, 255));
-		Crear.setBounds(342, 514, 89, 23);
-		fondo.add(Crear);
+		btnGuardarGrupo = new JButton("Guardar");
+		btnGuardarGrupo.setForeground(new Color(255, 255, 255));
+		btnGuardarGrupo.setBackground(new Color(0, 128, 255));
+		btnGuardarGrupo.setBounds(342, 514, 89, 23);
+		btnGuardarGrupo.addActionListener(cvbd);
+		fondo.getRootPane().add(btnGuardarGrupo);
+		fondo.add(btnGuardarGrupo);
 		
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
@@ -1659,6 +1609,7 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel crearAsignatura() {
+		cvbd = new ControlVistaBD(this);
 		anterior = actual;
 		actual = "crearAsignatura";
 		JPanel fondo = new JPanel();
@@ -1703,14 +1654,6 @@ public class Ventana extends JFrame{
 		tag2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag2.setBackground(Color.WHITE);
 		
-		JLabel tag3 = new JLabel("Turnos:");
-		tag3.setBounds(25, 112, 169, 25);
-		fondo2.add(tag3);
-		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(255, 255, 255));
-		tag3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag3.setBackground(Color.WHITE);
-		
 		JLabel tag4 = new JLabel("Docente a cargo:");
 		tag4.setBounds(25, 170, 169, 25);
 		fondo2.add(tag4);
@@ -1719,13 +1662,6 @@ public class Ventana extends JFrame{
 		tag4.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag4.setBackground(Color.WHITE);
 		
-		JLabel tag7 = new JLabel("Grupos que llevan esta asignatura:");
-		tag7.setBounds(25, 333, 263, 25);
-		fondo2.add(tag7);
-		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(255, 255, 255));
-		tag7.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag7.setBackground(Color.WHITE);
 		
 		JLabel tag5 = new JLabel("Semestres:\r\n");
 		tag5.setBounds(25, 221, 90, 25);
@@ -1735,76 +1671,50 @@ public class Ventana extends JFrame{
 		tag5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tag5.setBackground(Color.WHITE);
 		
-		JLabel tag6 = new JLabel("Foto:");
-		tag6.setBounds(25, 277, 90, 25);
-		fondo2.add(tag6);
-		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(255, 255, 255));
-		tag6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tag6.setBackground(Color.WHITE);
-		
-		JTextField nombre_asig = new JTextField();
+		nombre_asig = new JTextField();
 		nombre_asig.setBackground(new Color(0, 128, 192));
 		nombre_asig.setBounds(25, 36, 420, 25);
 		fondo2.add(nombre_asig);
 		nombre_asig.setColumns(10);
 		
-		JTextField creditos = new JTextField();
+		creditos = new JTextField();
 		creditos.setColumns(10);
 		creditos.setBackground(new Color(0, 128, 192));
 		creditos.setBounds(25, 86, 420, 25);
 		fondo2.add(creditos);
 		
-		JTextField turnos = new JTextField();
-		turnos.setColumns(10);
-		turnos.setBackground(new Color(0, 128, 192));
-		turnos.setBounds(25, 140, 420, 25);
-		fondo2.add(turnos);
-		
-		JTextField docente_a_cargo = new JTextField();
-		docente_a_cargo.setColumns(10);
+		docente_a_cargo = new JComboBox();
 		docente_a_cargo.setBackground(new Color(0, 128, 192));
 		docente_a_cargo.setBounds(25, 195, 420, 25);
 		fondo2.add(docente_a_cargo);
 		
-		JTextField semestres = new JTextField();
-		semestres.setColumns(10);
+		 BD bd = new BD();
+	        try {
+	            Connection cn = bd.Conectar();
+	            Statement stm = cn.createStatement();
+	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	         
+	            while (rs.next()) {
+	                int id = rs.getInt("idDocente");
+	                String nombre = rs.getString("Nombre");
+	                docente_a_cargo.addItem(nombre);
+	            }
+
+	            rs.close();
+	            stm.close();
+	            cn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+		semestres = new JComboBox();
 		semestres.setBackground(new Color(0, 128, 192));
 		semestres.setBounds(25, 246, 420, 25);
 		fondo2.add(semestres);
+		for(int i=1;i<10;i++) {
+			semestres.addItem(i);
+		}
 		
-		JTextField grupos = new JTextField();
-		grupos.setColumns(10);
-		grupos.setBackground(new Color(0, 128, 192));
-		grupos.setBounds(25, 356, 420, 25);
-		fondo2.add(grupos);
-		
-		JButton archivo = new JButton("Subir archivo");
-		archivo.setBackground(new Color(192, 192, 192));
-		archivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String Ruta = "";
-		        JFileChooser jFileChooser = new JFileChooser();
-		        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP, PNG & GIF", "jpg", "png", "gif");
-		        jFileChooser.setFileFilter(filtrado);
-		        
-		        int respuesta = jFileChooser.showOpenDialog(fondo);
-		        
-		        if (respuesta == JFileChooser.APPROVE_OPTION) {
-		            Ruta = jFileChooser.getSelectedFile().getPath();
-		            
-		            JLabel lblImagen = new JLabel("");
-		            Image mImagen = new ImageIcon(Ruta).getImage();
-		            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		            lblImagen.setIcon(mIcono);
-		            lblImagen.setBounds(200, 200, 200, 200);
-		    		fondo2.add(lblImagen);
-		            
-		        }
-			}
-		});
-		archivo.setBounds(26, 303, 116, 23);
-		fondo2.add(archivo);
 		
 		JButton Volver = new JButton("Volver");
 		Volver.addActionListener(new ActionListener() {
@@ -1826,15 +1736,13 @@ public class Ventana extends JFrame{
 		Volver.setBounds(173, 514, 89, 23);
 		fondo.add(Volver);
 		
-		JButton Crear = new JButton("Crear");
-		Crear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		Crear.setForeground(new Color(255, 255, 255));
-		Crear.setBackground(new Color(0, 128, 255));
-		Crear.setBounds(342, 514, 89, 23);
-		fondo.add(Crear);
+		btnGuardarAsignatura = new JButton("Guardar");
+		btnGuardarAsignatura.setForeground(new Color(255, 255, 255));
+		btnGuardarAsignatura.setBackground(new Color(0, 128, 255));
+		btnGuardarAsignatura.setBounds(342, 514, 89, 23);
+		btnGuardarAsignatura.addActionListener(cvbd);
+		fondo.getRootPane().add(btnGuardarAsignatura);
+		fondo.add(btnGuardarAsignatura);
 		
 		JLabel imagen = new JLabel("");
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
@@ -1851,6 +1759,7 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 				
+
 	public JPanel eliminarAlumno() {
         JPanel fondo = new JPanel();
         fondo.setBackground(new Color(49, 64, 81));
@@ -2014,6 +1923,7 @@ public class Ventana extends JFrame{
         return fondo;
     }
 	
+	
 	public JPanel eliminarDocente() {
         JPanel fondo = new JPanel();
         fondo.setBackground(new Color(49, 64, 81));
@@ -2109,10 +2019,7 @@ public class Ventana extends JFrame{
                 button2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //System.out.println("hola");
-                        /*int filaEliminada = table.getSelectedRow();
-                        DefaultTableModel model = (DefaultTableModel) table.getModel();
-                        model.removeRow(filaEliminada);*/
+                       
                     }
                 });
 
@@ -3992,7 +3899,7 @@ public class Ventana extends JFrame{
 	    }
 	}
 
-    private class ButtonEditor extends DefaultCellEditor {
+	private class ButtonEditor extends DefaultCellEditor {
 
         public ButtonEditor() {
             super(new JTextField());
@@ -4194,6 +4101,22 @@ public class Ventana extends JFrame{
 	        return forma.contains(x, y);
 	    }
 	}
+	public JButton getBtnGuardarAsignatura() {
+		return btnGuardarAsignatura;
+	}
+
+	public void setBtnGuardarAsignatura(JButton btnGuardarAsignatura) {
+		this.btnGuardarAsignatura = btnGuardarAsignatura;
+	}
+
+	public JButton getBtnGuardarGrupo() {
+		return btnGuardarGrupo;
+	}
+
+	public void setBtnGuardarGrupo(JButton btnGuardarGrupo) {
+		this.btnGuardarGrupo = btnGuardarGrupo;
+	}
+	
 }
 
 

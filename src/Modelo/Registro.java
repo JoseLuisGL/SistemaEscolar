@@ -29,5 +29,21 @@ public class Registro extends BD {
 						+ " '"+direccion+"'" + ", '"+grado+"', '"+imagenBytes+"');");
 	}
 
+	public int guardarAsignatura(String nombre, String creditos, String docente, int semestres) {
+		
+		
+		return setInformacion("INSERT INTO `bd-ejemplo`.`asignaturasbd`"
+				+"(`Nombre`, `Creditos`, `Docente`, `Semestre`) VALUES "
+				+"('"+nombre+"', '"+creditos+"', '"+docente+"', '"+semestres+"');");
+	}
+	
+	public int guardarGrupo(String carrera, String asignatura, String docente, String semestre, String numAlumnos) {
+		
+		
+		return setInformacion("INSERT INTO `bd-ejemplo`.`gruposbd`"
+				+"(`Carrera`, `Asignatura`, `Docente`, `Semestre`, `numAlumnos`) VALUES "
+				+"('"+carrera+"', '"+asignatura+"', '"+docente+"', '"+semestre+"', '"+numAlumnos+"');");
+	}
+	
 	
 }

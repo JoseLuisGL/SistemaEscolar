@@ -99,5 +99,49 @@ public class BD {
         return ids;
     }
 	
+	public List<Integer> obtenerIDsAsignatura() {
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            Connection cn = Conectar();
+            java.sql.Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT idAsignatura FROM asignaturasbd");
+
+            while (rs.next()) {
+                int id = rs.getInt("idAsignatura");
+                ids.add(id);
+            }
+
+            rs.close();
+            stm.close();
+            cn.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return ids;
+    }	
 	
+	public List<Integer> obtenerIDsGrupo() {
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            Connection cn = Conectar();
+            java.sql.Statement stm = cn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT idGrupos FROM gruposbd");
+
+            while (rs.next()) {
+                int id = rs.getInt("idGrupos");
+                ids.add(id);
+            }
+
+            rs.close();
+            stm.close();
+            cn.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        return ids;
+    }	
 }
