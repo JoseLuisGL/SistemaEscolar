@@ -1602,7 +1602,6 @@ public class Ventana extends JFrame{
 	        }
 		
 		semestreG = new JComboBox();
-		
 		semestreG.setBackground(new Color(0, 128, 192));
 		semestreG.setBounds(25, 246, 420, 25);
 		fondo2.add(semestreG);
@@ -3305,17 +3304,57 @@ public class Ventana extends JFrame{
 		datos_carrera.setBounds(10, 90, 273, 20);
 		fondo2.add(datos_carrera);
 		
-		JTextField datos_asignatura = new JTextField();
-		datos_asignatura.setEditable(false);
-		datos_asignatura.setColumns(10);
-		datos_asignatura.setBounds(10, 132, 273, 20);
-		fondo2.add(datos_asignatura);
 		
-		JTextField datos_docente_a_cargo = new JTextField();
-		datos_docente_a_cargo.setEditable(false);
-		datos_docente_a_cargo.setColumns(10);
-		datos_docente_a_cargo.setBounds(10, 174, 273, 20);
-		fondo2.add(datos_docente_a_cargo);
+		
+		asignaturaG = new JComboBox();
+		asignaturaG.setEnabled(false);
+		asignaturaG.setBackground(new Color(255, 255, 255));
+		asignaturaG.setBounds(10, 132, 273, 20);
+		fondo2.add(asignaturaG);
+	
+		 BD bd1 = new BD();
+	        try {
+	            Connection cn = bd.Conectar();
+	            Statement stm = cn.createStatement();
+	            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+	         
+	            while (rs.next()) {
+	                int id = rs.getInt("idAsignatura");
+	                String nombre = rs.getString("Nombre");
+	                asignaturaG.addItem(nombre);
+	            }
+
+	            rs.close();
+	            stm.close();
+	            cn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+		
+		docente_a_cargoG = new JComboBox();
+		docente_a_cargoG.setEnabled(false);
+		docente_a_cargoG.setBackground(new Color(255, 255, 255));
+		docente_a_cargoG.setBounds(10, 174, 273, 20);
+		fondo2.add(docente_a_cargoG);
+		
+		 BD bd2 = new BD();
+	        try {
+	            Connection cn = bd1.Conectar();
+	            Statement stm = cn.createStatement();
+	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	         
+	            while (rs.next()) {
+	                int id = rs.getInt("idDocente");
+	                String nombre = rs.getString("Nombre");
+	                docente_a_cargoG.addItem(nombre);
+	            }
+
+	            rs.close();
+	            stm.close();
+	            cn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 		
 		JTextField datos_semestre = new JTextField();
 		datos_semestre.setEditable(false);
@@ -3359,8 +3398,10 @@ public class Ventana extends JFrame{
 				            
 				            
 				            datos_carrera.setText(carrera);
-				            datos_asignatura.setText(asignatura);
-				            datos_docente_a_cargo.setText(docente);
+				            asignaturaG.setSelectedItem(asignatura);
+				            asignaturaG.setEnabled(true);
+				            docente_a_cargoG.setSelectedItem(docente);
+				            docente_a_cargoG.setEnabled(true);
 				            datos_semestre.setText(semestre);
 				            datos_num_alumnos.setText(alumnos);
 	  
@@ -3456,9 +3497,10 @@ public class Ventana extends JFrame{
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Semestre")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
 		            
+		            
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_carrera.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_asignatura.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_docente_a_cargo.getText())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(asignaturaG.getSelectedItem().toString())));
+		            tablaInformacion.addCell(new Cell().add(new Paragraph(docente_a_cargoG.getSelectedItem().toString())));
 		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_semestre.getText())));
 		            
 		            tablaInformacion.addCell(new Cell().add(new Paragraph("Numero de Alumnos")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
@@ -3489,8 +3531,8 @@ public class Ventana extends JFrame{
 		GuardarCambios.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String carrera = datos_carrera.getText();
-		        String asginatura = datos_asignatura.getText();
-		        String docente = datos_docente_a_cargo.getText();
+		        String asginatura = asignaturaG.getSelectedItem().toString();
+		        String docente = docente_a_cargoG.getSelectedItem().toString();
 		        String semestre = datos_semestre.getText();
 		        String alumnos = datos_num_alumnos.getText();
 		        int id = Integer.parseInt(String.valueOf(seleccionGrupo.getSelectedItem()));
@@ -3536,8 +3578,8 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String idText = seleccionGrupo.getSelectedItem().toString();
 				if(idText.matches(".*\\d.*")) {
-					datos_asignatura.setEditable(true);
-					datos_docente_a_cargo.setEditable(true);
+					asignaturaG.setEnabled(true);
+					docente_a_cargoG.setEnabled(true);
 					datos_semestre.setEditable(true);
 					datos_num_alumnos.setEditable(true);
 					GuardarCambios.setEnabled(true);
