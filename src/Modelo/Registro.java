@@ -37,7 +37,7 @@ public class Registro extends BD {
 				+"('"+nombre+"', '"+creditos+"', '"+docente+"', '"+semestres+"');");
 	}
 	
-	public int guardarGrupo(String carrera, String asignatura, String docente, String semestre, String numAlumnos) {
+	public int guardarGrupo(String carrera, String asignatura, String docente, int semestre, String numAlumnos) {
 		
 		
 		return setInformacion("INSERT INTO `bd-ejemplo`.`gruposbd`"

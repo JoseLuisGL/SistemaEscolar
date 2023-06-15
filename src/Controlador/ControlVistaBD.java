@@ -169,67 +169,44 @@ public class ControlVistaBD implements ActionListener {
 		
 		if(ev.getSource().equals(vpbd.getBtnGuardarGrupo())) {
 			int errores=0;			 
-			 String correo = vpbd.txtCorreoD.getText();
-			 String patronCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-			 Pattern patron = Pattern.compile(patronCorreo);
-			 Matcher matcher = patron.matcher(correo); 
 			 
-			 vpbd.txtTelefonoD.setBackground(new Color(0, 128, 192));
-			 vpbd.txtApellidoMaternoD.setBackground(new Color(0, 128, 192));
-			 vpbd.txtApellidoPaternoD.setBackground(new Color(0, 128, 192));
-			 vpbd.txtCorreoD.setBackground(new Color(0, 128, 192));
-			 vpbd.txtNombreD.setBackground(new Color(0, 128, 192));
+			 vpbd.carreraG.setBackground(new Color(0, 128, 192));
+			 vpbd.num_alu.setBackground(new Color(0, 128, 192));
+			 
+			 int num_alu = Integer.parseInt(vpbd.num_alu.getText()) ;
+			
 			 	
-			if (vpbd.txtTelefonoD.getText().length() != 10 || vpbd.txtTelefonoD.getText() == "") {
-				 vpbd.txtTelefonoD.setBackground(new Color(255, 0, 0));
+			if (num_alu < 1 || num_alu > 50) {
+				 vpbd.num_alu.setBackground(new Color(255, 0, 0));
                  errores++;
              }
 			 
-             if (matcher.matches()!=true) {
-            	 vpbd.txtCorreoD.setBackground(new Color(255, 0, 0));
+             if(vpbd.carreraG.getText().length()<2) {
+            	 vpbd.carreraG.setBackground(new Color(255, 0, 0));
             	 errores++;
-             }
+             }                    
              
-             if(vpbd.txtNombreD.getText().length()<2) {
-            	 vpbd.txtNombreD.setBackground(new Color(255, 0, 0));
-            	 errores++;
-             }
+             String asignatura = (String) vpbd.asignaturaG.getSelectedItem();
+             String docente = (String) vpbd.docente_a_cargoG.getSelectedItem();
+             int semestre = (int) vpbd.semestreG.getSelectedItem();
              
-             if(vpbd.txtApellidoPaternoD.getText().length()<2) {
-            	 vpbd.txtApellidoPaternoD.setBackground(new Color(255, 0, 0));
-            	 errores++;
-             }
-             
-             if(vpbd.txtApellidoMaternoD.getText().length()<2) {
-            	 vpbd.txtApellidoMaternoD.setBackground(new Color(255, 0, 0));
-            	 errores++;
-             }
-             
-             if(vpbd.comboBoxD==null) {
-            	 vpbd.txtApellidoMaternoD.setBackground(new Color(255, 0, 0));
-            	 errores++;
-             }
-            
-             
-			
+                        
 			if(errores>0) {
 				JOptionPane.showInternalMessageDialog(null, "Fallo al crear Grupo. Favor de revisar que la informacion cumpla con las caracteristicas "
 						+ "adecuadas.");
 			}
 			
 			if(errores==0) {
-			/*int a = r.guardarGrupo(vpbd.txtNombreD.getText(), vpbd.txtApellidoPaternoD.getText(), vpbd.txtApellidoMaternoD.getText(),
-					vpbd.txtCorreoD.getText(), vpbd.txtTelefonoD.getText(), vpbd.txtDireccionD.getText(), 
-					vpbd.comboBoxD.getSelectedItem().toString(),vpbd.imagenBytesD);
+			int a = r.guardarGrupo(vpbd.carreraG.getText(), asignatura, docente, semestre, vpbd.num_alu.getText());
 			
 			if(a>0) {
 				JOptionPane.showMessageDialog(null, "¡Registro de grupo terminado!");
-			}*/
+			}
 		}
 		errores=0;	
 		
 		}
-		
+
 		if(ev.getSource().equals(vpbd.getBtnGuardarAsignatura())) {
 			int errores=0;		
 			int semestre = (int) vpbd.semestres.getSelectedItem();
@@ -237,18 +214,18 @@ public class ControlVistaBD implements ActionListener {
 
 			vpbd.nombre_asig.setBackground(new Color(0, 128, 192));
 			vpbd.creditos.setBackground(new Color(0, 128, 192));
-			vpbd.docente_a_cargo.setBackground(new Color(0, 128, 192));
+			int creditos = Integer.parseInt(vpbd.creditos.getText());
 
              if(vpbd.nombre_asig.getText().length()<2) {
-            	 vpbd.txtNombreD.setBackground(new Color(255, 0, 0));
+            	 vpbd.nombre_asig.setBackground(new Color(255, 0, 0));
             	 errores++;
              }
              
-             if(vpbd.creditos.getText().length()<1) {
-            	 vpbd.txtApellidoPaternoD.setBackground(new Color(255, 0, 0));
+             if(creditos<1 || creditos>20) {
+            	 vpbd.creditos.setBackground(new Color(255, 0, 0));
             	 errores++;
              }
-             	
+
 			if(errores>0) {
 				JOptionPane.showInternalMessageDialog(null, "Fallo al crear Asginatura. Favor de revisar que la informacion cumpla con las "
 						+ "caracteristicas adecuadas.");
