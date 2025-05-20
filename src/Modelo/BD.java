@@ -20,7 +20,7 @@ public class BD {
 	public Connection Conectar () {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd-ejemplo","root","root");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd-ejemplo","root","proyectofinal123");
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error al cargar la base de datos");

@@ -225,7 +225,7 @@ public class Ventana extends JFrame{
 			                String nombre = rs.getString("Nombre");
 			                String pass = rs.getString("Contrasena");
 			                
-			                if(usuario.equals(nombre) && pass.equals(pass)) {
+			                if(usuario.equals(nombre) && password.equals(pass)) {
 			                	JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienveneido "+nombre+"!");
 			                	remove(fondo);
 			    				anterior = actual;
