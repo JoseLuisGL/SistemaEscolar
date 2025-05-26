@@ -117,7 +117,7 @@ public class Ventana extends JFrame{
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
 		this.setTitle("Sistema Escolar");
-		this.setSize(600,600);
+		this.setSize(800,800);
 		getContentPane().setLayout(null);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,162 +129,144 @@ public class Ventana extends JFrame{
 	public JPanel login() {
 		anterior = actual;
 		actual = "login";
-		
+
 		JPanel fondo = new JPanel();
 		fondo.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(0, 0, 243, 551);
-		fondo.add(panel_1);
-		panel_1.setLayout(null);
-		
-		fondo.setBackground(new Color(255, 255, 255));
-		fondo.setBounds(5, 5, 574, 551);
+		fondo.setBackground(Color.WHITE);
+		fondo.setBounds(0, 0, 800, 800);
 		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(260, 65, 300, 40);
-		fondo.add(Titulo);
-		
+
+		// Panel lateral decorativo
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 200, 800);
+		panel_1.setLayout(null);
+		fondo.add(panel_1);
+
+		// Imagen decorativa lateral
+		JLabel lblNewLabel = new JLabel();
+		ImageIcon icono4 = new ImageIcon("img/paneldiseño.png");
+		Image imagen4 = icono4.getImage().getScaledInstance(200, 800, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen4));
+		lblNewLabel.setBounds(0, 0, 200, 800);
+		panel_1.add(lblNewLabel);
+
+		// Logo centrado superior
+		JLabel lblNewLabel2 = new JLabel();
+		ImageIcon icono5 = new ImageIcon("img/logo.png");
+		Image imagen5 = icono5.getImage().getScaledInstance(400, 120, Image.SCALE_SMOOTH);
+		lblNewLabel2.setIcon(new ImageIcon(imagen5));
+		lblNewLabel2.setBounds(300, 30, 400, 120);
+		fondo.add(lblNewLabel2);
+
+		// Títulos
 		JLabel Titulo2 = new JLabel("Accede a tu cuenta");
-		Titulo2.setForeground(new Color(0, 0, 0));
+		Titulo2.setForeground(Color.BLACK);
 		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 22));
-		Titulo2.setBounds(270, 180, 267, 25);
+		Titulo2.setFont(new Font("SansSerif", Font.BOLD, 24));
+		Titulo2.setBounds(350, 170, 300, 30);
 		fondo.add(Titulo2);
-		
+
+		// Imagen de perfil
+		JLabel imagen = new JLabel();
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+		imagen.setIcon(imageIcon);
+		imagen.setBounds(450, 220, 100, 100);
+		fondo.add(imagen);
+
+		// Campo Usuario
 		JLabel tag1 = new JLabel("Usuario:");
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		tag1.setBounds(260, 224, 152, 25);
+		tag1.setFont(new Font("SansSerif", Font.BOLD, 16));
+		tag1.setBounds(370, 340, 100, 25);
 		fondo.add(tag1);
-		
-		JLabel tag2 = new JLabel("Contraseña:");
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		tag2.setBounds(260, 319, 152, 25);
-		fondo.add(tag2);
-		
+
 		JTextField username = new JTextField();
-		username.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		username.setForeground(new Color(0, 0, 0));
+		username.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		username.setForeground(Color.BLACK);
 		username.setBackground(new Color(198, 209, 218));
-		username.setBounds(260, 260, 267, 33);
+		username.setBounds(370, 370, 260, 35);
 		fondo.add(username);
-		username.setColumns(10);
-		
+
+		// Campo Contraseña
+		JLabel tag2 = new JLabel("Contraseña:");
+		tag2.setFont(new Font("SansSerif", Font.BOLD, 16));
+		tag2.setBounds(370, 420, 100, 25);
+		fondo.add(tag2);
+
 		JPasswordField password = new JPasswordField();
-		password.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		password.setForeground(new Color(0, 0, 0));
+		password.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		password.setForeground(Color.BLACK);
 		password.setBackground(new Color(198, 209, 218));
-		password.setBounds(255, 355, 267, 33);
+		password.setBounds(370, 450, 260, 35);
 		fondo.add(password);
-		
+
+		// Botones
 		RoundButtonRojo Cancelar = new RoundButtonRojo("Cancelar");
-		Cancelar.setFont(new Font("SansSerif", Font.PLAIN, 17));
+		Cancelar.setFont(new Font("SansSerif", Font.BOLD, 16));
 		Cancelar.setBackground(new Color(255, 0, 0));
-		Cancelar.setForeground(new Color(255, 255, 255));
-		Cancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				username.setText("");
-				password.setText("");
-			}
+		Cancelar.setForeground(Color.WHITE);
+		Cancelar.setBounds(370, 510, 120, 35);
+		Cancelar.addActionListener(e -> {
+			username.setText("");
+			password.setText("");
 		});
-		Cancelar.setBounds(260, 415, 120, 33);
 		fondo.add(Cancelar);
-		
+
 		RoundButtonVerde btnAccess = new RoundButtonVerde("Ingresar");
-		btnAccess.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		btnAccess.setForeground(new Color(255, 255, 255));
-		btnAccess.setBackground(new Color(0, 255, 64));
+		btnAccess.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnAccess.setBackground(new Color(0, 153, 51));
+		btnAccess.setForeground(Color.WHITE);
+		btnAccess.setBounds(510, 510, 120, 35);
 		btnAccess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuario = username.getText();
-				
 				char[] passwordChars = password.getPassword();
 				String password = new String(passwordChars);
-				System.out.println(password);
-
-			
 				Arrays.fill(passwordChars, ' ');
-				
-				  BD bd = new BD();
-			        try {
-			            Connection cn = bd.Conectar();
-			            Statement stm = cn.createStatement();
-			            ResultSet rs = stm.executeQuery("SELECT * FROM admin");
-            
-			            while (rs.next()) {		            
-			                String nombre = rs.getString("Nombre");
-			                String pass = rs.getString("Contrasena");
-			                
-			                if(usuario.equals(nombre) && password.equals(pass)) {
-			                	JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienveneido "+nombre+"!");
-			                	remove(fondo);
-			    				anterior = actual;
-			    				actual = "menuPrincipal";
-			    				add(menuPrincipal());
-			    				repaint();
 
-			            
-			                }else {
-			                	JOptionPane.showMessageDialog(null, "Datos Erroneos. Intentar denuevo.");
-			                }			     			                
-			            }
-			            
-			            rs.close();
-			            stm.close();
-			            cn.close();
-			        } catch (SQLException e1) {
-			            e1.printStackTrace();
-			        }	
+				BD bd = new BD();
+				try {
+					Connection cn = bd.Conectar();
+					Statement stm = cn.createStatement();
+					ResultSet rs = stm.executeQuery("SELECT * FROM admin");
+
+					while (rs.next()) {
+						String nombre = rs.getString("Nombre");
+						String pass = rs.getString("Contrasena");
+
+						if (usuario.equals(nombre) && password.equals(pass)) {
+							JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienvenido " + nombre + "!");
+							remove(fondo);
+							anterior = actual;
+							actual = "menuPrincipal";
+							add(menuPrincipal());
+							repaint();
+							return;
+						}
+					}
+
+					JOptionPane.showMessageDialog(null, "Datos incorrectos. Intente de nuevo.");
+					rs.close();
+					stm.close();
+					cn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
-			
 		});
-			
-		
-		btnAccess.setBounds(402, 415, 120, 33);
 		fondo.add(btnAccess);
-		
-		JLabel lblNewLabel = new JLabel("");
-        ImageIcon icono4 = new ImageIcon("img/paneldiseño.png");
-        Image imagen4 = icono4.getImage();
-        Image imagenRedimensionada4 = imagen4.getScaledInstance(250, 561, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagenRedimensionada4));
-        lblNewLabel.setBounds(0, 0, 250, 561);
-        panel_1.add(lblNewLabel);
-        
-        JLabel lblNewLabel2 = new JLabel("");
-        ImageIcon icono5 = new ImageIcon("img/logo.png");
-        Image imagen5 = icono5.getImage();
-        Image imagenRedimensionada5 = imagen5.getScaledInstance(340, 156, Image.SCALE_SMOOTH);
-        lblNewLabel2.setIcon(new ImageIcon(imagenRedimensionada5));
-        lblNewLabel2.setBounds(250, -200, 340, 561);
-        fondo.add(lblNewLabel2);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(50, 155, 161, 174);
-		fondo.add(imagen);
-		
-		JLabel imagenfondo = new JLabel("Favor de ingresar todos los campos.");
-		imagenfondo.setBackground(new Color(255, 0, 0));
-		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/fondo.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
-		imagenfondo.setIcon(imageFondo);
-		imagenfondo.setBounds(0, 0, 574, 551);
+
+		// Imagen de fondo decorativa (opcional si no interfiere)
+		JLabel imagenfondo = new JLabel();
+		ImageIcon fondoIcon = new ImageIcon(new ImageIcon("img/fondo.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH));
+		imagenfondo.setIcon(fondoIcon);
+		imagenfondo.setBounds(0, 0, 800, 800);
 		fondo.add(imagenfondo);
-		
+
 		this.add(fondo);
 		return fondo;
 	}
+
 	
 	public JPanel menuPrincipal() {
 		anterior = actual;
@@ -298,7 +280,7 @@ public class Ventana extends JFrame{
 		JLabel Titulo = new JLabel("Bienvenido Admin");
 		Titulo.setForeground(new Color(0, 0, 0));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		Titulo.setBounds(79, 30, 421, 40);
 		fondo.add(Titulo);
 		
