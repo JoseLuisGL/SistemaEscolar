@@ -271,657 +271,636 @@ public class Ventana extends JFrame{
 	public JPanel menuPrincipal() {
 		anterior = actual;
 		actual = "menuPrincipal";
+
+		// Panel principal
 		JPanel fondo = new JPanel();
 		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
+		fondo.setBounds(0, 0, 800, 800);
 		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Bienvenido Admin");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		Titulo.setBounds(79, 30, 421, 40);
+		getContentPane().add(fondo);
+
+		// Título centrado
+		JLabel Titulo = new JLabel("Bienvenido Admin", SwingConstants.CENTER);
+		Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		Titulo.setForeground(Color.BLACK);
+		Titulo.setBounds(200, 40, 400, 50);
 		fondo.add(Titulo);
-		
-		RoundButton botonAlumnos = new RoundButton("Alumnos");
-		botonAlumnos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAlumnos";
-				add(menuAlumnos());
-				repaint();
-				revalidate();
-			}
-		});
-		botonAlumnos.setBounds(132, 116, 421, 78);
-		fondo.add(botonAlumnos);
-		
-		RoundButton botonDocentes = new RoundButton("Docentes");
-		botonDocentes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuDocentes";
-				add(menuDocentes());
-				repaint();
-				revalidate();
-			}
-		});
-		botonDocentes.setBounds(132, 222, 421, 78);
-		fondo.add(botonDocentes);
-		
-		RoundButton botonGrupos = new RoundButton("Grupos");
-		botonGrupos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuGrupos";
-				add(menuGrupos());
-				repaint();
-				revalidate();
-			}
-		});
-		botonGrupos.setBounds(132, 326, 421, 78);
-		fondo.add(botonGrupos);
-		
-		RoundButton botonAsignaturas = new RoundButton("Asignaturas");
-		botonAsignaturas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAsignaturas";
-				add(menuAsignaturas());
-				repaint();
-				revalidate();
-			}
-		});
-		botonAsignaturas.setBounds(132, 429, 421, 78);
-		fondo.add(botonAsignaturas);
-		
-		JLabel tag1 = new JLabel("");
-		ImageIcon imageFondo2 = new ImageIcon(new ImageIcon("img/alumnos.png").getImage().getScaledInstance(90, 80, Image.SCALE_DEFAULT));
-		tag1.setIcon(imageFondo2);
-		tag1.setBounds(35, 116, 107, 78);
+
+		// --------------------- Botón Alumnos ---------------------
+		JLabel tag1 = new JLabel(new ImageIcon(new ImageIcon("img/alumnos.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+		tag1.setBounds(100, 130, 80, 80);
 		fondo.add(tag1);
-		
-		JLabel tag2 = new JLabel("");
-		ImageIcon imageFondo3 = new ImageIcon(new ImageIcon("img/docentes.png").getImage().getScaledInstance(90, 80, Image.SCALE_DEFAULT));
-		tag2.setIcon(imageFondo3);
-		tag2.setBounds(35, 222, 107, 78);
-		fondo.add(tag2);
-		
-		JLabel tag3 = new JLabel("");
-		ImageIcon imageFondo4 = new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(90, 80, Image.SCALE_DEFAULT));
-		tag3.setIcon(imageFondo4);
-		tag3.setBounds(35, 326, 107, 78);
-		fondo.add(tag3);
-		
-		JLabel tag4 = new JLabel("");
-		ImageIcon imageFondo5 = new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(90, 80, Image.SCALE_DEFAULT));
-		tag4.setIcon(imageFondo5);
-		tag4.setBounds(35, 429, 107, 78);
-		fondo.add(tag4);
-		
-		RoundButtonRojo btnCerrarSesion = new RoundButtonRojo("Cerrar Sesión");
-		btnCerrarSesion.setForeground(new Color(255, 255, 255));
-		btnCerrarSesion.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCerrarSesion.setBackground(new Color(255, 0, 0));
-		btnCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "login";
-				add(login());
-				repaint();
-				revalidate();
-			}
+
+		RoundButton botonAlumnos = new RoundButton("Alumnos");
+		botonAlumnos.setBounds(200, 130, 500, 80);
+		botonAlumnos.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuAlumnos";
+			add(menuAlumnos());
+			repaint();
+			revalidate();
 		});
-		btnCerrarSesion.setBounds(410, 515, 125, 30);
+		fondo.add(botonAlumnos);
+
+		// --------------------- Botón Docentes ---------------------
+		JLabel tag2 = new JLabel(new ImageIcon(new ImageIcon("img/docentes.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+		tag2.setBounds(100, 230, 80, 80);
+		fondo.add(tag2);
+
+		RoundButton botonDocentes = new RoundButton("Docentes");
+		botonDocentes.setBounds(200, 230, 500, 80);
+		botonDocentes.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuDocentes";
+			add(menuDocentes());
+			repaint();
+			revalidate();
+		});
+		fondo.add(botonDocentes);
+
+		// --------------------- Botón Grupos ---------------------
+		JLabel tag3 = new JLabel(new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+		tag3.setBounds(100, 330, 80, 80);
+		fondo.add(tag3);
+
+		RoundButton botonGrupos = new RoundButton("Grupos");
+		botonGrupos.setBounds(200, 330, 500, 80);
+		botonGrupos.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuGrupos";
+			add(menuGrupos());
+			repaint();
+			revalidate();
+		});
+		fondo.add(botonGrupos);
+
+		// --------------------- Botón Asignaturas ---------------------
+		JLabel tag4 = new JLabel(new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+		tag4.setBounds(100, 430, 80, 80);
+		fondo.add(tag4);
+
+		RoundButton botonAsignaturas = new RoundButton("Asignaturas");
+		botonAsignaturas.setBounds(200, 430, 500, 80);
+		botonAsignaturas.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuAsignaturas";
+			add(menuAsignaturas());
+			repaint();
+			revalidate();
+		});
+		fondo.add(botonAsignaturas);
+
+		// --------------------- Botón Cerrar Sesión ---------------------
+		RoundButtonRojo btnCerrarSesion = new RoundButtonRojo("Cerrar Sesión");
+		btnCerrarSesion.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnCerrarSesion.setForeground(Color.WHITE);
+		btnCerrarSesion.setBackground(Color.RED);
+		btnCerrarSesion.setBounds(600, 670, 130, 30);
+		btnCerrarSesion.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "login";
+			add(login());
+			repaint();
+			revalidate();
+		});
 		fondo.add(btnCerrarSesion);
-		
-		JLabel fondomenuPrincipal = new JLabel("");
-		ImageIcon imageFondo1 = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
-		fondomenuPrincipal.setIcon(imageFondo1);
-		fondomenuPrincipal.setBounds(0, 0, 584, 561);
+
+		// --------------------- Imagen de fondo decorativa ---------------------
+		JLabel fondomenuPrincipal = new JLabel(new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH)));
+		fondomenuPrincipal.setBounds(-10, -25, 800, 800);
 		fondo.add(fondomenuPrincipal);
+
+		// Asegura que fondo sea visible al frente
+		fondo.setComponentZOrder(fondomenuPrincipal, fondo.getComponentCount() - 1);
+
 		this.add(fondo);
 		return fondo;
 	}
+
 
 	public JPanel menuGrupos() {
 		anterior = actual;
 		actual = "menuGrupos";
+
+		// Panel principal con dimensiones 800x800
 		JPanel fondo = new JPanel();
 		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
+		fondo.setBounds(0, 0, 800, 800);
 		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("GRUPOS");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 30, 421, 40);
-		fondo.add(Titulo);
-		
+		getContentPane().add(fondo);
+
+		// Título principal
+		JLabel titulo = new JLabel("GRUPOS");
+		titulo.setForeground(Color.BLACK);
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		titulo.setBounds(200, 30, 400, 50);
+		fondo.add(titulo);
+
+		// Etiqueta 'Consultar'
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblConsultar.setBounds(237, 86, 112, 25);
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 28));
+		lblConsultar.setBounds(340, 100, 120, 30);
 		fondo.add(lblConsultar);
-		
-		JLabel lblCrear = new JLabel("Crear");
-		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(142, 281, 71, 25);
-		fondo.add(lblCrear);
-		
-		JLabel lblEliminar = new JLabel("Eliminar");
-		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(365, 281, 89, 25);
-		fondo.add(lblEliminar);
-		
+
+		// Botón Consultar
 		RoundButton btnConsultarGrupo = new RoundButton("");
 		ImageIcon icono = new ImageIcon("img/consulta.png");
-		Image imagen = icono.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnConsultarGrupo.setIcon(new ImageIcon(imagenRedimensionada));
+		Image imagen = icono.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnConsultarGrupo.setIcon(new ImageIcon(imagen));
 		btnConsultarGrupo.setBackground(new Color(121, 255, 145));
-		btnConsultarGrupo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "consultarGrupo";
-				add(consultarGrupo());
-				repaint();
-				revalidate();
-			}
-		});
+		btnConsultarGrupo.setBounds(325, 140, 150, 150);
 		btnConsultarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnConsultarGrupo.setBounds(212, 115, 150, 150);
+		btnConsultarGrupo.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "consultarGrupo";
+			add(consultarGrupo());
+			repaint();
+			revalidate();
+		});
 		fondo.add(btnConsultarGrupo);
-		
-		RoundButton btnCrearGrupo = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img\\crearicono.png");
-		Image imagen2 = icono2.getImage();
-		Image imagenRedimensionada2 = imagen2.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnCrearGrupo.setIcon(new ImageIcon(imagenRedimensionada2));
-		btnCrearGrupo.setBackground(new Color(121, 255, 145));
-		btnCrearGrupo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "crearGrupo";
-				add(crearGrupo());
-				repaint();
-				revalidate();
-			}
-		});
-		btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCrearGrupo.setBounds(100, 310, 150, 150);
-		fondo.add(btnCrearGrupo);
-		
-		RoundButton  btnEliminarGrupo = new RoundButton ("");
-		ImageIcon icono3 = new ImageIcon("img\\eliminaricono.png");
-		Image imagen3 = icono3.getImage();
-		Image imagenRedimensionada3 = imagen3.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnEliminarGrupo.setIcon(new ImageIcon(imagenRedimensionada3));
-		btnEliminarGrupo.setBackground(new Color(121, 255, 145));
-		btnEliminarGrupo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "eliminarGrupo";
-				add(eliminarGrupo());
-				repaint();
-				revalidate();
-			}
-		});
-		btnEliminarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnEliminarGrupo.setBounds(330, 310, 150, 150);
-		fondo.add(btnEliminarGrupo);
-		
-		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuPrincipal";
-				add(menuPrincipal());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(450, 514, 89, 23);
-		fondo.add(Volver);
-		
-		
-		JLabel fondoMenu = new JLabel("");
-		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
-		fondoMenu.setIcon(imageFondo);
-		fondoMenu.setBounds(0, 0, 584, 561);
-		fondo.add(fondoMenu);
-		this.add(fondo);
-		return fondo;
-	}
-	
-	public JPanel menuAlumnos() {
-		anterior = actual;
-		actual = "menuAlumnos";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("ALUMNOS");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 30, 421, 40);
-		fondo.add(Titulo);
-		
-		JLabel lblCredencial = new JLabel("Credencial");
-		lblCredencial.setForeground(new Color(121, 255, 145));
-		lblCredencial.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblCredencial.setBounds(120, 86, 112, 25);
-		fondo.add(lblCredencial);
-		
-		JLabel lblConsultar = new JLabel("Consultar");
-		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblConsultar.setBounds(353, 86, 105, 25);
-		fondo.add(lblConsultar);
-		
+
+		// Etiqueta 'Crear'
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(142, 281, 71, 25);
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 28));
+		lblCrear.setBounds(220, 340, 100, 30);
 		fondo.add(lblCrear);
-		
+
+		// Botón Crear
+		RoundButton btnCrearGrupo = new RoundButton("");
+		ImageIcon icono2 = new ImageIcon("img/crearicono.png");
+		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnCrearGrupo.setIcon(new ImageIcon(imagen2));
+		btnCrearGrupo.setBackground(new Color(121, 255, 145));
+		btnCrearGrupo.setBounds(175, 380, 150, 150);
+		btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnCrearGrupo.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "crearGrupo";
+			add(crearGrupo());
+			repaint();
+			revalidate();
+		});
+		fondo.add(btnCrearGrupo);
+
+		// Etiqueta 'Eliminar'
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(365, 281, 89, 25);
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 28));
+		lblEliminar.setBounds(520, 340, 120, 30);
 		fondo.add(lblEliminar);
 
-		RoundButton btnCredAlu = new RoundButton("");
-		ImageIcon icono = new ImageIcon("img/credencial.png");
-		Image imagen = icono.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnCredAlu.setIcon(new ImageIcon(imagenRedimensionada));
-		btnCredAlu.setBackground(new Color(121, 255, 145));
-		btnCredAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCredAlu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "credencialAlumno";
-				add(credencialAlumno());
-				repaint();
-				revalidate();
-			}
+		// Botón Eliminar
+		RoundButton btnEliminarGrupo = new RoundButton("");
+		ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
+		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnEliminarGrupo.setIcon(new ImageIcon(imagen3));
+		btnEliminarGrupo.setBackground(new Color(121, 255, 145));
+		btnEliminarGrupo.setBounds(495, 380, 150, 150);
+		btnEliminarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnEliminarGrupo.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "eliminarGrupo";
+			add(eliminarGrupo());
+			repaint();
+			revalidate();
 		});
-		btnCredAlu.setBounds(100, 115, 150, 150);
-		fondo.add(btnCredAlu);
-		
-		RoundButton btnConsultarAlu = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img/consulta.png");
-		Image imagen2 = icono2.getImage();
-		Image imagenRedimensionada2 = imagen2.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnConsultarAlu.setIcon(new ImageIcon(imagenRedimensionada2));
-		btnConsultarAlu.setBackground(new Color(121, 255, 145));
-		btnConsultarAlu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "consultarAlumno";
-				add(consultarAlumno());
-				repaint();
-				revalidate();
-			}
+		fondo.add(btnEliminarGrupo);
+
+		// Botón Volver
+		RoundButtonRojoBorde volver = new RoundButtonRojoBorde("Volver");
+		volver.setForeground(Color.WHITE);
+		volver.setBackground(Color.RED);
+		volver.setFont(new Font("SansSerif", Font.BOLD, 14));
+		volver.setBounds(650, 690, 100, 30);
+		volver.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuPrincipal";
+			add(menuPrincipal());
+			repaint();
+			revalidate();
 		});
-		btnConsultarAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnConsultarAlu.setBounds(330, 115, 150, 150);
-		fondo.add(btnConsultarAlu);
-		
-		RoundButton btnCrearAlu = new RoundButton("");
-		ImageIcon icono3 = new ImageIcon("img/crearicono.png");
-		Image imagen3 = icono3.getImage();
-		Image imagenRedimensionada3 = imagen3.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnCrearAlu.setIcon(new ImageIcon(imagenRedimensionada3));
-		btnCrearAlu.setBackground(new Color(121, 255, 145));
-		btnCrearAlu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "crearAlumno";
-				add(crearAlumno());
-				repaint();
-				revalidate();
-			}
-		});
-		btnCrearAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCrearAlu.setBounds(100, 310, 150, 150);
-		fondo.add(btnCrearAlu);
-		
-		RoundButton btnEliminarAlu = new RoundButton("");
-		ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
-		Image imagen4 = icono4.getImage();
-		Image imagenRedimensionada4 = imagen4.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnEliminarAlu.setIcon(new ImageIcon(imagenRedimensionada4));
-		btnEliminarAlu.setBackground(new Color(121, 255, 145));
-		btnEliminarAlu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "eliminarAlumno";
-				add(eliminarAlumno());
-				repaint();
-				revalidate();
-			}
-		});
-		btnEliminarAlu.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnEliminarAlu.setBounds(330, 310, 150, 150);
-		fondo.add(btnEliminarAlu);
-		
-		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuPrincipal";
-				add(menuPrincipal());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(450, 514, 89, 23);
-		fondo.add(Volver);
-		
-		
+		fondo.add(volver);
+
+		// Fondo decorativo
 		JLabel fondoMenu = new JLabel("");
-		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
+		ImageIcon imageFondo = new ImageIcon(
+			new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+		);
 		fondoMenu.setIcon(imageFondo);
-		fondoMenu.setBounds(0, 0, 584, 561);
+		fondoMenu.setBounds(-10, -25, 800, 800);
 		fondo.add(fondoMenu);
+
 		this.add(fondo);
 		return fondo;
 	}
+
+	
+	public JPanel menuAlumnos() {
+	    anterior = actual;
+	    actual = "menuAlumnos";
+
+	    // Crear panel principal y establecer fondo
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(128, 128, 128));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+
+	    // Título principal
+	    JLabel Titulo = new JLabel("ALUMNOS");
+	    Titulo.setForeground(Color.BLACK);
+	    Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
+	    Titulo.setBounds(200, 30, 400, 50);
+	    fondo.add(Titulo);
+
+	    // Etiquetas
+	    JLabel lblCredencial = new JLabel("Credencial");
+	    lblCredencial.setForeground(new Color(121, 255, 145));
+	    lblCredencial.setFont(new Font("Tahoma", Font.PLAIN, 24));
+	    lblCredencial.setBounds(160, 120, 150, 30);
+	    fondo.add(lblCredencial);
+
+	    JLabel lblConsultar = new JLabel("Consultar");
+	    lblConsultar.setForeground(new Color(121, 255, 145));
+	    lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	    lblConsultar.setBounds(500, 120, 150, 30);
+	    fondo.add(lblConsultar);
+
+	    JLabel lblCrear = new JLabel("Crear");
+	    lblCrear.setForeground(new Color(121, 255, 145));
+	    lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	    lblCrear.setBounds(200, 440, 100, 30);
+	    fondo.add(lblCrear);
+
+	    JLabel lblEliminar = new JLabel("Eliminar");
+	    lblEliminar.setForeground(new Color(121, 255, 145));
+	    lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	    lblEliminar.setBounds(520, 440, 120, 30);
+	    fondo.add(lblEliminar);
+
+	    // Botón Credencial
+	    RoundButton btnCredAlu = new RoundButton("");
+	    ImageIcon icono = new ImageIcon("img/credencial.png");
+	    btnCredAlu.setIcon(new ImageIcon(icono.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	    btnCredAlu.setBackground(new Color(121, 255, 145));
+	    btnCredAlu.setBounds(140, 160, 180, 180);
+	    btnCredAlu.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "credencialAlumno";
+	        add(credencialAlumno());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnCredAlu);
+
+	    // Botón Consultar
+	    RoundButton btnConsultarAlu = new RoundButton("");
+	    ImageIcon icono2 = new ImageIcon("img/consulta.png");
+	    btnConsultarAlu.setIcon(new ImageIcon(icono2.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	    btnConsultarAlu.setBackground(new Color(121, 255, 145));
+	    btnConsultarAlu.setBounds(480, 160, 180, 180);
+	    btnConsultarAlu.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "consultarAlumno";
+	        add(consultarAlumno());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnConsultarAlu);
+
+	    // Botón Crear
+	    RoundButton btnCrearAlu = new RoundButton("");
+	    ImageIcon icono3 = new ImageIcon("img/crearicono.png");
+	    btnCrearAlu.setIcon(new ImageIcon(icono3.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	    btnCrearAlu.setBackground(new Color(121, 255, 145));
+	    btnCrearAlu.setBounds(140, 480, 180, 180);
+	    btnCrearAlu.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "crearAlumno";
+	        add(crearAlumno());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnCrearAlu);
+
+	    // Botón Eliminar
+	    RoundButton btnEliminarAlu = new RoundButton("");
+	    ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
+	    btnEliminarAlu.setIcon(new ImageIcon(icono4.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	    btnEliminarAlu.setBackground(new Color(121, 255, 145));
+	    btnEliminarAlu.setBounds(480, 480, 180, 180);
+	    btnEliminarAlu.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "eliminarAlumno";
+	        add(eliminarAlumno());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnEliminarAlu);
+
+	    // Botón Volver
+	    RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
+	    Volver.setForeground(Color.WHITE);
+	    Volver.setBackground(Color.RED);
+	    Volver.setBounds(650, 690, 100, 30);
+	    Volver.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuPrincipal";
+	        add(menuPrincipal());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(Volver);
+
+	    // Imagen de fondo
+	    JLabel fondoMenu = new JLabel();
+	    ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT));
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    return fondo;
+	}
+
 
 	public JPanel menuDocentes() {
 		anterior = actual;
 		actual = "menuDocentes";
+
+		// Panel principal de fondo
 		JPanel fondo = new JPanel();
 		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
+		fondo.setBounds(0, 0, 800, 800); // Ajuste al nuevo tamaño
 		fondo.setLayout(null);
-		
+		getContentPane().add(fondo);
+
+		// Título principal
 		JLabel Titulo = new JLabel("DOCENTES");
-		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setForeground(Color.BLACK);
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 30, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		Titulo.setBounds(200, 30, 400, 50);
 		fondo.add(Titulo);
-		
+
+		// Etiquetas de acción
 		JLabel lblCredencial = new JLabel("Credencial");
 		lblCredencial.setForeground(new Color(121, 255, 145));
-		lblCredencial.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblCredencial.setBounds(120, 86, 112, 25);
+		lblCredencial.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblCredencial.setBounds(180, 120, 130, 30);
 		fondo.add(lblCredencial);
-		
+
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblConsultar.setBounds(353, 86, 105, 25);
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblConsultar.setBounds(500, 120, 130, 30);
 		fondo.add(lblConsultar);
-		
+
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(142, 281, 71, 25);
+		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblCrear.setBounds(210, 390, 100, 30);
 		fondo.add(lblCrear);
-		
+
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(365, 281, 89, 25);
+		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblEliminar.setBounds(510, 390, 120, 30);
 		fondo.add(lblEliminar);
 
+		// Botón Credencial
 		RoundButton btnCredDoce = new RoundButton("");
-		ImageIcon icono = new ImageIcon("img/credencial.png");
-		Image imagen = icono.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnCredDoce.setIcon(new ImageIcon(imagenRedimensionada));
+		btnCredDoce.setIcon(escalarIcono("img/credencial.png"));
 		btnCredDoce.setBackground(new Color(121, 255, 145));
-		btnCredDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCredDoce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "credencialDocente";
-				add(credencialDocente());
-				repaint();
-				revalidate();
-			}
+		btnCredDoce.setBounds(160, 160, 180, 180);
+		btnCredDoce.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "credencialDocente";
+			add(credencialDocente());
+			repaint();
+			revalidate();
 		});
-		btnCredDoce.setBounds(100, 115, 150, 150);
 		fondo.add(btnCredDoce);
-		
+
+		// Botón Consultar
 		RoundButton btnConsultarDoce = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img/consulta.png");
-		Image imagen2 = icono2.getImage();
-		Image imagenRedimensionada2 = imagen2.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnConsultarDoce.setIcon(new ImageIcon(imagenRedimensionada2));
+		btnConsultarDoce.setIcon(escalarIcono("img/consulta.png"));
 		btnConsultarDoce.setBackground(new Color(121, 255, 145));
-		btnConsultarDoce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "consultarDocente";
-				add(consultarDocente());
-				repaint();
-				revalidate();
-			}
+		btnConsultarDoce.setBounds(460, 160, 180, 180);
+		btnConsultarDoce.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "consultarDocente";
+			add(consultarDocente());
+			repaint();
+			revalidate();
 		});
-		btnConsultarDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnConsultarDoce.setBounds(330, 115, 150, 150);
 		fondo.add(btnConsultarDoce);
-		
+
+		// Botón Crear
 		RoundButton btnCrearDoce = new RoundButton("");
-		ImageIcon icono3 = new ImageIcon("img/crearicono.png");
-		Image imagen3 = icono3.getImage();
-		Image imagenRedimensionada3 = imagen3.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnCrearDoce.setIcon(new ImageIcon(imagenRedimensionada3));
+		btnCrearDoce.setIcon(escalarIcono("img/crearicono.png"));
 		btnCrearDoce.setBackground(new Color(121, 255, 145));
-		btnCrearDoce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "crearDocente";
-				add(crearDocente());
-				repaint();
-				revalidate();
-			}
+		btnCrearDoce.setBounds(160, 430, 180, 180);
+		btnCrearDoce.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "crearDocente";
+			add(crearDocente());
+			repaint();
+			revalidate();
 		});
-		btnCrearDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCrearDoce.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearDoce);
-		
+
+		// Botón Eliminar
 		RoundButton btnEliminarDoce = new RoundButton("");
-		ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
-		Image imagen4 = icono4.getImage();
-		Image imagenRedimensionada4 = imagen4.getScaledInstance(130, 120, Image.SCALE_SMOOTH);
-		btnEliminarDoce.setIcon(new ImageIcon(imagenRedimensionada4));
+		btnEliminarDoce.setIcon(escalarIcono("img/eliminaricono.png"));
 		btnEliminarDoce.setBackground(new Color(121, 255, 145));
-		btnEliminarDoce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "eliminarDocente";
-				add(eliminarDocente());
-				repaint();
-				revalidate();
-			}
+		btnEliminarDoce.setBounds(460, 430, 180, 180);
+		btnEliminarDoce.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "eliminarDocente";
+			add(eliminarDocente());
+			repaint();
+			revalidate();
 		});
-		btnEliminarDoce.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnEliminarDoce.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarDoce);
-		
+
+		// Botón Volver
 		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuPrincipal";
-				add(menuPrincipal());
-				repaint();
-				revalidate();
-			}
+		Volver.setForeground(Color.WHITE);
+		Volver.setBackground(Color.RED);
+		Volver.setBounds(650, 690, 100, 30);
+		Volver.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuPrincipal";
+			add(menuPrincipal());
+			repaint();
+			revalidate();
 		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(450, 514, 89, 23);
 		fondo.add(Volver);
-		
-		
+
+		// Fondo visual decorativo
 		JLabel fondoMenu = new JLabel("");
-		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
+		ImageIcon imageFondo = new ImageIcon(
+			new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH)
+		);
 		fondoMenu.setIcon(imageFondo);
-		fondoMenu.setBounds(0, 0, 584, 561);
+		fondoMenu.setBounds(-10, -25, 800, 800);
 		fondo.add(fondoMenu);
-		this.add(fondo);
+
 		return fondo;
 	}
+
+	/**
+	 * Escala una imagen a 150x150 y devuelve un ImageIcon
+	 */
+	private ImageIcon escalarIcono(String ruta) {
+		ImageIcon icono = new ImageIcon(ruta);
+		Image imagen = icono.getImage();
+		Image redimensionada = imagen.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		return new ImageIcon(redimensionada);
+	}
+
 	
 	public JPanel menuAsignaturas() {
 		anterior = actual;
 		actual = "menuAsignaturas";
+
+		// Panel de fondo principal
 		JPanel fondo = new JPanel();
 		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
+		fondo.setBounds(0, 0, 800, 800);
 		fondo.setLayout(null);
-		
+		getContentPane().add(fondo);
+
+		// Título principal
 		JLabel Titulo = new JLabel("ASIGNATURAS");
-		Titulo.setForeground(new Color(0, 0, 0));
+		Titulo.setForeground(Color.BLACK);
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 30, 421, 40);
+		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		Titulo.setBounds(200, 30, 400, 50);
 		fondo.add(Titulo);
-		
+
+		// Etiquetas
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
 		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblConsultar.setBounds(237, 86, 112, 25);
+		lblConsultar.setBounds(344, 100, 120, 30); // Centrado arriba
 		fondo.add(lblConsultar);
-		
+
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
 		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(142, 281, 71, 25);
+		lblCrear.setBounds(200, 400, 100, 30);
 		fondo.add(lblCrear);
-		
+
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
 		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(365, 281, 89, 25);
+		lblEliminar.setBounds(500, 400, 100, 30);
 		fondo.add(lblEliminar);
-		
-		
+
+		// Botón Consultar
 		RoundButton btnConsultarAsi = new RoundButton("");
 		ImageIcon icono = new ImageIcon("img/consulta.png");
-		Image imagen = icono.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnConsultarAsi.setIcon(new ImageIcon(imagenRedimensionada));
+		Image imagen = icono.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnConsultarAsi.setIcon(new ImageIcon(imagen));
 		btnConsultarAsi.setBackground(new Color(121, 255, 145));
-		btnConsultarAsi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "consultarAsignatura";
-				add(consultarAsignatura());
-				repaint();
-				revalidate();
-			}
+		btnConsultarAsi.setBounds(325, 140, 150, 150);
+		btnConsultarAsi.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "consultarAsignatura";
+			add(consultarAsignatura());
+			repaint();
+			revalidate();
 		});
-		btnConsultarAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnConsultarAsi.setBounds(212, 115, 150, 150);
 		fondo.add(btnConsultarAsi);
-		
+
+		// Botón Crear
 		RoundButton btnCrearAsi = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img\\crearicono.png");
-		Image imagen2 = icono2.getImage();
-		Image imagenRedimensionada2 = imagen2.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnCrearAsi.setIcon(new ImageIcon(imagenRedimensionada2));
+		ImageIcon icono2 = new ImageIcon("img/crearicono.png");
+		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnCrearAsi.setIcon(new ImageIcon(imagen2));
 		btnCrearAsi.setBackground(new Color(121, 255, 145));
-		btnCrearAsi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "crearAsignatura";
-				add(crearAsignatura());
-				repaint();
-				revalidate();
-			}
+		btnCrearAsi.setBounds(175, 440, 150, 150);
+		btnCrearAsi.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "crearAsignatura";
+			add(crearAsignatura());
+			repaint();
+			revalidate();
 		});
-		btnCrearAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCrearAsi.setBounds(100, 310, 150, 150);
 		fondo.add(btnCrearAsi);
-		
-		RoundButton  btnEliminarAsi = new RoundButton ("");
-		ImageIcon icono3 = new ImageIcon("img\\eliminaricono.png");
-		Image imagen3 = icono3.getImage();
-		Image imagenRedimensionada3 = imagen3.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnEliminarAsi.setIcon(new ImageIcon(imagenRedimensionada3));
+
+		// Botón Eliminar
+		RoundButton btnEliminarAsi = new RoundButton("");
+		ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
+		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		btnEliminarAsi.setIcon(new ImageIcon(imagen3));
 		btnEliminarAsi.setBackground(new Color(121, 255, 145));
-		btnEliminarAsi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "eliminarAsignatura";
-				add(eliminarAsignatura());
-				repaint();
-				revalidate();
-			}
+		btnEliminarAsi.setBounds(475, 440, 150, 150);
+		btnEliminarAsi.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "eliminarAsignatura";
+			add(eliminarAsignatura());
+			repaint();
+			revalidate();
 		});
-		btnEliminarAsi.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnEliminarAsi.setBounds(330, 310, 150, 150);
 		fondo.add(btnEliminarAsi);
-		
-		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuPrincipal";
-				add(menuPrincipal());
-				repaint();
-				revalidate();
-			}
+
+		// Botón Volver
+		RoundButtonRojoBorde btnVolver = new RoundButtonRojoBorde("Volver");
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setBackground(new Color(255, 0, 0));
+		btnVolver.setBounds(650, 690, 100, 30);
+		btnVolver.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "menuPrincipal";
+			add(menuPrincipal());
+			repaint();
+			revalidate();
 		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(450, 514, 89, 23);
-		fondo.add(Volver);
-		
-		
-		JLabel fondoMenu = new JLabel("");
-		ImageIcon imageFondo = new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
+		fondo.add(btnVolver);
+
+		// Fondo de imagen decorativa (último para estar atrás)
+		JLabel fondoMenu = new JLabel();
+		ImageIcon imageFondo = new ImageIcon(
+			new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+		);
 		fondoMenu.setIcon(imageFondo);
-		fondoMenu.setBounds(0, 0, 584, 561);
+		fondoMenu.setBounds(-10, -25, 800, 800);
 		fondo.add(fondoMenu);
+
 		this.add(fondo);
 		return fondo;
 	}
+
 	
 	public JPanel crearAlumno() {
 		cvbd = new ControlVistaBD(this);
