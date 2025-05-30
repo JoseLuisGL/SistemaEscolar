@@ -1,5 +1,8 @@
 package Vista;
 import java.awt.BorderLayout;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -279,117 +282,118 @@ public class Ventana extends JFrame{
 
 	
 	public JPanel menuPrincipal() {
-		anterior = actual;
-		actual = "menuPrincipal";
+	    anterior = actual;
+	    actual = "menuPrincipal";
 
-		// Panel principal
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(128, 128, 128));
-		fondo.setBounds(0, 0, 800, 800);
-		fondo.setLayout(null);
-		getContentPane().add(fondo);
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(166, 153, 103));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
 
-		// Título centrado
-		JLabel Titulo = new JLabel("Bienvenido Admin", SwingConstants.CENTER);
-		Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		Titulo.setForeground(Color.BLACK);
-		Titulo.setBounds(200, 40, 400, 50);
-		fondo.add(Titulo);
+	    // Título centrado
+	    JLabel Titulo = new JLabel("Bienvenido Admin", SwingConstants.CENTER);
+	    Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+	    Titulo.setForeground(Color.BLACK);
+	    Titulo.setBounds(200, 40, 400, 50);
+	    fondo.add(Titulo);
 
-		// --------------------- Botón Alumnos ---------------------
-		JLabel tag1 = new JLabel(new ImageIcon(new ImageIcon("img/alumnos.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-		tag1.setBounds(100, 130, 80, 80);
-		fondo.add(tag1);
+	    // --------------------- Botón Alumnos ---------------------
+	    JLabel tag1 = new JLabel(new ImageIcon(new ImageIcon("img/alumnos.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+	    tag1.setBounds(100, 130, 80, 80);
+	    fondo.add(tag1);
 
-		RoundButton botonAlumnos = new RoundButton("Alumnos");
-		botonAlumnos.setBounds(200, 130, 500, 80);
-		botonAlumnos.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "menuAlumnos";
-			add(menuAlumnos());
-			repaint();
-			revalidate();
-		});
-		fondo.add(botonAlumnos);
+	    RoundButton botonAlumnos = new RoundButton("Alumnos");
+	    botonAlumnos.setBounds(200, 130, 500, 80);
+	    botonAlumnos.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuAlumnos";
+	        add(menuAlumnos());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(botonAlumnos);
 
-		// --------------------- Botón Docentes ---------------------
-		JLabel tag2 = new JLabel(new ImageIcon(new ImageIcon("img/docentes.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-		tag2.setBounds(100, 230, 80, 80);
-		fondo.add(tag2);
+	    // --------------------- Botón Docentes ---------------------
+	    JLabel tag2 = new JLabel(new ImageIcon(new ImageIcon("img/docentes.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+	    tag2.setBounds(100, 230, 80, 80);
+	    fondo.add(tag2);
 
-		RoundButton botonDocentes = new RoundButton("Docentes");
-		botonDocentes.setBounds(200, 230, 500, 80);
-		botonDocentes.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "menuDocentes";
-			add(menuDocentes());
-			repaint();
-			revalidate();
-		});
-		fondo.add(botonDocentes);
+	    RoundButton botonDocentes = new RoundButton("Docentes");
+	    botonDocentes.setBounds(200, 230, 500, 80);
+	    botonDocentes.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuDocentes";
+	        add(menuDocentes());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(botonDocentes);
 
-		// --------------------- Botón Grupos ---------------------
-		JLabel tag3 = new JLabel(new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-		tag3.setBounds(100, 330, 80, 80);
-		fondo.add(tag3);
+	    // --------------------- Botón Grupos ---------------------
+	    JLabel tag3 = new JLabel(new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+	    tag3.setBounds(100, 330, 80, 80);
+	    fondo.add(tag3);
 
-		RoundButton botonGrupos = new RoundButton("Grupos");
-		botonGrupos.setBounds(200, 330, 500, 80);
-		botonGrupos.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "menuGrupos";
-			add(menuGrupos());
-			repaint();
-			revalidate();
-		});
-		fondo.add(botonGrupos);
+	    RoundButton botonGrupos = new RoundButton("Grupos");
+	    botonGrupos.setBounds(200, 330, 500, 80);
+	    botonGrupos.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuGrupos";
+	        add(menuGrupos());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(botonGrupos);
 
-		// --------------------- Botón Asignaturas ---------------------
-		JLabel tag4 = new JLabel(new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-		tag4.setBounds(100, 430, 80, 80);
-		fondo.add(tag4);
+	    // --------------------- Botón Asignaturas ---------------------
+	    JLabel tag4 = new JLabel(new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
+	    tag4.setBounds(100, 430, 80, 80);
+	    fondo.add(tag4);
 
-		RoundButton botonAsignaturas = new RoundButton("Asignaturas");
-		botonAsignaturas.setBounds(200, 430, 500, 80);
-		botonAsignaturas.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "menuAsignaturas";
-			add(menuAsignaturas());
-			repaint();
-			revalidate();
-		});
-		fondo.add(botonAsignaturas);
+	    RoundButton botonAsignaturas = new RoundButton("Asignaturas");
+	    botonAsignaturas.setBounds(200, 430, 500, 80);
+	    botonAsignaturas.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuAsignaturas";
+	        add(menuAsignaturas());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(botonAsignaturas);
 
-		// --------------------- Botón Cerrar Sesión ---------------------
-		RoundButtonRojo btnCerrarSesion = new RoundButtonRojo("Cerrar Sesión");
-		btnCerrarSesion.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnCerrarSesion.setForeground(Color.WHITE);
-		btnCerrarSesion.setBackground(Color.RED);
-		btnCerrarSesion.setBounds(600, 670, 130, 30);
-		btnCerrarSesion.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "login";
-			add(login());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnCerrarSesion);
+	    // --------------------- Botón Cerrar Sesión ---------------------
+	    RoundButtonRojo btnCerrarSesion = new RoundButtonRojo("Cerrar Sesión");
+	    btnCerrarSesion.setFont(new Font("SansSerif", Font.BOLD, 12));
+	    btnCerrarSesion.setForeground(Color.WHITE);
+	    btnCerrarSesion.setBackground(Color.RED);
+	    btnCerrarSesion.setBounds(600, 680, 130, 30);
+	    btnCerrarSesion.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "login";
+	        add(login());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnCerrarSesion);
 
-		// --------------------- Imagen de fondo decorativa ---------------------
-		JLabel fondomenuPrincipal = new JLabel(new ImageIcon(new ImageIcon("img/menu.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH)));
-		fondomenuPrincipal.setBounds(-10, -25, 800, 800);
-		fondo.add(fondomenuPrincipal);
+	    // --------------------- Imagen de fondo decorativa con esquinas redondeadas ---------------------
+	    RoundedImageLabel fondomenuPrincipal = new RoundedImageLabel(30); // 30px de radio
+	    fondomenuPrincipal.setIcon(new ImageIcon(new ImageIcon("img/uacbsfondo.png").getImage().getScaledInstance(800, 550, Image.SCALE_SMOOTH)));
+	    fondomenuPrincipal.setBounds(40, 100, 700, 550);
+	    fondo.add(fondomenuPrincipal);
 
-		// Asegura que fondo sea visible al frente
-		fondo.setComponentZOrder(fondomenuPrincipal, fondo.getComponentCount() - 1);
+	    // Asegura que fondo sea visible al frente
+	    fondo.setComponentZOrder(fondomenuPrincipal, fondo.getComponentCount() - 1);
 
-		this.add(fondo);
-		return fondo;
+	    this.add(fondo);
+	    return fondo;
 	}
 
 
@@ -3675,359 +3679,355 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel credencialAlumno() {
-		anterior = actual;
-		actual = "credencialAlumno";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Alumno - Generar Credencial");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 30));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 55, 480, 449);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		BD bd = new BD();
-		JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "credencialAlumno";
+	    
+	    // Panel principal con nuevo tamaño
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Nuevo tamaño 800x800
+	    getContentPane().add(fondo);
+	    fondo.setLayout(null);
+	    
+	    // Título del panel
+	    JLabel titulo = new JLabel("Alumno - Generar Credencial");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 32));  // Tamaño de fuente aumentado
+	    titulo.setBounds(150, 20, 500, 50);  // Ajuste de posición y tamaño
+	    fondo.add(titulo);
+	    
+	    // Panel para el contenido principal
+	    JPanel contenido = new JPanel();
+	    contenido.setBackground(new Color(0, 128, 64));
+	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    fondo.add(contenido);
+	    contenido.setLayout(null);
+	    
+	    // Conexión con la base de datos para obtener IDs de alumnos
+	    BD bd = new BD();
+	    JComboBox<Integer> comboBoxID = new JComboBox<>();
 	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAlumnos().toArray(new Integer[0])));
-	    comboBoxID.setBounds(40, 5, 200, 20);
-	    fondo2.add(comboBoxID);
-		
-		
+	    comboBoxID.setBounds(50, 20, 200, 30);  // Ajuste de tamaño y posición
+	    comboBoxID.setFont(new Font("SansSerif", Font.PLAIN, 16));  // Fuente más grande
+	    contenido.add(comboBoxID);
+	    
+	    // Campos de texto para los datos del alumno (ocultos, solo para PDF)
+	    JTextField datos_nombre = new JTextField();
+	    JTextField datos_apePaterno = new JTextField();            
+	    JTextField datos_apeMaterno = new JTextField();
+	    JTextField datos_correo = new JTextField();
+	    JTextField datos_direccion = new JTextField();
+	    
+	    // Botón para volver al menú anterior
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAlumnos";
+	            add(menuAlumnos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(Color.WHITE);
+	    volverBtn.setBackground(Color.RED);
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente más grande
+	    volverBtn.setBounds(200, 700, 150, 50);  // Ajuste de posición y tamaño
+	    fondo.add(volverBtn);
+	    
+	    // Botón para descargar la credencial
+	    JButton descargarBtn = new JButton("Descargar");
+	    descargarBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) comboBoxID.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
 
+	                while (rs.next()) {
+	                    int id = rs.getInt("idAlumnos");
+	                    
+	                    if(idConsultar == id) {
+	                        String nombre = rs.getString("Nombre");
+	                        String correo = rs.getString("Correo");
+	                        String apellidoP = rs.getString("Apellido Paterno");
+	                        String apellidoM = rs.getString("Apellido Materno");
+	                        String direccion = rs.getString("Direccion");
+	                        
+	                        datos_nombre.setText(nombre);
+	                        datos_apePaterno.setText(apellidoP);
+	                        datos_apeMaterno.setText(apellidoM);
+	                        datos_correo.setText(correo);
+	                        datos_direccion.setText(direccion);          
+	                        cambio++;
+	                    }
+	                }
 
-		JTextField datos_nombre = new JTextField();
-        JTextField datos_apePaterno = new JTextField();			
-        JTextField datos_apeMaterno = new JTextField();
-        JTextField datos_correo = new JTextField();
-        JTextField datos_direccion = new JTextField();
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAlumnos";
-				add(menuAlumnos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("Descargar");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	int idConsultar = (int) comboBoxID.getSelectedItem();
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	            }
+	            
+	            if(cambio == 0) {
+	                JOptionPane.showMessageDialog(null, "ID de alumno inválido. Favor de intentar de nuevo");
+	            }
+	            cambio = 0;
+	            
+	            try {
+	                // Crear el archivo PDF
+	                PdfWriter writer = new PdfWriter(new FileOutputStream("credencialAlumno.pdf"));
+	                com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+	                com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idAlumnos");
-			           
-			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("Nombre");
-			        		String correo = rs.getString("Correo");
-				            String apellidoP = rs.getString("Apellido Paterno");
-				            String apellidoM = rs.getString("Apellido Materno");
-				            String direccion = rs.getString("Direccion");
-				            
-				           
-				            datos_nombre.setText(nombre);
-				            datos_apePaterno.setText(apellidoP);
-				            datos_apeMaterno.setText(apellidoM);
-				            datos_correo.setText(correo);
-				            datos_direccion.setText(direccion);		  
-				            cambio++;
-			        	}
-			        }
+	                // Agregar las imágenes al documento
+	                com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialF.png"));
+	                com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialT.png"));
+	                document.add(imagen1);
+	                document.add(imagen2);
+	                
+	                // Crear una capa para el texto
+	                PdfPage page = pdfDoc.addNewPage();
+	                com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);     
+	                PdfCanvas canvas = new PdfCanvas(page);
+	                canvas.beginLayer(textLayer);
+	                canvas.endLayer();
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("credencialAlumno.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+	                // Agregar el texto a la capa de texto
+	                PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
+	                PdfFont defaultFont = PdfFontFactory.createFont();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
+	                textLayer.setOn(true);
 
-		            
-		            // Agregar las imágenes al documento
-		            com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialF.png"));
-		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialT.png"));
-		            document.add(imagen1);
-		            document.add(imagen2);
-		            
-		            // Crear una capa para el texto
-		            PdfPage page = pdfDoc.addNewPage();
-		            com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);	  
-		            PdfCanvas canvas = new PdfCanvas(page);
-		            canvas.beginLayer(textLayer);
-		            canvas.endLayer();
+	                // Cerrar el documento
+	                document.close();
 
-		            
-		            // Agregar el texto a la capa de texto
-		            PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
-		            PdfFont defaultFont = PdfFontFactory.createFont();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
-		            textLayer.setOn(true);
-
-		          
-
-		            // Cerrar el documento
-		            document.close();
-
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } catch (MalformedURLException e1) {
-		            e1.printStackTrace();
-		        } catch (IOException e1) {
-		            e1.printStackTrace();
-		        }
-		    }
-		});
-
-
-
-
-
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(342, 514, 95, 36);
-		fondo.add(Descargar);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(40, 30, 400, 200);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/credencialT.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 230, 400, 200);
-		fondo2.add(imagen2);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	                JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+	            } catch (FileNotFoundException ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+	            } catch (MalformedURLException e1) {
+	                e1.printStackTrace();
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
+	    descargarBtn.setForeground(Color.WHITE);
+	    descargarBtn.setBackground(new Color(0, 128, 255));
+	    descargarBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente más grande
+	    descargarBtn.setBounds(450, 700, 150, 50);  // Ajuste de posición y tamaño
+	    fondo.add(descargarBtn);
+	    
+	    // Imagen frontal de la credencial
+	    JLabel imagenFrontal = new JLabel("");
+	    ImageIcon imageIconFrontal = new ImageIcon(new ImageIcon("img/credencialF.png").getImage().getScaledInstance(500, 250, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagenFrontal.setIcon(imageIconFrontal);
+	    imagenFrontal.setBounds(50, 70, 500, 250);  // Ajuste de posición
+	    contenido.add(imagenFrontal);
+	    
+	    // Imagen trasera de la credencial
+	    JLabel imagenTrasera = new JLabel("");
+	    ImageIcon imageIconTrasera = new ImageIcon(new ImageIcon("img/credencialT.png").getImage().getScaledInstance(500, 250, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagenTrasera.setIcon(imageIconTrasera);
+	    imagenTrasera.setBounds(50, 330, 500, 250);  // Ajuste de posición
+	    contenido.add(imagenTrasera);
+	    
+	    // Panel decorativo superior
+	    JPanel panelSuperior = new JPanel();
+	    panelSuperior.setBackground(new Color(225, 225, 225));
+	    panelSuperior.setBounds(0, 0, 800, 20);  // Ajuste de tamaño
+	    fondo.add(panelSuperior);
+	    
+	    this.add(fondo);
+	    return fondo;
 	}
-
+	
 	public JPanel credencialDocente() {
-		anterior = actual;
-		actual = "credencialDocente";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Docente - Generar Credencial");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 30));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 55, 480, 449);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		BD bd = new BD();
-		JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "credencialDocente";
+	    
+	    // Panel principal con nuevo tamaño
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Nuevo tamaño 800x800
+	    getContentPane().add(fondo);
+	    fondo.setLayout(null);
+	    
+	    // Título del panel
+	    JLabel titulo = new JLabel("Docente - Generar Credencial");
+	    titulo.setForeground(Color.BLACK);
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 32));  // Tamaño de fuente aumentado
+	    titulo.setBounds(150, 20, 500, 50);  // Ajuste de posición y tamaño
+	    fondo.add(titulo);
+	    
+	    // Panel para el contenido principal
+	    JPanel contenido = new JPanel();
+	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    fondo.add(contenido);
+	    contenido.setLayout(null);
+	    
+	    // Conexión con la base de datos para obtener IDs de docentes
+	    BD bd = new BD();
+	    JComboBox<Integer> comboBoxID = new JComboBox<>();
 	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsDocente().toArray(new Integer[0])));
-	    comboBoxID.setBounds(40, 5, 200, 20);
-	    fondo2.add(comboBoxID);
-		
-		
+	    comboBoxID.setBounds(50, 20, 200, 30);  // Ajuste de tamaño y posición
+	    comboBoxID.setFont(new Font("SansSerif", Font.PLAIN, 16));  // Fuente más grande
+	    contenido.add(comboBoxID);
+	    
+	    // Campos de texto para los datos del docente (ocultos, solo para PDF)
+	    JTextField datos_nombre = new JTextField();
+	    JTextField datos_apePaterno = new JTextField();            
+	    JTextField datos_apeMaterno = new JTextField();
+	    JTextField datos_correo = new JTextField();
+	    JTextField datos_direccion = new JTextField();
+	    
+	    // Botón para volver al menú anterior
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuDocentes";
+	            add(menuDocentes());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(Color.WHITE);
+	    volverBtn.setBackground(Color.RED);
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    volverBtn.setBounds(200, 700, 150, 50);  // Ajuste de posición y tamaño
+	    fondo.add(volverBtn);
+	    
+	    // Botón para descargar la credencial
+	    JButton descargarBtn = new JButton("Descargar");
+	    descargarBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) comboBoxID.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
 
+	                while (rs.next()) {
+	                    int id = rs.getInt("idDocente");
+	                    
+	                    if(idConsultar == id) {
+	                        String nombre = rs.getString("Nombre");
+	                        String correo = rs.getString("Correo");
+	                        String apellidoP = rs.getString("Apellido Paterno");
+	                        String apellidoM = rs.getString("Apellido Materno");
+	                        String direccion = rs.getString("Direccion");
+	                        
+	                        datos_nombre.setText(nombre);
+	                        datos_apePaterno.setText(apellidoP);
+	                        datos_apeMaterno.setText(apellidoM);
+	                        datos_correo.setText(correo);
+	                        datos_direccion.setText(direccion);          
+	                        cambio++;
+	                    }
+	                }
 
-		JTextField datos_nombre = new JTextField();
-        JTextField datos_apePaterno = new JTextField();			
-        JTextField datos_apeMaterno = new JTextField();
-        JTextField datos_correo = new JTextField();
-        JTextField datos_direccion = new JTextField();
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuDocentes";
-				add(menuDocentes());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("Descargar");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	int idConsultar = (int) comboBoxID.getSelectedItem();
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	            }
+	            
+	            if(cambio == 0) {
+	                JOptionPane.showMessageDialog(null, "ID de docente inválido. Favor de intentar de nuevo");
+	            }
+	            cambio = 0;
+	            
+	            try {
+	                // Crear el archivo PDF para docente
+	                PdfWriter writer = new PdfWriter(new FileOutputStream("credencialDocente.pdf"));
+	                com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+	                com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idDocente");
-			           
-			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("Nombre");
-			        		String correo = rs.getString("Correo");
-				            String apellidoP = rs.getString("Apellido Paterno");
-				            String apellidoM = rs.getString("Apellido Materno");
-				            String direccion = rs.getString("Direccion");
-				            
-				           
-				            datos_nombre.setText(nombre);
-				            datos_apePaterno.setText(apellidoP);
-				            datos_apeMaterno.setText(apellidoM);
-				            datos_correo.setText(correo);
-				            datos_direccion.setText(direccion);		  
-				            cambio++;
-			        	}
-			        }
+	                // Agregar las imágenes específicas para docente
+	                com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDF.png"));
+	                com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDT.png"));
+	                document.add(imagen1);
+	                document.add(imagen2);
+	                
+	                // Crear una capa para el texto
+	                PdfPage page = pdfDoc.addNewPage();
+	                com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);     
+	                PdfCanvas canvas = new PdfCanvas(page);
+	                canvas.beginLayer(textLayer);
+	                canvas.endLayer();
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("credencialDocente.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+	                // Agregar el texto a la capa de texto (posiciones ajustadas)
+	                PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
+	                PdfFont defaultFont = PdfFontFactory.createFont();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
+	                textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
+	                textLayer.setOn(true);
 
-		            
-		            // Agregar las imágenes al documento
-		            com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDF.png"));
-		            com.itextpdf.layout.element.Image imagen2 = new com.itextpdf.layout.element.Image(ImageDataFactory.create("img/credencialDT.png"));
-		            document.add(imagen1);
-		            document.add(imagen2);
-		            
-		            // Crear una capa para el texto
-		            PdfPage page = pdfDoc.addNewPage();
-		            com.itextpdf.kernel.pdf.layer.PdfLayer textLayer = new PdfLayer("Text Layer", pdfDoc);	  
-		            PdfCanvas canvas = new PdfCanvas(page);
-		            canvas.beginLayer(textLayer);
-		            canvas.endLayer();
+	                // Cerrar el documento
+	                document.close();
 
-		            
-		            // Agregar el texto a la capa de texto
-		            PdfCanvas textCanvas = new PdfCanvas(pdfDoc.getPage(1));
-		            PdfFont defaultFont = PdfFontFactory.createFont();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 750).showText(datos_nombre.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 710).showText(datos_apePaterno.getText()+" "+datos_apeMaterno.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 662).showText(datos_correo.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 12).moveText(145, 621).showText(datos_direccion.getText()).endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 502).showText("2023").endText();
-		            textCanvas.beginText().setFontAndSize(defaultFont, 14).moveText(345, 474).showText("2024").endText();
-		            textLayer.setOn(true);
-
-		          
-
-		            // Cerrar el documento
-		            document.close();
-
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } catch (MalformedURLException e1) {
-		            e1.printStackTrace();
-		        } catch (IOException e1) {
-		            e1.printStackTrace();
-		        }
-		    }
-		});
-
-
-
-
-
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(342, 514, 95, 36);
-		fondo.add(Descargar);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/credencialDF.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(40, 30, 400, 200);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/credencialDT.png").getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 230, 400, 200);
-		fondo2.add(imagen2);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	                JOptionPane.showMessageDialog(null, "Credencial de docente generada correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+	            } catch (FileNotFoundException ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar la credencial.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+	            } catch (MalformedURLException e1) {
+	                e1.printStackTrace();
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
+	    descargarBtn.setForeground(Color.WHITE);
+	    descargarBtn.setBackground(new Color(0, 128, 255));
+	    descargarBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    descargarBtn.setBounds(450, 700, 150, 50);
+	    fondo.add(descargarBtn);
+	    
+	    // Imagen frontal de la credencial docente
+	    JLabel imagenFrontal = new JLabel("");
+	    ImageIcon imageIconFrontal = new ImageIcon(new ImageIcon("img/credencialDF.png").getImage().getScaledInstance(500, 250, Image.SCALE_SMOOTH));
+	    imagenFrontal.setIcon(imageIconFrontal);
+	    imagenFrontal.setBounds(50, 70, 500, 250);
+	    contenido.add(imagenFrontal);
+	    
+	    // Imagen trasera de la credencial docente
+	    JLabel imagenTrasera = new JLabel("");
+	    ImageIcon imageIconTrasera = new ImageIcon(new ImageIcon("img/credencialDT.png").getImage().getScaledInstance(500, 250, Image.SCALE_SMOOTH));
+	    imagenTrasera.setIcon(imageIconTrasera);
+	    imagenTrasera.setBounds(50, 330, 500, 250);
+	    contenido.add(imagenTrasera);
+	    
+	    // Panel decorativo superior
+	    JPanel panelSuperior = new JPanel();
+	    panelSuperior.setBackground(new Color(225, 225, 225));
+	    panelSuperior.setBounds(0, 0, 800, 20);
+	    fondo.add(panelSuperior);
+	    
+	    this.add(fondo);
+	    return fondo;
 	}
 
 	
@@ -4829,6 +4829,35 @@ public class Ventana extends JFrame{
 	
 	
 	
+	public class RoundedImageLabel extends JLabel {
+	    private int cornerRadius;
+
+	    public RoundedImageLabel(int cornerRadius) {
+	        this.cornerRadius = cornerRadius;
+	        setOpaque(false);
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        Graphics2D g2 = (Graphics2D) g.create();
+	        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	        
+	        // Crear un área de recorte con esquinas redondeadas
+	        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(
+	            0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
+	        g2.setClip(roundedRectangle);
+	        
+	        // Dibujar la imagen
+	        super.paintComponent(g2);
+	        
+	        // Opcional: dibujar un borde
+	        g2.setClip(null);
+	        g2.setColor(new Color(150, 150, 150, 100)); // Color gris semitransparente
+	        g2.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, cornerRadius, cornerRadius);
+	        
+	        g2.dispose();
+	    }
+	}
 }
 
 
