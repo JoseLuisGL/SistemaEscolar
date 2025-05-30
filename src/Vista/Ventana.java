@@ -140,144 +140,194 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel login() {
-		anterior = actual;
-		actual = "login";
+	    anterior = actual;
+	    actual = "login";
 
-		JPanel fondo = new JPanel();
-		fondo.setLayout(null);
-		fondo.setBackground(Color.WHITE);
-		fondo.setBounds(0, 0, 800, 800);
-		getContentPane().add(fondo);
+	    // Variables para control de intentos fallidos
+	    final int[] intentosFallidos = {0};
+	    final int maxIntentos = 3;
+	    final int tiempoBloqueo = 30000; // 30 segundos en milisegundos
 
-		// Panel lateral decorativo
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 0, 200, 800);
-		panel_1.setLayout(null);
-		fondo.add(panel_1);
+	    JPanel fondo = new JPanel();
+	    fondo.setLayout(null);
+	    fondo.setBackground(Color.WHITE);
+	    fondo.setBounds(0, 0, 800, 800);
+	    getContentPane().add(fondo);
 
-		// Imagen decorativa lateral
-		JLabel lblNewLabel = new JLabel();
-		ImageIcon icono4 = new ImageIcon("img/paneldiseño.png");
-		Image imagen4 = icono4.getImage().getScaledInstance(200, 800, Image.SCALE_SMOOTH);
-		lblNewLabel.setIcon(new ImageIcon(imagen4));
-		lblNewLabel.setBounds(0, 0, 200, 800);
-		panel_1.add(lblNewLabel);
+	    // [Resto del código de inicialización de componentes igual...]
+	    // Panel lateral decorativo
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(Color.WHITE);
+	    panel_1.setBounds(0, 0, 200, 800);
+	    panel_1.setLayout(null);
+	    fondo.add(panel_1);
 
-		// Logo centrado superior
-		JLabel lblNewLabel2 = new JLabel();
-		ImageIcon icono5 = new ImageIcon("img/logo.png");
-		Image imagen5 = icono5.getImage().getScaledInstance(400, 120, Image.SCALE_SMOOTH);
-		lblNewLabel2.setIcon(new ImageIcon(imagen5));
-		lblNewLabel2.setBounds(300, 30, 400, 120);
-		fondo.add(lblNewLabel2);
+	    // Imagen decorativa lateral
+	    JLabel lblNewLabel = new JLabel();
+	    ImageIcon icono4 = new ImageIcon("img/paneldiseño.png");
+	    Image imagen4 = icono4.getImage().getScaledInstance(200, 800, Image.SCALE_SMOOTH);
+	    lblNewLabel.setIcon(new ImageIcon(imagen4));
+	    lblNewLabel.setBounds(0, 0, 200, 800);
+	    panel_1.add(lblNewLabel);
 
-		// Títulos
-		JLabel Titulo2 = new JLabel("Accede a tu cuenta");
-		Titulo2.setForeground(Color.BLACK);
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.BOLD, 24));
-		Titulo2.setBounds(350, 170, 300, 30);
-		fondo.add(Titulo2);
+	    // Logo centrado superior
+	    JLabel lblNewLabel2 = new JLabel();
+	    ImageIcon icono5 = new ImageIcon("img/logo.png");
+	    Image imagen5 = icono5.getImage().getScaledInstance(400, 120, Image.SCALE_SMOOTH);
+	    lblNewLabel2.setIcon(new ImageIcon(imagen5));
+	    lblNewLabel2.setBounds(300, 30, 400, 120);
+	    fondo.add(lblNewLabel2);
 
-		// Imagen de perfil
-		JLabel imagen = new JLabel();
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 220, 100, 100);
-		fondo.add(imagen);
+	    // Títulos
+	    JLabel Titulo2 = new JLabel("Accede a tu cuenta");
+	    Titulo2.setForeground(Color.BLACK);
+	    Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
+	    Titulo2.setFont(new Font("SansSerif", Font.BOLD, 24));
+	    Titulo2.setBounds(350, 170, 300, 30);
+	    fondo.add(Titulo2);
 
-		// Campo Usuario
-		JLabel tag1 = new JLabel("Usuario:");
-		tag1.setFont(new Font("SansSerif", Font.BOLD, 16));
-		tag1.setBounds(370, 340, 100, 25);
-		fondo.add(tag1);
+	    // Imagen de perfil
+	    JLabel imagen = new JLabel();
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+	    imagen.setIcon(imageIcon);
+	    imagen.setBounds(450, 220, 100, 100);
+	    fondo.add(imagen);
 
-		JTextField username = new JTextField();
-		username.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		username.setForeground(Color.BLACK);
-		username.setBackground(new Color(198, 209, 218));
-		username.setBounds(370, 370, 260, 35);
-		fondo.add(username);
+	    // Campo Usuario
+	    JLabel tag1 = new JLabel("Usuario:");
+	    tag1.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    tag1.setBounds(370, 340, 100, 25);
+	    fondo.add(tag1);
 
-		// Campo Contraseña
-		JLabel tag2 = new JLabel("Contraseña:");
-		tag2.setFont(new Font("SansSerif", Font.BOLD, 16));
-		tag2.setBounds(370, 420, 100, 25);
-		fondo.add(tag2);
+	    JTextField username = new JTextField();
+	    username.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	    username.setForeground(Color.BLACK);
+	    username.setBackground(new Color(198, 209, 218));
+	    username.setBounds(370, 370, 260, 35);
+	    fondo.add(username);
 
-		JPasswordField password = new JPasswordField();
-		password.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		password.setForeground(Color.BLACK);
-		password.setBackground(new Color(198, 209, 218));
-		password.setBounds(370, 450, 260, 35);
-		fondo.add(password);
+	    // Campo Contraseña
+	    JLabel tag2 = new JLabel("Contraseña:");
+	    tag2.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    tag2.setBounds(370, 420, 100, 25);
+	    fondo.add(tag2);
 
-		// Botones
-		RoundButtonRojo Cancelar = new RoundButtonRojo("Cancelar");
-		Cancelar.setFont(new Font("SansSerif", Font.BOLD, 16));
-		Cancelar.setBackground(new Color(255, 0, 0));
-		Cancelar.setForeground(Color.WHITE);
-		Cancelar.setBounds(370, 510, 120, 35);
-		Cancelar.addActionListener(e -> {
-			username.setText("");
-			password.setText("");
-		});
-		fondo.add(Cancelar);
+	    JPasswordField password = new JPasswordField();
+	    password.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	    password.setForeground(Color.BLACK);
+	    password.setBackground(new Color(198, 209, 218));
+	    password.setBounds(370, 450, 260, 35);
+	    fondo.add(password);
 
-		RoundButtonVerde btnAccess = new RoundButtonVerde("Ingresar");
-		btnAccess.setFont(new Font("SansSerif", Font.BOLD, 16));
-		btnAccess.setBackground(new Color(0, 153, 51));
-		btnAccess.setForeground(Color.WHITE);
-		btnAccess.setBounds(510, 510, 120, 35);
-		btnAccess.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String usuario = username.getText();
-				char[] passwordChars = password.getPassword();
-				String password = new String(passwordChars);
-				Arrays.fill(passwordChars, ' ');
+	    // Etiqueta para mensajes de bloqueo
+	    JLabel mensajeBloqueo = new JLabel("");
+	    mensajeBloqueo.setForeground(Color.RED);
+	    mensajeBloqueo.setHorizontalAlignment(SwingConstants.CENTER);
+	    mensajeBloqueo.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    mensajeBloqueo.setBounds(350, 550, 300, 30);
+	    fondo.add(mensajeBloqueo);
 
-				BD bd = new BD();
-				try {
-					Connection cn = bd.Conectar();
-					Statement stm = cn.createStatement();
-					ResultSet rs = stm.executeQuery("SELECT * FROM admin");
+	    // Botones
+	    RoundButtonRojo Cancelar = new RoundButtonRojo("Cancelar");
+	    Cancelar.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    Cancelar.setBackground(new Color(255, 0, 0));
+	    Cancelar.setForeground(Color.WHITE);
+	    Cancelar.setBounds(370, 510, 120, 35);
+	    Cancelar.addActionListener(e -> {
+	        username.setText("");
+	        password.setText("");
+	    });
+	    fondo.add(Cancelar);
 
-					while (rs.next()) {
-						String nombre = rs.getString("Nombre");
-						String pass = rs.getString("Contrasena");
+	    RoundButtonVerde btnAccess = new RoundButtonVerde("Ingresar");
+	    btnAccess.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    btnAccess.setBackground(new Color(0, 153, 51));
+	    btnAccess.setForeground(Color.WHITE);
+	    btnAccess.setBounds(510, 510, 120, 35);
+	    btnAccess.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            // Si los campos están desactivados (bloqueados), no hacer nada
+	            if (!username.isEnabled()) {
+	                return;
+	            }
 
-						if (usuario.equals(nombre) && password.equals(pass)) {
-							JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienvenido " + nombre + "!");
-							remove(fondo);
-							anterior = actual;
-							actual = "menuPrincipal";
-							add(menuPrincipal());
-							repaint();
-							return;
-						}
-					}
+	            String usuario = username.getText();
+	            char[] passwordChars = password.getPassword();
+	            String pass = new String(passwordChars);
+	            Arrays.fill(passwordChars, ' ');
 
-					JOptionPane.showMessageDialog(null, "Datos incorrectos. Intente de nuevo.");
-					rs.close();
-					stm.close();
-					cn.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		fondo.add(btnAccess);
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM admin");
 
-		// Imagen de fondo decorativa (opcional si no interfiere)
-		JLabel imagenfondo = new JLabel();
-		ImageIcon fondoIcon = new ImageIcon(new ImageIcon("img/fondo.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH));
-		imagenfondo.setIcon(fondoIcon);
-		imagenfondo.setBounds(0, 0, 800, 800);
-		fondo.add(imagenfondo);
+	                boolean credencialesCorrectas = false;
+	                while (rs.next()) {
+	                    String nombre = rs.getString("Nombre");
+	                    String contrasena = rs.getString("Contrasena");
 
-		this.add(fondo);
-		return fondo;
+	                    if (usuario.equals(nombre) && pass.equals(contrasena)) {
+	                        credencialesCorrectas = true;
+	                        JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienvenido " + nombre + "!");
+	                        remove(fondo);
+	                        anterior = actual;
+	                        actual = "menuPrincipal";
+	                        add(menuPrincipal());
+	                        repaint();
+	                        // Reiniciar contador de intentos al éxito
+	                        intentosFallidos[0] = 0;
+	                        break;
+	                    }
+	                }
+
+	                if (!credencialesCorrectas) {
+	                    intentosFallidos[0]++;
+	                    if (intentosFallidos[0] >= maxIntentos) {
+	                        // Bloquear campos
+	                        username.setEnabled(false);
+	                        password.setEnabled(false);
+	                        btnAccess.setEnabled(false);
+	                        mensajeBloqueo.setText("Demasiados intentos. Espere 30 segundos.");
+	                        
+	                        // Temporizador para reactivar campos
+	                        Timer timer = new Timer(tiempoBloqueo, ev -> {
+	                            username.setEnabled(true);
+	                            password.setEnabled(true);
+	                            btnAccess.setEnabled(true);
+	                            mensajeBloqueo.setText("");
+	                            username.setText("");
+	                            password.setText("");
+	                            intentosFallidos[0] = 0; // Reiniciar contador
+	                        });
+	                        timer.setRepeats(false);
+	                        timer.start();
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, 
+	                            "Datos incorrectos. Intente de nuevo. " + 
+	                            (maxIntentos - intentosFallidos[0]) + " intentos restantes.");
+	                    }
+	                }
+	                
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
+	    fondo.add(btnAccess);
+
+	    // Imagen de fondo decorativa (opcional si no interfiere)
+	    JLabel imagenfondo = new JLabel();
+	    ImageIcon fondoIcon = new ImageIcon(new ImageIcon("img/fondo.png").getImage().getScaledInstance(800, 800, Image.SCALE_SMOOTH));
+	    imagenfondo.setIcon(fondoIcon);
+	    imagenfondo.setBounds(0, 0, 800, 800);
+	    fondo.add(imagenfondo);
+
+	    this.add(fondo);
+	    return fondo;
 	}
 
 	
