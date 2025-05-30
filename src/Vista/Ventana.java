@@ -64,6 +64,15 @@ import com.itextpdf.layout.property.VerticalAlignment;
 import com.mysql.jdbc.PreparedStatement;
 import javax.swing.text.AbstractDocument;
 import java.util.regex.Matcher;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.kernel.colors.DeviceRgb;
+import java.awt.Dimension;
 
 import Controlador.ControlVistaBD;
 import Modelo.BD;	
@@ -113,6 +122,7 @@ public class Ventana extends JFrame{
 	private JButton button3;
 	private JTable table4;
 	private JButton button4;
+	
 
 	public Ventana() {
 		cvbd = new ControlVistaBD(this);
@@ -903,3044 +913,2765 @@ public class Ventana extends JFrame{
 
 	
 	public JPanel crearAlumno() {
-		cvbd = new ControlVistaBD(this);
-		anterior = actual;
-		actual = "crearAlumno";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Alumno - Crear");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
-		Titulo2.setForeground(new Color(255, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 50, 421, 25);
-		fondo.add(Titulo2);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Nombres:");
-		tag1.setBounds(25, 11, 90, 25);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		
-		JLabel tag2 = new JLabel("Apellido Paterno:");
-		tag2.setBounds(25, 62, 150, 25);
-		fondo2.add(tag2);
-		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBackground(Color.WHITE);
-		
-		JLabel tagam = new JLabel("Apellido Materno:");
-		tagam.setBounds(250, 62, 150, 25);
-		fondo2.add(tagam);
-		tagam.setHorizontalAlignment(SwingConstants.LEFT);
-		tagam.setForeground(new Color(0, 0, 0));
-		tagam.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tagam.setBackground(Color.WHITE);
-		
-		JLabel tag3 = new JLabel("Fecha de nacimiento:");
-		tag3.setBounds(25, 112, 169, 25);
-		fondo2.add(tag3);
-		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBackground(Color.WHITE);
-		
-		JLabel tag4 = new JLabel("Correo electronico:");
-		tag4.setBounds(25, 170, 169, 25);
-		fondo2.add(tag4);
-		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBackground(Color.WHITE);
-		
-		JLabel tag7 = new JLabel("Grado:");
-		tag7.setBounds(25, 333, 90, 25);
-		fondo2.add(tag7);
-		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(0, 0, 0));
-		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag7.setBackground(Color.WHITE);
-		
-		JLabel tag5 = new JLabel("Teléfono:");
-		tag5.setBounds(25, 221, 90, 25);
-		fondo2.add(tag5);
-		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBackground(Color.WHITE);
-		
-		JLabel tag6 = new JLabel("Foto (Opcional):");
-		tag6.setBounds(25, 277, 130, 25);
-		fondo2.add(tag6);
-		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBackground(Color.WHITE);
-		
-		JLabel direccion = new JLabel("Direccion (Opcional):");
-		direccion.setBounds(250, 277, 160, 25);
-		fondo2.add(direccion);
-		direccion.setHorizontalAlignment(SwingConstants.LEFT);
-		direccion.setForeground(new Color(0, 0, 0));
-		direccion.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		direccion.setBackground(Color.WHITE);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBackground(new Color(225,225,225));
-		txtNombre.setBounds(25, 36, 420, 25);
-		fondo2.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		txtApellidoPaterno = new JTextField();
-		txtApellidoPaterno.setColumns(10);
-		txtApellidoPaterno.setBackground(new Color(225,225,225));
-		txtApellidoPaterno.setBounds(25, 86, 150, 25);
-		fondo2.add(txtApellidoPaterno);
-		
-		txtApellidoMaterno = new JTextField();
-		txtApellidoMaterno.setColumns(10);
-		txtApellidoMaterno.setBackground(new Color(225,225,225));
-		txtApellidoMaterno.setBounds(250, 86, 150, 25);
-		fondo2.add(txtApellidoMaterno);
-		
-		
-		dia_nacimiento =new JComboBox<String>();
-		dia_nacimiento.setBounds(25,140,80,20);
-        fondo2.add(dia_nacimiento);
-        for(int i=1;i<32;i++) {
-        	dia_nacimiento.addItem(i);
-        	dia_nacimiento.addItemListener(null);
-        }
-        
-        mes_nacimiento =new JComboBox<String>();
-        mes_nacimiento.setBounds(125,140,80,20);
-        fondo2.add(mes_nacimiento);
-        for(int i=1;i<13;i++) {
-        	mes_nacimiento.addItem(i);
-        	mes_nacimiento.addItemListener(null);
-        }
-        
-        ano_nacimiento =new JComboBox<String>();
-        ano_nacimiento.setBounds(225,140,80,20);
-        fondo2.add(ano_nacimiento);
-        for(int i=2005;i>1899;i--) {
-        	ano_nacimiento.addItem(i);
-        	ano_nacimiento.addItemListener(null);
-        }
-        
-        dia = (int) dia_nacimiento.getSelectedItem();
-        mes = (int) mes_nacimiento.getSelectedItem();
-        ano = (int) ano_nacimiento.getSelectedItem();
-        
-      
-        fecha = LocalDate.of(ano, mes, dia);
-	
-		txtCorreo = new JTextField();
-		txtCorreo.setColumns(10);
-		txtCorreo.setBackground(new Color(225,225,225));
-		txtCorreo.setBounds(25, 195, 420, 25);
-		fondo2.add(txtCorreo);
-		
-		txtTelefono = new JTextField(10);
-		txtTelefono.setColumns(10);
-		txtTelefono.setBackground(new Color(225,225,225));
-		txtTelefono.setBounds(25, 246, 420, 25);
-		
-		
-		AbstractDocument doc = (AbstractDocument) txtTelefono.getDocument();
-		doc.setDocumentFilter(new DocumentFilter() {
-		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
+	    cvbd = new ControlVistaBD(this);
+	    anterior = actual;
+	    actual = "crearAlumno";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Cambiado a 800x800
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+	    
+	    // Título principal
+	    JLabel tituloPrincipal = new JLabel("Alumno - Crear");
+	    tituloPrincipal.setForeground(new Color(0, 0, 0));
+	    tituloPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloPrincipal.setFont(new Font("SansSerif", Font.PLAIN, 40));  // Tamaño de fuente aumentado
+	    tituloPrincipal.setBounds(150, 30, 500, 50);  // Ajustado para 800px
+	    fondo.add(tituloPrincipal);
+	    
+	    // Subtítulo (requerimientos)
+	    JLabel subtitulo = new JLabel("Obligatorio: Llene todos los campos");
+	    subtitulo.setForeground(new Color(255, 0, 0));
+	    subtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 20));
+	    subtitulo.setBounds(150, 80, 500, 30);
+	    fondo.add(subtitulo);
+	    
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 130, 600, 500);  // Ajustado para 800px
+	    panelContenido.setLayout(null);
+	    fondo.add(panelContenido);
+	    
+	    // ========== CAMPOS DEL FORMULARIO ==========
+	    
+	    // Nombres
+	    JLabel lblNombres = new JLabel("Nombres:");
+	    lblNombres.setBounds(50, 30, 150, 30);
+	    lblNombres.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblNombres);
+	    
+	    txtNombre = new JTextField();
+	    txtNombre.setBackground(new Color(225, 225, 225));
+	    txtNombre.setBounds(50, 60, 500, 30);  // Campo más ancho
+	    panelContenido.add(txtNombre);
+	    
+	    // Apellidos
+	    JLabel lblApellidoPaterno = new JLabel("Apellido Paterno:");
+	    lblApellidoPaterno.setBounds(50, 110, 200, 30);
+	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblApellidoPaterno);
+	    
+	    txtApellidoPaterno = new JTextField();
+	    txtApellidoPaterno.setBackground(new Color(225, 225, 225));
+	    txtApellidoPaterno.setBounds(50, 140, 200, 30);
+	    panelContenido.add(txtApellidoPaterno);
+	    
+	    JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
+	    lblApellidoMaterno.setBounds(350, 110, 200, 30);
+	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblApellidoMaterno);
+	    
+	    txtApellidoMaterno = new JTextField();
+	    txtApellidoMaterno.setBackground(new Color(225, 225, 225));
+	    txtApellidoMaterno.setBounds(350, 140, 200, 30);
+	    panelContenido.add(txtApellidoMaterno);
+	    
+	    // Fecha de nacimiento
+	    JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
+	    lblFechaNacimiento.setBounds(50, 190, 200, 30);
+	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblFechaNacimiento);
+	    
+	    dia_nacimiento = new JComboBox<String>();
+	    dia_nacimiento.setBounds(50, 220, 80, 30);  // Aumentado tamaño
+	    panelContenido.add(dia_nacimiento);
+	    for(int i = 1; i < 32; i++) {
+	        dia_nacimiento.addItem(i);
+	    }
+	    
+	    mes_nacimiento = new JComboBox<String>();
+	    mes_nacimiento.setBounds(150, 220, 80, 30);  // Aumentado tamaño
+	    panelContenido.add(mes_nacimiento);
+	    for(int i = 1; i < 13; i++) {
+	        mes_nacimiento.addItem(i);
+	    }
+	    
+	    ano_nacimiento = new JComboBox<String>();
+	    ano_nacimiento.setBounds(250, 220, 100, 30);  // Aumentado tamaño
+	    panelContenido.add(ano_nacimiento);
+	    for(int i = 2005; i > 1899; i--) {
+	        ano_nacimiento.addItem(i);
+	    }
+	    
+	    // Obtener fecha actual seleccionada
+	    dia = (int) dia_nacimiento.getSelectedItem();
+	    mes = (int) mes_nacimiento.getSelectedItem();
+	    ano = (int) ano_nacimiento.getSelectedItem();
+	    fecha = LocalDate.of(ano, mes, dia);
+	    
+	    // Correo electrónico
+	    JLabel lblCorreo = new JLabel("Correo electrónico:");
+	    lblCorreo.setBounds(50, 270, 200, 30);
+	    lblCorreo.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblCorreo);
+	    
+	    txtCorreo = new JTextField();
+	    txtCorreo.setBackground(new Color(225, 225, 225));
+	    txtCorreo.setBounds(50, 300, 500, 30);
+	    panelContenido.add(txtCorreo);
+	    
+	    // Teléfono
+	    JLabel lblTelefono = new JLabel("Teléfono:");
+	    lblTelefono.setBounds(50, 350, 200, 30);
+	    lblTelefono.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblTelefono);
+	    
+	    txtTelefono = new JTextField(10);
+	    txtTelefono.setBackground(new Color(225, 225, 225));
+	    txtTelefono.setBounds(50, 380, 200, 30);
+	    
+	    // Filtro para solo números (10 dígitos)
+	    AbstractDocument doc = (AbstractDocument) txtTelefono.getDocument();
+	    doc.setDocumentFilter(new DocumentFilter() {
+	        private final Pattern pattern = Pattern.compile("\\d{0,10}");
 
-		    @Override
-		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-		        Matcher matcher = pattern.matcher(newText);
-		        if (matcher.matches()) {
-		            super.replace(fb, offset, length, text, attrs);
-		        }
-		    }
-		});
-		fondo2.add(txtTelefono);
-   
-		
-		
-		txtDireccion = new JTextField();
-		txtDireccion.setColumns(10);
-		txtDireccion.setBackground(new Color(225,225,225));
-		txtDireccion.setBounds(250, 303, 160, 23);
-		fondo2.add(txtDireccion);
-		
-		
-		comboBox = new JComboBox();
-		comboBox.setBounds(85, 450, 90, 25);
-		fondo2.getRootPane().add(comboBox);
-		add(comboBox);
-		
-		
-		for(int i=1;i<14;i++) {
-        	comboBox.addItem(i);
-        	comboBox.addItemListener(null);
-        }
-		
-		
-		JButton archivo = new JButton("Subir archivo");
-		archivo.setBackground(new Color(192, 192, 192));
-		archivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 JFileChooser fileChooser = new JFileChooser();
-			        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
-			        fileChooser.setFileFilter(filter);
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+	            String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+	            Matcher matcher = pattern.matcher(newText);
+	            if (matcher.matches()) {
+	                super.replace(fb, offset, length, text, attrs);
+	            }
+	        }
+	    });
+	    panelContenido.add(txtTelefono);
+	    
+	    // Foto (opcional)
+	    JLabel lblFoto = new JLabel("Foto (Opcional):");
+	    lblFoto.setBounds(50, 430, 200, 30);
+	    lblFoto.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblFoto);
+	    
+	    JButton btnSubirArchivo = new JButton("Subir archivo");
+	    btnSubirArchivo.setBackground(new Color(192, 192, 192));
+	    btnSubirArchivo.setBounds(50, 460, 150, 35);  // Aumentado tamaño
+	    btnSubirArchivo.addActionListener(e -> {
+	        JFileChooser fileChooser = new JFileChooser();
+	        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
+	        fileChooser.setFileFilter(filter);
 
-			        int resultado = fileChooser.showOpenDialog(null);
-			        if (resultado == JFileChooser.APPROVE_OPTION) {
-			            File archivoImagen = fileChooser.getSelectedFile();
-			            try {
-			               imagenBytes = Files.readAllBytes(archivoImagen.toPath());
-			                
-			                System.out.println("La imagen se ha guardado en MySQL correctamente.");
-			            } catch (IOException e1) {
-			                e1.printStackTrace();
-			            }
-			        }
-			    
-		            
-		        
-			}
-		});
-		archivo.setBounds(26, 303, 116, 23);
-		fondo2.add(archivo);
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				remove(comboBox);
-				anterior = actual;
-				actual = "menuAlumnos";
-				add(menuAlumnos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 23);
-		fondo.add(Volver);
-		
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setForeground(new Color(255, 255, 255));
-        btnGuardar.setBackground(new Color(0, 128, 255));
-        btnGuardar.setBounds(342, 514, 89, 23);
-		btnGuardar.addActionListener(cvbd);
-		fondo.getRootPane().add(btnGuardar);
-		fondo.add(btnGuardar);
-
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	        int resultado = fileChooser.showOpenDialog(null);
+	        if (resultado == JFileChooser.APPROVE_OPTION) {
+	            File archivoImagen = fileChooser.getSelectedFile();
+	            try {
+	                imagenBytes = Files.readAllBytes(archivoImagen.toPath());
+	                System.out.println("La imagen se ha guardado en MySQL correctamente.");
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
+	    panelContenido.add(btnSubirArchivo);
+	    
+	    // Dirección (opcional)
+	    JLabel lblDireccion = new JLabel("Dirección (Opcional):");
+	    lblDireccion.setBounds(350, 430, 200, 30);
+	    lblDireccion.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblDireccion);
+	    
+	    txtDireccion = new JTextField();
+	    txtDireccion.setBackground(new Color(225, 225, 225));
+	    txtDireccion.setBounds(350, 460, 200, 35);  // Aumentado tamaño
+	    panelContenido.add(txtDireccion);
+	    
+	    // Grado
+	    JLabel lblGrado = new JLabel("Grado:");
+	    lblGrado.setBounds(350, 350, 100, 30);
+	    lblGrado.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblGrado);
+	    
+	    comboBox = new JComboBox();
+	    comboBox.setBounds(350, 380, 100, 35);  // Aumentado tamaño
+	    for(int i = 1; i < 14; i++) {
+	        comboBox.addItem(i);
+	    }
+	    panelContenido.add(comboBox);
+	    
+	    // ========== BOTONES ==========
+	    
+	    // Botón Volver
+	    RoundButtonRojo btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(Color.RED);
+	    btnVolver.setBounds(250, 650, 120, 40);  // Aumentado tamaño y reposicionado
+	    btnVolver.addActionListener(e -> {
+	        remove(fondo);
+	        remove(comboBox);
+	        anterior = actual;
+	        actual = "menuAlumnos";
+	        add(menuAlumnos());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnVolver);
+	    
+	    // Botón Guardar
+	    btnGuardar = new JButton("Guardar");
+	    btnGuardar.setForeground(Color.WHITE);
+	    btnGuardar.setBackground(new Color(0, 128, 255));
+	    btnGuardar.setBounds(450, 650, 120, 40);  // Aumentado tamaño y reposicionado
+	    btnGuardar.addActionListener(cvbd);
+	    fondo.add(btnGuardar);
+	    
+	    // Icono decorativo
+	    JLabel icono = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+	    icono.setIcon(imageIcon);
+	    icono.setBounds(650, 30, 80, 80);  // Reposicionado
+	    fondo.add(icono);
+	    
+	    return fondo;
 	}
 	
 	public JPanel crearDocente() {
-		cvbd = new ControlVistaBD(this);
-		anterior = actual;
-		actual = "crearDocente";
-		
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Docente - Crear");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
-		Titulo2.setForeground(new Color(255, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 50, 421, 25);
-		fondo.add(Titulo2);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Nombres:");
-		tag1.setBounds(25, 11, 90, 25);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		
-		JLabel tag2 = new JLabel("Apellido Paterno:");
-		tag2.setBounds(25, 62, 150, 25);
-		fondo2.add(tag2);
-		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBackground(Color.WHITE);
-		
-		JLabel tagam = new JLabel("Apellido Materno:");
-		tagam.setBounds(250, 62, 150, 25);
-		fondo2.add(tagam);
-		tagam.setHorizontalAlignment(SwingConstants.LEFT);
-		tagam.setForeground(new Color(0, 0, 0));
-		tagam.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tagam.setBackground(Color.WHITE);
-		
-		JLabel tag3 = new JLabel("Fecha de nacimiento:");
-		tag3.setBounds(25, 112, 169, 25);
-		fondo2.add(tag3);
-		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBackground(Color.WHITE);
-		
-		JLabel tag4 = new JLabel("Correo electronico:");
-		tag4.setBounds(25, 170, 169, 25);
-		fondo2.add(tag4);
-		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBackground(Color.WHITE);
-		
-		JLabel tag7 = new JLabel("Grado Academico:");
-		tag7.setBounds(25, 333, 90, 25);
-		fondo2.add(tag7);
-		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(0, 0, 0));
-		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag7.setBackground(Color.WHITE);
-		
-		JLabel tag5 = new JLabel("Teléfono:");
-		tag5.setBounds(25, 221, 90, 25);
-		fondo2.add(tag5);
-		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBackground(Color.WHITE);
-		
-		JLabel tag6 = new JLabel("Foto (Opcional):");
-		tag6.setBounds(25, 277, 130, 25);
-		fondo2.add(tag6);
-		tag6.setHorizontalAlignment(SwingConstants.LEFT);
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBackground(Color.WHITE);
-		
-		JLabel direccion = new JLabel("Direccion (Opcional):");
-		direccion.setBounds(250, 277, 160, 25);
-		fondo2.add(direccion);
-		direccion.setHorizontalAlignment(SwingConstants.LEFT);
-		direccion.setForeground(new Color(0, 0, 0));
-		direccion.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		direccion.setBackground(Color.WHITE);
-		
-		txtNombreD = new JTextField();
-		txtNombreD.setBackground(new Color(225,225,225));
-		txtNombreD.setBounds(25, 36, 420, 25);
-		fondo2.add(txtNombreD);
-		txtNombreD.setColumns(10);
-		
-		txtApellidoPaternoD = new JTextField();
-		txtApellidoPaternoD.setColumns(10);
-		txtApellidoPaternoD.setBackground(new Color(225,225,225));
-		txtApellidoPaternoD.setBounds(25, 86, 150, 25);
-		fondo2.add(txtApellidoPaternoD);
-		
-		txtApellidoMaternoD = new JTextField();
-		txtApellidoMaternoD.setColumns(10);
-		txtApellidoMaternoD.setBackground(new Color(225,225,225));
-		txtApellidoMaternoD.setBounds(250, 86, 150, 25);
-		fondo2.add(txtApellidoMaternoD);
-		
-		
-		dia_nacimientoD =new JComboBox<String>();
-		dia_nacimientoD.setBounds(25,140,80,20);
-        fondo2.add(dia_nacimientoD);
-        for(int i=1;i<32;i++) {
-        	dia_nacimientoD.addItem(i);
-        	dia_nacimientoD.addItemListener(null);
-        }
-        
-        mes_nacimientoD =new JComboBox<String>();
-        mes_nacimientoD.setBounds(125,140,80,20);
-        fondo2.add(mes_nacimientoD);
-        for(int i=1;i<13;i++) {
-        	mes_nacimientoD.addItem(i);
-        	mes_nacimientoD.addItemListener(null);
-        }
-        
-        ano_nacimientoD =new JComboBox<String>();
-        ano_nacimientoD.setBounds(225,140,80,20);
-        fondo2.add(ano_nacimientoD);
-        for(int i=2005;i>1899;i--) {
-        	ano_nacimientoD.addItem(i);
-        	ano_nacimientoD.addItemListener(null);
-        }
-        
-   
-          
-	
-		txtCorreoD = new JTextField();
-		txtCorreoD.setColumns(10);
-		txtCorreoD.setBackground(new Color(225,225,225));
-		txtCorreoD.setBounds(25, 195, 420, 25);
-		fondo2.add(txtCorreoD);
-		
-		txtTelefonoD = new JTextField(10);
-		txtTelefonoD.setColumns(10);
-		txtTelefonoD.setBackground(new Color(225,225,225));
-		txtTelefonoD.setBounds(25, 246, 420, 25);
-		
-		
-		AbstractDocument doc = (AbstractDocument) txtTelefonoD.getDocument();
-		doc.setDocumentFilter(new DocumentFilter() {
-		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
+	    cvbd = new ControlVistaBD(this);
+	    anterior = actual;
+	    actual = "crearDocente";
+	    
+	    // Panel principal (800x800)
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+	    
+	    // Título principal
+	    JLabel tituloPrincipal = new JLabel("Docente - Crear");
+	    tituloPrincipal.setForeground(Color.BLACK);
+	    tituloPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloPrincipal.setFont(new Font("SansSerif", Font.PLAIN, 40));
+	    tituloPrincipal.setBounds(150, 30, 500, 50);
+	    fondo.add(tituloPrincipal);
+	    
+	    // Subtítulo (requerimientos)
+	    JLabel subtitulo = new JLabel("Obligatorio: Llene todos los campos");
+	    subtitulo.setForeground(Color.RED);
+	    subtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 20));
+	    subtitulo.setBounds(150, 80, 500, 30);
+	    fondo.add(subtitulo);
+	    
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 130, 600, 500);
+	    panelContenido.setLayout(null);
+	    fondo.add(panelContenido);
+	    
+	    // ========== CAMPOS DEL FORMULARIO ==========
+	    
+	    // Nombres
+	    JLabel lblNombres = new JLabel("Nombres:");
+	    lblNombres.setBounds(50, 30, 150, 30);
+	    lblNombres.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblNombres);
+	    
+	    txtNombreD = new JTextField();
+	    txtNombreD.setBackground(new Color(225, 225, 225));
+	    txtNombreD.setBounds(50, 60, 500, 30);
+	    panelContenido.add(txtNombreD);
+	    
+	    // Apellidos
+	    JLabel lblApellidoPaterno = new JLabel("Apellido Paterno:");
+	    lblApellidoPaterno.setBounds(50, 110, 200, 30);
+	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblApellidoPaterno);
+	    
+	    txtApellidoPaternoD = new JTextField();
+	    txtApellidoPaternoD.setBackground(new Color(225, 225, 225));
+	    txtApellidoPaternoD.setBounds(50, 140, 200, 30);
+	    panelContenido.add(txtApellidoPaternoD);
+	    
+	    JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
+	    lblApellidoMaterno.setBounds(350, 110, 200, 30);
+	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblApellidoMaterno);
+	    
+	    txtApellidoMaternoD = new JTextField();
+	    txtApellidoMaternoD.setBackground(new Color(225, 225, 225));
+	    txtApellidoMaternoD.setBounds(350, 140, 200, 30);
+	    panelContenido.add(txtApellidoMaternoD);
+	    
+	    // Fecha de nacimiento
+	    JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
+	    lblFechaNacimiento.setBounds(50, 190, 200, 30);
+	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblFechaNacimiento);
+	    
+	    dia_nacimientoD = new JComboBox<String>();
+	    dia_nacimientoD.setBounds(50, 220, 80, 30);
+	    panelContenido.add(dia_nacimientoD);
+	    for(int i = 1; i < 32; i++) {
+	        dia_nacimientoD.addItem(i);
+	    }
+	    
+	    mes_nacimientoD = new JComboBox<String>();
+	    mes_nacimientoD.setBounds(150, 220, 80, 30);
+	    panelContenido.add(mes_nacimientoD);
+	    for(int i = 1; i < 13; i++) {
+	        mes_nacimientoD.addItem(i);
+	    }
+	    
+	    ano_nacimientoD = new JComboBox<String>();
+	    ano_nacimientoD.setBounds(250, 220, 100, 30);
+	    panelContenido.add(ano_nacimientoD);
+	    for(int i = 2005; i > 1899; i--) {
+	        ano_nacimientoD.addItem(i);
+	    }
+	    
+	    // Correo electrónico
+	    JLabel lblCorreo = new JLabel("Correo electrónico:");
+	    lblCorreo.setBounds(50, 270, 200, 30);
+	    lblCorreo.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblCorreo);
+	    
+	    txtCorreoD = new JTextField();
+	    txtCorreoD.setBackground(new Color(225, 225, 225));
+	    txtCorreoD.setBounds(50, 300, 500, 30);
+	    panelContenido.add(txtCorreoD);
+	    
+	    // Teléfono
+	    JLabel lblTelefono = new JLabel("Teléfono:");
+	    lblTelefono.setBounds(50, 350, 200, 30);
+	    lblTelefono.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblTelefono);
+	    
+	    txtTelefonoD = new JTextField(10);
+	    txtTelefonoD.setBackground(new Color(225, 225, 225));
+	    txtTelefonoD.setBounds(50, 380, 200, 30);
+	    
+	    // Filtro para solo números (10 dígitos)
+	    AbstractDocument doc = (AbstractDocument) txtTelefonoD.getDocument();
+	    doc.setDocumentFilter(new DocumentFilter() {
+	        private final Pattern pattern = Pattern.compile("\\d{0,10}");
 
-		    @Override
-		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-		        Matcher matcher = pattern.matcher(newText);
-		        if (matcher.matches()) {
-		            super.replace(fb, offset, length, text, attrs);
-		        }
-		    }
-		});
-		fondo2.add(txtTelefonoD);
-   
-		
-		
-		txtDireccionD = new JTextField();
-		txtDireccionD.setColumns(10);
-		txtDireccionD.setBackground(new Color(225,225,225));
-		txtDireccionD.setBounds(250, 303, 160, 23);
-		fondo2.add(txtDireccionD);
-		
-		
-		comboBoxD = new JComboBox();
-		comboBoxD.setBounds(85, 450, 90, 25);
-		fondo2.getRootPane().add(comboBoxD);
-		add(comboBoxD);
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+	            String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+	            Matcher matcher = pattern.matcher(newText);
+	            if (matcher.matches()) {
+	                super.replace(fb, offset, length, text, attrs);
+	            }
+	        }
+	    });
+	    panelContenido.add(txtTelefonoD);
+	    
+	    // Grado Académico
+	    JLabel lblGradoAcademico = new JLabel("Grado Académico:");
+	    lblGradoAcademico.setBounds(350, 350, 200, 30);
+	    lblGradoAcademico.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblGradoAcademico);
+	    
+	    comboBoxD = new JComboBox();
+	    comboBoxD.setBounds(350, 380, 200, 30);
+	    comboBoxD.addItem("Bachiller");
+	    comboBoxD.addItem("Licenciado");
+	    comboBoxD.addItem("Magíster");
+	    comboBoxD.addItem("Doctorado");
+	    panelContenido.add(comboBoxD);
+	    
+	    // Foto (opcional)
+	    JLabel lblFoto = new JLabel("Foto (Opcional):");
+	    lblFoto.setBounds(50, 430, 200, 30);
+	    lblFoto.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblFoto);
+	    
+	    JButton btnSubirArchivo = new JButton("Subir archivo");
+	    btnSubirArchivo.setBackground(new Color(192, 192, 192));
+	    btnSubirArchivo.setBounds(50, 460, 150, 35);
+	    btnSubirArchivo.addActionListener(e -> {
+	        JFileChooser fileChooser = new JFileChooser();
+	        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
+	        fileChooser.setFileFilter(filter);
 
-        	comboBoxD.addItem("Bachiller");
-        	comboBoxD.addItem("Licenciado");
-        	comboBoxD.addItem("Magíster ");
-        	comboBoxD.addItem("Doctorado ");
-        	
-        	comboBoxD.addItemListener(null);
-	
-		JButton archivo = new JButton("Subir archivo");
-		archivo.setBackground(new Color(192, 192, 192));
-		archivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 JFileChooser fileChooser = new JFileChooser();
-			        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png");
-			        fileChooser.setFileFilter(filter);
-
-			        int resultado = fileChooser.showOpenDialog(null);
-			        if (resultado == JFileChooser.APPROVE_OPTION) {
-			            File archivoImagen = fileChooser.getSelectedFile();
-			            try {
-			               imagenBytesD = Files.readAllBytes(archivoImagen.toPath());
-			                
-			                System.out.println("La imagen se ha guardado en MySQL correctamente.");
-			            } catch (IOException e1) {
-			                e1.printStackTrace();
-			            }
-			        }
-			    
-		            
-		        
-			}
-		});
-		archivo.setBounds(26, 303, 116, 23);
-		fondo2.add(archivo);
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				remove(comboBoxD);
-				anterior = actual;
-				actual = "menuDocentes";
-				add(menuDocentes());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 23);
-		fondo.add(Volver);
-		
-		btnGuardarDocente = new JButton("Guardar");
-		btnGuardarDocente.setForeground(new Color(255, 255, 255));
-		btnGuardarDocente.setBackground(new Color(0, 128, 255));
-		btnGuardarDocente.setBounds(342, 514, 89, 23);
-		btnGuardarDocente.addActionListener(cvbd);
-		fondo.getRootPane().add(btnGuardarDocente);
-		fondo.add(btnGuardarDocente);
-
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	        int resultado = fileChooser.showOpenDialog(null);
+	        if (resultado == JFileChooser.APPROVE_OPTION) {
+	            File archivoImagen = fileChooser.getSelectedFile();
+	            try {
+	                imagenBytesD = Files.readAllBytes(archivoImagen.toPath());
+	                System.out.println("La imagen se ha guardado en MySQL correctamente.");
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
+	    panelContenido.add(btnSubirArchivo);
+	    
+	    // Dirección (opcional)
+	    JLabel lblDireccion = new JLabel("Dirección (Opcional):");
+	    lblDireccion.setBounds(350, 430, 200, 30);
+	    lblDireccion.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblDireccion);
+	    
+	    txtDireccionD = new JTextField();
+	    txtDireccionD.setBackground(new Color(225, 225, 225));
+	    txtDireccionD.setBounds(350, 460, 200, 35);
+	    panelContenido.add(txtDireccionD);
+	    
+	    // ========== BOTONES ==========
+	    
+	    // Botón Volver
+	    RoundButtonRojo btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(Color.RED);
+	    btnVolver.setBounds(250, 650, 120, 40);
+	    btnVolver.addActionListener(e -> {
+	        remove(fondo);
+	        remove(comboBoxD);
+	        anterior = actual;
+	        actual = "menuDocentes";
+	        add(menuDocentes());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnVolver);
+	    
+	    // Botón Guardar
+	    btnGuardarDocente = new JButton("Guardar");
+	    btnGuardarDocente.setForeground(Color.WHITE);
+	    btnGuardarDocente.setBackground(new Color(0, 128, 255));
+	    btnGuardarDocente.setBounds(450, 650, 120, 40);
+	    btnGuardarDocente.addActionListener(cvbd);
+	    fondo.add(btnGuardarDocente);
+	    
+	    // Icono decorativo
+	    JLabel icono = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+	    icono.setIcon(imageIcon);
+	    icono.setBounds(650, 30, 80, 80);
+	    fondo.add(icono);
+	    
+	    return fondo;
 	}
 
 	public JPanel crearGrupo() {
-		cvbd = new ControlVistaBD(this);
-		anterior = actual;
-		actual = "crearGrupo";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Grupo - Crear");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
-		Titulo2.setForeground(new Color(255, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 50, 421, 25);
-		fondo.add(Titulo2);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag2 = new JLabel("Carrera:");
-		tag2.setBounds(25, 62, 90, 25);
-		fondo2.add(tag2);
-		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBackground(Color.WHITE);
-		
-		JLabel tag3 = new JLabel("Asignatura:");
-		tag3.setBounds(25, 112, 169, 25);
-		fondo2.add(tag3);
-		tag3.setHorizontalAlignment(SwingConstants.LEFT);
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBackground(Color.WHITE);
-		
-		JLabel tag4 = new JLabel("Docente a cargo:");
-		tag4.setBounds(25, 170, 169, 25);
-		fondo2.add(tag4);
-		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBackground(Color.WHITE);
-		
-		JLabel tag7 = new JLabel("Numero de alumnos (maximo 40):");
-		tag7.setBounds(25, 333, 270, 25);
-		fondo2.add(tag7);
-		tag7.setHorizontalAlignment(SwingConstants.LEFT);
-		tag7.setForeground(new Color(0, 0, 0));
-		tag7.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag7.setBackground(Color.WHITE);
-		
-		JLabel tag5 = new JLabel("Semestre:\r\n");
-		tag5.setBounds(25, 221, 90, 25);
-		fondo2.add(tag5);
-		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(255, 255, 255));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBackground(Color.WHITE);
-		
-		carreraG = new JTextField();
-		carreraG.setColumns(10);
-		carreraG.setBackground(new Color(225,225,225));
-		carreraG.setBounds(25, 86, 420, 25);
-		fondo2.add(carreraG);
-		
-		asignaturaG = new JComboBox();
-		asignaturaG.setBackground(new Color(225,225,225));
-		asignaturaG.setBounds(25, 140, 420, 25);
-		fondo2.add(asignaturaG);
-	
-		 BD bd = new BD();
-	        try {
-	            Connection cn = bd.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idAsignatura");
-	                String nombre = rs.getString("Nombre");
-	                asignaturaG.addItem(nombre);
-	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	    cvbd = new ControlVistaBD(this);
+	    anterior = actual;
+	    actual = "crearGrupo";
+	    
+	    // Panel principal (800x800)
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+	    
+	    // Título principal
+	    JLabel tituloPrincipal = new JLabel("Grupo - Crear");
+	    tituloPrincipal.setForeground(Color.BLACK);
+	    tituloPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloPrincipal.setFont(new Font("SansSerif", Font.PLAIN, 40));
+	    tituloPrincipal.setBounds(150, 30, 500, 50);
+	    fondo.add(tituloPrincipal);
+	    
+	    // Subtítulo (requerimientos)
+	    JLabel subtitulo = new JLabel("Obligatorio: Llene todos los campos");
+	    subtitulo.setForeground(Color.RED);
+	    subtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 20));
+	    subtitulo.setBounds(150, 80, 500, 30);
+	    fondo.add(subtitulo);
+	    
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 130, 600, 500);
+	    panelContenido.setLayout(null);
+	    fondo.add(panelContenido);
+	    
+	    // ========== CAMPOS DEL FORMULARIO ==========
+	    
+	    // Carrera
+	    JLabel lblCarrera = new JLabel("Carrera:");
+	    lblCarrera.setBounds(50, 30, 200, 30);
+	    lblCarrera.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblCarrera);
+	    
+	    carreraG = new JTextField();
+	    carreraG.setBackground(new Color(225, 225, 225));
+	    carreraG.setBounds(50, 60, 500, 30);
+	    panelContenido.add(carreraG);
+	    
+	    // Asignatura
+	    JLabel lblAsignatura = new JLabel("Asignatura:");
+	    lblAsignatura.setBounds(50, 110, 200, 30);
+	    lblAsignatura.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblAsignatura);
+	    
+	    asignaturaG = new JComboBox();
+	    asignaturaG.setBackground(new Color(225, 225, 225));
+	    asignaturaG.setBounds(50, 140, 500, 30);
+	    panelContenido.add(asignaturaG);
+	    
+	    // Cargar asignaturas desde BD
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+	     
+	        while (rs.next()) {
+	            String nombre = rs.getString("Nombre");
+	            asignaturaG.addItem(nombre);
 	        }
-		
-		docente_a_cargoG = new JComboBox();	
-		docente_a_cargoG.setBackground(new Color(225,225,225));
-		docente_a_cargoG.setBounds(25, 195, 420, 25);
-		fondo2.add(docente_a_cargoG);
-		
-		 BD bd1 = new BD();
-	        try {
-	            Connection cn = bd1.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idDocente");
-	                String nombre = rs.getString("Nombre");
-	                docente_a_cargoG.addItem(nombre);
-	            }
 
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    // Docente a cargo
+	    JLabel lblDocente = new JLabel("Docente a cargo:");
+	    lblDocente.setBounds(50, 190, 200, 30);
+	    lblDocente.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblDocente);
+	    
+	    docente_a_cargoG = new JComboBox();    
+	    docente_a_cargoG.setBackground(new Color(225, 225, 225));
+	    docente_a_cargoG.setBounds(50, 220, 500, 30);
+	    panelContenido.add(docente_a_cargoG);
+	    
+	    // Cargar docentes desde BD
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	     
+	        while (rs.next()) {
+	            String nombre = rs.getString("Nombre");
+	            docente_a_cargoG.addItem(nombre);
 	        }
-		
-		semestreG = new JComboBox();
-		semestreG.setBackground(new Color(225,225,225));
-		semestreG.setBounds(25, 246, 420, 25);
-		fondo2.add(semestreG);
-		
-		for(int i=1;i<10;i++) {
-			semestreG.addItem(i);
-		}
-		
-		//Cantidad maxima 50
-		num_alu = new JTextField();
-		num_alu.setColumns(10);
-		num_alu.setBackground(new Color(225,225,225));
-		num_alu.setBounds(25, 356, 420, 25);
-		
-		AbstractDocument doc = (AbstractDocument) num_alu.getDocument();
-		doc.setDocumentFilter(new DocumentFilter() {
-		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
 
-		    @Override
-		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-		        Matcher matcher = pattern.matcher(newText);
-		        if (matcher.matches()) {
-		            super.replace(fb, offset, length, text, attrs);
-		        }
-		    }
-		});
-		fondo2.add(num_alu);
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuGrupos";
-				add(menuGrupos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(173, 514, 89, 23);
-		fondo.add(Volver);
-		
-		btnGuardarGrupo = new JButton("Guardar");
-		btnGuardarGrupo.setForeground(new Color(255, 255, 255));
-		btnGuardarGrupo.setBackground(new Color(0, 128, 255));
-		btnGuardarGrupo.setBounds(342, 514, 89, 23);
-		btnGuardarGrupo.addActionListener(cvbd);
-		fondo.getRootPane().add(btnGuardarGrupo);
-		fondo.add(btnGuardarGrupo);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    // Semestre
+	    JLabel lblSemestre = new JLabel("Semestre:");
+	    lblSemestre.setBounds(50, 270, 200, 30);
+	    lblSemestre.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblSemestre);
+	    
+	    semestreG = new JComboBox();
+	    semestreG.setBackground(new Color(225, 225, 225));
+	    semestreG.setBounds(50, 300, 200, 30);
+	    for(int i = 1; i < 10; i++) {
+	        semestreG.addItem(i);
+	    }
+	    panelContenido.add(semestreG);
+	    
+	    // Número de alumnos
+	    JLabel lblNumAlumnos = new JLabel("Número de alumnos (máximo 40):");
+	    lblNumAlumnos.setBounds(50, 350, 300, 30);
+	    lblNumAlumnos.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblNumAlumnos);
+	    
+	    num_alu = new JTextField();
+	    num_alu.setBackground(new Color(225, 225, 225));
+	    num_alu.setBounds(50, 380, 200, 30);
+	    
+	    // Filtro para solo números (máximo 2 dígitos)
+	    AbstractDocument doc = (AbstractDocument) num_alu.getDocument();
+	    doc.setDocumentFilter(new DocumentFilter() {
+	        private final Pattern pattern = Pattern.compile("\\d{0,2}");
+
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+	            String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+	            Matcher matcher = pattern.matcher(newText);
+	            if (matcher.matches()) {
+	                super.replace(fb, offset, length, text, attrs);
+	            }
+	        }
+	    });
+	    panelContenido.add(num_alu);
+	    
+	    // ========== BOTONES ==========
+	    
+	    // Botón Volver
+	    RoundButtonRojo btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(Color.RED);
+	    btnVolver.setBounds(250, 650, 120, 40);
+	    btnVolver.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuGrupos";
+	        add(menuGrupos());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnVolver);
+	    
+	    // Botón Guardar
+	    btnGuardarGrupo = new JButton("Guardar");
+	    btnGuardarGrupo.setForeground(Color.WHITE);
+	    btnGuardarGrupo.setBackground(new Color(0, 128, 255));
+	    btnGuardarGrupo.setBounds(450, 650, 120, 40);
+	    btnGuardarGrupo.addActionListener(cvbd);
+	    fondo.add(btnGuardarGrupo);
+	    
+	    // Icono decorativo
+	    JLabel icono = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+	    icono.setIcon(imageIcon);
+	    icono.setBounds(650, 30, 80, 80);
+	    fondo.add(icono);
+	    
+	    return fondo;
 	}
 	
 	public JPanel crearAsignatura() {
-		cvbd = new ControlVistaBD(this);
-		anterior = actual;
-		actual = "crearAsignatura";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Asignatura - Crear");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 11, 421, 40);
-		fondo.add(Titulo);
-		
-		JLabel Titulo2 = new JLabel("Obligatorio: Llene todos los campos");
-		Titulo2.setForeground(new Color(255, 0, 0));
-		Titulo2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo2.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		Titulo2.setBounds(79, 50, 421, 25);
-		fondo.add(Titulo2);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Nombre de la Asignatura (al menos 2 caracteres):");
-		tag1.setBounds(25, 11, 211, 25);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		
-		JLabel tag2 = new JLabel("Créditos (al menos un credito y maximo 20):");
-		tag2.setBounds(25, 62, 90, 25);
-		fondo2.add(tag2);
-		tag2.setHorizontalAlignment(SwingConstants.LEFT);
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBackground(Color.WHITE);
-		
-		JLabel tag4 = new JLabel("Docente a cargo:");
-		tag4.setBounds(25, 170, 169, 25);
-		fondo2.add(tag4);
-		tag4.setHorizontalAlignment(SwingConstants.LEFT);
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBackground(Color.WHITE);
-		
-		
-		JLabel tag5 = new JLabel("Semestres:\r\n");
-		tag5.setBounds(25, 221, 90, 25);
-		fondo2.add(tag5);
-		tag5.setHorizontalAlignment(SwingConstants.LEFT);
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBackground(Color.WHITE);
-		
-		nombre_asig = new JTextField();
-		nombre_asig.setBackground(new Color(225,225,225));
-		nombre_asig.setBounds(25, 36, 420, 25);
-		fondo2.add(nombre_asig);
-		nombre_asig.setColumns(10);
-		
-		creditos = new JTextField();
-		creditos.setColumns(10);
-		creditos.setBackground(new Color(225,225,225));
-		creditos.setBounds(25, 86, 420, 25);
-		
-		AbstractDocument doc = (AbstractDocument) creditos.getDocument();
-		doc.setDocumentFilter(new DocumentFilter() {
-		    private final Pattern pattern = Pattern.compile("\\d{0,10}");
+	    cvbd = new ControlVistaBD(this);
+	    anterior = actual;
+	    actual = "crearAsignatura";
+	    
+	    // Panel principal (800x800)
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+	    
+	    // Título principal
+	    JLabel tituloPrincipal = new JLabel("Asignatura - Crear");
+	    tituloPrincipal.setForeground(Color.BLACK);
+	    tituloPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloPrincipal.setFont(new Font("SansSerif", Font.PLAIN, 40));
+	    tituloPrincipal.setBounds(150, 30, 500, 50);
+	    fondo.add(tituloPrincipal);
+	    
+	    // Subtítulo (requerimientos)
+	    JLabel subtitulo = new JLabel("Obligatorio: Llene todos los campos");
+	    subtitulo.setForeground(Color.RED);
+	    subtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 20));
+	    subtitulo.setBounds(150, 80, 500, 30);
+	    fondo.add(subtitulo);
+	    
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 130, 600, 500);
+	    panelContenido.setLayout(null);
+	    fondo.add(panelContenido);
+	    
+	    // ========== CAMPOS DEL FORMULARIO ==========
+	    
+	    // Nombre de la asignatura
+	    JLabel lblNombreAsignatura = new JLabel("Nombre de la Asignatura (al menos 2 caracteres):");
+	    lblNombreAsignatura.setBounds(50, 30, 500, 30);
+	    lblNombreAsignatura.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblNombreAsignatura);
+	    
+	    nombre_asig = new JTextField();
+	    nombre_asig.setBackground(new Color(225, 225, 225));
+	    nombre_asig.setBounds(50, 60, 500, 30);
+	    panelContenido.add(nombre_asig);
+	    
+	    // Créditos
+	    JLabel lblCreditos = new JLabel("Créditos (al menos un crédito y máximo 20):");
+	    lblCreditos.setBounds(50, 110, 400, 30);
+	    lblCreditos.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblCreditos);
+	    
+	    creditos = new JTextField();
+	    creditos.setBackground(new Color(225, 225, 225));
+	    creditos.setBounds(50, 140, 200, 30);
+	    
+	    // Filtro para solo números (máximo 2 dígitos)
+	    AbstractDocument doc = (AbstractDocument) creditos.getDocument();
+	    doc.setDocumentFilter(new DocumentFilter() {
+	        private final Pattern pattern = Pattern.compile("\\d{0,2}");
 
-		    @Override
-		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-		        String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-		        Matcher matcher = pattern.matcher(newText);
-		        if (matcher.matches()) {
-		            super.replace(fb, offset, length, text, attrs);
-		        }
-		    }
-		});
-		fondo2.add(creditos);
-		
-		docente_a_cargo = new JComboBox();
-		docente_a_cargo.setBackground(new Color(225,225,225));
-		docente_a_cargo.setBounds(25, 195, 420, 25);
-		fondo2.add(docente_a_cargo);
-		
-		 BD bd = new BD();
-	        try {
-	            Connection cn = bd.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idDocente");
-	                String nombre = rs.getString("Nombre");
-	                docente_a_cargo.addItem(nombre);
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+	            String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+	            Matcher matcher = pattern.matcher(newText);
+	            if (matcher.matches()) {
+	                super.replace(fb, offset, length, text, attrs);
 	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
 	        }
-	        
-		semestres = new JComboBox();
-		semestres.setBackground(new Color(225,225,225));
-		semestres.setBounds(25, 246, 420, 25);
-		fondo2.add(semestres);
-		for(int i=1;i<10;i++) {
-			semestres.addItem(i);
-		}
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAsignaturas";
-				add(menuAsignaturas());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setBounds(173, 514, 89, 23);
-		fondo.add(Volver);
-		
-		btnGuardarAsignatura = new JButton("Guardar");
-		btnGuardarAsignatura.setForeground(new Color(255, 255, 255));
-		btnGuardarAsignatura.setBackground(new Color(0, 128, 255));
-		btnGuardarAsignatura.setBounds(342, 514, 89, 23);
-		btnGuardarAsignatura.addActionListener(cvbd);
-		fondo.getRootPane().add(btnGuardarAsignatura);
-		fondo.add(btnGuardarAsignatura);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	    });
+	    panelContenido.add(creditos);
+	    
+	    // Docente a cargo
+	    JLabel lblDocente = new JLabel("Docente a cargo:");
+	    lblDocente.setBounds(50, 190, 200, 30);
+	    lblDocente.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblDocente);
+	    
+	    docente_a_cargo = new JComboBox();
+	    docente_a_cargo.setBackground(new Color(225, 225, 225));
+	    docente_a_cargo.setBounds(50, 220, 500, 30);
+	    panelContenido.add(docente_a_cargo);
+	    
+	    // Cargar docentes desde BD
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	     
+	        while (rs.next()) {
+	            String nombre = rs.getString("Nombre");
+	            docente_a_cargo.addItem(nombre);
+	        }
+
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    // Semestres
+	    JLabel lblSemestres = new JLabel("Semestres:");
+	    lblSemestres.setBounds(50, 270, 200, 30);
+	    lblSemestres.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    panelContenido.add(lblSemestres);
+	    
+	    semestres = new JComboBox();
+	    semestres.setBackground(new Color(225, 225, 225));
+	    semestres.setBounds(50, 300, 200, 30);
+	    for(int i = 1; i < 10; i++) {
+	        semestres.addItem(i);
+	    }
+	    panelContenido.add(semestres);
+	    
+	    // ========== BOTONES ==========
+	    
+	    // Botón Volver
+	    RoundButtonRojo btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(Color.RED);
+	    btnVolver.setBounds(250, 650, 120, 40);
+	    btnVolver.addActionListener(e -> {
+	        remove(fondo);
+	        anterior = actual;
+	        actual = "menuAsignaturas";
+	        add(menuAsignaturas());
+	        repaint();
+	        revalidate();
+	    });
+	    fondo.add(btnVolver);
+	    
+	    // Botón Guardar
+	    btnGuardarAsignatura = new JButton("Guardar");
+	    btnGuardarAsignatura.setForeground(Color.WHITE);
+	    btnGuardarAsignatura.setBackground(new Color(0, 128, 255));
+	    btnGuardarAsignatura.setBounds(450, 650, 120, 40);
+	    btnGuardarAsignatura.addActionListener(cvbd);
+	    fondo.add(btnGuardarAsignatura);
+	    
+	    // Icono decorativo
+	    JLabel icono = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/crear.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+	    icono.setIcon(imageIcon);
+	    icono.setBounds(650, 30, 80, 80);
+	    fondo.add(icono);
+	    
+	    return fondo;
 	}
 				
 
 	public JPanel eliminarAlumno() {
-        JPanel fondo = new JPanel();
-        fondo.setBackground(new Color(225,225,225));
-        fondo.setBounds(0, 0, 584, 561);
-        fondo.setLayout(null);
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Ajustado a 800x800
+	    fondo.setLayout(null);
 
-        JLabel Titulo = new JLabel("Alumno - Eliminar");
-        Titulo.setForeground(new Color(0, 0, 0));
-        Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-        Titulo.setBounds(79, 24, 421, 40);
-        fondo.add(Titulo);
+	    // Título de la sección
+	    JLabel titulo = new JLabel("Alumno - Eliminar");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.BOLD, 40));  // Tamaño de fuente aumentado
+	    titulo.setBounds(150, 30, 500, 50);  // Posición y tamaño ajustados
+	    fondo.add(titulo);
 
-        JPanel fondo2 = new JPanel();
-        fondo2.setBackground(new Color(0, 128, 64));
-        fondo2.setBounds(60, 86, 480, 405);
-        fondo.add(fondo2);
-        fondo2.setLayout(null);
+	    // Panel contenedor de la tabla
+	    JPanel panelTabla = new JPanel();
+	    panelTabla.setBackground(new Color(0, 128, 64));
+	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño y posición ajustados
+	    fondo.add(panelTabla);
+	    panelTabla.setLayout(null);
 
-        JLabel tag1 = new JLabel("Lista de Alumnos:");
-        tag1.setBounds(10, 11, 211, 20);
-        fondo2.add(tag1);
-        tag1.setBackground(new Color(255, 255, 255));
-        tag1.setForeground(new Color(255, 255, 255));
-        tag1.setHorizontalAlignment(SwingConstants.LEFT);
-        tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	    // Etiqueta de lista de alumnos
+	    JLabel etiquetaLista = new JLabel("Lista de Alumnos:");
+	    etiquetaLista.setBounds(20, 20, 300, 30);  // Tamaño aumentado
+	    panelTabla.add(etiquetaLista);
+	    etiquetaLista.setForeground(new Color(255, 255, 255));
+	    etiquetaLista.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiquetaLista.setFont(new Font("SansSerif", Font.BOLD, 20));  // Fuente más grande
 
-        JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(10, 30, 460, 364);
-        fondo2.add(scrollPane);
+	    // ScrollPane para la tabla
+	    JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+	                                           JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scrollPane.setBounds(20, 60, 560, 470);  // Tamaño ajustado
+	    panelTabla.add(scrollPane);
 
-        table = new JTable();
-        scrollPane.setViewportView(table);
-        table.setModel(new DefaultTableModel(
-                new Object[][]{
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                },
-                new String[]{
-                        "Id", "Nombre del Alumno", "A. Paterno", "A. Materno", "Fecha Nacimiento","Correo","Telefono","Direccion","Grado",
-                        "Eliminar"
-                }
-        ) {
-            /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+	    // Configuración de la tabla
+	    table = new JTable();
+	    scrollPane.setViewportView(table);
+	    table.setModel(new DefaultTableModel(
+	            new Object[][]{
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	            },
+	            new String[]{
+	                "Id", "Nombre del Alumno", "A. Paterno", "A. Materno", 
+	                "Fecha Nacimiento", "Correo", "Telefono", "Direccion", 
+	                "Grado", "Eliminar"
+	            }
+	    ) {
+	        private static final long serialVersionUID = 1L;
 
-			@Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 9) {
-                    return JButton.class;
-                }
-                return super.getColumnClass(columnIndex);
-            }
-        });
+	        @Override
+	        public Class<?> getColumnClass(int columnIndex) {
+	            if (columnIndex == 9) {
+	                return JButton.class;
+	            }
+	            return super.getColumnClass(columnIndex);
+	        }
+	    });
 
-      
+	    // Conexión a la base de datos y carga de datos
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
 
-        BD bd = new BD();
-        try {
-            Connection cn = bd.Conectar();
-            Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+	        DefaultTableModel model = new DefaultTableModel(
+	            new String[]{
+	                "Id", "Nombre", "A. Paterno", "A. Materno", 
+	                "Fecha Nacimiento", "Correo", "Telefono", 
+	                "Direccion", "Grado", "Eliminar"
+	            }, 0);
+	     
+	        while (rs.next()) {
+	            int id = rs.getInt("idAlumnos");
+	            String nombre = rs.getString("Nombre");
+	            String aPaterno = rs.getString("Apellido Paterno");
+	            String aMaterno = rs.getString("Apellido Materno");
+	            String fNacimiento = rs.getString("Fecha Nacimiento");
+	            String correo = rs.getString("Correo");
+	            String telefono = rs.getString("Telefono");
+	            String direccion = rs.getString("Direccion");
+	            int grado = rs.getInt("Grado");
+	            
+	            button = new JButton("Eliminar");
+	            button.setFont(new Font("SansSerif", Font.PLAIN, 14));  // Fuente del botón
+	            button.setPreferredSize(new Dimension(100, 30));  // Tamaño del botón
+	           
+	            button.addActionListener(new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Acción de eliminar (sin cambios)
+	                }
+	            });
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "A. Paterno", "A. Materno", "Fecha Nacimiento",
-            		"Correo","Telefono","Direccion","Grado", "Eliminar"}, 0);
-         
-            while (rs.next()) {
-                int id = rs.getInt("idAlumnos");
-                String nombre = rs.getString("Nombre");
-                String aPaterno = rs.getString("Apellido Paterno");
-                String aMaterno = rs.getString("Apellido Materno");
-                String fNacimiento = rs.getString("Fecha Nacimiento");
-                String correo = rs.getString("Correo");
-                String telefono = rs.getString("Telefono");
-                String direccion = rs.getString("Direccion");
-                int grado = rs.getInt("Grado");
-                button = new JButton("Eliminar");
-               
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //System.out.println("hola");
-                        /*int filaEliminada = table.getSelectedRow();
-                        DefaultTableModel model = (DefaultTableModel) table.getModel();
-                        model.removeRow(filaEliminada);*/
-                    }
-                });
+	            Object[] row = {id, nombre, aPaterno, aMaterno, fNacimiento, 
+	                           correo, telefono, direccion, grado, button};
+	            model.addRow(row);
+	        }
+	        
+	        table.setModel(model);
+	        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+	        
+	        // Ajuste de anchos de columnas
+	        table.getColumnModel().getColumn(0).setPreferredWidth(80);
+	        table.getColumnModel().getColumn(1).setPreferredWidth(150);
+	        table.getColumnModel().getColumn(2).setPreferredWidth(120);
+	        table.getColumnModel().getColumn(3).setPreferredWidth(120);
+	        table.getColumnModel().getColumn(4).setPreferredWidth(120);
+	        table.getColumnModel().getColumn(5).setPreferredWidth(150);
+	        table.getColumnModel().getColumn(6).setPreferredWidth(100);
+	        table.getColumnModel().getColumn(7).setPreferredWidth(150);
+	        table.getColumnModel().getColumn(8).setPreferredWidth(80);
+	        table.getColumnModel().getColumn(9).setPreferredWidth(100);
+	        
+	        table.setRowHeight(30);  // Altura de filas aumentada
+	        table.revalidate();
+	        table.repaint();
 
-                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, button};
-                model.addRow(row);
-            }
-            
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 
-            table.setModel(model);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
-            
-            table.getColumnModel().getColumn(0).setPreferredWidth(130);
-            table.getColumnModel().getColumn(1).setPreferredWidth(130);
-            table.getColumnModel().getColumn(2).setPreferredWidth(130);
-            table.getColumnModel().getColumn(3).setPreferredWidth(130);
-            table.getColumnModel().getColumn(4).setPreferredWidth(130);
-            table.getColumnModel().getColumn(5).setPreferredWidth(130);
-            table.getColumnModel().getColumn(6).setPreferredWidth(130);
-            table.getColumnModel().getColumn(7).setPreferredWidth(130);
-            table.getColumnModel().getColumn(8).setPreferredWidth(130);
-            table.getColumnModel().getColumn(9).setPreferredWidth(130);
-            table.revalidate();
-            table.repaint();
+	    // Configuración de renderizado para botones
+	    table.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer());
+	    table.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor());
+	    
+	    // Botón Volver
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAlumnos";
+	            add(menuAlumnos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(new Color(255, 255, 255));
+	    volverBtn.setBackground(new Color(255, 0, 0));
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente aumentada
+	    volverBtn.setBounds(350, 700, 120, 40);  // Tamaño y posición ajustados
+	    fondo.add(volverBtn);
 
-            rs.close();
-            stm.close();
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    
-       
-        table.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor());
-        
-        RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-        Volver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                remove(fondo);
-                anterior = actual;
-				actual = "menuAlumnos";
-                add(menuAlumnos());
-                repaint();
-                revalidate();
-            }
-        });
-        Volver.setForeground(new Color(255, 255, 255));
-        Volver.setBackground(new Color(255, 0, 0));
-        Volver.setBounds(270, 515, 89, 23);
-        JLabel imagen = new JLabel("");
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-        imagen.setIcon(imageIcon);
-        imagen.setBounds(450, 5, 80, 80);
-        fondo.add(imagen);
-        fondo.add(Volver);
+	    // Icono de eliminar
+	    JLabel imagen = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage()
+	                                      .getScaledInstance(80, 80, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagen.setIcon(imageIcon);
+	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
+	    fondo.add(imagen);
 
-        JPanel panelSuperior = new JPanel();
-        panelSuperior.setBackground(new Color(225, 225, 225));
-        panelSuperior.setBounds(0, 0, 600, 13);
-        fondo.add(panelSuperior);
-        
-        return fondo;
-    }
+	    return fondo;
+	}
 	
 	
 	public JPanel eliminarDocente() {
-        JPanel fondo = new JPanel();
-        fondo.setBackground(new Color(225,225,225));
-        fondo.setBounds(0, 0, 584, 561);
-        fondo.setLayout(null);
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Ajustado a 800x800
+	    fondo.setLayout(null);
 
-        JLabel Titulo = new JLabel("Docente - Eliminar");
-        Titulo.setForeground(new Color(0, 0, 0));
-        Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-        Titulo.setBounds(79, 24, 421, 40);
-        fondo.add(Titulo);
+	    // Título de la sección
+	    JLabel titulo = new JLabel("Docente - Eliminar");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.BOLD, 40));  // Fuente más grande y en negrita
+	    titulo.setBounds(150, 30, 500, 50);  // Posición y tamaño ajustados
+	    fondo.add(titulo);
 
-        JPanel fondo2 = new JPanel();
-        fondo2.setBackground(new Color(0, 128, 64));
-        fondo2.setBounds(60, 86, 480, 405);
-        fondo.add(fondo2);
-        fondo2.setLayout(null);
+	    // Panel contenedor de la tabla
+	    JPanel panelTabla = new JPanel();
+	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    fondo.add(panelTabla);
+	    panelTabla.setLayout(null);
 
-        JLabel tag1 = new JLabel("Lista de Alumnos:");
-        tag1.setBounds(10, 11, 211, 20);
-        fondo2.add(tag1);
-        tag1.setBackground(new Color(255, 255, 255));
-        tag1.setForeground(new Color(255, 255, 255));
-        tag1.setHorizontalAlignment(SwingConstants.LEFT);
-        tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	    // Etiqueta de lista de docentes
+	    JLabel etiquetaLista = new JLabel("Lista de Docentes:");
+	    etiquetaLista.setBounds(20, 20, 300, 30);  // Tamaño aumentado
+	    panelTabla.add(etiquetaLista);
+	    etiquetaLista.setForeground(new Color(255, 255, 255));
+	    etiquetaLista.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiquetaLista.setFont(new Font("SansSerif", Font.BOLD, 20));  // Fuente más grande
 
-        JScrollPane scrollPane = new JScrollPane(table2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(10, 30, 460, 364);
-        fondo2.add(scrollPane);
+	    // ScrollPane para la tabla
+	    JScrollPane scrollPane = new JScrollPane(table2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+	                                           JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scrollPane.setBounds(20, 60, 560, 470);  // Tamaño ajustado
+	    panelTabla.add(scrollPane);
 
-        table2 = new JTable();
-        scrollPane.setViewportView(table2);
-        table2.setModel(new DefaultTableModel(
-                new Object[][]{
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null, null, null, null},  
-                },
-                new String[]{
-                        "Id", "Nombre del Docente", "A. Paterno", "A. Materno", "Fecha Nacimiento","Correo","Telefono","Direccion","Grado de estudios",
-                        "Eliminar"
-                }
-        ) {
-            /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+	    // Configuración de la tabla
+	    table2 = new JTable();
+	    scrollPane.setViewportView(table2);
+	    table2.setModel(new DefaultTableModel(
+	            new Object[][]{
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null, null, null, null},  
+	            },
+	            new String[]{
+	                "Id", "Nombre del Docente", "A. Paterno", "A. Materno", 
+	                "Fecha Nacimiento", "Correo", "Telefono", "Direccion", 
+	                "Grado de estudios", "Eliminar"
+	            }
+	    ) {
+	        private static final long serialVersionUID = 1L;
 
-			@Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 9) {
-                    return JButton.class;
-                }
-                return super.getColumnClass(columnIndex);
-            }
-        });
+	        @Override
+	        public Class<?> getColumnClass(int columnIndex) {
+	            if (columnIndex == 9) {
+	                return JButton.class;
+	            }
+	            return super.getColumnClass(columnIndex);
+	        }
+	    });
 
-      
+	    // Conexión a la base de datos y carga de datos
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
 
-        BD bd = new BD();
-        try {
-            Connection cn = bd.Conectar();
-            Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	        DefaultTableModel model = new DefaultTableModel(
+	            new String[]{
+	                "Id", "Nombre", "A. Paterno", "A. Materno", 
+	                "Fecha Nacimiento", "Correo", "Telefono", 
+	                "Direccion", "Grado", "Eliminar"
+	            }, 0);
+	     
+	        while (rs.next()) {
+	            int id = rs.getInt("idDocente");
+	            String nombre = rs.getString("Nombre");
+	            String aPaterno = rs.getString("Apellido Paterno");
+	            String aMaterno = rs.getString("Apellido Materno");
+	            String fNacimiento = rs.getString("Fecha Nacimiento");
+	            String correo = rs.getString("Correo");
+	            String telefono = rs.getString("Telefono");
+	            String direccion = rs.getString("Direccion");
+	            String grado = rs.getString("Grado");
+	            
+	            button2 = new JButton("Eliminar");
+	            button2.setFont(new Font("SansSerif", Font.PLAIN, 14));  // Fuente del botón
+	            button2.setPreferredSize(new Dimension(100, 30));  // Tamaño del botón
+	           
+	            button2.addActionListener(new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Acción de eliminar
+	                }
+	            });
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "A. Paterno", "A. Materno", "Fecha Nacimiento",
-            		"Correo","Telefono","Direccion","Grado", "Eliminar"}, 0);
-         
-            while (rs.next()) {
-                int id = rs.getInt("idDocente");
-                String nombre = rs.getString("Nombre");
-                String aPaterno = rs.getString("Apellido Paterno");
-                String aMaterno = rs.getString("Apellido Materno");
-                String fNacimiento = rs.getString("Fecha Nacimiento");
-                String correo = rs.getString("Correo");
-                String telefono = rs.getString("Telefono");
-                String direccion = rs.getString("Direccion");
-                String grado = rs.getString("Grado");
-                button2 = new JButton("Eliminar");
-               
-                button2.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                       
-                    }
-                });
+	            Object[] row = {id, nombre, aPaterno, aMaterno, fNacimiento, 
+	                          correo, telefono, direccion, grado, button2};
+	            model.addRow(row);
+	        }
+	        
+	        table2.setModel(model);
+	        table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+	        
+	        // Ajuste de anchos de columnas
+	        table2.getColumnModel().getColumn(0).setPreferredWidth(80);
+	        table2.getColumnModel().getColumn(1).setPreferredWidth(150);
+	        table2.getColumnModel().getColumn(2).setPreferredWidth(120);
+	        table2.getColumnModel().getColumn(3).setPreferredWidth(120);
+	        table2.getColumnModel().getColumn(4).setPreferredWidth(120);
+	        table2.getColumnModel().getColumn(5).setPreferredWidth(150);
+	        table2.getColumnModel().getColumn(6).setPreferredWidth(100);
+	        table2.getColumnModel().getColumn(7).setPreferredWidth(150);
+	        table2.getColumnModel().getColumn(8).setPreferredWidth(120);
+	        table2.getColumnModel().getColumn(9).setPreferredWidth(100);
+	        
+	        table2.setRowHeight(30);  // Altura de filas aumentada
+	        table2.revalidate();
+	        table2.repaint();
 
-                Object[] row = {id, nombre, aPaterno, aMaterno,fNacimiento,correo,telefono,direccion,grado, button2};
-                model.addRow(row);
-            }
-            
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 
-            table2.setModel(model);
-            table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
-            
-            table2.getColumnModel().getColumn(0).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(1).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(2).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(3).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(4).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(5).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(6).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(7).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(8).setPreferredWidth(130);
-            table2.getColumnModel().getColumn(9).setPreferredWidth(130);
-            table2.revalidate();
-            table2.repaint();
+	    // Configuración de renderizado para botones
+	    table2.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer2());
+	    table2.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor2());
+	    
+	    // Botón Volver
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuDocentes";
+	            add(menuDocentes());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(new Color(255, 255, 255));
+	    volverBtn.setBackground(new Color(255, 0, 0));
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente aumentada
+	    volverBtn.setBounds(350, 700, 120, 40);  // Tamaño y posición ajustados
+	    fondo.add(volverBtn);
 
-            rs.close();
-            stm.close();
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    
-       
-        table2.getColumnModel().getColumn(9).setCellRenderer(new ButtonRenderer2());
-        table2.getColumnModel().getColumn(9).setCellEditor(new ButtonEditor2());
-        
-        RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-        Volver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                remove(fondo);
-                anterior = actual;
-				actual = "menuDocentes";
-				add(menuDocentes());
-                repaint();
-                revalidate();
-            }
-        });
-        Volver.setForeground(new Color(255, 255, 255));
-        Volver.setBackground(new Color(255, 0, 0));
-        Volver.setBounds(270, 515, 89, 23);
-        JLabel imagen = new JLabel("");
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-        imagen.setIcon(imageIcon);
-        imagen.setBounds(450, 5, 80, 80);
-        fondo.add(imagen);
-        fondo.add(Volver);
+	    // Icono de eliminar
+	    JLabel imagen = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage()
+	                                     .getScaledInstance(80, 80, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagen.setIcon(imageIcon);
+	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
+	    fondo.add(imagen);
 
-        JPanel panelSuperior = new JPanel();
-        panelSuperior.setBackground(new Color(225, 225, 225));
-        panelSuperior.setBounds(0, 0, 600, 13);
-        fondo.add(panelSuperior);
-        
-        return fondo;
-    }
+	    return fondo;
+	}
 	
 	public JPanel eliminarGrupo() {
-		anterior = actual;
-		actual = "eliminarGrupo";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Grupo - Eliminar");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Lista de Grupos:");
-		tag1.setBounds(10, 11, 211, 20);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		
-		JScrollPane scrollPane = new JScrollPane(table3, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(10, 30, 460, 364);
-        fondo2.add(scrollPane);
+	    anterior = actual;
+	    actual = "eliminarGrupo";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Ajustado a 800x800
+	    fondo.setLayout(null);
 
-        table3 = new JTable();
-        scrollPane.setViewportView(table3);
-        table3.setModel(new DefaultTableModel(
-                new Object[][]{
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                	{null, null, null, null, null, null, null},  
-                },
-                new String[]{
-                        "Id", "Carrera", "Asignatura", "Docente","Semestre","Numero de Alumnos","Eliminar"}
-        ) {
-            /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+	    // Título de la sección
+	    JLabel titulo = new JLabel("Grupo - Eliminar");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.BOLD, 40));  // Fuente más grande y en negrita
+	    titulo.setBounds(150, 30, 500, 50);  // Posición y tamaño ajustados
+	    fondo.add(titulo);
 
-			@Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 9) {
-                    return JButton.class;
-                }
-                return super.getColumnClass(columnIndex);
-            }
-        });
+	    // Panel contenedor de la tabla
+	    JPanel panelTabla = new JPanel();
+	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    fondo.add(panelTabla);
+	    panelTabla.setLayout(null);
 
-      
+	    // Etiqueta de lista de grupos
+	    JLabel etiquetaLista = new JLabel("Lista de Grupos:");
+	    etiquetaLista.setBounds(20, 20, 300, 30);  // Tamaño aumentado
+	    panelTabla.add(etiquetaLista);
+	    etiquetaLista.setForeground(new Color(255, 255, 255));
+	    etiquetaLista.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiquetaLista.setFont(new Font("SansSerif", Font.BOLD, 20));  // Fuente más grande
 
-        BD bd = new BD();
-        try {
-            Connection cn = bd.Conectar();
-            Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM gruposbd");
+	    // ScrollPane para la tabla
+	    JScrollPane scrollPane = new JScrollPane(table3, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+	                                          JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scrollPane.setBounds(20, 60, 560, 470);  // Tamaño ajustado
+	    panelTabla.add(scrollPane);
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Carrera", "Asignatura", "Docente", "Semestre",
-            "Numero de Alumnos"}, 0);
-         
-            while (rs.next()) {
-                int id = rs.getInt("idGrupos");
-                String carrera = rs.getString("Carrera");
-                String asignatura = rs.getString("Asignatura");
-                String docente = rs.getString("Docente");
-                String semestre = rs.getString("Semestre");
-                String numAlum = rs.getString("numAlumnos");
-                button3 = new JButton("Eliminar");
-               
-                button3.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                       
-                    }
-                });
+	    // Configuración de la tabla
+	    table3 = new JTable();
+	    scrollPane.setViewportView(table3);
+	    table3.setModel(new DefaultTableModel(
+	            new Object[][]{
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	                {null, null, null, null, null, null, null},  
+	            },
+	            new String[]{
+	                "Id", "Carrera", "Asignatura", "Docente", "Semestre", 
+	                "Número de Alumnos", "Eliminar"
+	            }
+	    ) {
+	        private static final long serialVersionUID = 1L;
 
-                Object[] row = {id, carrera, asignatura, docente,semestre,numAlum, button3};
-                model.addRow(row);
-            }
-            
+	        @Override
+	        public Class<?> getColumnClass(int columnIndex) {
+	            if (columnIndex == 6) {  // Corregido para la columna "Eliminar"
+	                return JButton.class;
+	            }
+	            return super.getColumnClass(columnIndex);
+	        }
+	    });
 
-            table3.setModel(model);
-            table3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
-            
-            table3.getColumnModel().getColumn(0).setPreferredWidth(130);
-            table3.getColumnModel().getColumn(1).setPreferredWidth(130);
-            table3.getColumnModel().getColumn(2).setPreferredWidth(130);
-            table3.getColumnModel().getColumn(3).setPreferredWidth(130);
-            table3.getColumnModel().getColumn(4).setPreferredWidth(130);
-            table3.getColumnModel().getColumn(5).setPreferredWidth(130);
-            table3.revalidate();
-            table3.repaint();
+	    // Conexión a la base de datos y carga de datos
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM gruposbd");
 
-            rs.close();
-            stm.close();
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    
-       
-        table3.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer3());
-        table3.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor3());
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuGrupos";
-				add(menuGrupos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(270, 515, 89, 23);
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		fondo.add(Volver);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 13);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	        DefaultTableModel model = new DefaultTableModel(
+	            new String[]{
+	                "Id", "Carrera", "Asignatura", "Docente", 
+	                "Semestre", "Número de Alumnos", "Eliminar"
+	            }, 0);
+	     
+	        while (rs.next()) {
+	            int id = rs.getInt("idGrupos");
+	            String carrera = rs.getString("Carrera");
+	            String asignatura = rs.getString("Asignatura");
+	            String docente = rs.getString("Docente");
+	            String semestre = rs.getString("Semestre");
+	            String numAlum = rs.getString("numAlumnos");
+	            
+	            button3 = new JButton("Eliminar");
+	            button3.setFont(new Font("SansSerif", Font.PLAIN, 14));  // Fuente del botón
+	            button3.setPreferredSize(new Dimension(100, 30));  // Tamaño del botón
+	           
+	            button3.addActionListener(new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Acción de eliminar
+	                }
+	            });
+
+	            Object[] row = {id, carrera, asignatura, docente, semestre, numAlum, button3};
+	            model.addRow(row);
+	        }
+	        
+	        table3.setModel(model);
+	        table3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+	        
+	        // Ajuste de anchos de columnas
+	        table3.getColumnModel().getColumn(0).setPreferredWidth(80);
+	        table3.getColumnModel().getColumn(1).setPreferredWidth(150);
+	        table3.getColumnModel().getColumn(2).setPreferredWidth(150);
+	        table3.getColumnModel().getColumn(3).setPreferredWidth(150);
+	        table3.getColumnModel().getColumn(4).setPreferredWidth(100);
+	        table3.getColumnModel().getColumn(5).setPreferredWidth(150);
+	        table3.getColumnModel().getColumn(6).setPreferredWidth(100);
+	        
+	        table3.setRowHeight(30);  // Altura de filas aumentada
+	        table3.revalidate();
+	        table3.repaint();
+
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    // Configuración de renderizado para botones
+	    table3.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer3());
+	    table3.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor3());
+	    
+	    // Botón Volver
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuGrupos";
+	            add(menuGrupos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(new Color(255, 255, 255));
+	    volverBtn.setBackground(new Color(255, 0, 0));
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente aumentada
+	    volverBtn.setBounds(350, 700, 120, 40);  // Tamaño y posición ajustados
+	    fondo.add(volverBtn);
+
+	    // Icono de eliminar
+	    JLabel imagen = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage()
+	                                    .getScaledInstance(80, 80, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagen.setIcon(imageIcon);
+	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
+	    fondo.add(imagen);
+
+	    return fondo;
 	}
 	
 	public JPanel eliminarAsignatura() {
-		anterior = actual;
-		actual = "eliminarAsignatura";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Asignatura - Eliminar");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 86, 480, 405);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Lista de Asignaturas:");
-		tag1.setBounds(10, 11, 211, 20);
-		fondo2.add(tag1);
-		tag1.setBackground(new Color(255, 255, 255));
-		tag1.setForeground(new Color(255, 255, 255));
-		tag1.setHorizontalAlignment(SwingConstants.LEFT);
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		
-		JScrollPane scrollPane = new JScrollPane(table4, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(10, 30, 460, 364);
-        fondo2.add(scrollPane);
+	    anterior = actual;
+	    actual = "eliminarAsignatura";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Ajustado a 800x800
+	    fondo.setLayout(null);
 
-        table4 = new JTable();
-        scrollPane.setViewportView(table4);
-        table4.setModel(new DefaultTableModel(
-                new Object[][]{
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                	{null, null, null, null, null, null},  
-                },
-                new String[]{
-                        "Id", "Nombre", "Creditos", "Docente","Semestre","Eliminar"}
-        ) {
-            /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+	    // Título de la sección
+	    JLabel titulo = new JLabel("Asignatura - Eliminar");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.BOLD, 40));  // Fuente más grande y en negrita
+	    titulo.setBounds(150, 30, 500, 50);  // Posición y tamaño ajustados
+	    fondo.add(titulo);
 
-			@Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 9) {
-                    return JButton.class;
-                }
-                return super.getColumnClass(columnIndex);
-            }
-        });
+	    // Panel contenedor de la tabla
+	    JPanel panelTabla = new JPanel();
+	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    fondo.add(panelTabla);
+	    panelTabla.setLayout(null);
 
-      
+	    // Etiqueta de lista de asignaturas
+	    JLabel etiquetaLista = new JLabel("Lista de Asignaturas:");
+	    etiquetaLista.setBounds(20, 20, 300, 30);  // Tamaño aumentado
+	    panelTabla.add(etiquetaLista);
+	    etiquetaLista.setForeground(new Color(255, 255, 255));
+	    etiquetaLista.setHorizontalAlignment(SwingConstants.LEFT);
+	    etiquetaLista.setFont(new Font("SansSerif", Font.BOLD, 20));  // Fuente más grande
 
-        BD bd = new BD();
-        try {
-            Connection cn = bd.Conectar();
-            Statement stm = cn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+	    // ScrollPane para la tabla
+	    JScrollPane scrollPane = new JScrollPane(table4, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+	                                          JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scrollPane.setBounds(20, 60, 560, 470);  // Tamaño ajustado
+	    panelTabla.add(scrollPane);
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "Nombre", "Creditos", "Docente", "Semestre"}, 0);
-         
-            while (rs.next()) {
-                int id = rs.getInt("idAsignatura");
-                String nombre = rs.getString("Nombre");
-                String creditos = rs.getString("Creditos");
-                String docente = rs.getString("Docente");
-                String semestre = rs.getString("Semestre");
-                button4 = new JButton("Eliminar");
-               
-                button4.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                       
-                    }
-                });
+	    // Configuración de la tabla
+	    table4 = new JTable();
+	    scrollPane.setViewportView(table4);
+	    table4.setModel(new DefaultTableModel(
+	            new Object[][]{
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	                {null, null, null, null, null, null},  
+	            },
+	            new String[]{
+	                "Id", "Nombre", "Créditos", "Docente", "Semestre", "Eliminar"
+	            }
+	    ) {
+	        private static final long serialVersionUID = 1L;
 
-                Object[] row = {id, nombre, creditos, docente,semestre, button4};
-                model.addRow(row);
-            }
-            
+	        @Override
+	        public Class<?> getColumnClass(int columnIndex) {
+	            if (columnIndex == 5) {  // Corregido para la columna "Eliminar"
+	                return JButton.class;
+	            }
+	            return super.getColumnClass(columnIndex);
+	        }
+	    });
 
-            table4.setModel(model);
-            table4.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
-            
-            table4.getColumnModel().getColumn(0).setPreferredWidth(130);
-            table4.getColumnModel().getColumn(1).setPreferredWidth(130);
-            table4.getColumnModel().getColumn(2).setPreferredWidth(130);
-            table4.getColumnModel().getColumn(3).setPreferredWidth(130);
-            table4.getColumnModel().getColumn(4).setPreferredWidth(130);      
-            table4.revalidate();
-            table4.repaint();
+	    // Conexión a la base de datos y carga de datos
+	    BD bd = new BD();
+	    try {
+	        Connection cn = bd.Conectar();
+	        Statement stm = cn.createStatement();
+	        ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
 
-            rs.close();
-            stm.close();
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    
-       
-        table4.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer4());
-        table4.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor4());
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAsignaturas";
-				add(menuAsignaturas());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(270, 515, 89, 23);
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(450, 5, 80, 80);
-		fondo.add(imagen);
-		fondo.add(Volver);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 13);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	        DefaultTableModel model = new DefaultTableModel(
+	            new String[]{
+	                "Id", "Nombre", "Créditos", "Docente", 
+	                "Semestre", "Eliminar"
+	            }, 0);
+	     
+	        while (rs.next()) {
+	            int id = rs.getInt("idAsignatura");
+	            String nombre = rs.getString("Nombre");
+	            String creditos = rs.getString("Creditos");
+	            String docente = rs.getString("Docente");
+	            String semestre = rs.getString("Semestre");
+	            
+	            button4 = new JButton("Eliminar");
+	            button4.setFont(new Font("SansSerif", Font.PLAIN, 14));  // Fuente del botón
+	            button4.setPreferredSize(new Dimension(100, 30));  // Tamaño del botón
+	           
+	            button4.addActionListener(new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Acción de eliminar
+	                }
+	            });
+
+	            Object[] row = {id, nombre, creditos, docente, semestre, button4};
+	            model.addRow(row);
+	        }
+	        
+	        table4.setModel(model);
+	        table4.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 
+	        
+	        // Ajuste de anchos de columnas
+	        table4.getColumnModel().getColumn(0).setPreferredWidth(80);
+	        table4.getColumnModel().getColumn(1).setPreferredWidth(200);
+	        table4.getColumnModel().getColumn(2).setPreferredWidth(100);
+	        table4.getColumnModel().getColumn(3).setPreferredWidth(200);
+	        table4.getColumnModel().getColumn(4).setPreferredWidth(100);
+	        table4.getColumnModel().getColumn(5).setPreferredWidth(100);
+	        
+	        table4.setRowHeight(30);  // Altura de filas aumentada
+	        table4.revalidate();
+	        table4.repaint();
+
+	        rs.close();
+	        stm.close();
+	        cn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    // Configuración de renderizado para botones
+	    table4.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer4());
+	    table4.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor4());
+	    
+	    // Botón Volver
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAsignaturas";
+	            add(menuAsignaturas());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(new Color(255, 255, 255));
+	    volverBtn.setBackground(new Color(255, 0, 0));
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));  // Fuente aumentada
+	    volverBtn.setBounds(350, 700, 120, 40);  // Tamaño y posición ajustados
+	    fondo.add(volverBtn);
+
+	    // Icono de eliminar
+	    JLabel imagen = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/eliminar.png").getImage()
+	                                    .getScaledInstance(80, 80, Image.SCALE_SMOOTH));  // Tamaño aumentado
+	    imagen.setIcon(imageIcon);
+	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
+	    fondo.add(imagen);
+
+	    return fondo;
 	}
 	
 	public JPanel consultarAlumno() {
-		anterior = actual;
-		actual = "consultarAlumno";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Mi cuenta - Alumno");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 75, 480, 429);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Ingrese el ID del alumno");
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag1.setBounds(10, 24, 210, 14);
-		fondo2.add(tag1);
-		
-		JLabel tagnombre = new JLabel("Nombre");
-		tagnombre.setForeground(new Color(0, 0, 0));
-		tagnombre.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tagnombre.setBounds(10, 70, 210, 20);
-		fondo2.add(tagnombre);
-		
-		JLabel tag2 = new JLabel("Apellido Paterno");
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBounds(10, 114, 210, 20);
-		fondo2.add(tag2);
-		
-		JLabel tag2_1 = new JLabel("Apellido Materno");
-		tag2_1.setForeground(new Color(0, 0, 0));
-		tag2_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2_1.setBounds(160, 114, 210, 20);
-		fondo2.add(tag2_1);
-		
-		JLabel tag3 = new JLabel("Correo electrónico");
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBounds(10, 158, 210, 14);
-		fondo2.add(tag3);
-		
-		JLabel tag4 = new JLabel("Fecha de nacimiento");
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBounds(10, 201, 210, 14);
-		fondo2.add(tag4);
-		
-		JLabel tag5 = new JLabel("Teléfono");
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBounds(10, 242, 210, 14);
-		fondo2.add(tag5);
-		
-		JLabel tag6 = new JLabel("Direccion");
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBounds(10, 283, 210, 14);
-		fondo2.add(tag6);
-		
-		JTextField idAlumno = new JTextField();
-		idAlumno.setEditable(true);
-		idAlumno.setColumns(10);
-		idAlumno.setBounds(10, 45, 273, 22);
-		fondo2.add(idAlumno);
-		
-		
-		System.out.println();
-		
-		JTextField datos_nombre = new JTextField();
-		datos_nombre.setEditable(false);
-		datos_nombre.setColumns(10);
-		datos_nombre.setBounds(10, 90, 273, 20);
-		fondo2.add(datos_nombre);
-		
-		JTextField datos_apePaterno = new JTextField();
-		datos_apePaterno.setEditable(false);
-		datos_apePaterno.setColumns(10);
-		datos_apePaterno.setBounds(10, 132, 120, 20);
-		fondo2.add(datos_apePaterno);
-		
-		JTextField datos_apeMaterno = new JTextField();
-		datos_apeMaterno.setEditable(false);
-		datos_apeMaterno.setColumns(10);
-		datos_apeMaterno.setBounds(160, 132, 120, 20);
-		fondo2.add(datos_apeMaterno);
-		
-		JTextField datos_correo = new JTextField();
-		datos_correo.setEditable(false);
-		datos_correo.setColumns(10);
-		datos_correo.setBounds(10, 174, 273, 20);
-		fondo2.add(datos_correo);
-		
-		JTextField datos_fecha = new JTextField();
-		datos_fecha.setEditable(false);
-		datos_fecha.setColumns(10);
-		datos_fecha.setBounds(10, 216, 273, 20);
-		fondo2.add(datos_fecha);
-		
-		JTextField datos_tel = new JTextField();
-		datos_tel.setEditable(false);
-		datos_tel.setColumns(10);
-		datos_tel.setBounds(10, 260, 273, 20);
-		fondo2.add(datos_tel);
-		
-		JTextField datos_direccion = new JTextField();
-		datos_direccion.setEditable(false);
-		datos_direccion.setColumns(10);
-		datos_direccion.setBounds(10, 299, 273, 20);
-		fondo2.add(datos_direccion);
-		
-		
-		JButton Consultar = new JButton("Consultar");
-		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(0, 128, 255));
-		Consultar.setBounds(250, 514, 89, 36);
-		fondo.add(Consultar);
-		Consultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				idConsultar = Integer.parseInt(idAlumno.getText());
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "consultarAlumno";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800); // Ajustado a 800x800
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idAlumnos");
-			           
-			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("Nombre");
-			        		String correo = rs.getString("Correo");
-				            String apellidoP = rs.getString("Apellido Paterno");
-				            String apellidoM = rs.getString("Apellido Materno");
-				            String telefono = rs.getString("Telefono");
-				            LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
-				            String fecha = fechaNacimiento.toString();
-				            String direccion = rs.getString("Direccion");
-				            byte[] imagenBytes = rs.getBytes("Foto");
-				            System.out.println("Longitud de imagenBytes: " + imagenBytes.length);
-				            
-				            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-				            
-				            JLabel nuevaimagen = new JLabel();
-				            nuevaimagen.setIcon(imageIcon);
-				    		nuevaimagen.setBounds(300, 50, 160, 160);
-				    		//fondo2.remove(imagen);
-				    		fondo2.add(nuevaimagen);
-				            
-				            
-				            
-				            datos_nombre.setText(nombre);
-				            datos_apePaterno.setText(apellidoP);
-				            datos_apeMaterno.setText(apellidoM);
-				            datos_correo.setText(correo);
-				            datos_tel.setText(telefono);
-				            datos_fecha.setText(fecha);
-				            datos_direccion.setText(direccion);			  
-				            cambio++;
-				            fondo2.repaint();
-				            fondo2.revalidate();
-			        	}
-			        }
+	    // Título principal
+	    JLabel titulo = new JLabel("Mi cuenta - Alumno");
+	    titulo.setForeground(new Color(0, 0, 0));
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+	    titulo.setBounds(150, 30, 500, 50); // Ajustado para 800px
+	    fondo.add(titulo);
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de alumno invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-			
-				repaint();
-				revalidate();
-			}
-		});
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAlumnos";
-				add(menuAlumnos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(120, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivo.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
-		            
-		            //Crear txt
-		            float col = 280f;
-		            float anchoColumna[] = {col,col};
-		            Table table = new Table(anchoColumna);
-		            
-		            
-		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
-		            	.setFontColor(new DeviceRgb(255, 255, 255));
-		            Cell cell = new Cell();
-		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
-		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
-		            		.setMarginTop(30f)
-		            		.setMarginBottom(30f)
-		            		.setFontSize(24f)
-		            		.setFontColor(new DeviceRgb(0, 0, 0))
-		            		.setBorder(Border.NO_BORDER)
-		            		;
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 100, 600, 550); // Ajustado para 800px
+	    fondo.add(panelContenido);
+	    panelContenido.setLayout(null);
 
-		            cell = new Cell();
-		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
-		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
-		                .setMarginTop(50f)
-		                .setMarginBottom(30f)
-		                .setFontSize(12f)
-		                .setBorder(Border.NO_BORDER)
-		                .setMarginRight(10f);
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Etiquetas y campos de texto
+	    // ID Alumno
+	    JLabel lblIdAlumno = new JLabel("Ingrese el ID del alumno");
+	    lblIdAlumno.setForeground(Color.WHITE);
+	    lblIdAlumno.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	    lblIdAlumno.setBounds(30, 30, 250, 20);
+	    panelContenido.add(lblIdAlumno);
 
-		            float columnaAncho[] = {80,300,100,80};
-		            Table tablaInformacion = new Table(columnaAncho);
-		            
-		            tablaInformacion.addCell(new Cell(0, 8)
-		                    .add(new Paragraph("Informacion del alumno:")
-		                    .setBold()));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido paterno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido materno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Fecha de nacimiento")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_nombre.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apePaterno.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apeMaterno.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_fecha.getText())));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Teléfono")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Dirección")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("ID del Alumno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_correo.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(idAlumno.getText())));
-		            
-		            // Cerrar el documento
-		            document.add(table);
-		            document.add(tablaInformacion);
-		            document.close();
-		            
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } /*catch (MalformedURLException e1) {
-					e1.printStackTrace();
-				}*/
-		    }
-		});
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(380, 514, 89, 36);
-		fondo.add(Descargar);
-		
-		imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 50, 160, 160);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 320, 400, 100);
-		fondo2.add(imagen2);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
-		GuardarCambios.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nombre = datos_nombre.getText();
-		        String apellidoPaterno = datos_apePaterno.getText();
-		        String correo = datos_correo.getText();
-		        String fechaNacimiento = datos_fecha.getText();
-		        String telefono = datos_tel.getText();
-		        String direccion = datos_direccion.getText();
-		        int id = Integer.parseInt(idAlumno.getText());
+	    JTextField txtIdAlumno = new JTextField();
+	    txtIdAlumno.setEditable(true);
+	    txtIdAlumno.setColumns(10);
+	    txtIdAlumno.setBounds(30, 55, 250, 30); // Aumentado tamaño
+	    panelContenido.add(txtIdAlumno);
 
-		        BD bd = new BD();
-		        try {
-		            Connection cn = bd.Conectar();
-		            Statement stm = cn.createStatement();
-		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE alumnosbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idAlumnos = ?");
-		           
-		            pstmt.setString(1, correo);		            
-		            pstmt.setString(2, telefono);
-		            pstmt.setString(3, direccion);
-		            pstmt.setInt(4, id);
+	    // Campos de información del alumno
+	    String[] etiquetas = {"Nombre", "Apellido Paterno", "Apellido Materno", 
+	                          "Correo electrónico", "Fecha de nacimiento", 
+	                          "Teléfono", "Dirección"};
+	    
+	    JTextField[] campos = new JTextField[7];
+	    int yPos = 110;
+	    
+	    for (int i = 0; i < etiquetas.length; i++) {
+	        // Etiqueta
+	        JLabel label = new JLabel(etiquetas[i]);
+	        label.setForeground(Color.WHITE);
+	        label.setFont(new Font("SansSerif", Font.PLAIN, 16));
+	        
+	        // Campo de texto
+	        campos[i] = new JTextField();
+	        campos[i].setEditable(false);
+	        campos[i].setColumns(10);
+	        
+	        // Ajustar posición según el campo
+	        if (i == 1 || i == 2) { // Apellidos
+	            label.setBounds(30 + (i-1)*150, yPos, 150, 20);
+	            campos[i].setBounds(30 + (i-1)*150, yPos + 25, 100, 30);
+	            if (i == 2) yPos += 70;
+	        } else {
+	            label.setBounds(30, yPos, 250, 20);
+	            campos[i].setBounds(30, yPos + 25, 250, 30);
+	            yPos += 70;
+	        }
+	        
+	        panelContenido.add(label);
+	        panelContenido.add(campos[i]);
+	    }
 
-		            int columnasAfectadas = pstmt.executeUpdate();
-		            if (columnasAfectadas > 0) {
-		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
-		            }
+	    // Referencias a campos específicos para uso posterior
+	    JTextField txtNombre = campos[0];
+	    JTextField txtApellidoP = campos[1];
+	    JTextField txtApellidoM = campos[2];
+	    JTextField txtCorreo = campos[3];
+	    JTextField txtFechaNac = campos[4];
+	    JTextField txtTelefono = campos[5];
+	    JTextField txtDireccion = campos[6];
 
-		            pstmt.close();
-		            cn.close();
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		        }
+	    // Imagen de perfil
+	    JLabel lblImagenPerfil = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    lblImagenPerfil.setIcon(imageIcon);
+	    lblImagenPerfil.setBounds(350, 50, 200, 180);
+	    panelContenido.add(lblImagenPerfil);
 
-		        repaint();
-		        revalidate();
-		    }
-		});
-		GuardarCambios.setForeground(new Color(255, 255, 255));
-		GuardarCambios.setBackground(new Color(0, 128, 255));
-		GuardarCambios.setBounds(380, 250, 70, 30);
-		GuardarCambios.setEnabled(false);
-		fondo2.add(GuardarCambios);
-		
-		JButton Editar = new JButton("<html>Editar<html>");
-		Editar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idText = idAlumno.getText();
-				if(idText.matches(".*\\d.*")) {
-					datos_correo.setEditable(true);
-					datos_tel.setEditable(true);
-					datos_direccion.setEditable(true);
-					GuardarCambios.setEnabled(true);
-					
-					repaint();
-					revalidate();
-				}else {
-					JOptionPane.showMessageDialog(null, "Ingresa el id del alumno");
-				}
-			}
-		});
-		Editar.setForeground(new Color(255, 255, 255));
-		Editar.setBackground(new Color(0, 128, 255));
-		Editar.setBounds(290, 250, 70, 30);
-		fondo2.add(Editar);
-		
-		this.add(fondo);
-		return fondo;
+	    // Logo UABCS
+	    JLabel lblLogoUABCS = new JLabel("");
+	    ImageIcon logoIcon = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(300, 120, Image.SCALE_DEFAULT));
+	    lblLogoUABCS.setIcon(logoIcon);
+	    lblLogoUABCS.setBounds(300, 360, 300, 120);
+	    panelContenido.add(lblLogoUABCS);
+
+	    // Botones de edición
+	    JButton btnEditar = new JButton("Editar");
+	    btnEditar.setForeground(Color.WHITE);
+	    btnEditar.setBackground(new Color(0, 128, 255));
+	    btnEditar.setBounds(340, 280, 100, 35); // Aumentado tamaño
+	    panelContenido.add(btnEditar);
+
+	    JButton btnGuardar = new JButton("Guardar");
+	    btnGuardar.setForeground(Color.WHITE);
+	    btnGuardar.setBackground(new Color(0, 180, 0));
+	    btnGuardar.setBounds(450, 280, 100, 35); // Aumentado tamaño
+	    btnGuardar.setEnabled(false);
+	    panelContenido.add(btnGuardar);
+
+	    // Botones inferiores
+	    JButton btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(new Color(255, 0, 0));
+	    btnVolver.setBounds(150, 680, 120, 40); // Aumentado tamaño y reposicionado
+	    fondo.add(btnVolver);
+
+	    JButton btnConsultar = new JButton("Consultar");
+	    btnConsultar.setForeground(Color.WHITE);
+	    btnConsultar.setBackground(new Color(0, 128, 255));
+	    btnConsultar.setBounds(300, 680, 120, 40); // Aumentado tamaño y reposicionado
+	    fondo.add(btnConsultar);
+
+	    JButton btnDescargar = new JButton("Descargar PDF");
+	    btnDescargar.setForeground(Color.WHITE);
+	    btnDescargar.setBackground(new Color(0, 128, 255));
+	    btnDescargar.setBounds(450, 680, 150, 40); // Aumentado tamaño y reposicionado
+	    fondo.add(btnDescargar);
+
+	    // Listeners de botones
+	    // Botón Consultar
+	    btnConsultar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                int idConsultar = Integer.parseInt(txtIdAlumno.getText());
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+
+	                boolean encontrado = false;
+	                
+	                while (rs.next()) {
+	                    int id = rs.getInt("idAlumnos");
+	                    
+	                    if(idConsultar == id) {
+	                        // Obtener datos de la base de datos
+	                        String nombre = rs.getString("Nombre");
+	                        String correo = rs.getString("Correo");
+	                        String apellidoP = rs.getString("Apellido Paterno");
+	                        String apellidoM = rs.getString("Apellido Materno");
+	                        String telefono = rs.getString("Telefono");
+	                        LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
+	                        String fecha = fechaNacimiento.toString();
+	                        String direccion = rs.getString("Direccion");
+	                        
+	                        // Actualizar imagen de perfil
+	                        if (imagenBytes != null && imagenBytes.length > 0) {
+	                            ImageIcon nuevaImagen = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	                            lblImagenPerfil.setIcon(nuevaImagen);
+	                        }
+	                        
+	                        // Actualizar campos de texto
+	                        txtNombre.setText(nombre);
+	                        txtApellidoP.setText(apellidoP);
+	                        txtApellidoM.setText(apellidoM);
+	                        txtCorreo.setText(correo);
+	                        txtTelefono.setText(telefono);
+	                        txtFechaNac.setText(fecha);
+	                        txtDireccion.setText(direccion);
+	                        
+	                        encontrado = true;
+	                        break;
+	                    }
+	                }
+
+	                if (!encontrado) {
+	                    JOptionPane.showMessageDialog(null, "ID de alumno inválido. Favor de intentar de nuevo");
+	                }
+
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	            } catch (NumberFormatException e2) {
+	                JOptionPane.showMessageDialog(null, "Ingrese un ID válido (número)");
+	            }
+	        }
+	    });
+
+	    // Botón Editar
+	    btnEditar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            if (!txtIdAlumno.getText().isEmpty() && txtIdAlumno.getText().matches("\\d+")) {
+	                txtCorreo.setEditable(true);
+	                txtTelefono.setEditable(true);
+	                txtDireccion.setEditable(true);
+	                btnGuardar.setEnabled(true);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Ingrese un ID de alumno válido primero");
+	            }
+	        }
+	    });
+
+	    // Botón Guardar
+	    btnGuardar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+	                    "UPDATE alumnosbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idAlumnos = ?");
+	                
+	                pstmt.setString(1, txtCorreo.getText());
+	                pstmt.setString(2, txtTelefono.getText());
+	                pstmt.setString(3, txtDireccion.getText());
+	                pstmt.setInt(4, Integer.parseInt(txtIdAlumno.getText()));
+
+	                int filasAfectadas = pstmt.executeUpdate();
+	                if (filasAfectadas > 0) {
+	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+	                    txtCorreo.setEditable(false);
+	                    txtTelefono.setEditable(false);
+	                    txtDireccion.setEditable(false);
+	                    btnGuardar.setEnabled(false);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró el alumno con ese ID");
+	                }
+
+	                pstmt.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios");
+	            }
+	        }
+	    });
+
+	    // Botón Volver
+	    btnVolver.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAlumnos";
+	            add(menuAlumnos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+
+	    // Botón Descargar PDF
+	    btnDescargar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                // Crear documento PDF
+	                PdfWriter writer = new PdfWriter("alumno_" + txtIdAlumno.getText() + ".pdf");
+	                PdfDocument pdf = new PdfDocument(writer);
+	                Document document = new Document(pdf);
+	                
+	                // Encabezado
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información del Alumno")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Tabla de información
+	                float[] columnWidths = {150f, 350f};
+	                Table table = new Table(columnWidths);
+	                
+	                // Agregar filas con la información
+	                table.addCell(createCell("ID Alumno", true));
+	                table.addCell(createCell(txtIdAlumno.getText(), false));
+	                
+	                table.addCell(createCell("Nombre", true));
+	                table.addCell(createCell(txtNombre.getText(), false));
+	                
+	                table.addCell(createCell("Apellidos", true));
+	                table.addCell(createCell(txtApellidoP.getText() + " " + txtApellidoM.getText(), false));
+	                
+	                table.addCell(createCell("Correo", true));
+	                table.addCell(createCell(txtCorreo.getText(), false));
+	                
+	                table.addCell(createCell("Teléfono", true));
+	                table.addCell(createCell(txtTelefono.getText(), false));
+	                
+	                table.addCell(createCell("Dirección", true));
+	                table.addCell(createCell(txtDireccion.getText(), false));
+	                
+	                table.addCell(createCell("Fecha Nacimiento", true));
+	                table.addCell(createCell(txtFechaNac.getText(), false));
+	                
+	                document.add(table);
+	                document.close();
+	                
+	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente");
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF");
+	            }
+	        }
+	        
+	        // Método auxiliar para crear celdas del PDF
+	        private Cell createCell(String text, boolean isHeader) {
+	            Cell cell = new Cell();
+	            Paragraph p = new Paragraph(text);
+	            if (isHeader) {
+	                p.setBold();
+	                cell.setBackgroundColor(new DeviceRgb(200, 200, 200));
+	            }
+	            cell.add(p);
+	            return cell;
+	        }
+	    });
+
+	    return fondo;
 	}
 	
 	public JPanel consultarDocente() {
-		anterior = actual;
-		actual = "consultarDocente";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Mi cuenta - Docente");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 75, 480, 429);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Ingrese el ID del docente");
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag1.setBounds(10, 24, 210, 14);
-		fondo2.add(tag1);
-		
-		JLabel tagnombre = new JLabel("Nombre");
-		tagnombre.setForeground(new Color(0, 0, 0));
-		tagnombre.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tagnombre.setBounds(10, 70, 210, 20);
-		fondo2.add(tagnombre);
-		
-		JLabel tag2 = new JLabel("Apellido Paterno");
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBounds(10, 114, 210, 20);
-		fondo2.add(tag2);
-		
-		JLabel tag2_1 = new JLabel("Apellido Materno");
-		tag2_1.setForeground(new Color(0, 0, 0));
-		tag2_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2_1.setBounds(160, 114, 210, 20);
-		fondo2.add(tag2_1);
-		
-		JLabel tag3 = new JLabel("Correo electrónico");
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBounds(10, 158, 210, 14);
-		fondo2.add(tag3);
-		
-		JLabel tag4 = new JLabel("Fecha de nacimiento");
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBounds(10, 201, 210, 14);
-		fondo2.add(tag4);
-		
-		JLabel tag5 = new JLabel("Teléfono");
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBounds(10, 242, 210, 14);
-		fondo2.add(tag5);
-		
-		JLabel tag6 = new JLabel("Direccion");
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBounds(10, 283, 210, 14);
-		fondo2.add(tag6);
-		
-		JTextField idDocente = new JTextField();
-		idDocente.setEditable(true);
-		idDocente.setColumns(10);
-		idDocente.setBounds(10, 45, 273, 22);
-		fondo2.add(idDocente);
-		
-		
-		JTextField datos_nombre = new JTextField();
-		datos_nombre.setEditable(false);
-		datos_nombre.setColumns(10);
-		datos_nombre.setBounds(10, 90, 273, 20);
-		fondo2.add(datos_nombre);
-		
-		JTextField datos_apePaterno = new JTextField();
-		datos_apePaterno.setEditable(false);
-		datos_apePaterno.setColumns(10);
-		datos_apePaterno.setBounds(10, 132, 120, 20);
-		fondo2.add(datos_apePaterno);
-		
-		JTextField datos_apeMaterno = new JTextField();
-		datos_apeMaterno.setEditable(false);
-		datos_apeMaterno.setColumns(10);
-		datos_apeMaterno.setBounds(160, 132, 120, 20);
-		fondo2.add(datos_apeMaterno);
-		
-		JTextField datos_correo = new JTextField();
-		datos_correo.setEditable(false);
-		datos_correo.setColumns(10);
-		datos_correo.setBounds(10, 174, 273, 20);
-		fondo2.add(datos_correo);
-		
-		JTextField datos_fecha = new JTextField();
-		datos_fecha.setEditable(false);
-		datos_fecha.setColumns(10);
-		datos_fecha.setBounds(10, 216, 273, 20);
-		fondo2.add(datos_fecha);
-		
-		JTextField datos_tel = new JTextField();
-		datos_tel.setEditable(false);
-		datos_tel.setColumns(10);
-		datos_tel.setBounds(10, 260, 273, 20);
-		fondo2.add(datos_tel);
-		
-		JTextField datos_direccion = new JTextField();
-		datos_direccion.setEditable(false);
-		datos_direccion.setColumns(10);
-		datos_direccion.setBounds(10, 299, 273, 20);
-		fondo2.add(datos_direccion);
-		
-		
-		JButton Consultar = new JButton("Consultar");
-		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(0, 128, 255));
-		Consultar.setBounds(250, 514, 89, 36);
-		fondo.add(Consultar);
-		Consultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				idConsultar = Integer.parseInt(idDocente.getText());
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "consultarDocente";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idDocente");
-			           
-			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("Nombre");
-			        		String correo = rs.getString("Correo");
-				            String apellidoP = rs.getString("Apellido Paterno");
-				            String apellidoM = rs.getString("Apellido Materno");
-				            String telefono = rs.getString("Telefono");
-				            LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
-				            String fecha = fechaNacimiento.toString();
-				            String direccion = rs.getString("Direccion");
-				            byte[] imagenBytes = rs.getBytes("Foto");
-				            
-				            
-				            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-				            
-				            JLabel nuevaimagen = new JLabel();
-				            nuevaimagen.setIcon(imageIcon);
-				    		nuevaimagen.setBounds(300, 50, 160, 160);
-				    		//fondo2.remove(imagen);
-				    		fondo2.add(nuevaimagen);
-				            
-				            
-				            
-				            datos_nombre.setText(nombre);
-				            datos_apePaterno.setText(apellidoP);
-				            datos_apeMaterno.setText(apellidoM);
-				            datos_correo.setText(correo);
-				            datos_tel.setText(telefono);
-				            datos_fecha.setText(fecha);
-				            datos_direccion.setText(direccion);			  
-				            cambio++;
-				            fondo2.repaint();
-				            fondo2.revalidate();
-			        	}
-			        }
+	    // Título principal
+	    JLabel lblTitulo = new JLabel("Mi cuenta - Docente");
+	    lblTitulo.setForeground(Color.BLACK);
+	    lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
+	    lblTitulo.setBounds(150, 30, 500, 50);
+	    fondo.add(lblTitulo);
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de docente invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-			
-				repaint();
-				revalidate();
-			}
-		});
-		
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuDocentes";
-				add(menuDocentes());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(120, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivoDocente.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
-		            
-		            //Crear txt
-		            float col = 280f;
-		            float anchoColumna[] = {col,col};
-		            Table table = new Table(anchoColumna);
-		            
-		            
-		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
-		            	.setFontColor(new DeviceRgb(255, 255, 255));
-		            Cell cell = new Cell();
-		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
-		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
-		            		.setMarginTop(30f)
-		            		.setMarginBottom(30f)
-		            		.setFontSize(24f)
-		            		.setFontColor(new DeviceRgb(0, 0, 0))
-		            		.setBorder(Border.NO_BORDER)
-		            		;
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 100, 600, 550);
+	    fondo.add(panelContenido);
+	    panelContenido.setLayout(null);
 
-		            cell = new Cell();
-		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
-		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
-		                .setMarginTop(50f)
-		                .setMarginBottom(30f)
-		                .setFontSize(12f)
-		                .setBorder(Border.NO_BORDER)
-		                .setMarginRight(10f);
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Campos de información del docente
+	    JLabel lblIdDocente = new JLabel("Ingrese el ID del docente");
+	    lblIdDocente.setForeground(Color.WHITE);
+	    lblIdDocente.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    lblIdDocente.setBounds(30, 30, 250, 20);
+	    panelContenido.add(lblIdDocente);
 
-		            float columnaAncho[] = {80,300,100,80};
-		            Table tablaInformacion = new Table(columnaAncho);
-		            
-		            tablaInformacion.addCell(new Cell(0, 8)
-		                    .add(new Paragraph("Informacion del Docente:")
-		                    .setBold()));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido paterno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Apellido materno")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Fecha de nacimiento")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_nombre.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apePaterno.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_apeMaterno.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_fecha.getText())));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Correo")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Teléfono")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Dirección")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("ID del Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_correo.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_tel.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(idDocente.getText())));
-		            
-		            // Cerrar el documento
-		            document.add(table);
-		            document.add(tablaInformacion);
-		            document.close();
-		            
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } /*catch (MalformedURLException e1) {
-					e1.printStackTrace();
-				}*/
-		    }
-		});
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(380, 514, 89, 36);
-		fondo.add(Descargar);
-		
-		imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 50, 160, 160);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 320, 400, 100);
-		fondo2.add(imagen2);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
-		GuardarCambios.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nombre = datos_nombre.getText();
-		        String apellidoPaterno = datos_apePaterno.getText();
-		        String correo = datos_correo.getText();
-		        String fechaNacimiento = datos_fecha.getText();
-		        String telefono = datos_tel.getText();
-		        String direccion = datos_direccion.getText();
-		        int id = Integer.parseInt(idDocente.getText());
+	    JTextField txtIdDocente = new JTextField();
+	    txtIdDocente.setEditable(true);
+	    txtIdDocente.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	    txtIdDocente.setBounds(30, 55, 250, 30);
+	    panelContenido.add(txtIdDocente);
 
-		        BD bd = new BD();
-		        try {
-		            Connection cn = bd.Conectar();
-		            Statement stm = cn.createStatement();
-		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE docentesbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idDocente = ?");
-		           
-		            pstmt.setString(1, correo);		            
-		            pstmt.setString(2, telefono);
-		            pstmt.setString(3, direccion);
-		            pstmt.setInt(4, id);
+	    // Array de campos para organización
+	    String[] etiquetas = {"Nombre", "Apellido Paterno", "Apellido Materno", 
+	                         "Correo electrónico", "Fecha de nacimiento", 
+	                         "Teléfono", "Dirección"};
+	    
+	    JTextField[] campos = new JTextField[7];
+	    int yPos = 110;
+	    
+	    for (int i = 0; i < etiquetas.length; i++) {
+	        // Etiqueta
+	        JLabel label = new JLabel(etiquetas[i]);
+	        label.setForeground(Color.WHITE);
+	        label.setFont(new Font("SansSerif", Font.BOLD, 16));
+	        
+	        // Campo de texto
+	        campos[i] = new JTextField();
+	        campos[i].setEditable(false);
+	        campos[i].setFont(new Font("SansSerif", Font.PLAIN, 14));
+	        
+	        // Ajustar posición según el campo
+	        if (i == 1 || i == 2) { // Apellidos
+	            label.setBounds(30 + (i-1)*150, yPos, 150, 20);
+	            campos[i].setBounds(30 + (i-1)*150, yPos + 25, 100, 30);
+	            if (i == 2) yPos += 70;
+	        } else {
+	            label.setBounds(30, yPos, 250, 20);
+	            campos[i].setBounds(30, yPos + 25, 250, 30);
+	            yPos += 70;
+	        }
+	        
+	        panelContenido.add(label);
+	        panelContenido.add(campos[i]);
+	    }
 
-		            int columnasAfectadas = pstmt.executeUpdate();
-		            if (columnasAfectadas > 0) {
-		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
-		            }
+	    // Referencias a campos específicos
+	    JTextField txtNombre = campos[0];
+	    JTextField txtApellidoP = campos[1];
+	    JTextField txtApellidoM = campos[2];
+	    JTextField txtCorreo = campos[3];
+	    JTextField txtFechaNac = campos[4];
+	    JTextField txtTelefono = campos[5];
+	    JTextField txtDireccion = campos[6];
 
-		            pstmt.close();
-		            cn.close();
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		        }
+	    // Imagen de perfil
+	    JLabel lblImagenPerfil = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    lblImagenPerfil.setIcon(imageIcon);
+	    lblImagenPerfil.setBounds(350, 50, 200, 180);
+	    panelContenido.add(lblImagenPerfil);
 
-		        repaint();
-		        revalidate();
-		    }
-		});
-		GuardarCambios.setForeground(new Color(255, 255, 255));
-		GuardarCambios.setBackground(new Color(0, 128, 255));
-		GuardarCambios.setBounds(380, 250, 70, 30);
-		GuardarCambios.setEnabled(false);
-		fondo2.add(GuardarCambios);
-		
-		JButton Editar = new JButton("<html>Editar<html>");
-		Editar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idText = idDocente.getText();
-				if(idText.matches(".*\\d.*")) {
-					datos_correo.setEditable(true);
-					datos_tel.setEditable(true);
-					datos_direccion.setEditable(true);
-					GuardarCambios.setEnabled(true);
-					
-					repaint();
-					revalidate();
-				}else {
-					JOptionPane.showMessageDialog(null, "Ingresa el id del Docente");
-				}
-			}
-		});
-		Editar.setForeground(new Color(255, 255, 255));
-		Editar.setBackground(new Color(0, 128, 255));
-		Editar.setBounds(290, 250, 70, 30);
-		fondo2.add(Editar);
-		
-		this.add(fondo);
-		return fondo;
+	    // Logo UABCS
+	    JLabel lblLogoUABCS = new JLabel("");
+	    ImageIcon logoIcon = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(300, 120, Image.SCALE_DEFAULT));
+	    lblLogoUABCS.setIcon(logoIcon);
+	    lblLogoUABCS.setBounds(300, 360, 300, 120);
+	    panelContenido.add(lblLogoUABCS);
+
+	    // Botones de edición
+	    JButton btnEditar = new JButton("Editar");
+	    btnEditar.setForeground(Color.WHITE);
+	    btnEditar.setBackground(new Color(0, 128, 255));
+	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnEditar.setBounds(340, 280, 100, 35);
+	    panelContenido.add(btnEditar);
+
+	    JButton btnGuardar = new JButton("Guardar");
+	    btnGuardar.setForeground(Color.WHITE);
+	    btnGuardar.setBackground(new Color(0, 180, 0));
+	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnGuardar.setBounds(450, 280, 100, 35);
+	    btnGuardar.setEnabled(false);
+	    panelContenido.add(btnGuardar);
+
+	    // Botones inferiores
+	    JButton btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(new Color(255, 0, 0));
+	    btnVolver.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnVolver.setBounds(150, 680, 120, 40);
+	    fondo.add(btnVolver);
+
+	    JButton btnConsultar = new JButton("Consultar");
+	    btnConsultar.setForeground(Color.WHITE);
+	    btnConsultar.setBackground(new Color(0, 128, 255));
+	    btnConsultar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnConsultar.setBounds(300, 680, 120, 40);
+	    fondo.add(btnConsultar);
+
+	    JButton btnDescargar = new JButton("Descargar PDF");
+	    btnDescargar.setForeground(Color.WHITE);
+	    btnDescargar.setBackground(new Color(0, 128, 255));
+	    btnDescargar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnDescargar.setBounds(450, 680, 150, 40);
+	    fondo.add(btnDescargar);
+
+	    // Listeners de botones
+	    // Botón Consultar
+	    btnConsultar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                int idConsultar = Integer.parseInt(txtIdDocente.getText());
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd WHERE idDocente = " + idConsultar);
+
+	                if (rs.next()) {
+	                    // Obtener datos de la base de datos
+	                    String nombre = rs.getString("Nombre");
+	                    String correo = rs.getString("Correo");
+	                    String apellidoP = rs.getString("Apellido Paterno");
+	                    String apellidoM = rs.getString("Apellido Materno");
+	                    String telefono = rs.getString("Telefono");
+	                    LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
+	                    String fecha = fechaNacimiento.toString();
+	                    String direccion = rs.getString("Direccion");
+	                    
+	                    // Actualizar imagen de perfil si existe
+	                    if (imagenBytes != null && imagenBytes.length > 0) {
+	                        ImageIcon nuevaImagen = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	                        lblImagenPerfil.setIcon(nuevaImagen);
+	                    }
+	                    
+	                    // Actualizar campos de texto
+	                    txtNombre.setText(nombre);
+	                    txtApellidoP.setText(apellidoP);
+	                    txtApellidoM.setText(apellidoM);
+	                    txtCorreo.setText(correo);
+	                    txtTelefono.setText(telefono);
+	                    txtFechaNac.setText(fecha);
+	                    txtDireccion.setText(direccion);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró un docente con ese ID", "Error", JOptionPane.ERROR_MESSAGE);
+	                }
+
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+	            } catch (NumberFormatException e2) {
+	                JOptionPane.showMessageDialog(null, "Ingrese un ID válido (número)", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Editar
+	    btnEditar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            if (!txtIdDocente.getText().isEmpty() && txtIdDocente.getText().matches("\\d+")) {
+	                txtCorreo.setEditable(true);
+	                txtTelefono.setEditable(true);
+	                txtDireccion.setEditable(true);
+	                btnGuardar.setEnabled(true);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Ingrese un ID de docente válido primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Guardar
+	    btnGuardar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+	                    "UPDATE docentesbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idDocente = ?");
+	                
+	                pstmt.setString(1, txtCorreo.getText());
+	                pstmt.setString(2, txtTelefono.getText());
+	                pstmt.setString(3, txtDireccion.getText());
+	                pstmt.setInt(4, Integer.parseInt(txtIdDocente.getText()));
+
+	                int filasAfectadas = pstmt.executeUpdate();
+	                if (filasAfectadas > 0) {
+	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+	                    txtCorreo.setEditable(false);
+	                    txtTelefono.setEditable(false);
+	                    txtDireccion.setEditable(false);
+	                    btnGuardar.setEnabled(false);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró el docente con ese ID");
+	                }
+
+	                pstmt.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Volver
+	    btnVolver.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuDocentes";
+	            add(menuDocentes());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+
+	    // Botón Descargar PDF
+	    btnDescargar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                // Validar que hay datos para exportar
+	                if (txtNombre.getText().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Consulte primero los datos del docente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    return;
+	                }
+
+	                // Crear documento PDF
+	                String filename = "docente_" + txtIdDocente.getText() + ".pdf";
+	                PdfWriter writer = new PdfWriter(filename);
+	                PdfDocument pdf = new PdfDocument(writer);
+	                Document document = new Document(pdf);
+	                
+	                // Encabezado
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información del Docente")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Tabla de información
+	                float[] columnWidths = {150f, 350f};
+	                Table table = new Table(columnWidths);
+	                
+	                // Agregar filas con la información
+	                addTableRow(table, "ID Docente", txtIdDocente.getText());
+	                addTableRow(table, "Nombre", txtNombre.getText());
+	                addTableRow(table, "Apellido Paterno", txtApellidoP.getText());
+	                addTableRow(table, "Apellido Materno", txtApellidoM.getText());
+	                addTableRow(table, "Correo Electrónico", txtCorreo.getText());
+	                addTableRow(table, "Teléfono", txtTelefono.getText());
+	                addTableRow(table, "Dirección", txtDireccion.getText());
+	                addTableRow(table, "Fecha de Nacimiento", txtFechaNac.getText());
+	                
+	                document.add(table);
+	                document.close();
+	                
+	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente como: " + filename);
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	        
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
+	        }
+	    });
+
+	    return fondo;
 	}
 	
 	public JPanel consultarGrupo() {
-		anterior = actual;
-		actual = "consultarGrupo";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Grupo - Consultar");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 75, 480, 429);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Seleccione un Grupo:");
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag1.setBounds(10, 24, 210, 14);
-		fondo2.add(tag1);
-		
-		JLabel tag2 = new JLabel("Carrera:");
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBounds(10, 70, 210, 20);
-		fondo2.add(tag2);
-		
-		JLabel tag3 = new JLabel("Asignatura:");
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBounds(10, 114, 210, 14);
-		fondo2.add(tag3);
-		
-		JLabel tag4 = new JLabel("Docente a cargo:");
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBounds(10, 157, 210, 14);
-		fondo2.add(tag4);
-		
-		JLabel tag5 = new JLabel("Semestre:");
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBounds(10, 198, 210, 14);
-		fondo2.add(tag5);
-		
-		JLabel tag6 = new JLabel("Numero de alumnos:");
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBounds(10, 239, 210, 14);
-		fondo2.add(tag6);
-		
-		BD bd = new BD();
-		JComboBox<Integer> seleccionGrupo = new JComboBox<>();
-		seleccionGrupo.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsGrupo().toArray(new Integer[0])));
-		seleccionGrupo.setBounds(10, 45, 273, 22);
-	    fondo2.add(seleccionGrupo);
-		
-		JTextField datos_carrera = new JTextField();
-		datos_carrera.setEditable(false);
-		datos_carrera.setColumns(10);
-		datos_carrera.setBounds(10, 90, 273, 20);
-		fondo2.add(datos_carrera);
-		
-		
-		
-		asignaturaG = new JComboBox();
-		asignaturaG.setEnabled(false);
-		asignaturaG.setBackground(new Color(255, 255, 255));
-		asignaturaG.setBounds(10, 132, 273, 20);
-		fondo2.add(asignaturaG);
-	
-		 BD bd1 = new BD();
-	        try {
-	            Connection cn = bd.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idAsignatura");
-	                String nombre = rs.getString("Nombre");
-	                asignaturaG.addItem(nombre);
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "consultarGrupo";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+
+	    // Título principal
+	    JLabel lblTitulo = new JLabel("Consultar Grupo");
+	    lblTitulo.setForeground(Color.BLACK);
+	    lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
+	    lblTitulo.setBounds(150, 30, 500, 50);
+	    fondo.add(lblTitulo);
+
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 100, 600, 550);
+	    fondo.add(panelContenido);
+	    panelContenido.setLayout(null);
+
+	    // ComboBox para selección de grupo
+	    JLabel lblSeleccionGrupo = new JLabel("Seleccione un Grupo:");
+	    lblSeleccionGrupo.setForeground(Color.WHITE);
+	    lblSeleccionGrupo.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    lblSeleccionGrupo.setBounds(30, 30, 250, 20);
+	    panelContenido.add(lblSeleccionGrupo);
+
+	    BD bd = new BD();
+	    JComboBox<Integer> cbGrupos = new JComboBox<>();
+	    cbGrupos.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsGrupo().toArray(new Integer[0])));
+	    cbGrupos.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	    cbGrupos.setBounds(30, 55, 250, 30);
+	    panelContenido.add(cbGrupos);
+
+	    // Campos de información del grupo
+	    String[] etiquetas = {"Carrera:", "Asignatura:", "Docente a cargo:", 
+	                         "Semestre:", "Número de alumnos:"};
+	    
+	    JTextField[] campos = new JTextField[3];
+	    JComboBox<String> cbAsignatura = new JComboBox<>();
+	    JComboBox<String> cbDocente = new JComboBox<>();
+	    
+	    int yPos = 110;
+	    for (int i = 0; i < etiquetas.length; i++) {
+	        // Etiqueta
+	        JLabel label = new JLabel(etiquetas[i]);
+	        label.setForeground(Color.WHITE);
+	        label.setFont(new Font("SansSerif", Font.BOLD, 16));
+	        label.setBounds(30, yPos, 250, 20);
+	        panelContenido.add(label);
+
+	        // Componente de entrada
+	        if (i == 1) { // Asignatura (ComboBox)
+	            cbAsignatura.setEnabled(false);
+	            cbAsignatura.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            cbAsignatura.setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(cbAsignatura);
+	            
+	            // Llenar combobox de asignaturas
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT Nombre FROM asignaturasbd");
+	                while (rs.next()) {
+	                    cbAsignatura.addItem(rs.getString("Nombre"));
+	                }
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
 	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-		
-		docente_a_cargoG = new JComboBox();
-		docente_a_cargoG.setEnabled(false);
-		docente_a_cargoG.setBackground(new Color(255, 255, 255));
-		docente_a_cargoG.setBounds(10, 174, 273, 20);
-		fondo2.add(docente_a_cargoG);
-		
-		 BD bd2 = new BD();
-	        try {
-	            Connection cn = bd1.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idDocente");
-	                String nombre = rs.getString("Nombre");
-	                docente_a_cargoG.addItem(nombre);
+	            
+	            yPos += 70;
+	        } else if (i == 2) { // Docente (ComboBox)
+	            cbDocente.setEnabled(false);
+	            cbDocente.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            cbDocente.setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(cbDocente);
+	            
+	            // Llenar combobox de docentes
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT Nombre FROM docentesbd");
+	                while (rs.next()) {
+	                    cbDocente.addItem(rs.getString("Nombre"));
+	                }
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
 	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	            
+	            yPos += 70;
+	        } else { // Campos de texto
+	            campos[i < 1 ? i : i-2] = new JTextField();
+	            campos[i < 1 ? i : i-2].setEditable(false);
+	            campos[i < 1 ? i : i-2].setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            campos[i < 1 ? i : i-2].setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(campos[i < 1 ? i : i-2]);
+	            yPos += 70;
 	        }
-		
-		JTextField datos_semestre = new JTextField();
-		datos_semestre.setEditable(false);
-		datos_semestre.setColumns(10);
-		datos_semestre.setBounds(10, 215, 273, 20);
-		fondo2.add(datos_semestre);
-		
-		JTextField datos_num_alumnos = new JTextField();
-		datos_num_alumnos.setEditable(false);
-		datos_num_alumnos.setColumns(10);
-		datos_num_alumnos.setBounds(10, 257, 273, 20);
-		fondo2.add(datos_num_alumnos);
-		
-		JButton Consultar = new JButton("Consultar");
-		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(0, 128, 255));
-		Consultar.setBounds(250, 514, 89, 36); 
-		fondo.add(Consultar);
-		Consultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int idConsultar = (int) seleccionGrupo.getSelectedItem();
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM gruposbd");
+	    }
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idGrupos");
-			           
-			        	if(idConsultar == id) {
-			        		String carrera = rs.getString("Carrera");
-			        		String asignatura = rs.getString("Asignatura");
-				            String docente = rs.getString("Docente");
-				            String semestre = rs.getString("Semestre");
-				            String alumnos = rs.getString("numAlumnos");
-	
-				            
-				            
-				            datos_carrera.setText(carrera);
-				            asignaturaG.setSelectedItem(asignatura);
-				            asignaturaG.setEnabled(true);
-				            docente_a_cargoG.setSelectedItem(docente);
-				            docente_a_cargoG.setEnabled(true);
-				            datos_semestre.setText(semestre);
-				            datos_num_alumnos.setText(alumnos);
-	  
-				            cambio++;
-				            fondo2.repaint();
-				            fondo2.revalidate();
-			        	}
-			        }
+	    // Referencias a campos específicos
+	    JTextField txtCarrera = campos[0];
+	    JTextField txtSemestre = campos[1];
+	    JTextField txtNumAlumnos = campos[2];
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de docente invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-			
-				repaint();
-				revalidate();
-			}
-		});
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuGrupos";
-				add(menuGrupos());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(120, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivoGrupo.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
-		            
-		            //Crear txt
-		            float col = 280f;
-		            float anchoColumna[] = {col,col};
-		            Table table = new Table(anchoColumna);
-		            
-		            
-		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
-		            	.setFontColor(new DeviceRgb(255, 255, 255));
-		            Cell cell = new Cell();
-		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
-		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
-		            		.setMarginTop(30f)
-		            		.setMarginBottom(30f)
-		            		.setFontSize(24f)
-		            		.setFontColor(new DeviceRgb(0, 0, 0))
-		            		.setBorder(Border.NO_BORDER)
-		            		;
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Imagen de grupo
+	    JLabel lblImagenGrupo = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    lblImagenGrupo.setIcon(imageIcon);
+	    lblImagenGrupo.setBounds(350, 50, 180, 180);
+	    panelContenido.add(lblImagenGrupo);
 
-		            cell = new Cell();
-		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
-		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
-		                .setMarginTop(50f)
-		                .setMarginBottom(30f)
-		                .setFontSize(12f)
-		                .setBorder(Border.NO_BORDER)
-		                .setMarginRight(10f);
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Logo UABCS
+	    JLabel lblLogoUABCS = new JLabel("");
+	    ImageIcon logoIcon = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(300, 120, Image.SCALE_DEFAULT));
+	    lblLogoUABCS.setIcon(logoIcon);
+	    lblLogoUABCS.setBounds(300, 360, 300, 120);
+	    panelContenido.add(lblLogoUABCS);
 
-		            float columnaAncho[] = {80,300,100,80};
-		            Table tablaInformacion = new Table(columnaAncho);
-		            
-		            tablaInformacion.addCell(new Cell(0, 2)
-		                    .add(new Paragraph("Informacion del Grupo:")
-		                    .setBold()));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Carrera")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Asignatura")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Semestre")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
-		            
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_carrera.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(asignaturaG.getSelectedItem().toString())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(docente_a_cargoG.getSelectedItem().toString())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_semestre.getText())));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Numero de Alumnos")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_num_alumnos.getText())));
+	    // Botones de edición
+	    JButton btnEditar = new JButton("Editar");
+	    btnEditar.setForeground(Color.WHITE);
+	    btnEditar.setBackground(new Color(0, 128, 255));
+	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnEditar.setBounds(340, 250, 100, 35);
+	    panelContenido.add(btnEditar);
 
-		            
-		            // Cerrar el documento
-		            document.add(table);
-		            document.add(tablaInformacion);
-		            document.close();
-		            
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } /*catch (MalformedURLException e1) {
-					e1.printStackTrace();
-				}*/
-		    }
-		});
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(380, 514, 89, 36);
-		fondo.add(Descargar);
-		
-		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
-		GuardarCambios.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String carrera = datos_carrera.getText();
-		        String asginatura = asignaturaG.getSelectedItem().toString();
-		        String docente = docente_a_cargoG.getSelectedItem().toString();
-		        String semestre = datos_semestre.getText();
-		        String alumnos = datos_num_alumnos.getText();
-		        int id = Integer.parseInt(String.valueOf(seleccionGrupo.getSelectedItem()));
+	    JButton btnGuardar = new JButton("Guardar");
+	    btnGuardar.setForeground(Color.WHITE);
+	    btnGuardar.setBackground(new Color(0, 180, 0));
+	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnGuardar.setBounds(450, 250, 100, 35);
+	    btnGuardar.setEnabled(false);
+	    panelContenido.add(btnGuardar);
 
-		        BD bd = new BD();
-		        try {
-		            Connection cn = bd.Conectar();
-		            Statement stm = cn.createStatement();
-		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE gruposbd SET Carrera = ?, Asignatura = ?, Docente = ?, Semestre = ?, numAlumnos = ? WHERE idGrupos = ?");
-		           
-		            pstmt.setString(1, carrera);		            
-		            pstmt.setString(2, asginatura);
-		            pstmt.setString(3, docente);
-		            pstmt.setString(4, semestre);
-		            pstmt.setString(5, alumnos);
-		            pstmt.setInt(6, id);
+	    // Botones inferiores
+	    JButton btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(new Color(255, 0, 0));
+	    btnVolver.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnVolver.setBounds(150, 680, 120, 40);
+	    fondo.add(btnVolver);
 
-		            int columnasAfectadas = pstmt.executeUpdate();
-		            if (columnasAfectadas > 0) {
-		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
-		            }
+	    JButton btnConsultar = new JButton("Consultar");
+	    btnConsultar.setForeground(Color.WHITE);
+	    btnConsultar.setBackground(new Color(0, 128, 255));
+	    btnConsultar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnConsultar.setBounds(300, 680, 120, 40);
+	    fondo.add(btnConsultar);
 
-		            pstmt.close();
-		            cn.close();
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		        }
+	    JButton btnDescargar = new JButton("Descargar PDF");
+	    btnDescargar.setForeground(Color.WHITE);
+	    btnDescargar.setBackground(new Color(0, 128, 255));
+	    btnDescargar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnDescargar.setBounds(450, 680, 150, 40);
+	    fondo.add(btnDescargar);
 
-		        repaint();
-		        revalidate();
-		    }
-		});
-		GuardarCambios.setForeground(new Color(255, 255, 255));
-		GuardarCambios.setBackground(new Color(0, 128, 255));
-		GuardarCambios.setBounds(380, 250, 70, 30);
-		GuardarCambios.setEnabled(false);
-		fondo2.add(GuardarCambios);
-		
-		JButton Editar = new JButton("<html>Editar<html>");
-		Editar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idText = seleccionGrupo.getSelectedItem().toString();
-				if(idText.matches(".*\\d.*")) {
-					asignaturaG.setEnabled(true);
-					docente_a_cargoG.setEnabled(true);
-					datos_semestre.setEditable(true);
-					datos_num_alumnos.setEditable(true);
-					GuardarCambios.setEnabled(true);
-					
-					repaint();
-					revalidate();
-				}else {
-					JOptionPane.showMessageDialog(null, "Ingresa el id del Docente");
-				}
-			}
-		});
-		Editar.setForeground(new Color(255, 255, 255));
-		Editar.setBackground(new Color(0, 128, 255));
-		Editar.setBounds(290, 250, 70, 30);
-		fondo2.add(Editar);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 80, 160, 160);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 300, 400, 100);
-		fondo2.add(imagen2);
-		
-		this.add(fondo);
-		return fondo;
+	    // Listeners de botones
+	    // Botón Consultar
+	    btnConsultar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) cbGrupos.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM gruposbd WHERE idGrupos = " + idConsultar);
+
+	                if (rs.next()) {
+	                    // Obtener datos de la base de datos
+	                    txtCarrera.setText(rs.getString("Carrera"));
+	                    cbAsignatura.setSelectedItem(rs.getString("Asignatura"));
+	                    cbDocente.setSelectedItem(rs.getString("Docente"));
+	                    txtSemestre.setText(rs.getString("Semestre"));
+	                    txtNumAlumnos.setText(rs.getString("numAlumnos"));
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró el grupo", "Error", JOptionPane.ERROR_MESSAGE);
+	                }
+
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Editar
+	    btnEditar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            cbAsignatura.setEnabled(true);
+	            cbDocente.setEnabled(true);
+	            txtSemestre.setEditable(true);
+	            txtNumAlumnos.setEditable(true);
+	            btnGuardar.setEnabled(true);
+	        }
+	    });
+
+	    // Botón Guardar
+	    btnGuardar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+	                    "UPDATE gruposbd SET Carrera = ?, Asignatura = ?, Docente = ?, Semestre = ?, numAlumnos = ? WHERE idGrupos = ?");
+	                
+	                pstmt.setString(1, txtCarrera.getText());
+	                pstmt.setString(2, cbAsignatura.getSelectedItem().toString());
+	                pstmt.setString(3, cbDocente.getSelectedItem().toString());
+	                pstmt.setString(4, txtSemestre.getText());
+	                pstmt.setString(5, txtNumAlumnos.getText());
+	                pstmt.setInt(6, (int) cbGrupos.getSelectedItem());
+
+	                int filasAfectadas = pstmt.executeUpdate();
+	                if (filasAfectadas > 0) {
+	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+	                    cbAsignatura.setEnabled(false);
+	                    cbDocente.setEnabled(false);
+	                    txtSemestre.setEditable(false);
+	                    txtNumAlumnos.setEditable(false);
+	                    btnGuardar.setEnabled(false);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el grupo");
+	                }
+
+	                pstmt.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Volver
+	    btnVolver.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuGrupos";
+	            add(menuGrupos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+
+	    // Botón Descargar PDF
+	    btnDescargar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                // Validar que hay datos para exportar
+	                if (txtCarrera.getText().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Consulte primero los datos del grupo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    return;
+	                }
+
+	                // Crear documento PDF
+	                String filename = "grupo_" + cbGrupos.getSelectedItem() + ".pdf";
+	                PdfWriter writer = new PdfWriter(filename);
+	                PdfDocument pdf = new PdfDocument(writer);
+	                Document document = new Document(pdf);
+	                
+	                // Encabezado
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información del Grupo")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Tabla de información
+	                float[] columnWidths = {150f, 350f};
+	                Table table = new Table(columnWidths);
+	                
+	                // Agregar filas con la información
+	                addTableRow(table, "ID Grupo", cbGrupos.getSelectedItem().toString());
+	                addTableRow(table, "Carrera", txtCarrera.getText());
+	                addTableRow(table, "Asignatura", cbAsignatura.getSelectedItem().toString());
+	                addTableRow(table, "Docente", cbDocente.getSelectedItem().toString());
+	                addTableRow(table, "Semestre", txtSemestre.getText());
+	                addTableRow(table, "Número de Alumnos", txtNumAlumnos.getText());
+	                
+	                document.add(table);
+	                document.close();
+	                
+	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente como: " + filename);
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	        
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
+	        }
+	    });
+
+	    return fondo;
 	}
 	
 	public JPanel consultarAsignatura() {
-		anterior = actual;
-		actual = "consultarAsignatura";
-		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(225,225,225));
-		fondo.setBounds(0, 0, 584, 561);
-		getContentPane().add(fondo);
-		fondo.setLayout(null);
-		
-		JLabel Titulo = new JLabel("Asignatura - Consultar");
-		Titulo.setForeground(new Color(0, 0, 0));
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		Titulo.setBounds(79, 24, 421, 40);
-		fondo.add(Titulo);
-		
-		JPanel fondo2 = new JPanel();
-		fondo2.setBackground(new Color(0, 128, 64));
-		fondo2.setBounds(60, 75, 480, 429);
-		fondo.add(fondo2);
-		fondo2.setLayout(null);
-		
-		JLabel tag1 = new JLabel("Seleccione una Asignatura:");
-		tag1.setForeground(new Color(0, 0, 0));
-		tag1.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag1.setBounds(10, 24, 210, 14);
-		fondo2.add(tag1);
-		
-		JLabel tag2 = new JLabel("Nombre:");
-		tag2.setForeground(new Color(0, 0, 0));
-		tag2.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag2.setBounds(10, 70, 210, 20);
-		fondo2.add(tag2);
-		
-		JLabel tag3 = new JLabel("Créditos:");
-		tag3.setForeground(new Color(0, 0, 0));
-		tag3.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag3.setBounds(10, 114, 210, 14);
-		fondo2.add(tag3);
-		
-		JLabel tag4 = new JLabel("Docente a cargo:");
-		tag4.setForeground(new Color(0, 0, 0));
-		tag4.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag4.setBounds(10, 157, 210, 14);
-		fondo2.add(tag4);
-		
-		JLabel tag5 = new JLabel("Semestres:");
-		tag5.setForeground(new Color(0, 0, 0));
-		tag5.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag5.setBounds(10, 198, 210, 14);
-		fondo2.add(tag5);
-		
-		/*JLabel tag6 = new JLabel("Grupos que llevan esta asignatura:");
-		tag6.setForeground(new Color(0, 0, 0));
-		tag6.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		tag6.setBounds(10, 239, 250, 14);
-		fondo2.add(tag6);*/
-		
-		BD bd = new BD();
-		JComboBox<Integer> seleccionAsignatura = new JComboBox<>();
-		seleccionAsignatura.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAsignatura().toArray(new Integer[0])));
-		seleccionAsignatura.setBounds(10, 45, 273, 22);
-	    fondo2.add(seleccionAsignatura);
-		
-		asignaturaG = new JComboBox();
-		asignaturaG.setEnabled(false);
-		asignaturaG.setBackground(new Color(255, 255, 255));
-		asignaturaG.setBounds(10, 90, 273, 20);
-		fondo2.add(asignaturaG);
-	
-		 BD bd1 = new BD();
-	        try {
-	            Connection cn = bd.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idAsignatura");
-	                String nombre = rs.getString("Nombre");
-	                asignaturaG.addItem(nombre);
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "consultarAsignatura";
+	    
+	    // Panel principal
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);
+	    fondo.setLayout(null);
+	    getContentPane().add(fondo);
+
+	    // Título principal
+	    JLabel lblTitulo = new JLabel("Consultar Asignatura");
+	    lblTitulo.setForeground(Color.BLACK);
+	    lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
+	    lblTitulo.setBounds(150, 30, 500, 50);
+	    fondo.add(lblTitulo);
+
+	    // Panel de contenido (verde)
+	    JPanel panelContenido = new JPanel();
+	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBounds(100, 100, 600, 550);
+	    fondo.add(panelContenido);
+	    panelContenido.setLayout(null);
+
+	    // ComboBox para selección de asignatura
+	    JLabel lblSeleccionAsignatura = new JLabel("Seleccione una Asignatura:");
+	    lblSeleccionAsignatura.setForeground(Color.WHITE);
+	    lblSeleccionAsignatura.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    lblSeleccionAsignatura.setBounds(30, 30, 250, 20);
+	    panelContenido.add(lblSeleccionAsignatura);
+
+	    BD bd = new BD();
+	    JComboBox<Integer> cbAsignaturas = new JComboBox<>();
+	    cbAsignaturas.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAsignatura().toArray(new Integer[0])));
+	    cbAsignaturas.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	    cbAsignaturas.setBounds(30, 55, 250, 30);
+	    panelContenido.add(cbAsignaturas);
+
+	    // Campos de información de la asignatura
+	    String[] etiquetas = {"Nombre:", "Créditos:", "Docente a cargo:", "Semestres:"};
+	    
+	    JTextField txtCreditos = new JTextField();
+	    JTextField txtSemestres = new JTextField();
+	    JComboBox<String> cbNombreAsignatura = new JComboBox<>();
+	    JComboBox<String> cbDocente = new JComboBox<>();
+	    
+	    int yPos = 110;
+	    for (int i = 0; i < etiquetas.length; i++) {
+	        // Etiqueta
+	        JLabel label = new JLabel(etiquetas[i]);
+	        label.setForeground(Color.WHITE);
+	        label.setFont(new Font("SansSerif", Font.BOLD, 16));
+	        label.setBounds(30, yPos, 250, 20);
+	        panelContenido.add(label);
+
+	        // Componente de entrada
+	        if (i == 0) { // Nombre (ComboBox)
+	            cbNombreAsignatura.setEnabled(false);
+	            cbNombreAsignatura.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            cbNombreAsignatura.setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(cbNombreAsignatura);
+	            
+	            // Llenar combobox de asignaturas
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT Nombre FROM asignaturasbd");
+	                while (rs.next()) {
+	                    cbNombreAsignatura.addItem(rs.getString("Nombre"));
+	                }
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
 	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-		
-		JTextField datos_creditos = new JTextField();
-		datos_creditos.setEditable(false);
-		datos_creditos.setColumns(10);
-		datos_creditos.setBounds(10, 132, 273, 20);
-		fondo2.add(datos_creditos);
-		
-		docente_a_cargoG = new JComboBox();
-		docente_a_cargoG.setEnabled(false);
-		docente_a_cargoG.setBackground(new Color(255, 255, 255));
-		docente_a_cargoG.setBounds(10, 174, 273, 20);
-		fondo2.add(docente_a_cargoG);
-		
-		 BD bd2 = new BD();
-	        try {
-	            Connection cn = bd1.Conectar();
-	            Statement stm = cn.createStatement();
-	            ResultSet rs = stm.executeQuery("SELECT * FROM docentesbd");
-	         
-	            while (rs.next()) {
-	                int id = rs.getInt("idDocente");
-	                String nombre = rs.getString("Nombre");
-	                docente_a_cargoG.addItem(nombre);
+	            
+	            yPos += 70;
+	        } else if (i == 2) { // Docente (ComboBox)
+	            cbDocente.setEnabled(false);
+	            cbDocente.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            cbDocente.setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(cbDocente);
+	            
+	            // Llenar combobox de docentes
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT Nombre FROM docentesbd");
+	                while (rs.next()) {
+	                    cbDocente.addItem(rs.getString("Nombre"));
+	                }
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
 	            }
-
-	            rs.close();
-	            stm.close();
-	            cn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	            
+	            yPos += 70;
+	        } else { // Campos de texto
+	            JTextField textField = (i == 1) ? txtCreditos : txtSemestres;
+	            textField.setEditable(false);
+	            textField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	            textField.setBounds(30, yPos + 25, 250, 30);
+	            panelContenido.add(textField);
+	            yPos += 70;
 	        }
-		
-		JTextField datos_semestres = new JTextField();
-		datos_semestres.setEditable(false);
-		datos_semestres.setColumns(10);
-		datos_semestres.setBounds(10, 215, 273, 20);
-		fondo2.add(datos_semestres);
-		
-		/*JTextField datos_num_grupos = new JTextField();
-		datos_num_grupos.setEditable(false);
-		datos_num_grupos.setColumns(10);
-		datos_num_grupos.setBounds(10, 257, 273, 20);
-		fondo2.add(datos_num_grupos);*/
-		
-		JButton Consultar = new JButton("Consultar");
-		Consultar.setForeground(new Color(255, 255, 255));
-		Consultar.setBackground(new Color(0, 128, 255));
-		Consultar.setBounds(250, 514, 89, 36); 
-		fondo.add(Consultar);
-		Consultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int idConsultar = (int) seleccionAsignatura.getSelectedItem();
-				BD bd = new BD();
-			    try {
-			        Connection cn = bd.Conectar();
-			        Statement stm = cn.createStatement();
-			        ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd");
+	    }
 
-			        
-			        
-			        while (rs.next()) {
-			        	
-			        	int id = rs.getInt("idAsignatura");
-			           
-			        	if(idConsultar == id) {
-			        		String nombre = rs.getString("Nombre");
-			        		String creditos = rs.getString("Creditos");
-				            String docente = rs.getString("Docente");
-				            String semestre = rs.getString("Semestre");
-				           
-	
-				            
-				            
-				            asignaturaG.setSelectedItem(nombre);
-				            asignaturaG.setEnabled(true);
-				            datos_creditos.setText(creditos);
-				            docente_a_cargoG.setSelectedItem(docente);
-				            docente_a_cargoG.setEnabled(true);
-				            datos_semestres.setText(semestre);
-				        
-	  
-				            cambio++;
-				            fondo2.repaint();
-				            fondo2.revalidate();
-			        	}
-			        }
+	    // Imagen representativa
+	    JLabel lblImagenAsignatura = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    lblImagenAsignatura.setIcon(imageIcon);
+	    lblImagenAsignatura.setBounds(350, 50, 180, 180);
+	    panelContenido.add(lblImagenAsignatura);
 
-			        rs.close();
-			        stm.close();
-			        cn.close();
-			    } catch (SQLException e1) {
-			        e1.printStackTrace();
-			    }
-			    
-			    if(cambio==0) {
-			    	JOptionPane.showMessageDialog(null, "ID de docente invalido. Favor de intentar denuevo");
-			    }
-			    cambio=0;
-				
-			
-				repaint();
-				revalidate();
-			}
-		});
-		
-		RoundButtonRojo Volver = new RoundButtonRojo("Volver");
-		Volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remove(fondo);
-				anterior = actual;
-				actual = "menuAsignaturas";
-				add(menuAsignaturas());
-				repaint();
-				revalidate();
-			}
-		});
-		Volver.setForeground(new Color(255, 255, 255));
-		Volver.setBackground(new Color(255, 0, 0));
-		Volver.setBounds(120, 514, 89, 36);
-		fondo.add(Volver);
-		
-		JButton Descargar = new JButton("<html>Descargar .pdf<html>");
-		Descargar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            // Crear el archivo PDF
-		            PdfWriter writer = new PdfWriter(new FileOutputStream("archivoAsignatura.pdf"));
-		            com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
-		            com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
-		            
-		            //Crear txt
-		            float col = 280f;
-		            float anchoColumna[] = {col,col};
-		            Table table = new Table(anchoColumna);
-		            
-		            
-		            table.setBackgroundColor(new DeviceRgb(63, 169, 219))
-		            	.setFontColor(new DeviceRgb(255, 255, 255));
-		            Cell cell = new Cell();
-		            Paragraph paragraph = new Paragraph("Universidad Autónoma de Baja California Sur").setTextAlignment(TextAlignment.CENTER)
-		            		.setVerticalAlignment(VerticalAlignment.MIDDLE)
-		            		.setMarginTop(30f)
-		            		.setMarginBottom(30f)
-		            		.setFontSize(24f)
-		            		.setFontColor(new DeviceRgb(0, 0, 0))
-		            		.setBorder(Border.NO_BORDER)
-		            		;
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Logo UABCS
+	    JLabel lblLogoUABCS = new JLabel("");
+	    ImageIcon logoIcon = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(300, 120, Image.SCALE_DEFAULT));
+	    lblLogoUABCS.setIcon(logoIcon);
+	    lblLogoUABCS.setBounds(300, 360, 300, 120);
+	    panelContenido.add(lblLogoUABCS);
 
-		            cell = new Cell();
-		            paragraph = new Paragraph("Sabiduría como meta,\n patria como destino").setTextAlignment(TextAlignment.RIGHT)
-		                .setVerticalAlignment(VerticalAlignment.MIDDLE)
-		                .setMarginTop(50f)
-		                .setMarginBottom(30f)
-		                .setFontSize(12f)
-		                .setBorder(Border.NO_BORDER)
-		                .setMarginRight(10f);
-		            cell.add(paragraph);
-		            table.addCell(cell);
+	    // Botones de edición
+	    JButton btnEditar = new JButton("Editar");
+	    btnEditar.setForeground(Color.WHITE);
+	    btnEditar.setBackground(new Color(0, 128, 255));
+	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnEditar.setBounds(340, 250, 100, 35);
+	    panelContenido.add(btnEditar);
 
-		            float columnaAncho[] = {80,300,100,80};
-		            Table tablaInformacion = new Table(columnaAncho);
-		            
-		            tablaInformacion.addCell(new Cell(0, 4)
-		                    .add(new Paragraph("Informacion de la Asignatura:")
-		                    .setBold()));
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Nombre")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Creditos")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Docente")).setBackgroundColor(new DeviceRgb(255, 255, 0)));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph("Semestres")).setBackgroundColor(new DeviceRgb(255, 255, 0)));   
-		            
-		            
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(asignaturaG.getSelectedItem().toString())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_creditos.getText())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(docente_a_cargoG.getSelectedItem().toString())));
-		            tablaInformacion.addCell(new Cell().add(new Paragraph(datos_semestres.getText())));
-		            
-		            // Cerrar el documento
-		            document.add(table);
-		            document.add(tablaInformacion);
-		            document.close();
-		            
-		            JOptionPane.showMessageDialog(null, "El archivo PDF se ha generado correctamente.", "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
-		        } catch (FileNotFoundException ex) {
-		            ex.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Error al generar el archivo PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
-		        } /*catch (MalformedURLException e1) {
-					e1.printStackTrace();
-				}*/
-		    }
-		});
-		Descargar.setForeground(new Color(255, 255, 255));
-		Descargar.setBackground(new Color(0, 128, 255));
-		Descargar.setBounds(380, 514, 89, 36);
-		fondo.add(Descargar);
-		
-		JButton GuardarCambios = new JButton("<html>Guardar Cambios<html>");
-		GuardarCambios.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nombre = asignaturaG.getSelectedItem().toString();
-		        String creditos = datos_creditos.getText();
-		        String docente = docente_a_cargoG.getSelectedItem().toString();
-		        String semestres = datos_semestres.getText();
-		   
-		        int id = Integer.parseInt(String.valueOf(seleccionAsignatura.getSelectedItem()));
+	    JButton btnGuardar = new JButton("Guardar");
+	    btnGuardar.setForeground(Color.WHITE);
+	    btnGuardar.setBackground(new Color(0, 180, 0));
+	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnGuardar.setBounds(450, 250, 100, 35);
+	    btnGuardar.setEnabled(false);
+	    panelContenido.add(btnGuardar);
 
-		        BD bd = new BD();
-		        try {
-		            Connection cn = bd.Conectar();
-		            Statement stm = cn.createStatement();
-		            PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement("UPDATE asignaturasbd SET Nombre = ?, Creditos = ?, Docente = ?, Semestre = ? WHERE idAsignatura = ?");
-		           
-		            pstmt.setString(1, nombre);		            
-		            pstmt.setString(2, creditos);
-		            pstmt.setString(3, docente);
-		            pstmt.setString(4, semestres);
-		            pstmt.setInt(5, id);
+	    // Botones inferiores
+	    JButton btnVolver = new RoundButtonRojo("Volver");
+	    btnVolver.setForeground(Color.WHITE);
+	    btnVolver.setBackground(new Color(255, 0, 0));
+	    btnVolver.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnVolver.setBounds(150, 680, 120, 40);
+	    fondo.add(btnVolver);
 
-		            int columnasAfectadas = pstmt.executeUpdate();
-		            if (columnasAfectadas > 0) {
-		                JOptionPane.showMessageDialog(null, "Los cambios se guardaron correctamente.");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo guardar los cambios.");
-		            }
+	    JButton btnConsultar = new JButton("Consultar");
+	    btnConsultar.setForeground(Color.WHITE);
+	    btnConsultar.setBackground(new Color(0, 128, 255));
+	    btnConsultar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnConsultar.setBounds(300, 680, 120, 40);
+	    fondo.add(btnConsultar);
 
-		            pstmt.close();
-		            cn.close();
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		        }
+	    JButton btnDescargar = new JButton("Descargar PDF");
+	    btnDescargar.setForeground(Color.WHITE);
+	    btnDescargar.setBackground(new Color(0, 128, 255));
+	    btnDescargar.setFont(new Font("SansSerif", Font.BOLD, 14));
+	    btnDescargar.setBounds(450, 680, 150, 40);
+	    fondo.add(btnDescargar);
 
-		        repaint();
-		        revalidate();
-		    }
-		});
-		GuardarCambios.setForeground(new Color(255, 255, 255));
-		GuardarCambios.setBackground(new Color(0, 128, 255));
-		GuardarCambios.setBounds(380, 250, 70, 30);
-		GuardarCambios.setEnabled(false);
-		fondo2.add(GuardarCambios);
-		
-		JButton Editar = new JButton("<html>Editar<html>");
-		Editar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idText = seleccionAsignatura.getSelectedItem().toString();
-				if(idText.matches(".*\\d.*")) {
-					asignaturaG.setEnabled(true);
-					docente_a_cargoG.setEnabled(true);
-					datos_creditos.setEditable(true);
-					datos_semestres.setEditable(true);
-					GuardarCambios.setEnabled(true);
-					
-					repaint();
-					revalidate();
-				}else {
-					JOptionPane.showMessageDialog(null, "Ingresa el id del Docente");
-				}
-			}
-		});
-		Editar.setForeground(new Color(255, 255, 255));
-		Editar.setBackground(new Color(0, 128, 255));
-		Editar.setBounds(290, 250, 70, 30);
-		fondo2.add(Editar);
-		
-		JLabel imagen = new JLabel("");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(160, 160, Image.SCALE_DEFAULT));
-		imagen.setIcon(imageIcon);
-		imagen.setBounds(300, 80, 160, 160);
-		fondo2.add(imagen);
-		
-		JLabel imagen2 = new JLabel("");
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("img/uabcs.png").getImage().getScaledInstance(400, 100, Image.SCALE_DEFAULT));
-		imagen2.setIcon(imageIcon2);
-		imagen2.setBounds(40, 300, 400, 100);
-		fondo2.add(imagen2);
-		
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.setBackground(new Color(225, 225, 225));
-		panelSuperior.setBounds(0, 0, 600, 15);
-		fondo.add(panelSuperior);
-		
-		this.add(fondo);
-		return fondo;
+	    // Listeners de botones
+	    // Botón Consultar
+	    btnConsultar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) cbAsignaturas.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                ResultSet rs = stm.executeQuery("SELECT * FROM asignaturasbd WHERE idAsignatura = " + idConsultar);
+
+	                if (rs.next()) {
+	                    // Obtener datos de la base de datos
+	                    cbNombreAsignatura.setSelectedItem(rs.getString("Nombre"));
+	                    txtCreditos.setText(rs.getString("Creditos"));
+	                    cbDocente.setSelectedItem(rs.getString("Docente"));
+	                    txtSemestres.setText(rs.getString("Semestre"));
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró la asignatura", "Error", JOptionPane.ERROR_MESSAGE);
+	                }
+
+	                rs.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Editar
+	    btnEditar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            cbNombreAsignatura.setEnabled(true);
+	            cbDocente.setEnabled(true);
+	            txtCreditos.setEditable(true);
+	            txtSemestres.setEditable(true);
+	            btnGuardar.setEnabled(true);
+	        }
+	    });
+
+	    // Botón Guardar
+	    btnGuardar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                BD bd = new BD();
+	                Connection cn = bd.Conectar();
+	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+	                    "UPDATE asignaturasbd SET Nombre = ?, Creditos = ?, Docente = ?, Semestre = ? WHERE idAsignatura = ?");
+	                
+	                pstmt.setString(1, cbNombreAsignatura.getSelectedItem().toString());
+	                pstmt.setString(2, txtCreditos.getText());
+	                pstmt.setString(3, cbDocente.getSelectedItem().toString());
+	                pstmt.setString(4, txtSemestres.getText());
+	                pstmt.setInt(5, (int) cbAsignaturas.getSelectedItem());
+
+	                int filasAfectadas = pstmt.executeUpdate();
+	                if (filasAfectadas > 0) {
+	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+	                    cbNombreAsignatura.setEnabled(false);
+	                    cbDocente.setEnabled(false);
+	                    txtCreditos.setEditable(false);
+	                    txtSemestres.setEditable(false);
+	                    btnGuardar.setEnabled(false);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se pudo actualizar la asignatura");
+	                }
+
+	                pstmt.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	    });
+
+	    // Botón Volver
+	    btnVolver.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAsignaturas";
+	            add(menuAsignaturas());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+
+	    // Botón Descargar PDF
+	    btnDescargar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            try {
+	                // Validar que hay datos para exportar
+	                if (txtCreditos.getText().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Consulte primero los datos de la asignatura", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    return;
+	                }
+
+	                // Crear documento PDF
+	                String filename = "asignatura_" + cbAsignaturas.getSelectedItem() + ".pdf";
+	                PdfWriter writer = new PdfWriter(filename);
+	                PdfDocument pdf = new PdfDocument(writer);
+	                Document document = new Document(pdf);
+	                
+	                // Encabezado
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información de la Asignatura")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Tabla de información
+	                float[] columnWidths = {150f, 350f};
+	                Table table = new Table(columnWidths);
+	                
+	                // Agregar filas con la información
+	                addTableRow(table, "ID Asignatura", cbAsignaturas.getSelectedItem().toString());
+	                addTableRow(table, "Nombre", cbNombreAsignatura.getSelectedItem().toString());
+	                addTableRow(table, "Créditos", txtCreditos.getText());
+	                addTableRow(table, "Docente", cbDocente.getSelectedItem().toString());
+	                addTableRow(table, "Semestres", txtSemestres.getText());
+	                
+	                document.add(table);
+	                document.close();
+	                
+	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente como: " + filename);
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	        
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
+	        }
+	    });
+
+	    return fondo;
 	}
 	
 	public JPanel credencialAlumno() {
@@ -4722,7 +4453,7 @@ public class Ventana extends JFrame{
                     try {
                         Connection cn = bd.Conectar();
                         Statement stm = cn.createStatement();
-                        String sql = "DELETE FROM gruposbd WHERE idAsignatura = " + idAsignatura;
+                        String sql = "DELETE FROM asignaturasbd WHERE idAsignatura = " + idAsignatura;
                         stm.executeUpdate(sql);
                         stm.close();
                         cn.close();
