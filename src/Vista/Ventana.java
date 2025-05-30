@@ -446,7 +446,7 @@ public class Ventana extends JFrame{
 	    return fondo;
 	}
 
-
+	////FUNCIONES MENUS////
 	public JPanel menuGrupos() {
 		anterior = actual;
 		actual = "menuGrupos";
@@ -837,9 +837,6 @@ public class Ventana extends JFrame{
 		return fondo;
 	}
 
-	/**
-	 * Escala una imagen a 150x150 y devuelve un ImageIcon
-	 */
 	private ImageIcon escalarIcono(String ruta) {
 		ImageIcon icono = new ImageIcon(ruta);
 		Image imagen = icono.getImage();
@@ -966,6 +963,8 @@ public class Ventana extends JFrame{
 	}
 
 	
+	
+	////FUNCIONES CREAR//////
 	public JPanel crearAlumno() {
 	    cvbd = new ControlVistaBD(this);
 	    anterior = actual;
@@ -1749,6 +1748,7 @@ public class Ventana extends JFrame{
 	}
 				
 
+	///ELIMINAR ALUMNOS Y DOCENTE////
 	public JPanel eliminarAlumno() {
 	    // Panel principal
 	    JPanel fondo = new JPanel();
@@ -2422,6 +2422,8 @@ public class Ventana extends JFrame{
 	    return fondo;
 	}
 	
+	
+	////FUNCIONES CONSULTAR//////
 	public JPanel consultarAlumno() {
 	    // Variables para control de navegación
 	    anterior = actual;
@@ -3728,6 +3730,8 @@ public class Ventana extends JFrame{
 	    return fondo;
 	}
 	
+	
+	////FUNCIONES CREDENCIAL//////
 	public JPanel credencialAlumno() {
 	    // Variables para control de navegación
 	    anterior = actual;
@@ -4081,6 +4085,8 @@ public class Ventana extends JFrame{
 	}
 
 	
+	
+	////////FUNCION LIMPIAR VENTANA/////
 	public void limpiarVentana() {
 
 		
@@ -4251,6 +4257,7 @@ public class Ventana extends JFrame{
 	}
 
 	
+	
 	///////////////////CLASES PARA EL BOTON EN TABLA////////////////////////////
 	class ButtonRenderer extends JButton implements TableCellRenderer {
 	    public ButtonRenderer() {
@@ -4333,7 +4340,6 @@ public class Ventana extends JFrame{
 	}
 	
 	
-
 	private class ButtonEditor extends DefaultCellEditor {
 
         public ButtonEditor() {
@@ -4531,7 +4537,7 @@ public class Ventana extends JFrame{
         }
     }
     
-    
+
     
 	//////////////////////////GETTERS Y SETTERS//////////////////////////////////
 	public JTextField getTxtApellidoPaterno() {
@@ -4541,7 +4547,6 @@ public class Ventana extends JFrame{
 	public void setTxtApellidoPaterno(JTextField txtApellidoPaterno) {
 		this.txtApellidoPaterno = txtApellidoPaterno;
 	}
-
 	public JTextField getTxtApellidoMaterno() {
 		return txtApellidoMaterno;
 	}
@@ -4876,7 +4881,6 @@ public class Ventana extends JFrame{
 	public void setBtnGuardarGrupo(JButton btnGuardarGrupo) {
 		this.btnGuardarGrupo = btnGuardarGrupo;
 	}
-	
 	
 	
 	public class RoundedImageLabel extends JLabel {
