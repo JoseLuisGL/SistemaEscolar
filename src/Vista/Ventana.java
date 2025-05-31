@@ -498,6 +498,9 @@ public class Ventana extends JFrame{
 	    btnCerrarSesion.setBackground(Color.RED);
 	    btnCerrarSesion.setBounds(600, 680, 130, 30);
 	    btnCerrarSesion.addActionListener(e -> {
+	        // Mostrar mensaje de confirmación
+	        JOptionPane.showMessageDialog(null, "Sesión cerrada correctamente", "Cierre de sesión", JOptionPane.INFORMATION_MESSAGE);
+	        
 	        remove(fondo);
 	        anterior = actual;
 	        actual = "login";
@@ -587,55 +590,59 @@ public class Ventana extends JFrame{
 		});
 		fondo.add(btnConsultarGrupo);
 
-		// Etiqueta 'Crear'
-		JLabel lblCrear = new JLabel("Crear");
-		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 28));
-		lblCrear.setBounds(210, 390, 100, 30);
-		fondo.add(lblCrear);
+		if (usertype == 1 || usertype == 2) {
+			// Etiqueta 'Crear'
+			JLabel lblCrear = new JLabel("Crear");
+			lblCrear.setForeground(new Color(121, 255, 145));
+			lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 28));
+			lblCrear.setBounds(210, 390, 100, 30);
+			fondo.add(lblCrear);
+	
+			// Botón Crear
+			RoundButton btnCrearGrupo = new RoundButton("");
+			ImageIcon icono2 = new ImageIcon("img/crearicono.png");
+			Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+			btnCrearGrupo.setIcon(new ImageIcon(imagen2));
+			btnCrearGrupo.setBackground(new Color(121, 255, 145));
+			btnCrearGrupo.setBounds(160, 430, 180, 180);
+			btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
+			btnCrearGrupo.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "crearGrupo";
+				add(crearGrupo());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnCrearGrupo);
+		}
 
-		// Botón Crear
-		RoundButton btnCrearGrupo = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img/crearicono.png");
-		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnCrearGrupo.setIcon(new ImageIcon(imagen2));
-		btnCrearGrupo.setBackground(new Color(121, 255, 145));
-		btnCrearGrupo.setBounds(160, 430, 180, 180);
-		btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnCrearGrupo.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "crearGrupo";
-			add(crearGrupo());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnCrearGrupo);
-
-		// Etiqueta 'Eliminar'
-		JLabel lblEliminar = new JLabel("Eliminar");
-		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 28));
-		lblEliminar.setBounds(500, 390, 120, 30);
-		fondo.add(lblEliminar);
-
-		// Botón Eliminar
-		RoundButton btnEliminarGrupo = new RoundButton("");
-		ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
-		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnEliminarGrupo.setIcon(new ImageIcon(imagen3));
-		btnEliminarGrupo.setBackground(new Color(121, 255, 145));
-		btnEliminarGrupo.setBounds(460, 430, 180, 180);
-		btnEliminarGrupo.setFont(new Font("180", Font.BOLD, 11));
-		btnEliminarGrupo.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "eliminarGrupo";
-			add(eliminarGrupo());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnEliminarGrupo);
+		if (usertype == 1) {
+			// Etiqueta 'Eliminar'
+			JLabel lblEliminar = new JLabel("Eliminar");
+			lblEliminar.setForeground(new Color(121, 255, 145));
+			lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 28));
+			lblEliminar.setBounds(500, 390, 120, 30);
+			fondo.add(lblEliminar);
+	
+			// Botón Eliminar
+			RoundButton btnEliminarGrupo = new RoundButton("");
+			ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
+			Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+			btnEliminarGrupo.setIcon(new ImageIcon(imagen3));
+			btnEliminarGrupo.setBackground(new Color(121, 255, 145));
+			btnEliminarGrupo.setBounds(460, 430, 180, 180);
+			btnEliminarGrupo.setFont(new Font("180", Font.BOLD, 11));
+			btnEliminarGrupo.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarGrupo";
+				add(eliminarGrupo());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnEliminarGrupo);
+		}
 
 		// Botón Volver
 		RoundButtonRojoBorde volver = new RoundButtonRojoBorde("Volver");
@@ -840,17 +847,20 @@ public class Ventana extends JFrame{
 		lblConsultar.setBounds(500, 120, 130, 30);
 		fondo.add(lblConsultar);
 
-		JLabel lblCrear = new JLabel("Crear");
-		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 22));
-		lblCrear.setBounds(210, 390, 100, 30);
-		fondo.add(lblCrear);
+		if (usertype == 1) {
+	        JLabel lblCrear = new JLabel("Crear");
+	        lblCrear.setForeground(new Color(121, 255, 145));
+	        lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	        lblCrear.setBounds(200, 440, 100, 30);
+	        fondo.add(lblCrear);
 
-		JLabel lblEliminar = new JLabel("Eliminar");
-		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 22));
-		lblEliminar.setBounds(510, 390, 120, 30);
-		fondo.add(lblEliminar);
+	        JLabel lblEliminar = new JLabel("Eliminar");
+	        lblEliminar.setForeground(new Color(121, 255, 145));
+	        lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	        lblEliminar.setBounds(520, 440, 120, 30);
+	        fondo.add(lblEliminar);
+	    }
+		
 
 		// Botón Credencial
 		RoundButton btnCredDoce = new RoundButton("");
@@ -882,35 +892,38 @@ public class Ventana extends JFrame{
 		});
 		fondo.add(btnConsultarDoce);
 
-		// Botón Crear
-		RoundButton btnCrearDoce = new RoundButton("");
-		btnCrearDoce.setIcon(escalarIcono("img/crearicono.png"));
-		btnCrearDoce.setBackground(new Color(121, 255, 145));
-		btnCrearDoce.setBounds(160, 430, 180, 180);
-		btnCrearDoce.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "crearDocente";
-			add(crearDocente());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnCrearDoce);
-
-		// Botón Eliminar
-		RoundButton btnEliminarDoce = new RoundButton("");
-		btnEliminarDoce.setIcon(escalarIcono("img/eliminaricono.png"));
-		btnEliminarDoce.setBackground(new Color(121, 255, 145));
-		btnEliminarDoce.setBounds(460, 430, 180, 180);
-		btnEliminarDoce.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "eliminarDocente";
-			add(eliminarDocente());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnEliminarDoce);
+		
+		if (usertype == 1) {
+			// Botón Crear
+			RoundButton btnCrearDoce = new RoundButton("");
+			btnCrearDoce.setIcon(escalarIcono("img/crearicono.png"));
+			btnCrearDoce.setBackground(new Color(121, 255, 145));
+			btnCrearDoce.setBounds(160, 430, 180, 180);
+			btnCrearDoce.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "crearDocente";
+				add(crearDocente());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnCrearDoce);
+	
+			// Botón Eliminar
+			RoundButton btnEliminarDoce = new RoundButton("");
+			btnEliminarDoce.setIcon(escalarIcono("img/eliminaricono.png"));
+			btnEliminarDoce.setBackground(new Color(121, 255, 145));
+			btnEliminarDoce.setBounds(460, 430, 180, 180);
+			btnEliminarDoce.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarDocente";
+				add(eliminarDocente());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnEliminarDoce);
+		}
 
 		// Botón Volver
 		RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
@@ -973,17 +986,19 @@ public class Ventana extends JFrame{
 		lblConsultar.setBounds(490, 120, 130, 30); // Centrado arriba
 		fondo.add(lblConsultar);
 
-		JLabel lblCrear = new JLabel("Crear");
-		lblCrear.setForeground(new Color(121, 255, 145));
-		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(210, 390, 100, 30);
-		fondo.add(lblCrear);
-
-		JLabel lblEliminar = new JLabel("Eliminar");
-		lblEliminar.setForeground(new Color(121, 255, 145));
-		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(500, 390, 120, 30);
-		fondo.add(lblEliminar);
+		if (usertype == 1) {
+			JLabel lblCrear = new JLabel("Crear");
+			lblCrear.setForeground(new Color(121, 255, 145));
+			lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
+			lblCrear.setBounds(210, 390, 100, 30);
+			fondo.add(lblCrear);
+	
+			JLabel lblEliminar = new JLabel("Eliminar");
+			lblEliminar.setForeground(new Color(121, 255, 145));
+			lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+			lblEliminar.setBounds(500, 390, 120, 30);
+			fondo.add(lblEliminar);
+		}
 		
 		///Etiqueta PDF
 		JLabel lblPDF = new JLabel("PDF");
@@ -1025,38 +1040,40 @@ public class Ventana extends JFrame{
 		fondo.add(btnConsultarAsi);
 
 		// Botón Crear
-		RoundButton btnCrearAsi = new RoundButton("");
-		ImageIcon icono2 = new ImageIcon("img/crearicono.png");
-		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnCrearAsi.setIcon(new ImageIcon(imagen2));
-		btnCrearAsi.setBackground(new Color(121, 255, 145));
-		btnCrearAsi.setBounds(160, 430, 180, 180);
-		btnCrearAsi.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "crearAsignatura";
-			add(crearAsignatura());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnCrearAsi);
-
-		// Botón Eliminar
-		RoundButton btnEliminarAsi = new RoundButton("");
-		ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
-		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-		btnEliminarAsi.setIcon(new ImageIcon(imagen3));
-		btnEliminarAsi.setBackground(new Color(121, 255, 145));
-		btnEliminarAsi.setBounds(460, 430, 180, 180);
-		btnEliminarAsi.addActionListener(e -> {
-			remove(fondo);
-			anterior = actual;
-			actual = "eliminarAsignatura";
-			add(eliminarAsignatura());
-			repaint();
-			revalidate();
-		});
-		fondo.add(btnEliminarAsi);
+		if (usertype == 1) {
+			RoundButton btnCrearAsi = new RoundButton("");
+			ImageIcon icono2 = new ImageIcon("img/crearicono.png");
+			Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+			btnCrearAsi.setIcon(new ImageIcon(imagen2));
+			btnCrearAsi.setBackground(new Color(121, 255, 145));
+			btnCrearAsi.setBounds(160, 430, 180, 180);
+			btnCrearAsi.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "crearAsignatura";
+				add(crearAsignatura());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnCrearAsi);
+	
+			// Botón Eliminar
+			RoundButton btnEliminarAsi = new RoundButton("");
+			ImageIcon icono3 = new ImageIcon("img/eliminaricono.png");
+			Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+			btnEliminarAsi.setIcon(new ImageIcon(imagen3));
+			btnEliminarAsi.setBackground(new Color(121, 255, 145));
+			btnEliminarAsi.setBounds(460, 430, 180, 180);
+			btnEliminarAsi.addActionListener(e -> {
+				remove(fondo);
+				anterior = actual;
+				actual = "eliminarAsignatura";
+				add(eliminarAsignatura());
+				repaint();
+				revalidate();
+			});
+			fondo.add(btnEliminarAsi);
+		}
 
 		// Botón Volver
 		RoundButtonRojoBorde btnVolver = new RoundButtonRojoBorde("Volver");
@@ -2647,18 +2664,70 @@ public class Ventana extends JFrame{
 	    panelContenido.add(lblLogoUABCS);
 
 	    // Botones de edición
-	    JButton btnEditar = new JButton("Editar");
-	    btnEditar.setForeground(Color.WHITE);
-	    btnEditar.setBackground(new Color(0, 128, 255));
-	    btnEditar.setBounds(340, 280, 100, 35);
-	    panelContenido.add(btnEditar);
+	    if(usertype == 1) {
+		    JButton btnEditar = new JButton("Editar");
+		    btnEditar.setForeground(Color.WHITE);
+		    btnEditar.setBackground(new Color(0, 128, 255));
+		    btnEditar.setBounds(340, 280, 100, 35);
+		    panelContenido.add(btnEditar);
+	
+		    JButton btnGuardar = new JButton("Guardar");
+		    btnGuardar.setForeground(Color.WHITE);
+		    btnGuardar.setBackground(new Color(0, 180, 0));
+		    btnGuardar.setBounds(450, 280, 100, 35);
+		    btnGuardar.setEnabled(false);
+		    panelContenido.add(btnGuardar);
+		    
+			// Botón Editar
+		    btnEditar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            if (cbAlumnos.getSelectedItem() != null) {
+		                txtCorreo.setEditable(true);
+		                txtTelefono.setEditable(true);
+		                txtDireccion.setEditable(true);
+		                btnGuardar.setEnabled(true);
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Seleccione un alumno primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		            }
+		        }
+		    });
 
-	    JButton btnGuardar = new JButton("Guardar");
-	    btnGuardar.setForeground(Color.WHITE);
-	    btnGuardar.setBackground(new Color(0, 180, 0));
-	    btnGuardar.setBounds(450, 280, 100, 35);
-	    btnGuardar.setEnabled(false);
-	    panelContenido.add(btnGuardar);
+		    // Botón Guardar
+		    btnGuardar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            try {
+		                BD bd = new BD();
+		                Connection cn = bd.Conectar();
+		                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+		                    "UPDATE alumnosbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idAlumnos = ?");
+		                
+		                pstmt.setString(1, txtCorreo.getText());
+		                pstmt.setString(2, txtTelefono.getText());
+		                pstmt.setString(3, txtDireccion.getText());
+		                pstmt.setInt(4, (int) cbAlumnos.getSelectedItem());
+
+		                int filasAfectadas = pstmt.executeUpdate();
+		                if (filasAfectadas > 0) {
+		                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+		                    txtCorreo.setEditable(false);
+		                    txtTelefono.setEditable(false);
+		                    txtDireccion.setEditable(false);
+		                    btnGuardar.setEnabled(false);
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "No se encontró el alumno con ese ID");
+		                }
+
+		                pstmt.close();
+		                cn.close();
+		            } catch (SQLException e1) {
+		                e1.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        }
+		    });
+		    
+		    
+	    }
 
 	    // Botones inferiores
 	    JButton btnVolver = new RoundButtonRojo("Volver");
@@ -2729,53 +2798,7 @@ public class Ventana extends JFrame{
 	        }
 	    });
 
-	    // Botón Editar
-	    btnEditar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            if (cbAlumnos.getSelectedItem() != null) {
-	                txtCorreo.setEditable(true);
-	                txtTelefono.setEditable(true);
-	                txtDireccion.setEditable(true);
-	                btnGuardar.setEnabled(true);
-	            } else {
-	                JOptionPane.showMessageDialog(null, "Seleccione un alumno primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
-	        }
-	    });
-
-	    // Botón Guardar
-	    btnGuardar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            try {
-	                BD bd = new BD();
-	                Connection cn = bd.Conectar();
-	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
-	                    "UPDATE alumnosbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idAlumnos = ?");
-	                
-	                pstmt.setString(1, txtCorreo.getText());
-	                pstmt.setString(2, txtTelefono.getText());
-	                pstmt.setString(3, txtDireccion.getText());
-	                pstmt.setInt(4, (int) cbAlumnos.getSelectedItem());
-
-	                int filasAfectadas = pstmt.executeUpdate();
-	                if (filasAfectadas > 0) {
-	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
-	                    txtCorreo.setEditable(false);
-	                    txtTelefono.setEditable(false);
-	                    txtDireccion.setEditable(false);
-	                    btnGuardar.setEnabled(false);
-	                } else {
-	                    JOptionPane.showMessageDialog(null, "No se encontró el alumno con ese ID");
-	                }
-
-	                pstmt.close();
-	                cn.close();
-	            } catch (SQLException e1) {
-	                e1.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
-	            }
-	        }
-	    });
+	    
 
 	    // Botón Volver
 	    btnVolver.addActionListener(new ActionListener() {
@@ -2961,20 +2984,70 @@ public class Ventana extends JFrame{
 	    panelContenido.add(lblLogoUABCS);
 
 	    // Botones de edición
-	    JButton btnEditar = new JButton("Editar");
-	    btnEditar.setForeground(Color.WHITE);
-	    btnEditar.setBackground(new Color(0, 128, 255));
-	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnEditar.setBounds(340, 280, 100, 35);
-	    panelContenido.add(btnEditar);
+	    if(usertype == 1) {
+		    JButton btnEditar = new JButton("Editar");
+		    btnEditar.setForeground(Color.WHITE);
+		    btnEditar.setBackground(new Color(0, 128, 255));
+		    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnEditar.setBounds(340, 280, 100, 35);
+		    panelContenido.add(btnEditar);
+	
+		    JButton btnGuardar = new JButton("Guardar");
+		    btnGuardar.setForeground(Color.WHITE);
+		    btnGuardar.setBackground(new Color(0, 180, 0));
+		    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnGuardar.setBounds(450, 280, 100, 35);
+		    btnGuardar.setEnabled(false);
+		    panelContenido.add(btnGuardar);
+		    
+		    // Botón Editar
+		    btnEditar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            if (cbDocentes.getSelectedItem() != null) {
+		                txtCorreo.setEditable(true);
+		                txtTelefono.setEditable(true);
+		                txtDireccion.setEditable(true);
+		                btnGuardar.setEnabled(true);
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Seleccione un docente primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		            }
+		        }
+		    });
 
-	    JButton btnGuardar = new JButton("Guardar");
-	    btnGuardar.setForeground(Color.WHITE);
-	    btnGuardar.setBackground(new Color(0, 180, 0));
-	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnGuardar.setBounds(450, 280, 100, 35);
-	    btnGuardar.setEnabled(false);
-	    panelContenido.add(btnGuardar);
+		    // Botón Guardar
+		    btnGuardar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            try {
+		                BD bd = new BD();
+		                Connection cn = bd.Conectar();
+		                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+		                    "UPDATE docentesbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idDocente = ?");
+		                
+		                pstmt.setString(1, txtCorreo.getText());
+		                pstmt.setString(2, txtTelefono.getText());
+		                pstmt.setString(3, txtDireccion.getText());
+		                pstmt.setInt(4, (int) cbDocentes.getSelectedItem());
+
+		                int filasAfectadas = pstmt.executeUpdate();
+		                if (filasAfectadas > 0) {
+		                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+		                    txtCorreo.setEditable(false);
+		                    txtTelefono.setEditable(false);
+		                    txtDireccion.setEditable(false);
+		                    btnGuardar.setEnabled(false);
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "No se encontró el docente con ese ID");
+		                }
+
+		                pstmt.close();
+		                cn.close();
+		            } catch (SQLException e1) {
+		                e1.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        }
+		    });
+	    }
 
 	    // Botones inferiores
 	    JButton btnVolver = new RoundButtonRojo("Volver");
@@ -3044,54 +3117,6 @@ public class Ventana extends JFrame{
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
 	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-	            }
-	        }
-	    });
-
-	    // Botón Editar
-	    btnEditar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            if (cbDocentes.getSelectedItem() != null) {
-	                txtCorreo.setEditable(true);
-	                txtTelefono.setEditable(true);
-	                txtDireccion.setEditable(true);
-	                btnGuardar.setEnabled(true);
-	            } else {
-	                JOptionPane.showMessageDialog(null, "Seleccione un docente primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
-	        }
-	    });
-
-	    // Botón Guardar
-	    btnGuardar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            try {
-	                BD bd = new BD();
-	                Connection cn = bd.Conectar();
-	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
-	                    "UPDATE docentesbd SET Correo = ?, Telefono = ?, Direccion = ? WHERE idDocente = ?");
-	                
-	                pstmt.setString(1, txtCorreo.getText());
-	                pstmt.setString(2, txtTelefono.getText());
-	                pstmt.setString(3, txtDireccion.getText());
-	                pstmt.setInt(4, (int) cbDocentes.getSelectedItem());
-
-	                int filasAfectadas = pstmt.executeUpdate();
-	                if (filasAfectadas > 0) {
-	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
-	                    txtCorreo.setEditable(false);
-	                    txtTelefono.setEditable(false);
-	                    txtDireccion.setEditable(false);
-	                    btnGuardar.setEnabled(false);
-	                } else {
-	                    JOptionPane.showMessageDialog(null, "No se encontró el docente con ese ID");
-	                }
-
-	                pstmt.close();
-	                cn.close();
-	            } catch (SQLException e1) {
-	                e1.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
@@ -3313,21 +3338,71 @@ public class Ventana extends JFrame{
 	    lblLogoUABCS.setBounds(300, 360, 300, 120);
 	    panelContenido.add(lblLogoUABCS);
 
-	    // Botones de edición
-	    JButton btnEditar = new JButton("Editar");
-	    btnEditar.setForeground(Color.WHITE);
-	    btnEditar.setBackground(new Color(0, 128, 255));
-	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnEditar.setBounds(340, 250, 100, 35);
-	    panelContenido.add(btnEditar);
+	    if(usertype == 1) {
+		    // Botones de edición
+		    JButton btnEditar = new JButton("Editar");
+		    btnEditar.setForeground(Color.WHITE);
+		    btnEditar.setBackground(new Color(0, 128, 255));
+		    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnEditar.setBounds(340, 250, 100, 35);
+		    panelContenido.add(btnEditar);
+	
+		    JButton btnGuardar = new JButton("Guardar");
+		    btnGuardar.setForeground(Color.WHITE);
+		    btnGuardar.setBackground(new Color(0, 180, 0));
+		    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnGuardar.setBounds(450, 250, 100, 35);
+		    btnGuardar.setEnabled(false);
+		    panelContenido.add(btnGuardar);
+		    
+		    // Botón Editar
+		    btnEditar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            cbAsignatura.setEnabled(true);
+		            cbDocente.setEnabled(true);
+		            txtSemestre.setEditable(true);
+		            txtNumAlumnos.setEditable(true);
+		            btnGuardar.setEnabled(true);
+		        }
+		    });
 
-	    JButton btnGuardar = new JButton("Guardar");
-	    btnGuardar.setForeground(Color.WHITE);
-	    btnGuardar.setBackground(new Color(0, 180, 0));
-	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnGuardar.setBounds(450, 250, 100, 35);
-	    btnGuardar.setEnabled(false);
-	    panelContenido.add(btnGuardar);
+		    // Botón Guardar
+		    btnGuardar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            try {
+		                BD bd = new BD();
+		                Connection cn = bd.Conectar();
+		                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+		                    "UPDATE gruposbd SET Carrera = ?, Asignatura = ?, Docente = ?, Semestre = ?, numAlumnos = ? WHERE idGrupos = ?");
+		                
+		                pstmt.setString(1, txtCarrera.getText());
+		                pstmt.setString(2, cbAsignatura.getSelectedItem().toString());
+		                pstmt.setString(3, cbDocente.getSelectedItem().toString());
+		                pstmt.setString(4, txtSemestre.getText());
+		                pstmt.setString(5, txtNumAlumnos.getText());
+		                pstmt.setInt(6, (int) cbGrupos.getSelectedItem());
+
+		                int filasAfectadas = pstmt.executeUpdate();
+		                if (filasAfectadas > 0) {
+		                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+		                    cbAsignatura.setEnabled(false);
+		                    cbDocente.setEnabled(false);
+		                    txtSemestre.setEditable(false);
+		                    txtNumAlumnos.setEditable(false);
+		                    btnGuardar.setEnabled(false);
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el grupo");
+		                }
+
+		                pstmt.close();
+		                cn.close();
+		            } catch (SQLException e1) {
+		                e1.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        }
+		    });
+	    }
 
 	    // Botones inferiores
 	    JButton btnVolver = new RoundButtonRojo("Volver");
@@ -3344,11 +3419,11 @@ public class Ventana extends JFrame{
 	    btnConsultar.setBounds(300, 680, 120, 40);
 	    fondo.add(btnConsultar);
 
-	    JButton btnDescargar = new JButton("Descargar PDF");
+	    JButton btnDescargar = new JButton("Descargar Informe");
 	    btnDescargar.setForeground(Color.WHITE);
 	    btnDescargar.setBackground(new Color(0, 128, 255));
 	    btnDescargar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnDescargar.setBounds(450, 680, 150, 40);
+	    btnDescargar.setBounds(450, 680, 170, 40);
 	    fondo.add(btnDescargar);
 
 	    // Listeners de botones
@@ -3379,54 +3454,6 @@ public class Ventana extends JFrame{
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
 	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-	            }
-	        }
-	    });
-
-	    // Botón Editar
-	    btnEditar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            cbAsignatura.setEnabled(true);
-	            cbDocente.setEnabled(true);
-	            txtSemestre.setEditable(true);
-	            txtNumAlumnos.setEditable(true);
-	            btnGuardar.setEnabled(true);
-	        }
-	    });
-
-	    // Botón Guardar
-	    btnGuardar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            try {
-	                BD bd = new BD();
-	                Connection cn = bd.Conectar();
-	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
-	                    "UPDATE gruposbd SET Carrera = ?, Asignatura = ?, Docente = ?, Semestre = ?, numAlumnos = ? WHERE idGrupos = ?");
-	                
-	                pstmt.setString(1, txtCarrera.getText());
-	                pstmt.setString(2, cbAsignatura.getSelectedItem().toString());
-	                pstmt.setString(3, cbDocente.getSelectedItem().toString());
-	                pstmt.setString(4, txtSemestre.getText());
-	                pstmt.setString(5, txtNumAlumnos.getText());
-	                pstmt.setInt(6, (int) cbGrupos.getSelectedItem());
-
-	                int filasAfectadas = pstmt.executeUpdate();
-	                if (filasAfectadas > 0) {
-	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
-	                    cbAsignatura.setEnabled(false);
-	                    cbDocente.setEnabled(false);
-	                    txtSemestre.setEditable(false);
-	                    txtNumAlumnos.setEditable(false);
-	                    btnGuardar.setEnabled(false);
-	                } else {
-	                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el grupo");
-	                }
-
-	                pstmt.close();
-	                cn.close();
-	            } catch (SQLException e1) {
-	                e1.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
@@ -3642,20 +3669,69 @@ public class Ventana extends JFrame{
 	    panelContenido.add(lblLogoUABCS);
 
 	    // Botones de edición
-	    JButton btnEditar = new JButton("Editar");
-	    btnEditar.setForeground(Color.WHITE);
-	    btnEditar.setBackground(new Color(0, 128, 255));
-	    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnEditar.setBounds(340, 250, 100, 35);
-	    panelContenido.add(btnEditar);
+	    if (usertype == 1) {
+		    JButton btnEditar = new JButton("Editar");
+		    btnEditar.setForeground(Color.WHITE);
+		    btnEditar.setBackground(new Color(0, 128, 255));
+		    btnEditar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnEditar.setBounds(340, 250, 100, 35);
+		    panelContenido.add(btnEditar);
+	
+		    JButton btnGuardar = new JButton("Guardar");
+		    btnGuardar.setForeground(Color.WHITE);
+		    btnGuardar.setBackground(new Color(0, 180, 0));
+		    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    btnGuardar.setBounds(450, 250, 100, 35);
+		    btnGuardar.setEnabled(false);
+		    panelContenido.add(btnGuardar);
+		    
+		    // Botón Editar
+		    btnEditar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            cbNombreAsignatura.setEnabled(true);
+		            cbDocente.setEnabled(true);
+		            txtCreditos.setEditable(true);
+		            txtSemestres.setEditable(true);
+		            btnGuardar.setEnabled(true);
+		        }
+		    });
 
-	    JButton btnGuardar = new JButton("Guardar");
-	    btnGuardar.setForeground(Color.WHITE);
-	    btnGuardar.setBackground(new Color(0, 180, 0));
-	    btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnGuardar.setBounds(450, 250, 100, 35);
-	    btnGuardar.setEnabled(false);
-	    panelContenido.add(btnGuardar);
+		    // Botón Guardar
+		    btnGuardar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            try {
+		                BD bd = new BD();
+		                Connection cn = bd.Conectar();
+		                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
+		                    "UPDATE asignaturasbd SET Nombre = ?, Creditos = ?, Docente = ?, Semestre = ? WHERE idAsignatura = ?");
+		                
+		                pstmt.setString(1, cbNombreAsignatura.getSelectedItem().toString());
+		                pstmt.setString(2, txtCreditos.getText());
+		                pstmt.setString(3, cbDocente.getSelectedItem().toString());
+		                pstmt.setString(4, txtSemestres.getText());
+		                pstmt.setInt(5, (int) cbAsignaturas.getSelectedItem());
+
+		                int filasAfectadas = pstmt.executeUpdate();
+		                if (filasAfectadas > 0) {
+		                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
+		                    cbNombreAsignatura.setEnabled(false);
+		                    cbDocente.setEnabled(false);
+		                    txtCreditos.setEditable(false);
+		                    txtSemestres.setEditable(false);
+		                    btnGuardar.setEnabled(false);
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "No se pudo actualizar la asignatura");
+		                }
+
+		                pstmt.close();
+		                cn.close();
+		            } catch (SQLException e1) {
+		                e1.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        }
+		    });
+	    }
 
 	    // Botones inferiores
 	    JButton btnVolver = new RoundButtonRojo("Volver");
@@ -3672,11 +3748,11 @@ public class Ventana extends JFrame{
 	    btnConsultar.setBounds(300, 680, 120, 40);
 	    fondo.add(btnConsultar);
 
-	    JButton btnDescargar = new JButton("Descargar PDF");
+	    JButton btnDescargar = new JButton("Descargar Informe");
 	    btnDescargar.setForeground(Color.WHITE);
 	    btnDescargar.setBackground(new Color(0, 128, 255));
 	    btnDescargar.setFont(new Font("SansSerif", Font.BOLD, 14));
-	    btnDescargar.setBounds(450, 680, 150, 40);
+	    btnDescargar.setBounds(450, 680, 170, 40);
 	    fondo.add(btnDescargar);
 
 	    // Listeners de botones
@@ -3706,53 +3782,6 @@ public class Ventana extends JFrame{
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
 	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-	            }
-	        }
-	    });
-
-	    // Botón Editar
-	    btnEditar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            cbNombreAsignatura.setEnabled(true);
-	            cbDocente.setEnabled(true);
-	            txtCreditos.setEditable(true);
-	            txtSemestres.setEditable(true);
-	            btnGuardar.setEnabled(true);
-	        }
-	    });
-
-	    // Botón Guardar
-	    btnGuardar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            try {
-	                BD bd = new BD();
-	                Connection cn = bd.Conectar();
-	                PreparedStatement pstmt = (PreparedStatement) cn.prepareStatement(
-	                    "UPDATE asignaturasbd SET Nombre = ?, Creditos = ?, Docente = ?, Semestre = ? WHERE idAsignatura = ?");
-	                
-	                pstmt.setString(1, cbNombreAsignatura.getSelectedItem().toString());
-	                pstmt.setString(2, txtCreditos.getText());
-	                pstmt.setString(3, cbDocente.getSelectedItem().toString());
-	                pstmt.setString(4, txtSemestres.getText());
-	                pstmt.setInt(5, (int) cbAsignaturas.getSelectedItem());
-
-	                int filasAfectadas = pstmt.executeUpdate();
-	                if (filasAfectadas > 0) {
-	                    JOptionPane.showMessageDialog(null, "Cambios guardados exitosamente");
-	                    cbNombreAsignatura.setEnabled(false);
-	                    cbDocente.setEnabled(false);
-	                    txtCreditos.setEditable(false);
-	                    txtSemestres.setEditable(false);
-	                    btnGuardar.setEnabled(false);
-	                } else {
-	                    JOptionPane.showMessageDialog(null, "No se pudo actualizar la asignatura");
-	                }
-
-	                pstmt.close();
-	                cn.close();
-	            } catch (SQLException e1) {
-	                e1.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
