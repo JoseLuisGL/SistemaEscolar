@@ -139,6 +139,7 @@ public class Ventana extends JFrame{
 		limpiarVentana();
 	}
 	
+	///FUNCION LOGIN///
 	public JPanel login() {
 	    anterior = actual;
 	    actual = "login";
@@ -330,7 +331,7 @@ public class Ventana extends JFrame{
 	    return fondo;
 	}
 
-	
+	///MENU PRINCIPAL//
 	public JPanel menuPrincipal() {
 	    anterior = actual;
 	    actual = "menuPrincipal";
@@ -465,12 +466,34 @@ public class Ventana extends JFrame{
 		titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		titulo.setBounds(200, 30, 400, 50);
 		fondo.add(titulo);
+		
+		///Etiqueta PDF
+		JLabel lblPDF = new JLabel("PDF");
+		lblPDF.setForeground(new Color(121, 255, 145));
+		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblPDF.setBounds(220, 120, 130, 30);
+		fondo.add(lblPDF);
+		
+		// Botón PDF
+		RoundButton btnCredPFD = new RoundButton("");
+		btnCredPFD.setIcon(escalarIcono("img/credencial.png"));
+		btnCredPFD.setBackground(new Color(121, 255, 145));
+		btnCredPFD.setBounds(160, 160, 180, 180);
+		btnCredPFD.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "PDFGrupo";
+			add(PDFGrupo());
+			repaint();
+			revalidate();
+		});
+		fondo.add(btnCredPFD);
 
 		// Etiqueta 'Consultar'
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
 		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 28));
-		lblConsultar.setBounds(340, 100, 120, 30);
+		lblConsultar.setBounds(490, 120, 130, 30);
 		fondo.add(lblConsultar);
 
 		// Botón Consultar
@@ -479,7 +502,7 @@ public class Ventana extends JFrame{
 		Image imagen = icono.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnConsultarGrupo.setIcon(new ImageIcon(imagen));
 		btnConsultarGrupo.setBackground(new Color(121, 255, 145));
-		btnConsultarGrupo.setBounds(325, 140, 150, 150);
+		btnConsultarGrupo.setBounds(460, 160, 180, 180);
 		btnConsultarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnConsultarGrupo.addActionListener(e -> {
 			remove(fondo);
@@ -495,7 +518,7 @@ public class Ventana extends JFrame{
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
 		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 28));
-		lblCrear.setBounds(220, 340, 100, 30);
+		lblCrear.setBounds(210, 390, 100, 30);
 		fondo.add(lblCrear);
 
 		// Botón Crear
@@ -504,7 +527,7 @@ public class Ventana extends JFrame{
 		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnCrearGrupo.setIcon(new ImageIcon(imagen2));
 		btnCrearGrupo.setBackground(new Color(121, 255, 145));
-		btnCrearGrupo.setBounds(175, 380, 150, 150);
+		btnCrearGrupo.setBounds(160, 430, 180, 180);
 		btnCrearGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
 		btnCrearGrupo.addActionListener(e -> {
 			remove(fondo);
@@ -520,7 +543,7 @@ public class Ventana extends JFrame{
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
 		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 28));
-		lblEliminar.setBounds(520, 340, 120, 30);
+		lblEliminar.setBounds(500, 390, 120, 30);
 		fondo.add(lblEliminar);
 
 		// Botón Eliminar
@@ -529,8 +552,8 @@ public class Ventana extends JFrame{
 		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnEliminarGrupo.setIcon(new ImageIcon(imagen3));
 		btnEliminarGrupo.setBackground(new Color(121, 255, 145));
-		btnEliminarGrupo.setBounds(495, 380, 150, 150);
-		btnEliminarGrupo.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnEliminarGrupo.setBounds(460, 430, 180, 180);
+		btnEliminarGrupo.setFont(new Font("180", Font.BOLD, 11));
 		btnEliminarGrupo.addActionListener(e -> {
 			remove(fondo);
 			anterior = actual;
@@ -868,20 +891,42 @@ public class Ventana extends JFrame{
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
 		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblConsultar.setBounds(344, 100, 120, 30); // Centrado arriba
+		lblConsultar.setBounds(490, 120, 130, 30); // Centrado arriba
 		fondo.add(lblConsultar);
 
 		JLabel lblCrear = new JLabel("Crear");
 		lblCrear.setForeground(new Color(121, 255, 145));
 		lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblCrear.setBounds(200, 400, 100, 30);
+		lblCrear.setBounds(210, 390, 100, 30);
 		fondo.add(lblCrear);
 
 		JLabel lblEliminar = new JLabel("Eliminar");
 		lblEliminar.setForeground(new Color(121, 255, 145));
 		lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-		lblEliminar.setBounds(500, 400, 100, 30);
+		lblEliminar.setBounds(500, 390, 120, 30);
 		fondo.add(lblEliminar);
+		
+		///Etiqueta PDF
+		JLabel lblPDF = new JLabel("PDF");
+		lblPDF.setForeground(new Color(121, 255, 145));
+		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblPDF.setBounds(220, 120, 130, 30);
+		fondo.add(lblPDF);
+		
+		// Botón PDF
+		RoundButton btnCredPFD = new RoundButton("");
+		btnCredPFD.setIcon(escalarIcono("img/credencial.png"));
+		btnCredPFD.setBackground(new Color(121, 255, 145));
+		btnCredPFD.setBounds(160, 160, 180, 180);
+		btnCredPFD.addActionListener(e -> {
+			remove(fondo);
+			anterior = actual;
+			actual = "PDFAsignatura";
+			add(PDFAsignatura());
+			repaint();
+			revalidate();
+		});
+		fondo.add(btnCredPFD);
 
 		// Botón Consultar
 		RoundButton btnConsultarAsi = new RoundButton("");
@@ -889,7 +934,7 @@ public class Ventana extends JFrame{
 		Image imagen = icono.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnConsultarAsi.setIcon(new ImageIcon(imagen));
 		btnConsultarAsi.setBackground(new Color(121, 255, 145));
-		btnConsultarAsi.setBounds(325, 140, 150, 150);
+		btnConsultarAsi.setBounds(460, 160, 180, 180);
 		btnConsultarAsi.addActionListener(e -> {
 			remove(fondo);
 			anterior = actual;
@@ -906,7 +951,7 @@ public class Ventana extends JFrame{
 		Image imagen2 = icono2.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnCrearAsi.setIcon(new ImageIcon(imagen2));
 		btnCrearAsi.setBackground(new Color(121, 255, 145));
-		btnCrearAsi.setBounds(175, 440, 150, 150);
+		btnCrearAsi.setBounds(160, 430, 180, 180);
 		btnCrearAsi.addActionListener(e -> {
 			remove(fondo);
 			anterior = actual;
@@ -923,7 +968,7 @@ public class Ventana extends JFrame{
 		Image imagen3 = icono3.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 		btnEliminarAsi.setIcon(new ImageIcon(imagen3));
 		btnEliminarAsi.setBackground(new Color(121, 255, 145));
-		btnEliminarAsi.setBounds(475, 440, 150, 150);
+		btnEliminarAsi.setBounds(460, 430, 180, 180);
 		btnEliminarAsi.addActionListener(e -> {
 			remove(fondo);
 			anterior = actual;
@@ -2432,7 +2477,7 @@ public class Ventana extends JFrame{
 	    // Panel principal
 	    JPanel fondo = new JPanel();
 	    fondo.setBackground(new Color(225, 225, 225));
-	    fondo.setBounds(0, 0, 800, 800); // Ajustado a 800x800
+	    fondo.setBounds(0, 0, 800, 800);
 	    fondo.setLayout(null);
 	    getContentPane().add(fondo);
 
@@ -2441,34 +2486,34 @@ public class Ventana extends JFrame{
 	    titulo.setForeground(new Color(0, 0, 0));
 	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
 	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-	    titulo.setBounds(150, 30, 500, 50); // Ajustado para 800px
+	    titulo.setBounds(150, 30, 500, 50);
 	    fondo.add(titulo);
 
 	    // Panel de contenido (verde)
 	    JPanel panelContenido = new JPanel();
 	    panelContenido.setBackground(new Color(0, 128, 64));
-	    panelContenido.setBounds(100, 100, 600, 550); // Ajustado para 800px
+	    panelContenido.setBounds(100, 100, 600, 550);
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
-	    // Etiquetas y campos de texto
-	    // ID Alumno
-	    JLabel lblIdAlumno = new JLabel("Ingrese el ID del alumno");
+	    // ComboBox para selección de alumno
+	    JLabel lblIdAlumno = new JLabel("Seleccione un alumno");
 	    lblIdAlumno.setForeground(Color.WHITE);
 	    lblIdAlumno.setFont(new Font("SansSerif", Font.PLAIN, 16));
 	    lblIdAlumno.setBounds(30, 30, 250, 20);
 	    panelContenido.add(lblIdAlumno);
 
-	    JTextField txtIdAlumno = new JTextField();
-	    txtIdAlumno.setEditable(true);
-	    txtIdAlumno.setColumns(10);
-	    txtIdAlumno.setBounds(30, 55, 250, 30); // Aumentado tamaño
-	    panelContenido.add(txtIdAlumno);
+	    BD bd = new BD();
+	    JComboBox<Integer> cbAlumnos = new JComboBox<>();
+	    cbAlumnos.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAlumnos().toArray(new Integer[0])));
+	    cbAlumnos.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	    cbAlumnos.setBounds(30, 55, 250, 30);
+	    panelContenido.add(cbAlumnos);
 
 	    // Campos de información del alumno
 	    String[] etiquetas = {"Nombre", "Apellido Paterno", "Apellido Materno", 
-	                          "Correo electrónico", "Fecha de nacimiento", 
-	                          "Teléfono", "Dirección"};
+	                         "Correo electrónico", "Fecha de nacimiento", 
+	                         "Teléfono", "Dirección"};
 	    
 	    JTextField[] campos = new JTextField[7];
 	    int yPos = 110;
@@ -2526,13 +2571,13 @@ public class Ventana extends JFrame{
 	    JButton btnEditar = new JButton("Editar");
 	    btnEditar.setForeground(Color.WHITE);
 	    btnEditar.setBackground(new Color(0, 128, 255));
-	    btnEditar.setBounds(340, 280, 100, 35); // Aumentado tamaño
+	    btnEditar.setBounds(340, 280, 100, 35);
 	    panelContenido.add(btnEditar);
 
 	    JButton btnGuardar = new JButton("Guardar");
 	    btnGuardar.setForeground(Color.WHITE);
 	    btnGuardar.setBackground(new Color(0, 180, 0));
-	    btnGuardar.setBounds(450, 280, 100, 35); // Aumentado tamaño
+	    btnGuardar.setBounds(450, 280, 100, 35);
 	    btnGuardar.setEnabled(false);
 	    panelContenido.add(btnGuardar);
 
@@ -2540,19 +2585,19 @@ public class Ventana extends JFrame{
 	    JButton btnVolver = new RoundButtonRojo("Volver");
 	    btnVolver.setForeground(Color.WHITE);
 	    btnVolver.setBackground(new Color(255, 0, 0));
-	    btnVolver.setBounds(150, 680, 120, 40); // Aumentado tamaño y reposicionado
+	    btnVolver.setBounds(150, 680, 120, 40);
 	    fondo.add(btnVolver);
 
 	    JButton btnConsultar = new JButton("Consultar");
 	    btnConsultar.setForeground(Color.WHITE);
 	    btnConsultar.setBackground(new Color(0, 128, 255));
-	    btnConsultar.setBounds(300, 680, 120, 40); // Aumentado tamaño y reposicionado
+	    btnConsultar.setBounds(300, 680, 120, 40);
 	    fondo.add(btnConsultar);
 
 	    JButton btnDescargar = new JButton("Descargar PDF");
 	    btnDescargar.setForeground(Color.WHITE);
 	    btnDescargar.setBackground(new Color(0, 128, 255));
-	    btnDescargar.setBounds(450, 680, 150, 40); // Aumentado tamaño y reposicionado
+	    btnDescargar.setBounds(450, 680, 150, 40);
 	    fondo.add(btnDescargar);
 
 	    // Listeners de botones
@@ -2560,50 +2605,39 @@ public class Ventana extends JFrame{
 	    btnConsultar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            try {
-	                int idConsultar = Integer.parseInt(txtIdAlumno.getText());
+	                int idConsultar = (int) cbAlumnos.getSelectedItem();
 	                BD bd = new BD();
 	                Connection cn = bd.Conectar();
 	                Statement stm = cn.createStatement();
-	                ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd");
+	                ResultSet rs = stm.executeQuery("SELECT * FROM alumnosbd WHERE idAlumnos = " + idConsultar);
 
-	                boolean encontrado = false;
-	                
-	                while (rs.next()) {
-	                    int id = rs.getInt("idAlumnos");
+	                if (rs.next()) {
+	                    // Obtener datos de la base de datos
+	                    String nombre = rs.getString("Nombre");
+	                    String correo = rs.getString("Correo");
+	                    String apellidoP = rs.getString("Apellido Paterno");
+	                    String apellidoM = rs.getString("Apellido Materno");
+	                    String telefono = rs.getString("Telefono");
+	                    LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
+	                    String fecha = fechaNacimiento.toString();
+	                    String direccion = rs.getString("Direccion");
 	                    
-	                    if(idConsultar == id) {
-	                        // Obtener datos de la base de datos
-	                        String nombre = rs.getString("Nombre");
-	                        String correo = rs.getString("Correo");
-	                        String apellidoP = rs.getString("Apellido Paterno");
-	                        String apellidoM = rs.getString("Apellido Materno");
-	                        String telefono = rs.getString("Telefono");
-	                        LocalDate fechaNacimiento = rs.getDate("Fecha Nacimiento").toLocalDate(); 
-	                        String fecha = fechaNacimiento.toString();
-	                        String direccion = rs.getString("Direccion");
-	                        
-	                        // Actualizar imagen de perfil
-	                        if (imagenBytes != null && imagenBytes.length > 0) {
-	                            ImageIcon nuevaImagen = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
-	                            lblImagenPerfil.setIcon(nuevaImagen);
-	                        }
-	                        
-	                        // Actualizar campos de texto
-	                        txtNombre.setText(nombre);
-	                        txtApellidoP.setText(apellidoP);
-	                        txtApellidoM.setText(apellidoM);
-	                        txtCorreo.setText(correo);
-	                        txtTelefono.setText(telefono);
-	                        txtFechaNac.setText(fecha);
-	                        txtDireccion.setText(direccion);
-	                        
-	                        encontrado = true;
-	                        break;
+	                    // Actualizar imagen de perfil
+	                    if (imagenBytes != null && imagenBytes.length > 0) {
+	                        ImageIcon nuevaImagen = new ImageIcon(new ImageIcon(imagenBytes).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	                        lblImagenPerfil.setIcon(nuevaImagen);
 	                    }
-	                }
-
-	                if (!encontrado) {
-	                    JOptionPane.showMessageDialog(null, "ID de alumno inválido. Favor de intentar de nuevo");
+	                    
+	                    // Actualizar campos de texto
+	                    txtNombre.setText(nombre);
+	                    txtApellidoP.setText(apellidoP);
+	                    txtApellidoM.setText(apellidoM);
+	                    txtCorreo.setText(correo);
+	                    txtTelefono.setText(telefono);
+	                    txtFechaNac.setText(fecha);
+	                    txtDireccion.setText(direccion);
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró un alumno con ese ID", "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 
 	                rs.close();
@@ -2611,8 +2645,7 @@ public class Ventana extends JFrame{
 	                cn.close();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
-	            } catch (NumberFormatException e2) {
-	                JOptionPane.showMessageDialog(null, "Ingrese un ID válido (número)");
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
@@ -2620,13 +2653,13 @@ public class Ventana extends JFrame{
 	    // Botón Editar
 	    btnEditar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            if (!txtIdAlumno.getText().isEmpty() && txtIdAlumno.getText().matches("\\d+")) {
+	            if (cbAlumnos.getSelectedItem() != null) {
 	                txtCorreo.setEditable(true);
 	                txtTelefono.setEditable(true);
 	                txtDireccion.setEditable(true);
 	                btnGuardar.setEnabled(true);
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Ingrese un ID de alumno válido primero");
+	                JOptionPane.showMessageDialog(null, "Seleccione un alumno primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
 	            }
 	        }
 	    });
@@ -2643,7 +2676,7 @@ public class Ventana extends JFrame{
 	                pstmt.setString(1, txtCorreo.getText());
 	                pstmt.setString(2, txtTelefono.getText());
 	                pstmt.setString(3, txtDireccion.getText());
-	                pstmt.setInt(4, Integer.parseInt(txtIdAlumno.getText()));
+	                pstmt.setInt(4, (int) cbAlumnos.getSelectedItem());
 
 	                int filasAfectadas = pstmt.executeUpdate();
 	                if (filasAfectadas > 0) {
@@ -2660,7 +2693,7 @@ public class Ventana extends JFrame{
 	                cn.close();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios");
+	                JOptionPane.showMessageDialog(null, "Error al guardar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
@@ -2681,8 +2714,15 @@ public class Ventana extends JFrame{
 	    btnDescargar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            try {
+	                // Validar que hay datos para exportar
+	                if (txtNombre.getText().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Consulte primero los datos del alumno", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    return;
+	                }
+
 	                // Crear documento PDF
-	                PdfWriter writer = new PdfWriter("alumno_" + txtIdAlumno.getText() + ".pdf");
+	                String filename = "alumno_" + cbAlumnos.getSelectedItem() + ".pdf";
+	                PdfWriter writer = new PdfWriter(filename);
 	                PdfDocument pdf = new PdfDocument(writer);
 	                Document document = new Document(pdf);
 	                
@@ -2705,47 +2745,38 @@ public class Ventana extends JFrame{
 	                Table table = new Table(columnWidths);
 	                
 	                // Agregar filas con la información
-	                table.addCell(createCell("ID Alumno", true));
-	                table.addCell(createCell(txtIdAlumno.getText(), false));
-	                
-	                table.addCell(createCell("Nombre", true));
-	                table.addCell(createCell(txtNombre.getText(), false));
-	                
-	                table.addCell(createCell("Apellidos", true));
-	                table.addCell(createCell(txtApellidoP.getText() + " " + txtApellidoM.getText(), false));
-	                
-	                table.addCell(createCell("Correo", true));
-	                table.addCell(createCell(txtCorreo.getText(), false));
-	                
-	                table.addCell(createCell("Teléfono", true));
-	                table.addCell(createCell(txtTelefono.getText(), false));
-	                
-	                table.addCell(createCell("Dirección", true));
-	                table.addCell(createCell(txtDireccion.getText(), false));
-	                
-	                table.addCell(createCell("Fecha Nacimiento", true));
-	                table.addCell(createCell(txtFechaNac.getText(), false));
+	                addTableRow(table, "ID Alumno", cbAlumnos.getSelectedItem().toString());
+	                addTableRow(table, "Nombre", txtNombre.getText());
+	                addTableRow(table, "Apellido Paterno", txtApellidoP.getText());
+	                addTableRow(table, "Apellido Materno", txtApellidoM.getText());
+	                addTableRow(table, "Correo Electrónico", txtCorreo.getText());
+	                addTableRow(table, "Teléfono", txtTelefono.getText());
+	                addTableRow(table, "Dirección", txtDireccion.getText());
+	                addTableRow(table, "Fecha de Nacimiento", txtFechaNac.getText());
 	                
 	                document.add(table);
 	                document.close();
 	                
-	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente");
+	                JOptionPane.showMessageDialog(null, "PDF generado exitosamente como: " + filename);
 	            } catch (Exception ex) {
 	                ex.printStackTrace();
-	                JOptionPane.showMessageDialog(null, "Error al generar el PDF");
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	        
-	        // Método auxiliar para crear celdas del PDF
-	        private Cell createCell(String text, boolean isHeader) {
-	            Cell cell = new Cell();
-	            Paragraph p = new Paragraph(text);
-	            if (isHeader) {
-	                p.setBold();
-	                cell.setBackgroundColor(new DeviceRgb(200, 200, 200));
-	            }
-	            cell.add(p);
-	            return cell;
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
 	        }
 	    });
 
@@ -2779,18 +2810,19 @@ public class Ventana extends JFrame{
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
-	    // Campos de información del docente
-	    JLabel lblIdDocente = new JLabel("Ingrese el ID del docente");
+	    // ComboBox para selección de docente
+	    JLabel lblIdDocente = new JLabel("Seleccione un docente");
 	    lblIdDocente.setForeground(Color.WHITE);
 	    lblIdDocente.setFont(new Font("SansSerif", Font.BOLD, 16));
 	    lblIdDocente.setBounds(30, 30, 250, 20);
 	    panelContenido.add(lblIdDocente);
 
-	    JTextField txtIdDocente = new JTextField();
-	    txtIdDocente.setEditable(true);
-	    txtIdDocente.setFont(new Font("SansSerif", Font.PLAIN, 14));
-	    txtIdDocente.setBounds(30, 55, 250, 30);
-	    panelContenido.add(txtIdDocente);
+	    BD bd = new BD();
+	    JComboBox<Integer> cbDocentes = new JComboBox<>();
+	    cbDocentes.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsDocente().toArray(new Integer[0])));
+	    cbDocentes.setFont(new Font("SansSerif", Font.PLAIN, 14));
+	    cbDocentes.setBounds(30, 55, 250, 30);
+	    panelContenido.add(cbDocentes);
 
 	    // Array de campos para organización
 	    String[] etiquetas = {"Nombre", "Apellido Paterno", "Apellido Materno", 
@@ -2892,7 +2924,7 @@ public class Ventana extends JFrame{
 	    btnConsultar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            try {
-	                int idConsultar = Integer.parseInt(txtIdDocente.getText());
+	                int idConsultar = (int) cbDocentes.getSelectedItem();
 	                BD bd = new BD();
 	                Connection cn = bd.Conectar();
 	                Statement stm = cn.createStatement();
@@ -2933,8 +2965,6 @@ public class Ventana extends JFrame{
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
 	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-	            } catch (NumberFormatException e2) {
-	                JOptionPane.showMessageDialog(null, "Ingrese un ID válido (número)", "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        }
 	    });
@@ -2942,13 +2972,13 @@ public class Ventana extends JFrame{
 	    // Botón Editar
 	    btnEditar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            if (!txtIdDocente.getText().isEmpty() && txtIdDocente.getText().matches("\\d+")) {
+	            if (cbDocentes.getSelectedItem() != null) {
 	                txtCorreo.setEditable(true);
 	                txtTelefono.setEditable(true);
 	                txtDireccion.setEditable(true);
 	                btnGuardar.setEnabled(true);
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Ingrese un ID de docente válido primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                JOptionPane.showMessageDialog(null, "Seleccione un docente primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
 	            }
 	        }
 	    });
@@ -2965,7 +2995,7 @@ public class Ventana extends JFrame{
 	                pstmt.setString(1, txtCorreo.getText());
 	                pstmt.setString(2, txtTelefono.getText());
 	                pstmt.setString(3, txtDireccion.getText());
-	                pstmt.setInt(4, Integer.parseInt(txtIdDocente.getText()));
+	                pstmt.setInt(4, (int) cbDocentes.getSelectedItem());
 
 	                int filasAfectadas = pstmt.executeUpdate();
 	                if (filasAfectadas > 0) {
@@ -3010,7 +3040,7 @@ public class Ventana extends JFrame{
 	                }
 
 	                // Crear documento PDF
-	                String filename = "docente_" + txtIdDocente.getText() + ".pdf";
+	                String filename = "docente_" + cbDocentes.getSelectedItem() + ".pdf";
 	                PdfWriter writer = new PdfWriter(filename);
 	                PdfDocument pdf = new PdfDocument(writer);
 	                Document document = new Document(pdf);
@@ -3034,7 +3064,7 @@ public class Ventana extends JFrame{
 	                Table table = new Table(columnWidths);
 	                
 	                // Agregar filas con la información
-	                addTableRow(table, "ID Docente", txtIdDocente.getText());
+	                addTableRow(table, "ID Docente", cbDocentes.getSelectedItem().toString());
 	                addTableRow(table, "Nombre", txtNombre.getText());
 	                addTableRow(table, "Apellido Paterno", txtApellidoP.getText());
 	                addTableRow(table, "Apellido Materno", txtApellidoM.getText());
@@ -4085,7 +4115,473 @@ public class Ventana extends JFrame{
 	}
 
 	
-	
+	public JPanel PDFGrupo() {
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "PDFGrupo";
+	    
+	    // Panel principal con nuevo tamaño
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Nuevo tamaño 800x800
+	    getContentPane().add(fondo);
+	    fondo.setLayout(null);
+	    
+	    // Título del panel
+	    JLabel titulo = new JLabel("Grupo - Generar PDF");
+	    titulo.setForeground(Color.BLACK);
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 32));  // Tamaño de fuente aumentado
+	    titulo.setBounds(150, 20, 500, 50);  // Ajuste de posición y tamaño
+	    fondo.add(titulo);
+	    
+	    // Panel para el contenido principal
+	    JPanel contenido = new JPanel();
+	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    fondo.add(contenido);
+	    contenido.setLayout(null);
+	    
+	    // Conexión con la base de datos para obtener IDs de grupos
+	    BD bd = new BD();
+	    JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsGrupo().toArray(new Integer[0])));
+	    comboBoxID.setBounds(50, 20, 200, 30);  // Ajuste de tamaño y posición
+	    comboBoxID.setFont(new Font("SansSerif", Font.PLAIN, 16));  // Fuente más grande
+	    contenido.add(comboBoxID);
+	    
+	    // Campos de texto para los datos del grupo
+	    JTextField datos_carrera = new JTextField();
+	    JTextField datos_asignatura = new JTextField();            
+	    JTextField datos_docente = new JTextField();
+	    JTextField datos_semestre = new JTextField();
+	    JTextField datos_numAlumnos = new JTextField();
+	    
+	    // Campos de texto para los datos del docente
+	    JTextField datos_docente_nombre = new JTextField();
+	    JTextField datos_docente_apePaterno = new JTextField();
+	    JTextField datos_docente_apeMaterno = new JTextField();
+	    JTextField datos_docente_correo = new JTextField();
+	    JTextField datos_docente_direccion = new JTextField();
+	    
+	    // Botón para volver al menú anterior
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuGrupos";
+	            add(menuGrupos());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(Color.WHITE);
+	    volverBtn.setBackground(Color.RED);
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    volverBtn.setBounds(200, 700, 150, 50);  // Ajuste de posición y tamaño
+	    fondo.add(volverBtn);
+	    
+	    // Botón para descargar el PDF
+	    JButton descargarBtn = new JButton("Descargar");
+	    descargarBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) comboBoxID.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                
+	                // Obtener datos del grupo
+	                ResultSet rsGrupo = stm.executeQuery("SELECT g.*, d.idDocente FROM gruposbd g " +
+	                    "LEFT JOIN docentesbd d ON g.Docente = CONCAT(d.Nombre, ' ', d.`Apellido Paterno`, ' ', d.`Apellido Materno`) " +
+	                    "WHERE g.idGrupos = " + idConsultar);
+
+	                if (rsGrupo.next()) {
+	                    datos_carrera.setText(rsGrupo.getString("Carrera"));
+	                    datos_asignatura.setText(rsGrupo.getString("Asignatura"));
+	                    datos_docente.setText(rsGrupo.getString("Docente"));
+	                    datos_semestre.setText(rsGrupo.getString("Semestre"));
+	                    datos_numAlumnos.setText(rsGrupo.getString("numAlumnos"));
+	                    
+	                    // Obtener ID del docente
+	                    int idDocente = rsGrupo.getInt("idDocente");
+	                    
+	                    // Si encontramos el ID del docente, obtener sus datos
+	                    if (idDocente > 0) {
+	                        ResultSet rsDocente = stm.executeQuery("SELECT * FROM docentesbd WHERE idDocente = " + idDocente);
+	                        
+	                        if (rsDocente.next()) {
+	                            datos_docente_nombre.setText(rsDocente.getString("Nombre"));
+	                            datos_docente_apePaterno.setText(rsDocente.getString("Apellido Paterno"));
+	                            datos_docente_apeMaterno.setText(rsDocente.getString("Apellido Materno"));
+	                            datos_docente_correo.setText(rsDocente.getString("Correo"));
+	                            datos_docente_direccion.setText(rsDocente.getString("Direccion"));
+	                        }
+	                        rsDocente.close();
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "No se encontró información del docente asociado", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    }
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "ID de grupo inválido. Favor de intentar de nuevo");
+	                }
+
+	                rsGrupo.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	            
+	            try {
+	                // Crear el archivo PDF para el grupo
+	                String filename = "informacion_grupo_" + idConsultar + ".pdf";
+	                PdfWriter writer = new PdfWriter(new FileOutputStream(filename));
+	                com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+	                com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+	                // Encabezado del documento
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información del Grupo y Docente")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Información del Grupo
+	                Paragraph grupoHeader = new Paragraph("Datos del Grupo")
+	                    .setTextAlignment(TextAlignment.LEFT)
+	                    .setFontSize(14)
+	                    .setBold()
+	                    .setMarginTop(20);
+	                document.add(grupoHeader);
+	                
+	                // Tabla para información del grupo
+	                float[] columnWidths = {150f, 350f};
+	                Table grupoTable = new Table(columnWidths);
+	                
+	                addTableRow(grupoTable, "ID Grupo", String.valueOf(idConsultar));
+	                addTableRow(grupoTable, "Carrera", datos_carrera.getText());
+	                addTableRow(grupoTable, "Asignatura", datos_asignatura.getText());
+	                addTableRow(grupoTable, "Docente", datos_docente.getText());
+	                addTableRow(grupoTable, "Semestre", datos_semestre.getText());
+	                addTableRow(grupoTable, "Número de Alumnos", datos_numAlumnos.getText());
+	                
+	                document.add(grupoTable);
+	                
+	                // Información del Docente
+	                Paragraph docenteHeader = new Paragraph("Datos del Docente")
+	                    .setTextAlignment(TextAlignment.LEFT)
+	                    .setFontSize(14)
+	                    .setBold()
+	                    .setMarginTop(20);
+	                document.add(docenteHeader);
+	                
+	                // Tabla para información del docente
+	                Table docenteTable = new Table(columnWidths);
+	                
+	                addTableRow(docenteTable, "Nombre", datos_docente_nombre.getText());
+	                addTableRow(docenteTable, "Apellidos", datos_docente_apePaterno.getText() + " " + datos_docente_apeMaterno.getText());
+	                addTableRow(docenteTable, "Correo", datos_docente_correo.getText());
+	                addTableRow(docenteTable, "Dirección", datos_docente_direccion.getText());
+	                
+	                document.add(docenteTable);
+	                
+	                // Agregar imágenes si es necesario (opcional)
+	                /*
+	                com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(
+	                    ImageDataFactory.create("img/credencialDF.png"));
+	                document.add(imagen1);
+	                */
+	                
+	                // Cerrar el documento
+	                document.close();
+
+	                JOptionPane.showMessageDialog(null, "PDF del grupo generado correctamente: " + filename, "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+	            } catch (FileNotFoundException ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	        
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
+	        }
+	    });
+	    descargarBtn.setForeground(Color.WHITE);
+	    descargarBtn.setBackground(new Color(0, 128, 255));
+	    descargarBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    descargarBtn.setBounds(450, 700, 150, 50);
+	    fondo.add(descargarBtn);
+	    
+	    // Imagen de ejemplo (opcional)
+	    JLabel imagenEjemplo = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+	    imagenEjemplo.setIcon(imageIcon);
+	    imagenEjemplo.setBounds(150, 100, 300, 300);
+	    contenido.add(imagenEjemplo);
+	    
+	    // Panel decorativo superior
+	    JPanel panelSuperior = new JPanel();
+	    panelSuperior.setBackground(new Color(225, 225, 225));
+	    panelSuperior.setBounds(0, 0, 800, 20);
+	    fondo.add(panelSuperior);
+	    
+	    this.add(fondo);
+	    return fondo;
+	}
+	public JPanel PDFAsignatura() {
+	    // Variables para control de navegación
+	    anterior = actual;
+	    actual = "PDFAsignatura";
+	    
+	    // Panel principal con nuevo tamaño
+	    JPanel fondo = new JPanel();
+	    fondo.setBackground(new Color(225, 225, 225));
+	    fondo.setBounds(0, 0, 800, 800);  // Nuevo tamaño 800x800
+	    getContentPane().add(fondo);
+	    fondo.setLayout(null);
+	    
+	    // Título del panel
+	    JLabel titulo = new JLabel("Asignatura - Generar PDF");
+	    titulo.setForeground(Color.BLACK);
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    titulo.setFont(new Font("SansSerif", Font.PLAIN, 32));  // Tamaño de fuente aumentado
+	    titulo.setBounds(150, 20, 500, 50);  // Ajuste de posición y tamaño
+	    fondo.add(titulo);
+	    
+	    // Panel para el contenido principal
+	    JPanel contenido = new JPanel();
+	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    fondo.add(contenido);
+	    contenido.setLayout(null);
+	    
+	    // Conexión con la base de datos para obtener IDs de grupos
+	    BD bd = new BD();
+	    JComboBox<Integer> comboBoxID = new JComboBox<>();
+	    comboBoxID.setModel(new DefaultComboBoxModel<>(bd.obtenerIDsAsignatura().toArray(new Integer[0])));
+	    comboBoxID.setBounds(50, 20, 200, 30);  // Ajuste de tamaño y posición
+	    comboBoxID.setFont(new Font("SansSerif", Font.PLAIN, 16));  // Fuente más grande
+	    contenido.add(comboBoxID);
+	    
+	    // Campos de texto para los datos del grupo
+	    JTextField datos_nombre= new JTextField();
+	    JTextField datos_creditos = new JTextField();            
+	    JTextField datos_docente = new JTextField();
+	    JTextField datos_semestre = new JTextField();
+	    
+	    // Campos de texto para los datos del docente
+	    JTextField datos_docente_nombre = new JTextField();
+	    JTextField datos_docente_apePaterno = new JTextField();
+	    JTextField datos_docente_apeMaterno = new JTextField();
+	    JTextField datos_docente_correo = new JTextField();
+	    JTextField datos_docente_direccion = new JTextField();
+	    
+	    // Botón para volver al menú anterior
+	    RoundButtonRojo volverBtn = new RoundButtonRojo("Volver");
+	    volverBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "menuAsignaturas";
+	            add(menuAsignaturas());
+	            repaint();
+	            revalidate();
+	        }
+	    });
+	    volverBtn.setForeground(Color.WHITE);
+	    volverBtn.setBackground(Color.RED);
+	    volverBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    volverBtn.setBounds(200, 700, 150, 50);  // Ajuste de posición y tamaño
+	    fondo.add(volverBtn);
+	    
+	    // Botón para descargar el PDF
+	    JButton descargarBtn = new JButton("Descargar");
+	    descargarBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int idConsultar = (int) comboBoxID.getSelectedItem();
+	            BD bd = new BD();
+	            try {
+	                Connection cn = bd.Conectar();
+	                Statement stm = cn.createStatement();
+	                
+	                // Obtener datos de la Asignatura
+	                ResultSet rsAsignatura = stm.executeQuery("SELECT g.*, d.idDocente FROM asignaturasbd g " +
+	                    "LEFT JOIN docentesbd d ON g.Docente = CONCAT(d.Nombre, ' ', d.`Apellido Paterno`, ' ', d.`Apellido Materno`) " +
+	                    "WHERE g.idAsignatura = " + idConsultar);
+
+	                if (rsAsignatura.next()) {
+	                	datos_nombre.setText(rsAsignatura.getString("Nombre"));
+	                	datos_creditos.setText(rsAsignatura.getString("Creditos"));
+	                    datos_docente.setText(rsAsignatura.getString("Docente"));
+	                    datos_semestre.setText(rsAsignatura.getString("Semestre"));
+	                    
+	                    // Obtener ID del docente
+	                    int idDocente = rsAsignatura.getInt("idDocente");
+	                    
+	                    // Si encontramos el ID del docente, obtener sus datos
+	                    if (idDocente > 0) {
+	                        ResultSet rsDocente = stm.executeQuery("SELECT * FROM docentesbd WHERE idDocente = " + idDocente);
+	                        
+	                        if (rsDocente.next()) {
+	                            datos_docente_nombre.setText(rsDocente.getString("Nombre"));
+	                            datos_docente_apePaterno.setText(rsDocente.getString("Apellido Paterno"));
+	                            datos_docente_apeMaterno.setText(rsDocente.getString("Apellido Materno"));
+	                            datos_docente_correo.setText(rsDocente.getString("Correo"));
+	                            datos_docente_direccion.setText(rsDocente.getString("Direccion"));
+	                        }
+	                        rsDocente.close();
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "No se encontró información del docente asociado", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                    }
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "ID de la asignatura inválido. Favor de intentar de nuevo");
+	                }
+
+	                rsAsignatura.close();
+	                stm.close();
+	                cn.close();
+	            } catch (SQLException e1) {
+	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	            
+	            try {
+	                // Crear el archivo PDF para la asignatura
+	                String filename = "informacion_asignatura_" + idConsultar + ".pdf";
+	                PdfWriter writer = new PdfWriter(new FileOutputStream(filename));
+	                com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+	                com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+	                // Encabezado del documento
+	                Paragraph header = new Paragraph("Universidad Autónoma de Baja California Sur")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(20)
+	                    .setBold();
+	                
+	                Paragraph subheader = new Paragraph("Información de la Asignatura y Docente")
+	                    .setTextAlignment(TextAlignment.CENTER)
+	                    .setFontSize(16)
+	                    .setMarginBottom(20);
+	                
+	                document.add(header);
+	                document.add(subheader);
+	                
+	                // Información del Grupo
+	                Paragraph asignaturaHeader = new Paragraph("Datos de la Asignatura")
+	                    .setTextAlignment(TextAlignment.LEFT)
+	                    .setFontSize(14)
+	                    .setBold()
+	                    .setMarginTop(20);
+	                document.add(asignaturaHeader);
+	                
+	                // Tabla para información del grupo
+	                float[] columnWidths = {150f, 350f};
+	                Table asignaturaTable = new Table(columnWidths);
+	                
+	                addTableRow(asignaturaTable, "ID Asignatura", String.valueOf(idConsultar));
+	                addTableRow(asignaturaTable, "Nombre", datos_nombre.getText());
+	                addTableRow(asignaturaTable, "Créditos", datos_creditos.getText());
+	                addTableRow(asignaturaTable, "Docente", datos_docente.getText());
+	                addTableRow(asignaturaTable, "Semestre", datos_semestre.getText());
+	                
+	                document.add(asignaturaTable);
+	                
+	                // Información del Docente
+	                Paragraph docenteHeader = new Paragraph("Datos del Docente")
+	                    .setTextAlignment(TextAlignment.LEFT)
+	                    .setFontSize(14)
+	                    .setBold()
+	                    .setMarginTop(20);
+	                document.add(docenteHeader);
+	                
+	                // Tabla para información del docente
+	                Table docenteTable = new Table(columnWidths);
+	                
+	                addTableRow(docenteTable, "Nombre", datos_docente_nombre.getText());
+	                addTableRow(docenteTable, "Apellidos", datos_docente_apePaterno.getText() + " " + datos_docente_apeMaterno.getText());
+	                addTableRow(docenteTable, "Correo", datos_docente_correo.getText());
+	                addTableRow(docenteTable, "Dirección", datos_docente_direccion.getText());
+	                
+	                document.add(docenteTable);
+	                
+	                // Agregar imágenes si es necesario (opcional)
+	                /*
+	                com.itextpdf.layout.element.Image imagen1 = new com.itextpdf.layout.element.Image(
+	                    ImageDataFactory.create("img/credencialDF.png"));
+	                document.add(imagen1);
+	                */
+	                
+	                // Cerrar el documento
+	                document.close();
+
+	                JOptionPane.showMessageDialog(null, "PDF del grupo generado correctamente: " + filename, "Generar PDF", JOptionPane.INFORMATION_MESSAGE);
+	            } catch (FileNotFoundException ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al generar el PDF.", "Generar PDF", JOptionPane.ERROR_MESSAGE);
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	        
+	        private void addTableRow(Table table, String header, String value) {
+	            // Header cell
+	            Cell headerCell = new Cell()
+	                .add(new Paragraph(header))
+	                .setBold()
+	                .setBackgroundColor(new DeviceRgb(240, 240, 240));
+	            
+	            // Value cell
+	            Cell valueCell = new Cell()
+	                .add(new Paragraph(value != null ? value : ""));
+	            
+	            table.addCell(headerCell);
+	            table.addCell(valueCell);
+	        }
+	    });
+	    descargarBtn.setForeground(Color.WHITE);
+	    descargarBtn.setBackground(new Color(0, 128, 255));
+	    descargarBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+	    descargarBtn.setBounds(450, 700, 150, 50);
+	    fondo.add(descargarBtn);
+	    
+	    // Imagen de ejemplo (opcional)
+	    JLabel imagenEjemplo = new JLabel("");
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+	    imagenEjemplo.setIcon(imageIcon);
+	    imagenEjemplo.setBounds(150, 100, 300, 300);
+	    contenido.add(imagenEjemplo);
+	    
+	    // Panel decorativo superior
+	    JPanel panelSuperior = new JPanel();
+	    panelSuperior.setBackground(new Color(225, 225, 225));
+	    panelSuperior.setBounds(0, 0, 800, 20);
+	    fondo.add(panelSuperior);
+	    
+	    this.add(fondo);
+	    return fondo;
+	}
 	////////FUNCION LIMPIAR VENTANA/////
 	public void limpiarVentana() {
 
@@ -4248,6 +4744,22 @@ public class Ventana extends JFrame{
 		}
 		if(actual.equals("credencialDocente")){
 			panel = credencialDocente(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("PDFGrupo")){
+			panel = PDFGrupo(); 
+			
+			this.add(panel);
+			
+			this.repaint();
+			this.revalidate();
+		}
+		if(actual.equals("PDFAsignatura")){
+			panel = PDFAsignatura(); 
 			
 			this.add(panel);
 			
