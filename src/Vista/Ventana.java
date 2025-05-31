@@ -83,6 +83,7 @@ import Modelo.BD;
 public class Ventana extends JFrame{
 	private String anterior = "login";
 	private String actual = "login";
+	public String nombreuser = "";
 	private JTextField username;
 	private JPasswordField password;
 	public JPanel panel = null;
@@ -125,6 +126,7 @@ public class Ventana extends JFrame{
 	private JButton button3;
 	private JTable table4;
 	private JButton button4;
+	public int usertype;
 	
 
 	public Ventana() {
@@ -260,29 +262,93 @@ public class Ventana extends JFrame{
 	            BD bd = new BD();
 	            try {
 	                Connection cn = bd.Conectar();
-	                Statement stm = cn.createStatement();
-	                ResultSet rs = stm.executeQuery("SELECT * FROM admin");
-
+	                
+	                // Verificar primero en admin
 	                boolean credencialesCorrectas = false;
-	                while (rs.next()) {
-	                    String nombre = rs.getString("Nombre");
-	                    String contrasena = rs.getString("Contrasena");
+	                int tipoUsuario = 0; // 0=no autenticado, 1=admin, 2=docente, 3=alumno
+	                String nombreUsuario = "";
+	                
+	                // Consulta para admin
+	                Statement stmAdmin = cn.createStatement();
+	                ResultSet rsAdmin = stmAdmin.executeQuery("SELECT * FROM admin");
+	                while (rsAdmin.next()) {
+	                    String nombre = rsAdmin.getString("Nombre");
+	                    String contrasena = rsAdmin.getString("Contrasena");
 
 	                    if (usuario.equals(nombre) && pass.equals(contrasena)) {
 	                        credencialesCorrectas = true;
-	                        JOptionPane.showMessageDialog(null, "¡Datos correctos. Bienvenido " + nombre + "!");
-	                        remove(fondo);
-	                        anterior = actual;
-	                        actual = "menuPrincipal";
-	                        add(menuPrincipal());
-	                        repaint();
-	                        // Reiniciar contador de intentos al éxito
-	                        intentosFallidos[0] = 0;
+	                        nombreUsuario = nombre;
+	                        tipoUsuario = 1; // Admin
 	                        break;
 	                    }
 	                }
-
+	                rsAdmin.close();
+	                stmAdmin.close();
+	                
+	                // Si no es admin, verificar docentes
 	                if (!credencialesCorrectas) {
+	                    Statement stmDocente = cn.createStatement();
+	                    ResultSet rsDocente = stmDocente.executeQuery("SELECT * FROM docentesbd");
+	                    while (rsDocente.next()) {
+	                        String contrasenaDocente = rsDocente.getString("Contrasena");
+	                        String nombreDocente = rsDocente.getString("Nombre");
+
+	                        if (usuario.equals(nombreDocente) && pass.equals(contrasenaDocente)) {
+	                            credencialesCorrectas = true;
+	                            nombreUsuario = nombreDocente;
+	                            tipoUsuario = 2; // Docente
+	                            break;
+	                        }
+	                    }
+	                    rsDocente.close();
+	                    stmDocente.close();
+	                }
+	                
+	                // Si no es admin ni docente, verificar alumnos
+	                if (!credencialesCorrectas) {
+	                    Statement stmAlumno = cn.createStatement();
+	                    ResultSet rsAlumno = stmAlumno.executeQuery("SELECT * FROM alumnosbd");
+	                    while (rsAlumno.next()) {
+	                        String contrasenaAlumno = rsAlumno.getString("Contrasena");
+	                        String nombreAlumno = rsAlumno.getString("Nombre");
+
+	                        if (usuario.equals(nombreAlumno) && pass.equals(contrasenaAlumno)) {
+	                            credencialesCorrectas = true;
+	                            nombreUsuario = nombreAlumno;
+	                            tipoUsuario = 3; // Alumno
+	                            break;
+	                        }
+	                    }
+	                    rsAlumno.close();
+	                    stmAlumno.close();
+	                }
+	                
+	                cn.close();
+
+	                if (credencialesCorrectas) {
+	                    String mensajeBienvenida = "¡Datos correctos. Bienvenido " + nombreUsuario + "!";
+	                    switch (tipoUsuario) {
+	                        case 1:
+	                            mensajeBienvenida += " (Administrador)";
+	                            break;
+	                        case 2:
+	                            mensajeBienvenida += " (Docente)";
+	                            break;
+	                        case 3:
+	                            mensajeBienvenida += " (Alumno)";
+	                            break;
+	                    }
+	                    
+	                    JOptionPane.showMessageDialog(null, mensajeBienvenida);
+	                    usertype = tipoUsuario;
+	                    remove(fondo);
+	                    anterior = actual;
+	                    actual = "menuPrincipal";
+	                    add(menuPrincipal());
+	                    repaint();
+	                    // Reiniciar contador de intentos al éxito
+	                    intentosFallidos[0] = 0;
+	                } else {
 	                    intentosFallidos[0]++;
 	                    if (intentosFallidos[0] >= maxIntentos) {
 	                        // Bloquear campos
@@ -310,11 +376,9 @@ public class Ventana extends JFrame{
 	                    }
 	                }
 	                
-	                rs.close();
-	                stm.close();
-	                cn.close();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
 	            }
 	        }
 	    });
@@ -343,8 +407,17 @@ public class Ventana extends JFrame{
 	    fondo.setLayout(null);
 	    getContentPane().add(fondo);
 
+	    //User
+	    if(usertype == 1) {
+	    	nombreuser = "Admin";
+	    }else if (usertype == 2) {
+	    	nombreuser = "Docente";
+	    }else if (usertype == 3) {
+	    	nombreuser = "Alumno";
+	    }
+	    	
 	    // Título centrado
-	    JLabel Titulo = new JLabel("Bienvenido Admin", SwingConstants.CENTER);
+	    JLabel Titulo = new JLabel("Bienvenido " + nombreuser, SwingConstants.CENTER);
 	    Titulo.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 	    Titulo.setForeground(Color.BLACK);
 	    Titulo.setBounds(200, 40, 400, 50);
@@ -626,17 +699,20 @@ public class Ventana extends JFrame{
 	    lblConsultar.setBounds(500, 120, 150, 30);
 	    fondo.add(lblConsultar);
 
-	    JLabel lblCrear = new JLabel("Crear");
-	    lblCrear.setForeground(new Color(121, 255, 145));
-	    lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-	    lblCrear.setBounds(200, 440, 100, 30);
-	    fondo.add(lblCrear);
+	    // Solo mostrar etiquetas de Crear y Eliminar si es admin (usertype = 1)
+	    if (usertype == 1) {
+	        JLabel lblCrear = new JLabel("Crear");
+	        lblCrear.setForeground(new Color(121, 255, 145));
+	        lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	        lblCrear.setBounds(200, 440, 100, 30);
+	        fondo.add(lblCrear);
 
-	    JLabel lblEliminar = new JLabel("Eliminar");
-	    lblEliminar.setForeground(new Color(121, 255, 145));
-	    lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-	    lblEliminar.setBounds(520, 440, 120, 30);
-	    fondo.add(lblEliminar);
+	        JLabel lblEliminar = new JLabel("Eliminar");
+	        lblEliminar.setForeground(new Color(121, 255, 145));
+	        lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+	        lblEliminar.setBounds(520, 440, 120, 30);
+	        fondo.add(lblEliminar);
+	    }
 
 	    // Botón Credencial
 	    RoundButton btnCredAlu = new RoundButton("");
@@ -670,37 +746,40 @@ public class Ventana extends JFrame{
 	    });
 	    fondo.add(btnConsultarAlu);
 
-	    // Botón Crear
-	    RoundButton btnCrearAlu = new RoundButton("");
-	    ImageIcon icono3 = new ImageIcon("img/crearicono.png");
-	    btnCrearAlu.setIcon(new ImageIcon(icono3.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
-	    btnCrearAlu.setBackground(new Color(121, 255, 145));
-	    btnCrearAlu.setBounds(140, 480, 180, 180);
-	    btnCrearAlu.addActionListener(e -> {
-	        remove(fondo);
-	        anterior = actual;
-	        actual = "crearAlumno";
-	        add(crearAlumno());
-	        repaint();
-	        revalidate();
-	    });
-	    fondo.add(btnCrearAlu);
+	    // Solo mostrar botones de Crear y Eliminar si es admin (usertype = 1)
+	    if (usertype == 1) {
+	        // Botón Crear
+	        RoundButton btnCrearAlu = new RoundButton("");
+	        ImageIcon icono3 = new ImageIcon("img/crearicono.png");
+	        btnCrearAlu.setIcon(new ImageIcon(icono3.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	        btnCrearAlu.setBackground(new Color(121, 255, 145));
+	        btnCrearAlu.setBounds(140, 480, 180, 180);
+	        btnCrearAlu.addActionListener(e -> {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "crearAlumno";
+	            add(crearAlumno());
+	            repaint();
+	            revalidate();
+	        });
+	        fondo.add(btnCrearAlu);
 
-	    // Botón Eliminar
-	    RoundButton btnEliminarAlu = new RoundButton("");
-	    ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
-	    btnEliminarAlu.setIcon(new ImageIcon(icono4.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
-	    btnEliminarAlu.setBackground(new Color(121, 255, 145));
-	    btnEliminarAlu.setBounds(480, 480, 180, 180);
-	    btnEliminarAlu.addActionListener(e -> {
-	        remove(fondo);
-	        anterior = actual;
-	        actual = "eliminarAlumno";
-	        add(eliminarAlumno());
-	        repaint();
-	        revalidate();
-	    });
-	    fondo.add(btnEliminarAlu);
+	        // Botón Eliminar
+	        RoundButton btnEliminarAlu = new RoundButton("");
+	        ImageIcon icono4 = new ImageIcon("img/eliminaricono.png");
+	        btnEliminarAlu.setIcon(new ImageIcon(icono4.getImage().getScaledInstance(150, 140, Image.SCALE_SMOOTH)));
+	        btnEliminarAlu.setBackground(new Color(121, 255, 145));
+	        btnEliminarAlu.setBounds(480, 480, 180, 180);
+	        btnEliminarAlu.addActionListener(e -> {
+	            remove(fondo);
+	            anterior = actual;
+	            actual = "eliminarAlumno";
+	            add(eliminarAlumno());
+	            repaint();
+	            revalidate();
+	        });
+	        fondo.add(btnEliminarAlu);
+	    }
 
 	    // Botón Volver
 	    RoundButtonRojoBorde Volver = new RoundButtonRojoBorde("Volver");
