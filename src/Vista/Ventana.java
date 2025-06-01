@@ -429,6 +429,7 @@ public class Ventana extends JFrame{
 	    fondo.add(tag1);
 
 	    RoundButton botonAlumnos = new RoundButton("Alumnos");
+	    botonAlumnos.setFont(new Font("Times New Roman", Font.BOLD, 36));
 	    botonAlumnos.setBounds(200, 130, 500, 80);
 	    botonAlumnos.addActionListener(e -> {
 	        remove(fondo);
@@ -446,6 +447,7 @@ public class Ventana extends JFrame{
 	    fondo.add(tag2);
 
 	    RoundButton botonDocentes = new RoundButton("Docentes");
+	    botonDocentes.setFont(new Font("Times New Roman", Font.BOLD, 36));
 	    botonDocentes.setBounds(200, 230, 500, 80);
 	    botonDocentes.addActionListener(e -> {
 	        remove(fondo);
@@ -463,6 +465,7 @@ public class Ventana extends JFrame{
 	    fondo.add(tag3);
 
 	    RoundButton botonGrupos = new RoundButton("Grupos");
+	    botonGrupos.setFont(new Font("Times New Roman", Font.BOLD, 36));
 	    botonGrupos.setBounds(200, 330, 500, 80);
 	    botonGrupos.addActionListener(e -> {
 	        remove(fondo);
@@ -480,6 +483,7 @@ public class Ventana extends JFrame{
 	    fondo.add(tag4);
 
 	    RoundButton botonAsignaturas = new RoundButton("Asignaturas");
+	    botonAsignaturas.setFont(new Font("Times New Roman", Font.BOLD, 36));
 	    botonAsignaturas.setBounds(200, 430, 500, 80);
 	    botonAsignaturas.addActionListener(e -> {
 	        remove(fondo);
@@ -537,7 +541,7 @@ public class Ventana extends JFrame{
 
 		// Título principal
 		JLabel titulo = new JLabel("GRUPOS");
-		titulo.setForeground(Color.BLACK);
+		titulo.setForeground(new Color(121, 255, 145));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		titulo.setBounds(200, 30, 400, 50);
@@ -546,7 +550,7 @@ public class Ventana extends JFrame{
 		///Etiqueta PDF
 		JLabel lblPDF = new JLabel("PDF");
 		lblPDF.setForeground(new Color(121, 255, 145));
-		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 28));
 		lblPDF.setBounds(220, 120, 130, 30);
 		fondo.add(lblPDF);
 		
@@ -687,7 +691,7 @@ public class Ventana extends JFrame{
 
 	    // Título principal
 	    JLabel Titulo = new JLabel("ALUMNOS");
-	    Titulo.setForeground(Color.BLACK);
+	    Titulo.setForeground(new Color(121, 255, 145));
 	    Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 	    Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
 	    Titulo.setBounds(200, 30, 400, 50);
@@ -828,7 +832,7 @@ public class Ventana extends JFrame{
 
 		// Título principal
 		JLabel Titulo = new JLabel("DOCENTES");
-		Titulo.setForeground(Color.BLACK);
+		Titulo.setForeground(new Color(121, 255, 145));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		Titulo.setBounds(200, 30, 400, 50);
@@ -837,13 +841,13 @@ public class Ventana extends JFrame{
 		// Etiquetas de acción
 		JLabel lblCredencial = new JLabel("Credencial");
 		lblCredencial.setForeground(new Color(121, 255, 145));
-		lblCredencial.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblCredencial.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblCredencial.setBounds(180, 120, 130, 30);
 		fondo.add(lblCredencial);
 
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
 		lblConsultar.setBounds(500, 120, 130, 30);
 		fondo.add(lblConsultar);
 
@@ -851,13 +855,13 @@ public class Ventana extends JFrame{
 	        JLabel lblCrear = new JLabel("Crear");
 	        lblCrear.setForeground(new Color(121, 255, 145));
 	        lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
-	        lblCrear.setBounds(200, 440, 100, 30);
+	        lblCrear.setBounds(200, 400, 100, 30);
 	        fondo.add(lblCrear);
 
 	        JLabel lblEliminar = new JLabel("Eliminar");
 	        lblEliminar.setForeground(new Color(121, 255, 145));
 	        lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
-	        lblEliminar.setBounds(520, 440, 120, 30);
+	        lblEliminar.setBounds(520, 400, 120, 30);
 	        fondo.add(lblEliminar);
 	    }
 		
@@ -973,7 +977,7 @@ public class Ventana extends JFrame{
 
 		// Título principal
 		JLabel Titulo = new JLabel("ASIGNATURAS");
-		Titulo.setForeground(Color.BLACK);
+		Titulo.setForeground(new Color(121, 255, 145));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		Titulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		Titulo.setBounds(200, 30, 400, 50);
@@ -982,20 +986,20 @@ public class Ventana extends JFrame{
 		// Etiquetas
 		JLabel lblConsultar = new JLabel("Consultar");
 		lblConsultar.setForeground(new Color(121, 255, 145));
-		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+		lblConsultar.setFont(new Font("SansSerif", Font.PLAIN, 28));
 		lblConsultar.setBounds(490, 120, 130, 30); // Centrado arriba
 		fondo.add(lblConsultar);
 
 		if (usertype == 1) {
 			JLabel lblCrear = new JLabel("Crear");
 			lblCrear.setForeground(new Color(121, 255, 145));
-			lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 24));
+			lblCrear.setFont(new Font("SansSerif", Font.PLAIN, 28));
 			lblCrear.setBounds(210, 390, 100, 30);
 			fondo.add(lblCrear);
 	
 			JLabel lblEliminar = new JLabel("Eliminar");
 			lblEliminar.setForeground(new Color(121, 255, 145));
-			lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 24));
+			lblEliminar.setFont(new Font("SansSerif", Font.PLAIN, 28));
 			lblEliminar.setBounds(500, 390, 120, 30);
 			fondo.add(lblEliminar);
 		}
@@ -1003,7 +1007,7 @@ public class Ventana extends JFrame{
 		///Etiqueta PDF
 		JLabel lblPDF = new JLabel("PDF");
 		lblPDF.setForeground(new Color(121, 255, 145));
-		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 22));
+		lblPDF.setFont(new Font("SansSerif", Font.PLAIN, 28));
 		lblPDF.setBounds(220, 120, 130, 30);
 		fondo.add(lblPDF);
 		
@@ -1134,11 +1138,13 @@ public class Ventana extends JFrame{
 	    subtitulo.setBounds(150, 80, 500, 30);
 	    fondo.add(subtitulo);
 	    
-	    // Panel de contenido (verde)
+	    // Panel de contenido (verde con transparencia)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
-	    panelContenido.setBounds(100, 130, 600, 500);  // Ajustado para 800px
+	    // Color con transparencia (el cuarto parámetro es el canal alfa, 0-255, donde 0 es totalmente transparente)
+	    panelContenido.setBackground(new Color(0, 128, 64, 200)); // 128 de alpha = 50% transparente
+	    panelContenido.setBounds(100, 130, 600, 500);
 	    panelContenido.setLayout(null);
+	    panelContenido.setOpaque(true); // Esto es importante para que la transparencia funcione
 	    fondo.add(panelContenido);
 	    
 	    // ========== CAMPOS DEL FORMULARIO ==========
@@ -1146,7 +1152,7 @@ public class Ventana extends JFrame{
 	    // Nombres
 	    JLabel lblNombres = new JLabel("Nombres:");
 	    lblNombres.setBounds(50, 30, 150, 30);
-	    lblNombres.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblNombres.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblNombres);
 	    
 	    txtNombre = new JTextField();
@@ -1157,7 +1163,7 @@ public class Ventana extends JFrame{
 	    // Apellidos
 	    JLabel lblApellidoPaterno = new JLabel("Apellido Paterno:");
 	    lblApellidoPaterno.setBounds(50, 110, 200, 30);
-	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblApellidoPaterno);
 	    
 	    txtApellidoPaterno = new JTextField();
@@ -1167,7 +1173,7 @@ public class Ventana extends JFrame{
 	    
 	    JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
 	    lblApellidoMaterno.setBounds(350, 110, 200, 30);
-	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblApellidoMaterno);
 	    
 	    txtApellidoMaterno = new JTextField();
@@ -1178,7 +1184,7 @@ public class Ventana extends JFrame{
 	    // Fecha de nacimiento
 	    JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
 	    lblFechaNacimiento.setBounds(50, 190, 200, 30);
-	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblFechaNacimiento);
 	    
 	    dia_nacimiento = new JComboBox<String>();
@@ -1211,7 +1217,7 @@ public class Ventana extends JFrame{
 	    // Correo electrónico
 	    JLabel lblCorreo = new JLabel("Correo electrónico:");
 	    lblCorreo.setBounds(50, 270, 200, 30);
-	    lblCorreo.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblCorreo.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblCorreo);
 	    
 	    txtCorreo = new JTextField();
@@ -1222,7 +1228,7 @@ public class Ventana extends JFrame{
 	    // Teléfono
 	    JLabel lblTelefono = new JLabel("Teléfono:");
 	    lblTelefono.setBounds(50, 350, 200, 30);
-	    lblTelefono.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblTelefono.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblTelefono);
 	    
 	    txtTelefono = new JTextField(10);
@@ -1248,7 +1254,7 @@ public class Ventana extends JFrame{
 	    // Foto (opcional)
 	    JLabel lblFoto = new JLabel("Foto (Opcional):");
 	    lblFoto.setBounds(50, 430, 200, 30);
-	    lblFoto.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblFoto.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblFoto);
 	    
 	    JButton btnSubirArchivo = new JButton("Subir archivo");
@@ -1275,7 +1281,7 @@ public class Ventana extends JFrame{
 	    // Dirección (opcional)
 	    JLabel lblDireccion = new JLabel("Dirección (Opcional):");
 	    lblDireccion.setBounds(350, 430, 200, 30);
-	    lblDireccion.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblDireccion.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblDireccion);
 	    
 	    txtDireccion = new JTextField();
@@ -1286,7 +1292,7 @@ public class Ventana extends JFrame{
 	    // Grado
 	    JLabel lblGrado = new JLabel("Grado:");
 	    lblGrado.setBounds(350, 350, 100, 30);
-	    lblGrado.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblGrado.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblGrado);
 	    
 	    comboBox = new JComboBox();
@@ -1329,6 +1335,17 @@ public class Ventana extends JFrame{
 	    icono.setBounds(650, 30, 80, 80);  // Reposicionado
 	    fondo.add(icono);
 	    
+	    // Fondo decorativo
+ 		JLabel fondoMenu = new JLabel("");
+ 		ImageIcon imageFondo = new ImageIcon(
+ 			new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+ 		);
+ 		fondoMenu.setIcon(imageFondo);
+ 		fondoMenu.setBounds(-10, -25, 800, 800);
+ 		fondo.add(fondoMenu);
+
+ 		this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -1360,11 +1377,13 @@ public class Ventana extends JFrame{
 	    subtitulo.setBounds(150, 80, 500, 30);
 	    fondo.add(subtitulo);
 	    
-	    // Panel de contenido (verde)
+	    // Panel de contenido (verde con transparencia)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    // Color con transparencia (el cuarto parámetro es el canal alfa, 0-255, donde 0 es totalmente transparente)
+	    panelContenido.setBackground(new Color(0, 128, 64, 200)); // 128 de alpha = 50% transparente
 	    panelContenido.setBounds(100, 130, 600, 500);
 	    panelContenido.setLayout(null);
+	    panelContenido.setOpaque(true); // Esto es importante para que la transparencia funcione
 	    fondo.add(panelContenido);
 	    
 	    // ========== CAMPOS DEL FORMULARIO ==========
@@ -1372,7 +1391,7 @@ public class Ventana extends JFrame{
 	    // Nombres
 	    JLabel lblNombres = new JLabel("Nombres:");
 	    lblNombres.setBounds(50, 30, 150, 30);
-	    lblNombres.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblNombres.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblNombres);
 	    
 	    txtNombreD = new JTextField();
@@ -1383,7 +1402,7 @@ public class Ventana extends JFrame{
 	    // Apellidos
 	    JLabel lblApellidoPaterno = new JLabel("Apellido Paterno:");
 	    lblApellidoPaterno.setBounds(50, 110, 200, 30);
-	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblApellidoPaterno.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblApellidoPaterno);
 	    
 	    txtApellidoPaternoD = new JTextField();
@@ -1393,7 +1412,7 @@ public class Ventana extends JFrame{
 	    
 	    JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
 	    lblApellidoMaterno.setBounds(350, 110, 200, 30);
-	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblApellidoMaterno.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblApellidoMaterno);
 	    
 	    txtApellidoMaternoD = new JTextField();
@@ -1404,7 +1423,7 @@ public class Ventana extends JFrame{
 	    // Fecha de nacimiento
 	    JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
 	    lblFechaNacimiento.setBounds(50, 190, 200, 30);
-	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblFechaNacimiento.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblFechaNacimiento);
 	    
 	    dia_nacimientoD = new JComboBox<String>();
@@ -1431,7 +1450,7 @@ public class Ventana extends JFrame{
 	    // Correo electrónico
 	    JLabel lblCorreo = new JLabel("Correo electrónico:");
 	    lblCorreo.setBounds(50, 270, 200, 30);
-	    lblCorreo.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblCorreo.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblCorreo);
 	    
 	    txtCorreoD = new JTextField();
@@ -1442,7 +1461,7 @@ public class Ventana extends JFrame{
 	    // Teléfono
 	    JLabel lblTelefono = new JLabel("Teléfono:");
 	    lblTelefono.setBounds(50, 350, 200, 30);
-	    lblTelefono.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblTelefono.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblTelefono);
 	    
 	    txtTelefonoD = new JTextField(10);
@@ -1468,7 +1487,7 @@ public class Ventana extends JFrame{
 	    // Grado Académico
 	    JLabel lblGradoAcademico = new JLabel("Grado Académico:");
 	    lblGradoAcademico.setBounds(350, 350, 200, 30);
-	    lblGradoAcademico.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblGradoAcademico.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblGradoAcademico);
 	    
 	    comboBoxD = new JComboBox();
@@ -1482,7 +1501,7 @@ public class Ventana extends JFrame{
 	    // Foto (opcional)
 	    JLabel lblFoto = new JLabel("Foto (Opcional):");
 	    lblFoto.setBounds(50, 430, 200, 30);
-	    lblFoto.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblFoto.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblFoto);
 	    
 	    JButton btnSubirArchivo = new JButton("Subir archivo");
@@ -1509,7 +1528,7 @@ public class Ventana extends JFrame{
 	    // Dirección (opcional)
 	    JLabel lblDireccion = new JLabel("Dirección (Opcional):");
 	    lblDireccion.setBounds(350, 430, 200, 30);
-	    lblDireccion.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblDireccion.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblDireccion);
 	    
 	    txtDireccionD = new JTextField();
@@ -1550,6 +1569,17 @@ public class Ventana extends JFrame{
 	    icono.setBounds(650, 30, 80, 80);
 	    fondo.add(icono);
 	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 
@@ -1581,19 +1611,23 @@ public class Ventana extends JFrame{
 	    subtitulo.setBounds(150, 80, 500, 30);
 	    fondo.add(subtitulo);
 	    
-	    // Panel de contenido (verde)
+	    // Panel de contenido (verde con transparencia)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    // Color con transparencia (el cuarto parámetro es el canal alfa, 0-255, donde 0 es totalmente transparente)
+	    panelContenido.setBackground(new Color(0, 128, 64, 200)); // 128 de alpha = 50% transparente
 	    panelContenido.setBounds(100, 130, 600, 500);
 	    panelContenido.setLayout(null);
+	    panelContenido.setOpaque(true); // Esto es importante para que la transparencia funcione
 	    fondo.add(panelContenido);
+
 	    
 	    // ========== CAMPOS DEL FORMULARIO ==========
 	    
 	    // Carrera
 	    JLabel lblCarrera = new JLabel("Carrera:");
 	    lblCarrera.setBounds(50, 30, 200, 30);
-	    lblCarrera.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblCarrera.setForeground(Color.BLACK);
+	    lblCarrera.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblCarrera);
 	    
 	    carreraG = new JTextField();
@@ -1604,7 +1638,8 @@ public class Ventana extends JFrame{
 	    // Asignatura
 	    JLabel lblAsignatura = new JLabel("Asignatura:");
 	    lblAsignatura.setBounds(50, 110, 200, 30);
-	    lblAsignatura.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblAsignatura.setForeground(Color.BLACK);
+	    lblAsignatura.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblAsignatura);
 	    
 	    asignaturaG = new JComboBox();
@@ -1634,7 +1669,8 @@ public class Ventana extends JFrame{
 	    // Docente a cargo
 	    JLabel lblDocente = new JLabel("Docente a cargo:");
 	    lblDocente.setBounds(50, 190, 200, 30);
-	    lblDocente.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblDocente.setForeground(Color.BLACK);
+	    lblDocente.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblDocente);
 	    
 	    docente_a_cargoG = new JComboBox();    
@@ -1663,7 +1699,8 @@ public class Ventana extends JFrame{
 	    // Semestre
 	    JLabel lblSemestre = new JLabel("Semestre:");
 	    lblSemestre.setBounds(50, 270, 200, 30);
-	    lblSemestre.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblSemestre.setForeground(Color.BLACK);
+	    lblSemestre.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblSemestre);
 	    
 	    semestreG = new JComboBox();
@@ -1677,7 +1714,8 @@ public class Ventana extends JFrame{
 	    // Número de alumnos
 	    JLabel lblNumAlumnos = new JLabel("Número de alumnos (máximo 40):");
 	    lblNumAlumnos.setBounds(50, 350, 300, 30);
-	    lblNumAlumnos.setFont(new Font("SansSerif", Font.PLAIN, 18));
+	    lblNumAlumnos.setForeground(Color.BLACK);
+	    lblNumAlumnos.setFont(new Font("SansSerif", Font.BOLD, 18));
 	    panelContenido.add(lblNumAlumnos);
 	    
 	    num_alu = new JTextField();
@@ -1732,6 +1770,17 @@ public class Ventana extends JFrame{
 	    icono.setBounds(650, 30, 80, 80);
 	    fondo.add(icono);
 	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -1763,11 +1812,13 @@ public class Ventana extends JFrame{
 	    subtitulo.setBounds(150, 80, 500, 30);
 	    fondo.add(subtitulo);
 	    
-	    // Panel de contenido (verde)
+	    // Panel de contenido (verde con transparencia)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    // Color con transparencia (el cuarto parámetro es el canal alfa, 0-255, donde 0 es totalmente transparente)
+	    panelContenido.setBackground(new Color(0, 128, 64, 200)); // 128 de alpha = 50% transparente
 	    panelContenido.setBounds(100, 130, 600, 500);
 	    panelContenido.setLayout(null);
+	    panelContenido.setOpaque(true); // Esto es importante para que la transparencia funcione
 	    fondo.add(panelContenido);
 	    
 	    // ========== CAMPOS DEL FORMULARIO ==========
@@ -1885,6 +1936,17 @@ public class Ventana extends JFrame{
 	    icono.setBounds(650, 30, 80, 80);
 	    fondo.add(icono);
 	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 				
@@ -1907,8 +1969,9 @@ public class Ventana extends JFrame{
 
 	    // Panel contenedor de la tabla
 	    JPanel panelTabla = new JPanel();
-	    panelTabla.setBackground(new Color(0, 128, 64));
+	    panelTabla.setBackground(new Color(0, 128, 64, 200));
 	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño y posición ajustados
+	    panelTabla.setOpaque(true);
 	    fondo.add(panelTabla);
 	    panelTabla.setLayout(null);
 
@@ -2060,6 +2123,17 @@ public class Ventana extends JFrame{
 	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
 	    fondo.add(imagen);
 
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -2081,8 +2155,9 @@ public class Ventana extends JFrame{
 
 	    // Panel contenedor de la tabla
 	    JPanel panelTabla = new JPanel();
-	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    panelTabla.setOpaque(true);
 	    fondo.add(panelTabla);
 	    panelTabla.setLayout(null);
 
@@ -2234,6 +2309,17 @@ public class Ventana extends JFrame{
 	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
 	    fondo.add(imagen);
 
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -2257,8 +2343,9 @@ public class Ventana extends JFrame{
 
 	    // Panel contenedor de la tabla
 	    JPanel panelTabla = new JPanel();
-	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    panelTabla.setOpaque(true);
 	    fondo.add(panelTabla);
 	    panelTabla.setLayout(null);
 
@@ -2397,6 +2484,17 @@ public class Ventana extends JFrame{
 	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
 	    fondo.add(imagen);
 
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -2420,8 +2518,9 @@ public class Ventana extends JFrame{
 
 	    // Panel contenedor de la tabla
 	    JPanel panelTabla = new JPanel();
-	    panelTabla.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    panelTabla.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    panelTabla.setBounds(100, 120, 600, 550);  // Tamaño aumentado
+	    panelTabla.setOpaque(true);
 	    fondo.add(panelTabla);
 	    panelTabla.setLayout(null);
 
@@ -2559,6 +2658,17 @@ public class Ventana extends JFrame{
 	    imagen.setIcon(imageIcon);
 	    imagen.setBounds(650, 20, 100, 100);  // Posición ajustada
 	    fondo.add(imagen);
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
 
 	    return fondo;
 	}
@@ -2587,8 +2697,9 @@ public class Ventana extends JFrame{
 
 	    // Panel de contenido (verde)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBackground(new Color(0, 128, 64, 200));
 	    panelContenido.setBounds(100, 100, 600, 550);
+	    panelContenido.setOpaque(true);
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
@@ -2882,6 +2993,17 @@ public class Ventana extends JFrame{
 	        }
 	    });
 
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
+	    
 	    return fondo;
 	}
 	
@@ -2907,8 +3029,9 @@ public class Ventana extends JFrame{
 
 	    // Panel de contenido (verde)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBackground(new Color(0, 128, 64, 200));
 	    panelContenido.setBounds(100, 100, 600, 550);
+	    panelContenido.setOpaque(true);
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
@@ -3202,6 +3325,17 @@ public class Ventana extends JFrame{
 	            table.addCell(valueCell);
 	        }
 	    });
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
 
 	    return fondo;
 	}
@@ -3228,8 +3362,9 @@ public class Ventana extends JFrame{
 
 	    // Panel de contenido (verde)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBackground(new Color(0, 128, 64, 200));
 	    panelContenido.setBounds(100, 100, 600, 550);
+	    panelContenido.setOpaque(true);
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
@@ -3326,7 +3461,7 @@ public class Ventana extends JFrame{
 
 	    // Imagen de grupo
 	    JLabel lblImagenGrupo = new JLabel("");
-	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
 	    lblImagenGrupo.setIcon(imageIcon);
 	    lblImagenGrupo.setBounds(350, 50, 180, 180);
 	    panelContenido.add(lblImagenGrupo);
@@ -3537,6 +3672,17 @@ public class Ventana extends JFrame{
 	            table.addCell(valueCell);
 	        }
 	    });
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
 
 	    return fondo;
 	}
@@ -3563,8 +3709,9 @@ public class Ventana extends JFrame{
 
 	    // Panel de contenido (verde)
 	    JPanel panelContenido = new JPanel();
-	    panelContenido.setBackground(new Color(0, 128, 64));
+	    panelContenido.setBackground(new Color(0, 128, 64, 200));
 	    panelContenido.setBounds(100, 100, 600, 550);
+	    panelContenido.setOpaque(true);
 	    fondo.add(panelContenido);
 	    panelContenido.setLayout(null);
 
@@ -3656,7 +3803,7 @@ public class Ventana extends JFrame{
 
 	    // Imagen representativa
 	    JLabel lblImagenAsignatura = new JLabel("");
-	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
 	    lblImagenAsignatura.setIcon(imageIcon);
 	    lblImagenAsignatura.setBounds(350, 50, 180, 180);
 	    panelContenido.add(lblImagenAsignatura);
@@ -3864,6 +4011,17 @@ public class Ventana extends JFrame{
 	            table.addCell(valueCell);
 	        }
 	    });
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+
+	    this.add(fondo);
 
 	    return fondo;
 	}
@@ -3892,8 +4050,9 @@ public class Ventana extends JFrame{
 	    
 	    // Panel para el contenido principal
 	    JPanel contenido = new JPanel();
-	    contenido.setBackground(new Color(0, 128, 64));
+	    contenido.setBackground(new Color(0, 128, 64, 200));
 	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    contenido.setOpaque(true);
 	    fondo.add(contenido);
 	    contenido.setLayout(null);
 	    
@@ -4042,6 +4201,15 @@ public class Ventana extends JFrame{
 	    panelSuperior.setBounds(0, 0, 800, 20);  // Ajuste de tamaño
 	    fondo.add(panelSuperior);
 	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+	    
 	    this.add(fondo);
 	    return fondo;
 	}
@@ -4068,8 +4236,9 @@ public class Ventana extends JFrame{
 	    
 	    // Panel para el contenido principal
 	    JPanel contenido = new JPanel();
-	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    contenido.setOpaque(true);
 	    fondo.add(contenido);
 	    contenido.setLayout(null);
 	    
@@ -4218,6 +4387,15 @@ public class Ventana extends JFrame{
 	    panelSuperior.setBounds(0, 0, 800, 20);
 	    fondo.add(panelSuperior);
 	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
+	    
 	    this.add(fondo);
 	    return fondo;
 	}
@@ -4245,8 +4423,9 @@ public class Ventana extends JFrame{
 	    
 	    // Panel para el contenido principal
 	    JPanel contenido = new JPanel();
-	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    contenido.setOpaque(true);
 	    fondo.add(contenido);
 	    contenido.setLayout(null);
 	    
@@ -4444,9 +4623,9 @@ public class Ventana extends JFrame{
 	    
 	    // Imagen de ejemplo (opcional)
 	    JLabel imagenEjemplo = new JLabel("");
-	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/grupo.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
 	    imagenEjemplo.setIcon(imageIcon);
-	    imagenEjemplo.setBounds(150, 100, 300, 300);
+	    imagenEjemplo.setBounds(150, 150, 300, 300);
 	    contenido.add(imagenEjemplo);
 	    
 	    // Panel decorativo superior
@@ -4454,6 +4633,15 @@ public class Ventana extends JFrame{
 	    panelSuperior.setBackground(new Color(225, 225, 225));
 	    panelSuperior.setBounds(0, 0, 800, 20);
 	    fondo.add(panelSuperior);
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
 	    
 	    this.add(fondo);
 	    return fondo;
@@ -4480,8 +4668,9 @@ public class Ventana extends JFrame{
 	    
 	    // Panel para el contenido principal
 	    JPanel contenido = new JPanel();
-	    contenido.setBackground(new Color(0, 128, 64));  // Verde oscuro
+	    contenido.setBackground(new Color(0, 128, 64, 200));  // Verde oscuro
 	    contenido.setBounds(100, 80, 600, 600);  // Ajuste de tamaño y posición
+	    contenido.setOpaque(true);
 	    fondo.add(contenido);
 	    contenido.setLayout(null);
 	    
@@ -4676,9 +4865,9 @@ public class Ventana extends JFrame{
 	    
 	    // Imagen de ejemplo (opcional)
 	    JLabel imagenEjemplo = new JLabel("");
-	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/perfil.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+	    ImageIcon imageIcon = new ImageIcon(new ImageIcon("img/asignatura.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH));
 	    imagenEjemplo.setIcon(imageIcon);
-	    imagenEjemplo.setBounds(150, 100, 300, 300);
+	    imagenEjemplo.setBounds(150, 150, 300, 300);
 	    contenido.add(imagenEjemplo);
 	    
 	    // Panel decorativo superior
@@ -4686,6 +4875,15 @@ public class Ventana extends JFrame{
 	    panelSuperior.setBackground(new Color(225, 225, 225));
 	    panelSuperior.setBounds(0, 0, 800, 20);
 	    fondo.add(panelSuperior);
+	    
+	    // Fondo decorativo
+	    JLabel fondoMenu = new JLabel("");
+	    ImageIcon imageFondo = new ImageIcon(
+	     	new ImageIcon("img/fondoback.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT)
+	    );
+	    fondoMenu.setIcon(imageFondo);
+	    fondoMenu.setBounds(-10, -25, 800, 800);
+	    fondo.add(fondoMenu);
 	    
 	    this.add(fondo);
 	    return fondo;
