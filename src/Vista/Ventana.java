@@ -16,6 +16,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -24,8 +25,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import java.io.PrintWriter;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -338,6 +342,9 @@ public class Ventana extends JFrame{
 	                            mensajeBienvenida += " (Alumno)";
 	                            break;
 	                    }
+	                    
+	                    // Generar el archivo de registro de entrada
+	                    generarInformeEntrada(nombreUsuario, tipoUsuario);
 	                    
 	                    JOptionPane.showMessageDialog(null, mensajeBienvenida);
 	                    usertype = tipoUsuario;
@@ -5730,6 +5737,45 @@ public class Ventana extends JFrame{
 	        g2.dispose();
 	    }
 	}
+	private void generarInformeEntrada(String nombreUsuario, int tipoUsuario) {
+	    try {
+	        // Obtener la fecha y hora actual
+	        LocalDateTime ahora = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String fechaHora = ahora.format(formatter);
+	        
+	        // Determinar el tipo de usuario
+	        String tipo = "";
+	        switch (tipoUsuario) {
+	            case 1: tipo = "Administrador"; break;
+	            case 2: tipo = "Docente"; break;
+	            case 3: tipo = "Alumno"; break;
+	        }
+	        
+	        // Crear el directorio si no existe
+	        File directorio = new File("registros_entrada");
+	        if (!directorio.exists()) {
+	            directorio.mkdir();
+	        }
+	        
+	        // Crear el archivo con nombre único basado en fecha y hora
+	        String nombreArchivo = "registros_entrada/Informe_de_entrada_" + 
+	                             ahora.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".txt";
+	        
+	        // Escribir en el archivo
+	        try (PrintWriter writer = new PrintWriter(new FileWriter(nombreArchivo))) {
+	            writer.println("=== Informe de entrada al sistema ===");
+	            writer.println("Usuario: " + nombreUsuario);
+	            writer.println("Tipo: " + tipo);
+	            writer.println("Fecha y hora de entrada: " + fechaHora);
+	            writer.println("====================================");
+	        }
+	        
+	    } catch (IOException e) {
+	        System.err.println("Error al generar el informe de entrada: " + e.getMessage());
+	    }
+	}
 }
+
 
 
