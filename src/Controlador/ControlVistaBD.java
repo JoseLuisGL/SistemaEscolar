@@ -47,6 +47,7 @@ public class ControlVistaBD implements ActionListener {
 			 vpbd.txtApellidoPaterno.setBackground(new Color(0, 128, 192));
 			 vpbd.txtCorreo.setBackground(new Color(0, 128, 192));
 			 vpbd.txtNombre.setBackground(new Color(0, 128, 192));
+			 vpbd.txtContrasena.setBackground(new Color(0, 128, 192));
 			 	
 			if (vpbd.txtTelefono.getText().length() != 10 || vpbd.txtTelefono.getText() == "") {
 				 vpbd.txtTelefono.setBackground(new Color(255, 0, 0));
@@ -61,6 +62,10 @@ public class ControlVistaBD implements ActionListener {
              if(vpbd.txtNombre.getText().length()<2) {
             	 vpbd.txtNombre.setBackground(new Color(255, 0, 0));
             	 errores++;
+             }
+             if(vpbd.txtContrasena.getPassword().length < 2) {
+            	    vpbd.txtContrasena.setBackground(new Color(255, 0, 0));
+            	    errores++;
              }
              
              if(vpbd.txtApellidoPaterno.getText().length()<2) {
@@ -87,8 +92,12 @@ public class ControlVistaBD implements ActionListener {
 			}
 			
 			if(errores==0) {
+				
+			char[] passwordChars = vpbd.txtContrasena.getPassword();
+			String password = new String(passwordChars);
+			
 			int a = r.guardarAlumno(vpbd.txtNombre.getText(), vpbd.txtApellidoPaterno.getText(), vpbd.txtApellidoMaterno.getText(),
-					fecha, vpbd.txtCorreo.getText(), vpbd.txtTelefono.getText(), vpbd.txtDireccion.getText(), grado,vpbd.imagenBytes);
+					fecha, vpbd.txtCorreo.getText(), vpbd.txtTelefono.getText(), vpbd.txtDireccion.getText(), grado, vpbd.imagenBytes, password);
 			
 			if(a>0) {
 				JOptionPane.showMessageDialog(null, "¡Registro de alumno terminado!");
@@ -110,6 +119,7 @@ public class ControlVistaBD implements ActionListener {
 			 vpbd.txtApellidoPaternoD.setBackground(new Color(0, 128, 192));
 			 vpbd.txtCorreoD.setBackground(new Color(0, 128, 192));
 			 vpbd.txtNombreD.setBackground(new Color(0, 128, 192));
+			 vpbd.txtContrasenaD.setBackground(new Color(0, 128, 192));
 			 	
 			if (vpbd.txtTelefonoD.getText().length() != 10 || vpbd.txtTelefonoD.getText() == "") {
 				 vpbd.txtTelefonoD.setBackground(new Color(255, 0, 0));
@@ -124,6 +134,10 @@ public class ControlVistaBD implements ActionListener {
              if(vpbd.txtNombreD.getText().length()<2) {
             	 vpbd.txtNombreD.setBackground(new Color(255, 0, 0));
             	 errores++;
+             }
+             if(vpbd.txtContrasenaD.getPassword().length < 2) {
+         	    vpbd.txtContrasenaD.setBackground(new Color(255, 0, 0));
+         	    errores++;
              }
              
              if(vpbd.txtApellidoPaternoD.getText().length()<2) {
@@ -155,9 +169,13 @@ public class ControlVistaBD implements ActionListener {
 			}
 			
 			if(errores==0) {
+				
+			char[] passwordCharsD = vpbd.txtContrasenaD.getPassword();
+			String passwordD = new String(passwordCharsD);
+				
 			int a = r.guardarDocente(vpbd.txtNombreD.getText(), vpbd.txtApellidoPaternoD.getText(), vpbd.txtApellidoMaternoD.getText(),
 					fecha, vpbd.txtCorreoD.getText(), vpbd.txtTelefonoD.getText(), vpbd.txtDireccionD.getText(), 
-					vpbd.comboBoxD.getSelectedItem().toString(),vpbd.imagenBytesD);
+					vpbd.comboBoxD.getSelectedItem().toString(),vpbd.imagenBytesD, passwordD);
 			
 			if(a>0) {
 				JOptionPane.showMessageDialog(null, "¡Registro de docente terminado!");

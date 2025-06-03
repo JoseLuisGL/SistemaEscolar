@@ -95,6 +95,8 @@ public class Ventana extends JFrame{
 	public JTextField txtNombre;
 	public JTextField txtApellidoPaterno,txtApellidoMaterno;
 	public JTextField txtCorreo;
+	public JPasswordField txtContrasena;
+	public JPasswordField txtContrasenaD;
 	public JTextField txtDireccion;
 	public JTextField txtTelefono;
 	public JTextField txtNombreD,txtApellidoPaternoD,txtApellidoMaternoD,txtCorreoD,txtDireccionD,txtTelefonoD;
@@ -1209,7 +1211,7 @@ public class Ventana extends JFrame{
 	    }
 	    
 	    ano_nacimiento = new JComboBox<String>();
-	    ano_nacimiento.setBounds(250, 220, 100, 30);  // Aumentado tamaño
+	    ano_nacimiento.setBounds(250, 220, 90, 30);  // Aumentado tamaño
 	    panelContenido.add(ano_nacimiento);
 	    for(int i = 2005; i > 1899; i--) {
 	        ano_nacimiento.addItem(i);
@@ -1220,6 +1222,17 @@ public class Ventana extends JFrame{
 	    mes = (int) mes_nacimiento.getSelectedItem();
 	    ano = (int) ano_nacimiento.getSelectedItem();
 	    fecha = LocalDate.of(ano, mes, dia);
+	    
+	    // Contraseña
+	    JLabel lblCotrasena = new JLabel("Contraseña :");
+	    lblCotrasena.setBounds(350, 190, 200, 30);
+	    lblCotrasena.setFont(new Font("SansSerif", Font.BOLD, 18));
+	    panelContenido.add(lblCotrasena);
+	    
+	    txtContrasena = new JPasswordField();
+	    txtContrasena.setBackground(new Color(225, 225, 225));
+	    txtContrasena.setBounds(350, 220, 200, 30);
+	    panelContenido.add(txtContrasena);
 	    
 	    // Correo electrónico
 	    JLabel lblCorreo = new JLabel("Correo electrónico:");
@@ -1426,6 +1439,17 @@ public class Ventana extends JFrame{
 	    txtApellidoMaternoD.setBackground(new Color(225, 225, 225));
 	    txtApellidoMaternoD.setBounds(350, 140, 200, 30);
 	    panelContenido.add(txtApellidoMaternoD);
+
+	    // Contraseña
+	    JLabel lblCotrasena = new JLabel("Contraseña :");
+	    lblCotrasena.setBounds(350, 190, 200, 30);
+	    lblCotrasena.setFont(new Font("SansSerif", Font.BOLD, 18));
+	    panelContenido.add(lblCotrasena);
+	    
+	    txtContrasenaD = new JPasswordField();
+	    txtContrasenaD.setBackground(new Color(225, 225, 225));
+	    txtContrasenaD.setBounds(350, 220, 200, 30);
+	    panelContenido.add(txtContrasenaD);
 	    
 	    // Fecha de nacimiento
 	    JLabel lblFechaNacimiento = new JLabel("Fecha de nacimiento:");
@@ -1448,7 +1472,7 @@ public class Ventana extends JFrame{
 	    }
 	    
 	    ano_nacimientoD = new JComboBox<String>();
-	    ano_nacimientoD.setBounds(250, 220, 100, 30);
+	    ano_nacimientoD.setBounds(250, 220, 90, 30);
 	    panelContenido.add(ano_nacimientoD);
 	    for(int i = 2005; i > 1899; i--) {
 	        ano_nacimientoD.addItem(i);
